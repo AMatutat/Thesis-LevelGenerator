@@ -3,7 +3,7 @@ import interfaces.*;
 import myGame.*;
 
 /**
- * Parst ein String[][] kodiertes Level zu einer Instanz der Klasse Level
+ * Parst ein char[][] kodiertes Level zu einer Instanz der Klasse Level
  * Ermöglicht die zufällige Verteilung von Monster Items und Surfaces in einem Level.
  * Erstellt die TexturenMap eines Levels.
  * @author André Matutat
@@ -13,12 +13,12 @@ public class LevelParser {
 	
 /**
  * 
- * @param lvl Level in String Kodierung welches geparsed werden soll
- * @param wall Surface welches für den Char "W" eingesetz werden soll
- * @param floor Surface welches für den Char "F" eingesetz werden soll
+ * @param lvl Level in char[][] Kodierung welches geparsed werden soll
+ * @param wall Surface welches für Wall  eingesetz werden soll
+ * @param floor Surface welches für Floor eingesetz werden soll
  * @return geparstet level
  */
-	public static Level parseLevel(String[][] lvl, ISurface wall, ISurface floor) {
+	public static Level parseLevel(char[][] lvl, ISurface wall, ISurface floor) {
 		Level l = new Level();
 		
 		return l;
