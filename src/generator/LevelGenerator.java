@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Erstellt mithilfe eines Genetischen Algorithmus ein String[][] kodiertes
  * level
  * 
- * @author Andre
+ * @author André Matutat
  *
  */
 public class LevelGenerator {
@@ -51,6 +51,21 @@ public class LevelGenerator {
 
 		return level;
 	}
+	
+	private int getFitness(String[][] level, int xSize, int ySize) {
+		return 0;
+	}
+	
+	private String[][] combine(String[][]lvl1, String[][] lvl2, int xSize, int ySize){
+		String[][] newLevel = new String [xSize][ySize];
+		return newLevel;
+	}
+	
+	private String[][] mutate (String[][] lvl, int xSize, int ySize) {
+		String[][] newLevel = new String [xSize][ySize];
+		return newLevel;
+	}
+	
 	
 	public static void main (String[]args) {
 		LevelGenerator lg = new LevelGenerator();
