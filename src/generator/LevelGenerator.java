@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Erstellt mithilfe eines Genetischen Algorithmus ein char[][] kodiertes
  * level
  * 
- * @author AndrÃ© Matutat
+ * @author André Matutat
  *
  */
 public class LevelGenerator {
@@ -16,7 +16,7 @@ public class LevelGenerator {
 	 * Generiert ein char[][] kodiertes Level
 	 * 
 	 * @param xSize Breite des Levels
-	 * @param ySize HÃ¶he des Levels
+	 * @param ySize Höhe des Levels
 	 * @return kodiertes Level
 	 */
 	public char[][] generateLevel(int xSize, int ySize) throws IllegalArgumentException{
@@ -34,7 +34,7 @@ public class LevelGenerator {
 	/**
 	 * Erstellt ein zufÃ¤lliges Level in char[][] Kodierung
 	 * @param xSize Breite des Levels
-	 * @param ySize	HÃ¶he des Levels
+	 * @param ySize	Höhe des Levels
 	 * @return generiertes Level
 	 */
 	private char[][] generateRandomLevel(int xSize, int ySize) {
@@ -61,7 +61,7 @@ public class LevelGenerator {
 	 * Berechnet die Fitness eines Levels in char[][] Kodierung
 	 * @param level desses Fitness berechnet werden soll
 	 * @param xSize Breite des Levels
-	 * @param ySize HÃ¶he des Levels
+	 * @param ySize Höhe des Levels
 	 * @return Fitness des Levels guteFitness>schlechteFitness
 	 */
 	private int getFitness(char[][] level, int xSize, int ySize) {
@@ -72,7 +72,7 @@ public class LevelGenerator {
 	 * @param lvl1 Erstes Level
 	 * @param lvl2 Zweites Level
 	 * @param xSize Breite der Level
-	 * @param ySize HÃ¶he der Level
+	 * @param ySize Höhe des Levels
 	 * @return kombiniertes Level in char[][] Kodierung
 	 */
 	private char[][] combine(char[][] lvl1, char[][] lvl2, int xSize, int ySize){
@@ -80,10 +80,10 @@ public class LevelGenerator {
 		return newLevel;
 	}
 	/**
-	 * VerÃ¤ndert ein Level in char[][] Kodierung
+	 * Verändert ein Level in char[][] Kodierung
 	 * @param lvl Level welches mutiert werden soll
 	 * @param xSize Breite des Levels
-	 * @param ySize HÃ¶he des Levels
+	 * @param ySize Höhe des Levels
 	 * @return Mutiertes Level in char[][] Kodierung
 	 */
 	private char[][] mutate (char[][] lvl, int xSize, int ySize) {
@@ -91,10 +91,10 @@ public class LevelGenerator {
 		return newLevel;
 	}
 	/**
-	 * Platziert Chars fÃ¼r Eingang und Ausgang des Levels auf ein ZufÃ¤llgen Floor
+	 * Platziert Chars für Eingang und Ausgang des Levels auf ein ZufÃ¤llgen Floor
 	 * @param lvl Level in dem Eingang und Ausgang platziert werden soll
 	 * @param xSize Breite des Levels 
-	 * @param ySize HÃ¶he des Levels
+	 * @param ySize Höhe des Levels
 	 * @return
 	 */
 	private boolean placeStartAndEnd(char[][] lvl, int xSize, int ySize) {

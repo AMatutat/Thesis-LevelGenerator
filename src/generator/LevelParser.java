@@ -4,9 +4,9 @@ import myGame.*;
 
 /**
  * Parst ein char[][] kodiertes Level zu einer Instanz der Klasse Level
- * ErmÃ¶glicht die zufÃ¤llige Verteilung von Monster Items und Surfaces in einem Level.
+ * Ermöglicht die zufällige Verteilung von Monster Items und Surfaces in einem Level.
  * Erstellt die TexturenMap eines Levels.
- * @author AndrÃ© Matutat
+ * @author André Matutat
  *
  */
 public class LevelParser {
@@ -14,8 +14,8 @@ public class LevelParser {
 /**
  * 
  * @param lvl Level in char[][] Kodierung welches geparsed werden soll
- * @param wall Surface welches fÃ¼r Wall  eingesetz werden soll
- * @param floor Surface welches fÃ¼r Floor eingesetz werden soll
+ * @param wall Surface welches für Wall  eingesetz werden soll
+ * @param floor Surface welches für Floor eingesetz werden soll
  * @return geparstet level
  */
 	public static Level parseLevel(char[][] lvl, ISurface wall, ISurface floor) {
@@ -25,7 +25,7 @@ public class LevelParser {
 	}
 	
 	/**
-	 * Setzt ein Monster auf ein ZufÃ¤lliges Surface
+	 * Setzt ein Monster auf ein Zufälliges Surface
 	 * @param lvl in welchem Level soll das Monster platziert werden
 	 * @param monster Monster welches platziert werden soll
 	 * @param surfaceToPutOn auf welchen Surface das Monster platziert werden soll
@@ -34,7 +34,7 @@ public class LevelParser {
 		
 	}
 	/**
-	 * Setzt ein Item auf ein ZufÃ¤lliges Surface
+	 * Setzt ein Item auf ein Zufälliges Surface
 	 * @param lvl in welchem Level soll das Item platziert werden
 	 * @param item Item welches platziert werden soll
 	 * @param surfaceToPutOn auf welchen Surface das Item platziert werden soll
@@ -43,7 +43,7 @@ public class LevelParser {
 		
 	}
 	/**
-	 * Wechselt ein zufÃ¤lliges Surface aus
+	 * Wechselt ein zufälliges Surface aus
 	 * @param lvl in welchem ein Surface ausgetauscht werden soll
 	 * @param newSurface neues Surface
 	 * @param oldSurface Typ des alten Surface
@@ -52,9 +52,9 @@ public class LevelParser {
 		
 	}
 	/**
-	 * Erstellt die TexturenMap fÃ¼r ein Level
-	 * @param lvl Level fÃ¼r welchem die TexturenMap generiert werden soll
-	 * @param path Pfad zum Speicherort an der die TextrurenMap gespeichert werden soll
+	 * Erstellt die TexturenMap für ein Level
+	 * @param lvl Level für welchem die TexturenMap generiert werden soll
+	 * @param path Pfad zum Speicherort an der die TexturenMap gespeichert werden soll
 	 * @param name Name der TexturenMap
 	 * @return ob das generieren erfolgreich war
 	 */
