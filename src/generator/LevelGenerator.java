@@ -25,6 +25,8 @@ public class LevelGenerator {
 		printLevel(level,xSize,ySize);
 		mutate(level,xSize,ySize);
 		printLevel(level,xSize,ySize);
+		placeStartAndEnd(level, xSize, ySize);
+		printLevel(level,xSize,ySize);
 		return level;
 	}
 
@@ -112,15 +114,34 @@ public class LevelGenerator {
 	}
 
 	/**
-	 * Platziert Chars für Eingang und Ausgang des Levels auf ein ZufÃ¤llgen Floor
+	 * Platziert Chars für Eingang und Ausgang des Levels auf ein Zufällgen Floor
 	 * 
 	 * @param lvl   Level in dem Eingang und Ausgang platziert werden soll
 	 * @param xSize Breite des Levels
 	 * @param ySize Höhe des Levels
-	 * @return
 	 */
-	private boolean placeStartAndEnd(char[][] lvl, int xSize, int ySize) {
-		return false;
+	private void placeStartAndEnd(char[][] lvl, int xSize, int ySize) {
+		boolean change=false;
+		do {
+			//xSize druch 3 damit der Eingang im linken drittel spawnt
+			int x = (int) (Math.random() * xSize/3);
+			int y = (int) (Math.random() * ySize);
+			if (lvl[x][y]==Constants.FLOORREF) {
+				lvl[x][y]=Constants.STARTREF;
+				change=true;
+			}
+		}while(!change);
+		change=false;
+		do {
+			//Exit soll im rechten drittel Spawnen
+			int x = (int) (Math.random() * xSize/3)+2*(int)(xSize/3);
+			int y = (int) (Math.random() * ySize);
+			if (lvl[x][y]==Constants.FLOORREF) {
+				lvl[x][y]=Constants.EXITREF;
+				change=true;
+			}
+		}while(!change);
+
 	}
 
 	public static void main(String[] args) {
