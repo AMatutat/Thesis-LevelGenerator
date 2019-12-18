@@ -21,24 +21,39 @@ public class LevelGenerator {
 	public char[][] generateLevel(int xSize, int ySize) throws IllegalArgumentException {
 		if (xSize <= 3 || ySize <= 3)
 			throw new IllegalArgumentException("Size must be at least 4x4");
-		char[][] level = this.generateRandomLevel(xSize, ySize);
-		printLevel(level,xSize,ySize);
-		mutate(level,xSize,ySize);
-		printLevel(level,xSize,ySize);
+
+		char[][] level = generateRandomLevel(xSize, ySize);
+		char[][] level2 = generateRandomLevel(xSize, ySize);
+		System.out.println("Lvl1");
+		printLevel(level, xSize, ySize);
+		System.out.println("Lvl2");
+		printLevel(level2, xSize, ySize);
+
+		combine(level, level2, xSize, ySize);
+		System.out.println("Lvl1");
+		printLevel(level, xSize, ySize);
+		System.out.println("Lvl2");
+		printLevel(level2, xSize, ySize);
+
+		System.out.println("Lvl1");
+		mutate(level, xSize, ySize);
+		printLevel(level, xSize, ySize);
+
+		System.out.println("Lvl1");
 		placeStartAndEnd(level, xSize, ySize);
-		printLevel(level,xSize,ySize);
+		printLevel(level, xSize, ySize);
 		return level;
 	}
 
 	private void printLevel(char[][] lvl, int xSize, int ySize) {
 		for (int y = 0; y < ySize; y++) {
-			for (int x = 0; x < xSize; x++) 
-				System.out.print(lvl[x][y]);			
+			for (int x = 0; x < xSize; x++)
+				System.out.print(lvl[x][y]);
 			System.out.println("");
 		}
 		System.out.println("");
 	}
-	
+
 	/**
 	 * Erstellt ein zufälliges Level in char[][] Kodierung
 	 * 
@@ -85,11 +100,31 @@ public class LevelGenerator {
 	 * @param lvl2  Zweites Level
 	 * @param xSize Breite der Level
 	 * @param ySize Höhe des Levels
-	 * @return kombiniertes Level in char[][] Kodierung
 	 */
-	private char[][] combine(char[][] lvl1, char[][] lvl2, int xSize, int ySize) {
-		char[][] newLevel = new char[xSize][ySize];
-		return newLevel;
+	private void combine(char[][] lvl1, char[][] lvl2, int xSize, int ySize) {
+		char[][] tmpLvl1 = new char[xSize][ySize];
+		char[][] tmpLvl2 = new char[xSize][ySize];
+		copyLvL(lvl1, tmpLvl1, xSize, ySize);
+		copyLvL(lvl2, tmpLvl2, xSize, ySize);
+
+		for (int i = 0; i < Constants.CHANGEROWS; i++) {
+			int y = (int) (Math.random() * ySize);
+			for (int x = 0; x < xSize; x++) {
+
+				tmpLvl1[x][y % ySize] = lvl2[x][y];
+				tmpLvl2[x][y % ySize] = lvl1[x][y];
+			}
+		}
+
+		copyLvL(tmpLvl1, lvl1, xSize, ySize);
+		copyLvL(tmpLvl2, lvl2, xSize, ySize);
+
+	}
+
+	private void copyLvL(char[][] src, char[][] dest, int xSize, int ySize) {
+		for (int y = 0; y < ySize; y++)
+			for (int x = 0; x < xSize; x++)
+				dest[x][y] = src[x][y];
 	}
 
 	/**
@@ -101,7 +136,7 @@ public class LevelGenerator {
 	 */
 	private void mutate(char[][] lvl, final int xSize, final int ySize) {
 
-		for (int i = (int) (xSize * ySize * Constants.MUTATEFACTOR); i > 0; i--) {			
+		for (int i = (int) (xSize * ySize * Constants.MUTATEFACTOR); i > 0; i--) {
 			int x = (int) (Math.random() * xSize);
 			int y = (int) (Math.random() * ySize);
 			if (x == 0 || y == 0 || y == ySize - 1 || x == xSize - 1)
@@ -121,32 +156,32 @@ public class LevelGenerator {
 	 * @param ySize Höhe des Levels
 	 */
 	private void placeStartAndEnd(char[][] lvl, int xSize, int ySize) {
-		boolean change=false;
+		boolean change = false;
 		do {
-			//xSize druch 3 damit der Eingang im linken drittel spawnt
-			int x = (int) (Math.random() * xSize/3);
+			// xSize druch 3 damit der Eingang im linken drittel spawnt
+			int x = (int) (Math.random() * xSize / 3);
 			int y = (int) (Math.random() * ySize);
-			if (lvl[x][y]==Constants.FLOORREF) {
-				lvl[x][y]=Constants.STARTREF;
-				change=true;
+			if (lvl[x][y] == Constants.FLOORREF) {
+				lvl[x][y] = Constants.STARTREF;
+				change = true;
 			}
-		}while(!change);
-		change=false;
+		} while (!change);
+		change = false;
 		do {
-			//Exit soll im rechten drittel Spawnen
-			int x = (int) (Math.random() * xSize/3)+2*(int)(xSize/3);
+			// Exit soll im rechten drittel Spawnen
+			int x = (int) (Math.random() * xSize / 3) + 2 * (int) (xSize / 3);
 			int y = (int) (Math.random() * ySize);
-			if (lvl[x][y]==Constants.FLOORREF) {
-				lvl[x][y]=Constants.EXITREF;
-				change=true;
+			if (lvl[x][y] == Constants.FLOORREF) {
+				lvl[x][y] = Constants.EXITREF;
+				change = true;
 			}
-		}while(!change);
+		} while (!change);
 
 	}
 
 	public static void main(String[] args) {
 		LevelGenerator lg = new LevelGenerator();
-		lg.generateLevel(10, 10);
+		lg.generateLevel(5, 5);
 	}
 
 }
