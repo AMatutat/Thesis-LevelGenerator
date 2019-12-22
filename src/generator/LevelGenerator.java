@@ -124,7 +124,7 @@ public class LevelGenerator {
 	}
 
 	/**
-	 * Verändert ein Level
+	 * Mutiert, mit einer gewissen Warscheinlichkeit, jedes Feld des Levels 
 	 * 
 	 * @param lvl Level welches mutiert werden soll
 	 * 

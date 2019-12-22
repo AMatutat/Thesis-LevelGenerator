@@ -13,12 +13,12 @@ public class LevelParser {
 	
 /**
  * 
- * @param lvl Level in char[][] Kodierung welches geparsed werden soll
+ * @param level
  * @param wall Surface welches für Wall  eingesetz werden soll
  * @param floor Surface welches für Floor eingesetz werden soll
  * @return geparstet level
  */
-	public static Level parseLevel(char[][] lvl, ISurface wall, ISurface floor) {
+	public static Level parseLevel(CodedLevel level, ISurface wall, ISurface floor) {
 		Level l = new Level();
 		
 		return l;
