@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  */
 public class LevelGenerator {
-	private ArrayList<char[][]> levels = new ArrayList<char[][]>();
+
 
 	/**
 	 * Generiert ein char[][] kodiertes Level
@@ -21,27 +21,55 @@ public class LevelGenerator {
 	public char[][] generateLevel(int xSize, int ySize) throws IllegalArgumentException {
 		if (xSize <= 3 || ySize <= 3)
 			throw new IllegalArgumentException("Size must be at least 4x4");
+		
+		ArrayList<char[][]> levels = new ArrayList<char[][]>();
+		for (int i=0; i<Constants.POPULATIONSIZE;i++){
+			levels.add(generateRandomLevel(xSize,ySize));
+		}
 
+		
+		for (int generation=0; generation<Constants.MAXGENERATION;generation++) {
+			
+			
+			//Selektieren
+			ArrayList<char[][]> sortedLevels = new ArrayList<char[][]>();			
+			for (int i=0; i<levels.size();i++) {
+				
+			}
+			levels=sortedLevels;
+			//Kombinieren
+			for (int i=0; i<Constants.POPULATIONSIZE/2;i++) {
+				if ((int) (Math.random() * 100 + 1) <= Constants.CROSSOVERCHANCE)
+					combine(levels.get(i), levels.get((Constants.POPULATIONSIZE/2)-i), xSize, ySize);
+					
+			}
+			
+			//Mutieren
+			for (int i=0; i<Constants.POPULATIONSIZE;i++) {
+				mutate(levels.get(i),xSize,ySize);
+			}
+			
+		}
+		
+		
+		
 		char[][] level = generateRandomLevel(xSize, ySize);
 		char[][] level2 = generateRandomLevel(xSize, ySize);
-		System.out.println("Lvl1");
+		System.out.println("Lvl1 Random");
 		printLevel(level, xSize, ySize);
-		System.out.println("Lvl2");
-		printLevel(level2, xSize, ySize);
-
-		combine(level, level2, xSize, ySize);
-		System.out.println("Lvl1");
+		
+		System.out.println("Lvl1 Combined ");
+		combine(level, level2, xSize, ySize);	
 		printLevel(level, xSize, ySize);
-		System.out.println("Lvl2");
-		printLevel(level2, xSize, ySize);
-
-		System.out.println("Lvl1");
+	
+		System.out.println("Lvl1 Mutated");
 		mutate(level, xSize, ySize);
 		printLevel(level, xSize, ySize);
 
-		System.out.println("Lvl1");
+		System.out.println("Lvl1 Exit");
 		placeStartAndEnd(level, xSize, ySize);
 		printLevel(level, xSize, ySize);
+		
 		return level;
 	}
 
@@ -107,7 +135,7 @@ public class LevelGenerator {
 		copyLvL(lvl1, tmpLvl1, xSize, ySize);
 		copyLvL(lvl2, tmpLvl2, xSize, ySize);
 
-		for (int i = 0; i < Constants.CHANGEROWS; i++) {
+		for (int i = 0; i < Constants.CROSSOVERFACTOR; i++) {
 			int y = (int) (Math.random() * ySize);
 			for (int x = 0; x < xSize; x++) {
 
@@ -135,16 +163,13 @@ public class LevelGenerator {
 	 * @param ySize Höhe des Levels
 	 */
 	private void mutate(char[][] lvl, final int xSize, final int ySize) {
-
-		for (int i = (int) (xSize * ySize * Constants.MUTATEFACTOR); i > 0; i--) {
-			int x = (int) (Math.random() * xSize);
-			int y = (int) (Math.random() * ySize);
-			if (x == 0 || y == 0 || y == ySize - 1 || x == xSize - 1)
-				i++;
-			else if (lvl[x][y] == Constants.WALLREF)
-				lvl[x][y] = Constants.FLOORREF;
-			else
-				lvl[x][y] = Constants.WALLREF;
+		for (int y = 1; y < ySize-1; y++) {
+			for (int x = 1; x < xSize-1; x++) {					
+					if ((int) (Math.random() * 100 + 1) <= Constants.MUTATIONCHANCE) {
+						if(lvl[x][y]==Constants.WALLREF) lvl[x][y]=Constants.FLOORREF;
+						else lvl[x][y]=Constants.WALLREF;
+					}
+			}
 		}
 	}
 
