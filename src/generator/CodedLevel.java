@@ -6,6 +6,8 @@ public class CodedLevel {
 	private int fitness;
 	private final int xSize;
 	private final int ySize;
+	private boolean start=false;
+	private boolean exit=false;
 	
 	public CodedLevel(final char[][] level, int xSize, int ySize) {
 		this.level=level;
@@ -21,6 +23,13 @@ public class CodedLevel {
 		return this.fitness;
 	}
 	
+	public boolean hasStart() {
+		return this.start;
+	}
+	
+	public boolean hasExit() {
+		return this.exit;
+	}
 	public int getXSize() {
 		return this.xSize;
 	}
@@ -33,6 +42,10 @@ public class CodedLevel {
 		return this.level;
 	}
 	public void changeField(int x, int y, char s) {
+		if (this.level[x][y]==Constants.EXITREF) this.exit=false;
+		else if (this.level[x][y]==Constants.STARTREF) this.start=false;
+		if (s==Constants.EXITREF) this.exit=true;
+		else if (s==Constants.STARTREF) this.start=true;
 		this.level[x][y]=s;
 	}
 	

@@ -30,7 +30,8 @@ public class LevelGenerator {
 		// Durchlauf
 		for (int generation = 0; generation < Constants.MAXGENERATION; generation++) {
 
-			for (int i = 0; i < Constants.POPULATIONSIZE; i++) {
+			for (int i = 0; i < startPopulation.length; i++) {
+				placeStartAndEnd(startPopulation[i]);
 				int fitness = getFitness(startPopulation[i]);
 				if (fitness == Constants.FITNESSSCHWELLWERT)
 					return startPopulation[i];
@@ -56,8 +57,10 @@ public class LevelGenerator {
 			}
 
 			// Mutieren
-			for (int i = 0; i < Constants.POPULATIONSIZE; i++)
-				mutate(newPopulation[i]);
+			for (int i = 0; i < Constants.POPULATIONSIZE; i++) {
+				mutate(startPopulation[i]);
+
+			}
 
 			// Neue Population ist die Startpopulation für die nächste Generation
 			startPopulation = newPopulation;
@@ -124,14 +127,14 @@ public class LevelGenerator {
 	}
 
 	/**
-	 * Mutiert, mit einer gewissen Warscheinlichkeit, jedes Feld des Levels 
+	 * Mutiert, mit einer gewissen Warscheinlichkeit, jedes Feld des Levels
 	 * 
 	 * @param lvl Level welches mutiert werden soll
 	 * 
 	 */
 	private void mutate(CodedLevel lvl) {
 		for (int y = 1; y < lvl.getYSize() - 1; y++) {
-			for (int x = 1; x < lvl.getYSize() - 1; x++) {
+			for (int x = 1; x < lvl.getXSize() - 1; x++) {
 				if ((int) (Math.random() * 100 + 1) <= Constants.MUTATIONCHANCE) {
 					if ((lvl.getLevel())[x][y] == Constants.WALLREF)
 						lvl.changeField(x, y, Constants.FLOORREF);
@@ -151,25 +154,30 @@ public class LevelGenerator {
 	 */
 	private void placeStartAndEnd(CodedLevel lvl) {
 		boolean change = false;
-		do {
-			// xSize druch 3 damit der Eingang im linken drittel spawnt
-			int x = (int) (Math.random() * lvl.getXSize() / 3);
-			int y = (int) (Math.random() * lvl.getYSize());
-			if ((lvl.getLevel())[x][y] == Constants.FLOORREF) {
-				lvl.changeField(x, y, Constants.STARTREF);
-				change = true;
-			}
-		} while (!change);
-		change = false;
-		do {
-			// Exit soll im rechten drittel Spawnen
-			int x = (int) (Math.random() * lvl.getXSize() / 3) + 2 * (int) (lvl.getXSize() / 3);
-			int y = (int) (Math.random() * lvl.getYSize());
-			if ((lvl.getLevel())[x][y] == Constants.FLOORREF) {
-				lvl.changeField(x, y, Constants.EXITREF);
-				change = true;
-			}
-		} while (!change);
+
+		if (!lvl.hasStart()) {
+			do {
+				// xSize druch 3 damit der Eingang im linken drittel spawnt
+				int x = (int) (Math.random() * lvl.getXSize() / 3);
+				int y = (int) (Math.random() * lvl.getYSize());
+				if ((lvl.getLevel())[x][y] == Constants.FLOORREF) {
+					lvl.changeField(x, y, Constants.STARTREF);
+					change = true;
+				}
+			} while (!change);
+			change = false;
+		}
+		if (!lvl.hasExit()) {
+			do {
+				// Exit soll im rechten drittel Spawnen
+				int x = (int) (Math.random() * lvl.getXSize() / 3) + 2 * (int) (lvl.getXSize() / 3);
+				int y = (int) (Math.random() * lvl.getYSize());
+				if ((lvl.getLevel())[x][y] == Constants.FLOORREF) {
+					lvl.changeField(x, y, Constants.EXITREF);
+					change = true;
+				}
+			} while (!change);
+		}
 	}
 
 	public static void main(String[] args) {
