@@ -8,6 +8,9 @@ public class Constants {
 	static int MUTATIONCHANCE=1;
 	static int CROSSOVERCHANCE=60;
 	static int MAXGENERATION = 200;
+	static int MINXSIZE=4;
+	static int MINYSIZE=4;
+	static int FITNESSSCHWELLWERT=20;
 	static char FLOORREF='F';
 	static char WALLREF='W';
 	static char EXITREF='X';
