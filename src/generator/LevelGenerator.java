@@ -22,58 +22,58 @@ public class LevelGenerator {
 			throw new IllegalArgumentException(
 					"Size must be at least " + Constants.MINXSIZE + "x" + Constants.MINYSIZE);
 
-		//Startgeneration erzeugen
+		// Startgeneration erzeugen
 		CodedLevel[] startPopulation = new CodedLevel[Constants.POPULATIONSIZE];
-		for (int i = 0; i < Constants.POPULATIONSIZE; i++) 
+		for (int i = 0; i < Constants.POPULATIONSIZE; i++)
 			startPopulation[i] = (generateRandomLevel(xSize, ySize));
-			
-		
 
-		//Durchlauf
+		// Durchlauf
 		for (int generation = 0; generation < Constants.MAXGENERATION; generation++) {
-			
-			for (int i = 0; i < Constants.POPULATIONSIZE; i++) {				
-				int fitness=getFitness(startPopulation[i]);
-				if (fitness==Constants.FITNESSSCHWELLWERT) return startPopulation[i];
+
+			for (int i = 0; i < Constants.POPULATIONSIZE; i++) {
+				int fitness = getFitness(startPopulation[i]);
+				if (fitness == Constants.FITNESSSCHWELLWERT)
+					return startPopulation[i];
 				startPopulation[i].setFitness(fitness);
 			}
-			
+
 			// Kombinieren
 			CodedLevel[] newPopulation = new CodedLevel[Constants.POPULATIONSIZE];
 			bubbleSort(startPopulation);
-			
-			for (int i = 0; i < startPopulation.length/2; i++) {
-				//Elternpaar Auswählen
-				CodedLevel parentA=startPopulation[selectParent(startPopulation)];
-				CodedLevel parentB=startPopulation[selectParent(startPopulation)];
-				
+
+			for (int i = 0; i < startPopulation.length; i += 2) {
+				// Elternpaar Auswählen
+				CodedLevel parentA = startPopulation[selectParent(startPopulation)];
+				CodedLevel parentB = startPopulation[selectParent(startPopulation)];
+
 				if ((int) (Math.random() * 100 + 1) <= Constants.CROSSOVERCHANCE) {
-					newPopulation[i]=combine(parentA,parentB);
-					newPopulation[i+1]=combine(parentB,parentA);
-				}
-				else {
-					newPopulation[i]=parentA;
-					newPopulation[i+1]=parentB;
+					newPopulation[i] = crossover(parentA, parentB);
+					newPopulation[i + 1] = crossover(parentB, parentA);
+				} else {
+					newPopulation[i] = parentA;
+					newPopulation[i + 1] = parentB;
 				}
 			}
-	
+
 			// Mutieren
-			for (int i = 0; i < Constants.POPULATIONSIZE; i++) 
+			for (int i = 0; i < Constants.POPULATIONSIZE; i++)
 				mutate(newPopulation[i]);
-			
-			//Neue Population ist die Startpopulation für die nächste Generation
-			startPopulation = newPopulation;	
+
+			// Neue Population ist die Startpopulation für die nächste Generation
+			startPopulation = newPopulation;
 		}
-		
-		//Neustart wenn Schwellwert überschritten wurde
-		return generateLevel(xSize,ySize);
-		
+
+		// Neustart wenn Schwellwert überschritten wurde
+		return generateLevel(xSize, ySize);
+
 	}
+
 	private int selectParent(final CodedLevel[] population) {
 		return 0;
 	}
+
 	private void bubbleSort(CodedLevel[] population) {
-		
+
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class LevelGenerator {
 	 * @param lvl1 Erstes Level
 	 * @param lvl2 Zweites Level
 	 */
-	private CodedLevel combine(final CodedLevel lvl1, final CodedLevel lvl2) {
+	private CodedLevel crossover(final CodedLevel lvl1, final CodedLevel lvl2) {
 
 		return null;
 	}
@@ -140,7 +140,7 @@ public class LevelGenerator {
 				}
 			}
 		}
-		
+
 		lvl.setFitness(getFitness(lvl));
 	}
 
