@@ -76,7 +76,16 @@ public class LevelGenerator {
 	}
 
 	private void bubbleSort(CodedLevel[] population) {
-
+		CodedLevel temp;
+		for(int i=1; i<population.length; i++) {
+			for(int j=0; j<population.length-i; j++) {
+				if(population[j].getFitness()>population[j+1].getFitness()) {
+					temp=population[j];
+					population[j]=population[j+1];
+					population[j+1]=temp;
+				}
+			}
+		}
 	}
 
 	/**
