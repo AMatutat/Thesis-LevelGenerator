@@ -13,7 +13,14 @@ public class CodedLevel {
 		this.level=level;
 		this.xSize=xSize;
 		this.ySize=ySize;
-
+	}
+	
+	public CodedLevel(final char[][] level, int xSize, int ySize, boolean start, boolean exit) {
+		this.level=level;
+		this.xSize=xSize;
+		this.ySize=ySize;
+		this.start=start;
+		this.exit=exit;
 	}
 	
 	public void setFitness(final int fitness) {

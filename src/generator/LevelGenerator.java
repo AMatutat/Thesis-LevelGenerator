@@ -134,8 +134,19 @@ public class LevelGenerator {
 	 * @param lvl2 Zweites Level
 	 */
 	private CodedLevel crossover(final CodedLevel lvl1, final CodedLevel lvl2) {
-
-		return null;
+		char [][] newLevel = new char[lvl1.getXSize()][lvl1.getYSize()];
+		int x;
+		for (x=0; x<lvl1.getXSize()/2;x++) {
+			for (int y=0;y<lvl1.getYSize();y++) {
+				newLevel[x][y]=lvl1.getLevel()[x][y];
+			}
+		}
+		for (x=x ;x<lvl1.getXSize();x++) {
+			for (int y=0;y<lvl1.getYSize();y++) {
+				newLevel[x][y]=lvl1.getLevel()[x][y];
+			}
+		}
+		return new CodedLevel(newLevel,lvl1.getXSize(),lvl1.getYSize(),true,true);
 	}
 
 	/**
