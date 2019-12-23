@@ -21,27 +21,30 @@ public class LevelGenerator {
 		if (xSize < Constants.MINXSIZE || ySize < Constants.MINYSIZE)
 			throw new IllegalArgumentException(
 					"Size must be at least " + Constants.MINXSIZE + "x" + Constants.MINYSIZE);
+		if (Constants.POPULATIONSIZE % 2 != 0)
+			throw new IllegalArgumentException("Population must be even");
 
 		// Startgeneration erzeugen
 		CodedLevel[] startPopulation = new CodedLevel[Constants.POPULATIONSIZE];
 		for (int i = 0; i < Constants.POPULATIONSIZE; i++)
 			startPopulation[i] = (generateRandomLevel(xSize, ySize));
 
+
 		// Durchlauf
 		for (int generation = 0; generation < Constants.MAXGENERATION; generation++) {
 
 			for (int i = 0; i < startPopulation.length; i++) {
+				
 				placeStartAndEnd(startPopulation[i]);
 				int fitness = getFitness(startPopulation[i]);
 				if (fitness == Constants.FITNESSSCHWELLWERT)
 					return startPopulation[i];
 				startPopulation[i].setFitness(fitness);
 			}
-
+		
 			// Kombinieren
 			CodedLevel[] newPopulation = new CodedLevel[Constants.POPULATIONSIZE];
 			bubbleSort(startPopulation);
-
 			for (int i = 0; i < startPopulation.length; i += 2) {
 				// Elternpaar Auswählen
 				CodedLevel parentA = startPopulation[selectParent(startPopulation)];
@@ -59,16 +62,16 @@ public class LevelGenerator {
 			// Mutieren
 			for (int i = 0; i < Constants.POPULATIONSIZE; i++) {
 				mutate(startPopulation[i]);
-
+				startPopulation[i].printLevel();
 			}
 
 			// Neue Population ist die Startpopulation für die nächste Generation
-			startPopulation = newPopulation;
+			//startPopulation = newPopulation;
 		}
 
 		// Neustart wenn Schwellwert überschritten wurde
-		return generateLevel(xSize, ySize);
-
+		//return generateLevel(xSize, ySize);
+		return null;
 	}
 
 	private int selectParent(final CodedLevel[] population) {
@@ -77,12 +80,12 @@ public class LevelGenerator {
 
 	private void bubbleSort(CodedLevel[] population) {
 		CodedLevel temp;
-		for(int i=1; i<population.length; i++) {
-			for(int j=0; j<population.length-i; j++) {
-				if(population[j].getFitness()>population[j+1].getFitness()) {
-					temp=population[j];
-					population[j]=population[j+1];
-					population[j+1]=temp;
+		for (int i = 1; i < population.length; i++) {
+			for (int j = 0; j < population.length - i; j++) {
+				if (population[j].getFitness() > population[j + 1].getFitness()) {
+					temp = population[j];
+					population[j] = population[j + 1];
+					population[j + 1] = temp;
 				}
 			}
 		}
@@ -169,7 +172,7 @@ public class LevelGenerator {
 				// xSize druch 3 damit der Eingang im linken drittel spawnt
 				int x = (int) (Math.random() * lvl.getXSize() / 3);
 				int y = (int) (Math.random() * lvl.getYSize());
-				if ((lvl.getLevel())[x][y] == Constants.FLOORREF) {
+				if (y!=0 && y!=lvl.getYSize()-1 && x!=0 && x!=lvl.getXSize()-1) {
 					lvl.changeField(x, y, Constants.STARTREF);
 					change = true;
 				}
@@ -181,7 +184,7 @@ public class LevelGenerator {
 				// Exit soll im rechten drittel Spawnen
 				int x = (int) (Math.random() * lvl.getXSize() / 3) + 2 * (int) (lvl.getXSize() / 3);
 				int y = (int) (Math.random() * lvl.getYSize());
-				if ((lvl.getLevel())[x][y] == Constants.FLOORREF) {
+				if (y!=0 && y!=lvl.getYSize()-1 && x!=0 && x!=lvl.getXSize()-1) {
 					lvl.changeField(x, y, Constants.EXITREF);
 					change = true;
 				}
