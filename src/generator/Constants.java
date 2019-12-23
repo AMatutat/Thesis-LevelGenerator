@@ -3,15 +3,18 @@ package generator;
 public class Constants {
 
 	static int POPULATIONSIZE=100;
-	static int FLOORCHANCE=70;
-	static int MUTATIONCHANCE=1;
-	static int CROSSOVERCHANCE=60;
-	static int MAXGENERATION = 200;
-	static int MINXSIZE=4;
-	static int MINYSIZE=4;
-	static int FITNESSSCHWELLWERT=20;
-	static char FLOORREF='F';
-	static char WALLREF='W';
-	static char EXITREF='X';
-	static char STARTREF='S';
+	static int CHANCE_TO_BE_FLOOR=70;
+	static int CHANCE_FOR_MUTATION=1;
+	static int CHANCE_FOR_CROSSOVER=60;
+	static int MAXIMAL_GENERATION = 200;
+	static int MINIMAL_XSIZE=4;
+	static int MINIMAL_YSIZE=4;
+	static int THRESHOLD_FITNESS=20;
+	static int FLOOR_IS_REACHABLE=5;
+	static int EXIT_IS_REACHABLE=40;
+	static int WALL_IS_CONNECTED=5;
+	static char REFERENCE_FLOOR='F';
+	static char REFERENCE_WALL='W';
+	static char REFEERNCE_EXIT='X';
+	static char REFERENCE_START='S';
 }
