@@ -1,5 +1,7 @@
 package generator;
 
+import java.util.ArrayList;
+
 public class CodedLevel {
 
 	private char[][] level;
@@ -11,6 +13,9 @@ public class CodedLevel {
 	private int[] exit = new int[2];
 	private int[] start = new int[2];
 
+	
+	private ArrayList <Integer> dx = new ArrayList <Integer>();
+	private ArrayList <Integer> dy = new ArrayList <Integer>();
 	public CodedLevel(final char[][] level, int xSize, int ySize) {
 		this.level = level;
 		this.xSize = xSize;
@@ -20,7 +25,18 @@ public class CodedLevel {
 	public void setFitness(final int fitness) {
 		this.fitness = fitness;
 	}
-
+	
+	public void resetList() {
+		this.dx=new ArrayList<Integer>();
+		this.dy=new ArrayList<Integer>();
+	}
+	public ArrayList<Integer> getDx(){
+		return this.dx;
+	}
+	
+	public ArrayList<Integer> getDy(){
+		return this.dy;
+	}
 	public int getFitness() {
 		return this.fitness;
 	}

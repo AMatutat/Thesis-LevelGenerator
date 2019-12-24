@@ -16,7 +16,7 @@ public class LevelGenerator {
 		CodedLevel level=generateRandomLevel(x,y);
 		level.printLevel();
 		try {
-			System.out.println(isConnected(level, 20, 20, new ArrayList<Integer>(), new ArrayList<Integer>()));
+			System.out.println(isConnected(level, 20, 20));
 		}
 		catch(Exception e) {
 			System.out.println("error");
@@ -160,41 +160,40 @@ public class LevelGenerator {
 		for (int x = 1; x < level.getXSize() - 1; x++) {
 			for (int y = 1; y < level.getYSize() - 1; y++) {
 				if (level.getLevel()[x][y] == Constants.REFERENCE_WALL) {
-					if (isConnected(level, x, y, new ArrayList<Integer>(), new ArrayList<Integer>()))
+					if (isConnected(level, x, y))
 						fitness += Constants.WALL_IS_CONNECTED;
 				} else if (level.getLevel()[x][y] == Constants.REFEERNCE_EXIT) {
 					if (isReachable(level, x, y))
 						fitness += Constants.EXIT_IS_REACHABLE;
 				} else if (isReachable(level, x, y))
 					fitness += Constants.FLOOR_IS_REACHABLE;
-
-			}
+			}			
 		}
-
+		level.resetList();
 		return fitness;
 	}
 
-	private boolean isConnected(CodedLevel level, int x, int y, ArrayList <Integer> dx, ArrayList <Integer> dy) {
+	private boolean isConnected(CodedLevel level, int x, int y) {
 
 		if (level.getLevel()[x][y] != Constants.REFERENCE_WALL)
 			throw new IllegalArgumentException("Surface must be a wall");
 		if (x == level.getXSize() - 1 || x == 0 || y == level.getYSize() - 1 || y == 0)
 			return true;
 
-		dx.add(x);
-		dy.add(y);			
+		level.getDx().add(x);
+		level.getDy().add(y);			
 		boolean connected = false;
-		if (level.getLevel()[x - 1][y] == Constants.REFERENCE_WALL && !dx.contains(x-1))
-			if (isConnected(level, x - 1, y, dx, dy))
+		if (level.getLevel()[x - 1][y] == Constants.REFERENCE_WALL && !level.getDx().contains(x-1))
+			if (isConnected(level, x - 1, y))
 				connected = true;
-		if (level.getLevel()[x + 1][y] == Constants.REFERENCE_WALL && !dx.contains(x+1))
-			if (isConnected(level, x + 1, y, dx, dy))
+		if (level.getLevel()[x + 1][y] == Constants.REFERENCE_WALL && !level.getDx().contains(x+1))
+			if (isConnected(level, x + 1, y))
 				connected = true;
-		if (level.getLevel()[x][y - 1] == Constants.REFERENCE_WALL && !dy.contains(y-1))
-			if (isConnected(level, x, y - 1, dx, dy))
+		if (level.getLevel()[x][y - 1] == Constants.REFERENCE_WALL && !level.getDy().contains(y-1))
+			if (isConnected(level, x, y - 1))
 				connected = true;
-		if (level.getLevel()[x][y + 1] == Constants.REFERENCE_WALL && !dy.contains(y+1))
-			if (isConnected(level, x, y + 1, dx, dy))
+		if (level.getLevel()[x][y + 1] == Constants.REFERENCE_WALL && !level.getDy().contains(y+1))
+			if (isConnected(level, x, y + 1))
 				connected = true;
 
 		return connected;
