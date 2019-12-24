@@ -1,6 +1,5 @@
 package generator;
 
-import java.util.ArrayList;
 
 /**
  * Erstellt mithilfe eines Genetischen Algorithmus ein char[][] kodiertes level

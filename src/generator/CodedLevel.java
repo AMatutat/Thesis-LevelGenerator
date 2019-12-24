@@ -42,11 +42,15 @@ public class CodedLevel {
 	}
 
 	public int[] getExit() {
+		if (hasExit)
 		return this.exit;
+		return null;
 	}
 
 	public int[] getStart() {
+		if (hasStart)
 		return this.start;
+		return null;
 	}
 
 	public char[][] getLevel() {
