@@ -138,10 +138,6 @@ public class LevelGenerator {
 	 * @param level desses Fitness berechnet werden soll
 	 * @return Fitness des Levels guteFitness>schlechteFitness
 	 */
-	/**
-	 * @param level
-	 * @return
-	 */
 	private int getFitness(final CodedLevel level) {
 		int fitness = 30;
 		for (int x = 1; x < level.getXSize() - 1; x++) {
