@@ -1,24 +1,21 @@
 package myGame;
 
-public class Exit extends Surface{
+public class Exit extends Surface {
+	private String texture = "./res/images/exit.jpg";
 
 	@Override
 	public String getTexture() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.texture;
 	}
 
 	@Override
 	public boolean setMonsterOnSurface(Monster monster) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean setItemOnSurface(Item item) {
-		// TODO Auto-generated method stub
 		return false;
 	}
-
 
 }

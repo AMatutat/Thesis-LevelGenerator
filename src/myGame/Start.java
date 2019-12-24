@@ -1,15 +1,11 @@
 package myGame;
 
 public class Start extends Surface {
-
-	public Start() {
-		// TODO Auto-generated constructor stub
-	}
+	private String texture ="./res/images/start.jpg";
 
 	@Override
 	public String getTexture() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.texture;
 	}
 
 	@Override
