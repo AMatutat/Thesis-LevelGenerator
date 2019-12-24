@@ -19,9 +19,9 @@ public class LevelParser {
  * @return geparstet level
  */
 	public static Level parseLevel(CodedLevel level, ISurface wall, ISurface floor) {
-		Level l = new Level();
 		
-		return l;
+		
+		return null;
 	}
 	
 	/**
@@ -30,7 +30,7 @@ public class LevelParser {
 	 * @param monster Monster welches platziert werden soll
 	 * @param surfaceToPutOn auf welchen Surface das Monster platziert werden soll
 	 */
-	public static void placeMonster(Level lvl, IMonster monster, ISurface surfaceToPutOn) {
+	public static void placeMonster(Level lvl, Monster monster, ISurface surfaceToPutOn) {
 		
 	}
 	/**
@@ -39,7 +39,7 @@ public class LevelParser {
 	 * @param item Item welches platziert werden soll
 	 * @param surfaceToPutOn auf welchen Surface das Item platziert werden soll
 	 */
-	public static void placeItem (Level lvl, IItem item, ISurface surfaceToPutOn) {
+	public static void placeItem (Level lvl, Item item, ISurface surfaceToPutOn) {
 		
 	}
 	/**

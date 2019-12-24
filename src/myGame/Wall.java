@@ -1,7 +1,6 @@
 package myGame;
 
-import interfaces.IItem;
-import interfaces.IMonster;
+
 
 public class Wall extends Surface{
 
@@ -12,12 +11,12 @@ public class Wall extends Surface{
 	}
 
 	@Override
-	public boolean setMonsterOnSurface(IMonster monster) {		
+	public boolean setMonsterOnSurface(Monster monster) {		
 		return false;
 	}
 
 	@Override
-	public boolean setItemOnSurface(IItem item) {		
+	public boolean setItemOnSurface(Item item) {		
 		return false;
 	}
 

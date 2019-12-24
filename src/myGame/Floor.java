@@ -1,29 +1,27 @@
 package myGame;
 
-import interfaces.IItem;
-import interfaces.IMonster;
+
 
 public class Floor extends Surface{
 	
-	private IItem itemPlaced;
-	private IMonster monsterPlaced;
+	private Item itemPlaced;
+	private Monster monsterPlaced;
 	private String texture ="./res/images/floor.jpg";
 
-	@Override
+	
 	public String getTexture() {
 		return this.texture;
 	
 	}
 
-	@Override
-	public boolean setMonsterOnSurface(IMonster monster) {
+	
+	public boolean setMonsterOnSurface(Monster monster) {
 		if (this.monsterPlaced!=null) return false;
 		this.monsterPlaced=monster;
 		return true;
 	}
 
-	@Override
-	public boolean setItemOnSurface(IItem item) {
+	public boolean setItemOnSurface(Item item) {
 		if (this.itemPlaced!=null) return false;
 		this.itemPlaced=item;
 		return true;
