@@ -1,7 +1,7 @@
 package generator;
 
 /**
- * Erstellt mithilfe eines Genetischen Algorithmus ein char[][] kodiertes level
+ * Erstellt mithilfe eines Genetischen Algorithmuses ein kodiertes Level
  * 
  * @author André Matutat
  *
@@ -23,7 +23,7 @@ public class LevelGenerator {
 	}
 
 	/**
-	 * Generiert ein char[][] kodiertes Level
+	 * Generiert ein kodiertes Level
 	 * 
 	 * @param xSize Breite des Levels
 	 * @param ySize Höhe des Levels
@@ -44,8 +44,8 @@ public class LevelGenerator {
 		// Durchlauf
 		for (int generation = 0; generation < Constants.MAXIMAL_GENERATION; generation++) {
 
+			// Start und Exit platzieren, Fitness prüfen
 			for (int i = 0; i < startPopulation.length; i++) {
-
 				placeStartAndEnd(startPopulation[i]);
 				int fitness = getFitness(startPopulation[i]);
 				if (fitness >= Constants.THRESHOLD_FITNESS)
@@ -113,7 +113,8 @@ public class LevelGenerator {
 	}
 
 	/**
-	 * Platziert Chars für Eingang und Ausgang des Levels auf ein Zufällgen Floor
+	 * Platziert Referenzen für Eingang und Ausgang des Levels auf ein zufällgen
+	 * Floor
 	 * 
 	 * @param lvl Level in dem Eingang und Ausgang platziert werden soll
 	 */
@@ -146,13 +147,13 @@ public class LevelGenerator {
 	}
 
 	/**
-	 * Berechnet die Fitness eines Levels in char[][] Kodierung
+	 * Berechnet die Fitness eines Levels
 	 * 
-	 * @param level desses Fitness berechnet werden soll
+	 * @param level dessen Fitness berechnet werden soll
 	 * @return Fitness des Levels guteFitness>schlechteFitness
 	 */
 	private int getFitness(final CodedLevel level) {
-		int fitness = 30;
+		int fitness = 0;
 		for (int x = 1; x < level.getXSize() - 1; x++) {
 			for (int y = 1; y < level.getYSize() - 1; y++) {
 				if (level.getLevel()[x][y] == Constants.REFERENCE_WALL) {
@@ -169,41 +170,65 @@ public class LevelGenerator {
 		return fitness;
 	}
 
+	/**
+	 * Prüft ob eine Wand mit der Aussenwand verbunden ist.
+	 * 
+	 * @param level
+	 * @param x     X Index der Wand
+	 * @param y     Y Index der Wand
+	 * @return
+	 */
 	private boolean isConnected(CodedLevel level, int x, int y) {
 
 		if (level.getLevel()[x][y] != Constants.REFERENCE_WALL)
 			throw new IllegalArgumentException("Surface must be a wall");
+		// Wenn Wand Ausenwand ist -> return true
 		if (x == level.getXSize() - 1 || x == 0 || y == level.getYSize() - 1 || y == 0)
 			return true;
 
-	
-		level.getDx().add(x + "" + y);
-
+		// Hinzufügen der Wall um loops zu verhindern.
+		level.getCheckedWalls().add(x + "" + y);
 		boolean connected = false;
-		if (level.getLevel()[x - 1][y] == Constants.REFERENCE_WALL && !level.getDx().contains((x - 1) + "" + y))
+		// Rekursiver aufurf mit allen Nachbarn
+		if (level.getLevel()[x - 1][y] == Constants.REFERENCE_WALL
+				&& !level.getCheckedWalls().contains((x - 1) + "" + y))
 			if (isConnected(level, x - 1, y))
 				connected = true;
 		if (!connected && level.getLevel()[x + 1][y] == Constants.REFERENCE_WALL
-				&& !level.getDx().contains((x + 1) + "" + y))
+				&& !level.getCheckedWalls().contains((x + 1) + "" + y))
 			if (isConnected(level, x + 1, y))
 				connected = true;
 		if (!connected && level.getLevel()[x][y - 1] == Constants.REFERENCE_WALL
-				&& !level.getDx().contains(x + "" + (y - 1)))
+				&& !level.getCheckedWalls().contains(x + "" + (y - 1)))
 			if (isConnected(level, x, y - 1))
 				connected = true;
 		if (!connected && level.getLevel()[x][y + 1] == Constants.REFERENCE_WALL
-				&& !level.getDx().contains(x + "" + (y + 1)))
+				&& !level.getCheckedWalls().contains(x + "" + (y + 1)))
 			if (isConnected(level, x, y + 1))
 				connected = true;
 
 		return connected;
 	}
 
+	/**
+	 * Prüft ob ein Floor Surface vom Start aus erreichbar ist
+	 * 
+	 * @param level
+	 * @param x     X Index des Floors
+	 * @param y     Y Index des Floors
+	 * @return
+	 */
 	private boolean isReachable(CodedLevel level, int x, int y) {
 
 		return false;
 	}
 
+	/**
+	 * Wählt ein Elternteil aus
+	 * 
+	 * @param population aus der gewählt werden soll
+	 * @return Index des Elternteils
+	 */
 	private int selectParent(final CodedLevel[] population) {
 		return 0;
 	}
@@ -213,6 +238,7 @@ public class LevelGenerator {
 	 * 
 	 * @param lvl1 Erstes Level
 	 * @param lvl2 Zweites Level
+	 * @return Kombiniertes Level
 	 */
 	private CodedLevel crossover(final CodedLevel lvl1, final CodedLevel lvl2) {
 
@@ -253,6 +279,11 @@ public class LevelGenerator {
 		lvl.setFitness(getFitness(lvl));
 	}
 
+	/**
+	 * Bubblesort nach Fitness
+	 * 
+	 * @param population
+	 */
 	private void sortByFitness(CodedLevel[] population) {
 		CodedLevel temp;
 		for (int i = 1; i < population.length; i++) {

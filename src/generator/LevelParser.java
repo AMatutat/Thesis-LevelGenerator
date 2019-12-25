@@ -3,20 +3,16 @@ package generator;
 import interfaces.*;
 import myGame.*;
 
-/**
- * Parst ein char[][] kodiertes Level zu einer Instanz der Klasse Level
- * Ermöglicht die zufällige Verteilung von Monster Items und Surfaces in einem
- * Level. Erstellt die TexturenMap eines Levels.
- * 
+/* 
  * @author André Matutat
  *
  */
 public class LevelParser {
 
 	/**
-	 * 
-	 * @param level
-	 * @return geparstet level
+	 * Parst ein kodiertes Level zu einer Instanz der Klasse Level
+	 * @param level kodiertes Level
+	 * @return erzeugtes Level
 	 */
 	public Level parseLevel(CodedLevel level) {
 		ISurface[][] lvl = new ISurface[level.getXSize()][level.getYSize()];

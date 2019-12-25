@@ -2,7 +2,11 @@ package interfaces;
 
 import myGame.Item;
 import myGame.Monster;
-
+/**
+ * Muss von allen Surfaces implementiert werden
+ * @author André Matutat
+ *
+ */
 public interface ISurface {
 /**
  * 
