@@ -1,6 +1,5 @@
 package generator;
 
-
 /**
  * Erstellt mithilfe eines Genetischen Algorithmus ein char[][] kodiertes level
  * 
@@ -11,20 +10,18 @@ public class LevelGenerator {
 
 	public void test(int x, int y) {
 
-	for (int i=0;i<100000;i++) {
-		CodedLevel level=generateRandomLevel(x,y);
-		level.printLevel();
-		try {
-			System.out.println(isConnected(level, 20, 20));
+		for (int i = 0; i < Constants.POPULATIONSIZE; i++) {
+			CodedLevel level = generateRandomLevel(x, y);
+			level.printLevel();
+			try {
+				System.out.println(isConnected(level, 3, 3));
+			} catch (Exception e) {
+				System.out.println("error");
+			}
 		}
-		catch(Exception e) {
-			System.out.println("error");
-		}
+
 	}
 
-	
-	}
-	
 	/**
 	 * Generiert ein char[][] kodiertes Level
 	 * 
@@ -166,7 +163,7 @@ public class LevelGenerator {
 						fitness += Constants.EXIT_IS_REACHABLE;
 				} else if (isReachable(level, x, y))
 					fitness += Constants.FLOOR_IS_REACHABLE;
-			}			
+			}
 		}
 		level.resetList();
 		return fitness;
@@ -179,25 +176,28 @@ public class LevelGenerator {
 		if (x == level.getXSize() - 1 || x == 0 || y == level.getYSize() - 1 || y == 0)
 			return true;
 
-		level.getDx().add(x);
-		level.getDy().add(y);			
+	
+		level.getDx().add(x + "" + y);
+
 		boolean connected = false;
-		if (level.getLevel()[x - 1][y] == Constants.REFERENCE_WALL && !level.getDx().contains(x-1))
+		if (level.getLevel()[x - 1][y] == Constants.REFERENCE_WALL && !level.getDx().contains((x - 1) + "" + y))
 			if (isConnected(level, x - 1, y))
 				connected = true;
-		if (level.getLevel()[x + 1][y] == Constants.REFERENCE_WALL && !level.getDx().contains(x+1))
+		if (!connected && level.getLevel()[x + 1][y] == Constants.REFERENCE_WALL
+				&& !level.getDx().contains((x + 1) + "" + y))
 			if (isConnected(level, x + 1, y))
 				connected = true;
-		if (level.getLevel()[x][y - 1] == Constants.REFERENCE_WALL && !level.getDy().contains(y-1))
+		if (!connected && level.getLevel()[x][y - 1] == Constants.REFERENCE_WALL
+				&& !level.getDx().contains(x + "" + (y - 1)))
 			if (isConnected(level, x, y - 1))
 				connected = true;
-		if (level.getLevel()[x][y + 1] == Constants.REFERENCE_WALL && !level.getDy().contains(y+1))
+		if (!connected && level.getLevel()[x][y + 1] == Constants.REFERENCE_WALL
+				&& !level.getDx().contains(x + "" + (y + 1)))
 			if (isConnected(level, x, y + 1))
 				connected = true;
 
 		return connected;
 	}
-	
 
 	private boolean isReachable(CodedLevel level, int x, int y) {
 
@@ -268,8 +268,8 @@ public class LevelGenerator {
 
 	public static void main(String[] args) {
 		LevelGenerator lg = new LevelGenerator();
-		lg.test(8,8);
-		//lg.generateLevel(5, 5).printLevel();
+		lg.test(8, 8);
+		// lg.generateLevel(5, 5).printLevel();
 	}
 
 }

@@ -13,9 +13,8 @@ public class CodedLevel {
 	private int[] exit = new int[2];
 	private int[] start = new int[2];
 
-	
-	private ArrayList <Integer> dx = new ArrayList <Integer>();
-	private ArrayList <Integer> dy = new ArrayList <Integer>();
+	private ArrayList<String> dx = new ArrayList<String>();
+
 	public CodedLevel(final char[][] level, int xSize, int ySize) {
 		this.level = level;
 		this.xSize = xSize;
@@ -25,18 +24,16 @@ public class CodedLevel {
 	public void setFitness(final int fitness) {
 		this.fitness = fitness;
 	}
-	
+
 	public void resetList() {
-		this.dx=new ArrayList<Integer>();
-		this.dy=new ArrayList<Integer>();
+		this.dx = new ArrayList<String>();
+
 	}
-	public ArrayList<Integer> getDx(){
+
+	public ArrayList<String> getDx() {
 		return this.dx;
 	}
-	
-	public ArrayList<Integer> getDy(){
-		return this.dy;
-	}
+
 	public int getFitness() {
 		return this.fitness;
 	}
@@ -59,13 +56,13 @@ public class CodedLevel {
 
 	public int[] getExit() {
 		if (hasExit)
-		return this.exit;
+			return this.exit;
 		return null;
 	}
 
 	public int[] getStart() {
 		if (hasStart)
-		return this.start;
+			return this.start;
 		return null;
 	}
 
