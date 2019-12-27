@@ -18,7 +18,7 @@ public class CodedLevel {
 	private int[] start = new int[2];
 
 	private ArrayList<String> checkedWalls = new ArrayList<String>();
-
+	private ArrayList<String> reachableFloors = new ArrayList<String>();
 	/**
 	 * @param level Kodiertes Level 
 	 * @param xSize Breite des Levels
@@ -39,11 +39,16 @@ public class CodedLevel {
 	 */
 	public void resetList() {
 		this.checkedWalls = new ArrayList<String>();
+		this.reachableFloors= new ArrayList<String>();
 
 	}
 
 	public ArrayList<String> getCheckedWalls() {
 		return this.checkedWalls;
+	}
+	
+	public ArrayList<String> getReachableFloors(){
+		return this.reachableFloors;
 	}
 
 	public int getFitness() {

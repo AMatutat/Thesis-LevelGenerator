@@ -12,12 +12,15 @@ public class LevelGenerator {
 
 		for (int i = 0; i < Constants.POPULATIONSIZE; i++) {
 			CodedLevel level = generateRandomLevel(x, y);
-			level.printLevel();
+			placeStartAndEnd(level);
+		
 			try {
-				System.out.println(isConnected(level, 3, 3));
+				System.out.println(getFitness(level));
+		
 			} catch (Exception e) {
-				System.out.println("error");
+				System.out.println("error "+e);
 			}
+			level.printLevel();
 		}
 
 	}
@@ -219,8 +222,40 @@ public class LevelGenerator {
 	 * @return
 	 */
 	private boolean isReachable(CodedLevel level, int x, int y) {
+		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT && level.getLevel()[x][y] != Constants.REFERENCE_START)
+			throw new IllegalArgumentException("Surface must be a floor");
 
-		return false;
+
+
+		if (level.getReachableFloors().size() <= 0)
+			createReachableList(level, level.getStart()[0], level.getStart()[1]);
+
+		return level.getReachableFloors().contains(x + "" + y);
+
+	}
+
+	private void createReachableList(CodedLevel level, int x, int y) {		
+		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT && level.getLevel()[x][y] != Constants.REFERENCE_START)
+			throw new IllegalArgumentException("Surface must be a floor");
+
+		
+		level.getReachableFloors().add(x + "" + y);
+
+		if ((level.getLevel()[x - 1][y] == Constants.REFERENCE_FLOOR || level.getLevel()[x - 1][y] == Constants.REFEERNCE_EXIT || level.getLevel()[x - 1][y] == Constants.REFERENCE_START)
+				&& !level.getReachableFloors().contains((x - 1) + "" + y))
+			createReachableList(level, x - 1, y);
+
+		if ((level.getLevel()[x + 1][y] == Constants.REFERENCE_FLOOR || level.getLevel()[x + 1][y] == Constants.REFEERNCE_EXIT || level.getLevel()[x + 1][y] == Constants.REFERENCE_START)
+				&& !level.getReachableFloors().contains((x + 1) + "" + y))
+			createReachableList(level, x + 1, y);
+
+		if ((level.getLevel()[x][y - 1] == Constants.REFERENCE_FLOOR || level.getLevel()[x][y - 1] == Constants.REFEERNCE_EXIT || level.getLevel()[x][y - 1] == Constants.REFERENCE_START)
+				&& !level.getReachableFloors().contains(x + "" + (y - 1)))
+			createReachableList(level, x, y - 1);
+
+		if ((level.getLevel()[x][y + 1] == Constants.REFERENCE_FLOOR || level.getLevel()[x][y + 1] == Constants.REFEERNCE_EXIT || level.getLevel()[x][y + 1] == Constants.REFERENCE_START)
+				&& !level.getReachableFloors().contains(x + "" + (y + 1)))
+			createReachableList(level, x, y + 1);
 	}
 
 	/**
