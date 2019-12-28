@@ -11,7 +11,7 @@ public class Constants {
 	/**
 	 * Größe der Startpopulation
 	 */
-	static int POPULATIONSIZE = 100;
+	static int POPULATIONSIZE = 10;
 	/**
 	 * Warscheinlichkeit das ein zufällig erstelltes Surface ein Floor ist n/100
 	 */
@@ -40,7 +40,7 @@ public class Constants {
 	/**
 	 * Schwelltwert ab den ein Level für gut befunden wird
 	 */
-	static int THRESHOLD_FITNESS = 20;
+	static int THRESHOLD_FITNESS = 1200;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, für jeden erreichbaren Floor im
 	 * level

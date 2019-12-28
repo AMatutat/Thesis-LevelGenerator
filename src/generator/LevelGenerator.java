@@ -46,9 +46,8 @@ public class LevelGenerator {
 
 		// Durchlauf
 		for (int generation = 0; generation < Constants.MAXIMAL_GENERATION; generation++) {
-
 			// Start und Exit platzieren, Fitness prüfen
-			for (CodedLevel lvl: startPopulation) {
+			for (CodedLevel lvl : startPopulation) {
 				placeStartAndEnd(lvl);
 				int fitness = getFitness(lvl);
 				if (fitness >= Constants.THRESHOLD_FITNESS)
@@ -59,14 +58,13 @@ public class LevelGenerator {
 			// Kombinieren
 			CodedLevel[] newPopulation = new CodedLevel[Constants.POPULATIONSIZE];
 			for (int i = 0; i < startPopulation.length; i += 2) {
-				
+
 				// Elternpaar Auswählen
 				CodedLevel parentA = selectParent(startPopulation);
 				CodedLevel parentB;
 				do {
 					parentB = selectParent(startPopulation);
 				} while (parentA == parentB);
-
 				if ((int) (Math.random() * 100 + 1) <= Constants.CHANCE_FOR_CROSSOVER) {
 					newPopulation[i] = crossover(parentA, parentB);
 					newPopulation[i + 1] = crossover(parentB, parentA);
@@ -82,7 +80,7 @@ public class LevelGenerator {
 			}
 
 			// Neue Population ist die Startpopulation für die nächste Generation
-			// startPopulation = newPopulation;
+			startPopulation = newPopulation;
 		}
 
 		// Neustart wenn Schwellwert überschritten wurde
@@ -267,7 +265,7 @@ public class LevelGenerator {
 	}
 
 	/**
-	 * Wählt ein Elternteil aus
+	 * Wählt ein Elternteil aus Roulett Wheel Selection
 	 * 
 	 * @param population aus der gewählt werden soll
 	 * @return Index des Elternteils
@@ -333,7 +331,6 @@ public class LevelGenerator {
 			}
 		}
 
-		lvl.setFitness(getFitness(lvl));
 	}
 
 	/**
@@ -356,7 +353,8 @@ public class LevelGenerator {
 
 	public static void main(String[] args) {
 		LevelGenerator lg = new LevelGenerator();
-		lg.test(8, 8);
+		// lg.test(8, 8);
+		lg.generateLevel(10, 8);
 		// lg.generateLevel(5, 5).printLevel();
 	}
 
