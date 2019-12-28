@@ -3,25 +3,25 @@ package generator;
 /**
  * Konstanten die vom Levelgenerator verwendet wird
  * 
- * @author André Matutat
+ * @author AndrÃ© Matutat
  *
  */
 public class Constants {
 
 	/**
-	 * Größe der Startpopulation
+	 * GrÃ¶ÃŸe der Startpopulation
 	 */
-	static int POPULATIONSIZE = 10;
+	static int POPULATIONSIZE =1000;
 	/**
-	 * Warscheinlichkeit das ein zufällig erstelltes Surface ein Floor ist n/100
+	 * Warscheinlichkeit das ein zufÃ¤llig erstelltes Surface ein Floor ist n/100
 	 */
-	static int CHANCE_TO_BE_FLOOR = 70;
+	static int CHANCE_TO_BE_FLOOR = 60;
 	/**
-	 * Warscheinlichkeit das eine Mutation durchgeführt wird n/100
+	 * Warscheinlichkeit das eine Mutation durchgefÃ¼hrt wird n/100
 	 */
 	static int CHANCE_FOR_MUTATION = 1;
 	/**
-	 * Warscheinlichkeit das ein Crossover durchgeführt wird n/100
+	 * Warscheinlichkeit das ein Crossover durchgefÃ¼hrt wird n/100
 	 */
 	static int CHANCE_FOR_CROSSOVER = 60;
 	/**
@@ -38,31 +38,31 @@ public class Constants {
 	 */
 	static int MINIMAL_YSIZE = 4;
 	/**
-	 * Schwelltwert ab den ein Level für gut befunden wird
+	 * Schwelltwert ab den ein Level fÃ¼r gut befunden wird
 	 */
-	static int THRESHOLD_FITNESS = 1200;
+	static int THRESHOLD_FITNESS = 750;
 	/**
-	 * Faktor der auf die Fitness gerechnet wird, für jeden erreichbaren Floor im
+	 * Faktor der auf die Fitness gerechnet wird, fÃ¼r jeden erreichbaren Floor im
 	 * level
 	 */
-	static int FLOOR_IS_REACHABLE = 5;
+	static int FLOOR_IS_REACHABLE = 3;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, wenn das Ende erreichbar ist
 	 */
-	static int EXIT_IS_REACHABLE = 40;
+	static int EXIT_IS_REACHABLE = 15;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, wenn eine Wand oder Wandkette mit
 	 * der Ausenwand verbunden ist
 	 */
-	static int WALL_IS_CONNECTED = 5;
+	static int WALL_IS_CONNECTED = 3;
 	/**
 	 * Symbolisiert ein Floor Surface im Array
 	 */
-	static char REFERENCE_FLOOR = 'F';
+	static char REFERENCE_FLOOR = ' ';
 	/**
 	 * Symbolisiert ein Wall Surface im Array
 	 */
-	static char REFERENCE_WALL = 'W';
+	static char REFERENCE_WALL = '#';
 	/**
 	 * Symbolisiert ein Exit Surface im Array
 	 */

@@ -43,16 +43,18 @@ public class LevelGenerator {
 		CodedLevel[] startPopulation = new CodedLevel[Constants.POPULATIONSIZE];
 		for (int i = 0; i < Constants.POPULATIONSIZE; i++)
 			startPopulation[i] = (generateRandomLevel(xSize, ySize));
-
+		
 		// Durchlauf
 		for (int generation = 0; generation < Constants.MAXIMAL_GENERATION; generation++) {
+			System.out.println(generation);
 			// Start und Exit platzieren, Fitness prüfen
 			for (CodedLevel lvl : startPopulation) {
 				placeStartAndEnd(lvl);
 				int fitness = getFitness(lvl);
-				if (fitness >= Constants.THRESHOLD_FITNESS)
+				if (fitness >= Constants.THRESHOLD_FITNESS && isReachable(lvl,lvl.getExit()[0],lvl.getExit()[1]))
 					return lvl;
 				lvl.setFitness(fitness);
+				lvl.resetList();
 			}
 
 			// Kombinieren
@@ -84,8 +86,9 @@ public class LevelGenerator {
 		}
 
 		// Neustart wenn Schwellwert überschritten wurde
-		// return generateLevel(xSize, ySize);
-		return null;
+		System.out.println("restart");
+		 return generateLevel(xSize, ySize);
+		//return null;
 	}
 
 	/**
@@ -354,7 +357,7 @@ public class LevelGenerator {
 	public static void main(String[] args) {
 		LevelGenerator lg = new LevelGenerator();
 		// lg.test(8, 8);
-		lg.generateLevel(10, 8);
+		lg.generateLevel(20, 20).printLevel();
 		// lg.generateLevel(5, 5).printLevel();
 	}
 
