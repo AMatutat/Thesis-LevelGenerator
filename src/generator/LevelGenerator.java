@@ -13,12 +13,12 @@ public class LevelGenerator {
 		for (int i = 0; i < Constants.POPULATIONSIZE; i++) {
 			CodedLevel level = generateRandomLevel(x, y);
 			placeStartAndEnd(level);
-		
+
 			try {
 				System.out.println(getFitness(level));
-		
+
 			} catch (Exception e) {
-				System.out.println("error "+e);
+				System.out.println("error " + e);
 			}
 			level.printLevel();
 		}
@@ -48,21 +48,24 @@ public class LevelGenerator {
 		for (int generation = 0; generation < Constants.MAXIMAL_GENERATION; generation++) {
 
 			// Start und Exit platzieren, Fitness prüfen
-			for (int i = 0; i < startPopulation.length; i++) {
-				placeStartAndEnd(startPopulation[i]);
-				int fitness = getFitness(startPopulation[i]);
+			for (CodedLevel lvl: startPopulation) {
+				placeStartAndEnd(lvl);
+				int fitness = getFitness(lvl);
 				if (fitness >= Constants.THRESHOLD_FITNESS)
-					return startPopulation[i];
-				startPopulation[i].setFitness(fitness);
+					return lvl;
+				lvl.setFitness(fitness);
 			}
 
 			// Kombinieren
 			CodedLevel[] newPopulation = new CodedLevel[Constants.POPULATIONSIZE];
-			sortByFitness(startPopulation);
 			for (int i = 0; i < startPopulation.length; i += 2) {
+				
 				// Elternpaar Auswählen
-				CodedLevel parentA = startPopulation[selectParent(startPopulation)];
-				CodedLevel parentB = startPopulation[selectParent(startPopulation)];
+				CodedLevel parentA = selectParent(startPopulation);
+				CodedLevel parentB;
+				do {
+					parentB = selectParent(startPopulation);
+				} while (parentA == parentB);
 
 				if ((int) (Math.random() * 100 + 1) <= Constants.CHANCE_FOR_CROSSOVER) {
 					newPopulation[i] = crossover(parentA, parentB);
@@ -74,10 +77,8 @@ public class LevelGenerator {
 			}
 
 			// Mutieren
-			for (int i = 0; i < Constants.POPULATIONSIZE; i++) {
-				// muatte(newPopulation[i]);
-				mutate(startPopulation[i]);
-				startPopulation[i].printLevel();
+			for (CodedLevel lvl : newPopulation) {
+				mutate(lvl);
 			}
 
 			// Neue Population ist die Startpopulation für die nächste Generation
@@ -222,10 +223,9 @@ public class LevelGenerator {
 	 * @return
 	 */
 	private boolean isReachable(CodedLevel level, int x, int y) {
-		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT && level.getLevel()[x][y] != Constants.REFERENCE_START)
+		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT
+				&& level.getLevel()[x][y] != Constants.REFERENCE_START)
 			throw new IllegalArgumentException("Surface must be a floor");
-
-
 
 		if (level.getReachableFloors().size() <= 0)
 			createReachableList(level, level.getStart()[0], level.getStart()[1]);
@@ -234,26 +234,34 @@ public class LevelGenerator {
 
 	}
 
-	private void createReachableList(CodedLevel level, int x, int y) {		
-		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT && level.getLevel()[x][y] != Constants.REFERENCE_START)
+	private void createReachableList(CodedLevel level, int x, int y) {
+		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT
+				&& level.getLevel()[x][y] != Constants.REFERENCE_START)
 			throw new IllegalArgumentException("Surface must be a floor");
 
-		
 		level.getReachableFloors().add(x + "" + y);
 
-		if ((level.getLevel()[x - 1][y] == Constants.REFERENCE_FLOOR || level.getLevel()[x - 1][y] == Constants.REFEERNCE_EXIT || level.getLevel()[x - 1][y] == Constants.REFERENCE_START)
+		if ((level.getLevel()[x - 1][y] == Constants.REFERENCE_FLOOR
+				|| level.getLevel()[x - 1][y] == Constants.REFEERNCE_EXIT
+				|| level.getLevel()[x - 1][y] == Constants.REFERENCE_START)
 				&& !level.getReachableFloors().contains((x - 1) + "" + y))
 			createReachableList(level, x - 1, y);
 
-		if ((level.getLevel()[x + 1][y] == Constants.REFERENCE_FLOOR || level.getLevel()[x + 1][y] == Constants.REFEERNCE_EXIT || level.getLevel()[x + 1][y] == Constants.REFERENCE_START)
+		if ((level.getLevel()[x + 1][y] == Constants.REFERENCE_FLOOR
+				|| level.getLevel()[x + 1][y] == Constants.REFEERNCE_EXIT
+				|| level.getLevel()[x + 1][y] == Constants.REFERENCE_START)
 				&& !level.getReachableFloors().contains((x + 1) + "" + y))
 			createReachableList(level, x + 1, y);
 
-		if ((level.getLevel()[x][y - 1] == Constants.REFERENCE_FLOOR || level.getLevel()[x][y - 1] == Constants.REFEERNCE_EXIT || level.getLevel()[x][y - 1] == Constants.REFERENCE_START)
+		if ((level.getLevel()[x][y - 1] == Constants.REFERENCE_FLOOR
+				|| level.getLevel()[x][y - 1] == Constants.REFEERNCE_EXIT
+				|| level.getLevel()[x][y - 1] == Constants.REFERENCE_START)
 				&& !level.getReachableFloors().contains(x + "" + (y - 1)))
 			createReachableList(level, x, y - 1);
 
-		if ((level.getLevel()[x][y + 1] == Constants.REFERENCE_FLOOR || level.getLevel()[x][y + 1] == Constants.REFEERNCE_EXIT || level.getLevel()[x][y + 1] == Constants.REFERENCE_START)
+		if ((level.getLevel()[x][y + 1] == Constants.REFERENCE_FLOOR
+				|| level.getLevel()[x][y + 1] == Constants.REFEERNCE_EXIT
+				|| level.getLevel()[x][y + 1] == Constants.REFERENCE_START)
 				&& !level.getReachableFloors().contains(x + "" + (y + 1)))
 			createReachableList(level, x, y + 1);
 	}
@@ -264,8 +272,22 @@ public class LevelGenerator {
 	 * @param population aus der gewählt werden soll
 	 * @return Index des Elternteils
 	 */
-	private int selectParent(final CodedLevel[] population) {
-		return 0;
+	private CodedLevel selectParent(final CodedLevel[] population) {
+		int fitSum = 0;
+		for (CodedLevel lvl : population) {
+			fitSum += lvl.getFitness();
+		}
+		int target = (int) (Math.random() * fitSum);
+		int p = 0;
+
+		for (CodedLevel lvl : population) {
+			p += lvl.getFitness();
+			if (p >= target)
+				return lvl;
+		}
+
+		// non reachable code
+		return null;
 	}
 
 	/**

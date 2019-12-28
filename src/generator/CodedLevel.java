@@ -1,8 +1,10 @@
 package generator;
 
 import java.util.ArrayList;
+
 /**
- * Symbolisiert ein Level für die dauer des Erstellunsprozesses 
+ * Symbolisiert ein Level für die dauer des Erstellunsprozesses
+ * 
  * @author André Matutat
  *
  */
@@ -19,8 +21,9 @@ public class CodedLevel {
 
 	private ArrayList<String> checkedWalls = new ArrayList<String>();
 	private ArrayList<String> reachableFloors = new ArrayList<String>();
+
 	/**
-	 * @param level Kodiertes Level 
+	 * @param level Kodiertes Level
 	 * @param xSize Breite des Levels
 	 * @param ySize Höhe des Levels
 	 */
@@ -35,20 +38,21 @@ public class CodedLevel {
 	}
 
 	/**
-	 * Reseted Hilfslisten 
+	 * Reseted Hilfslisten
 	 */
 	public void resetList() {
 		this.checkedWalls = new ArrayList<String>();
-		this.reachableFloors= new ArrayList<String>();
+		this.reachableFloors = new ArrayList<String>();
 
 	}
 
 	public ArrayList<String> getCheckedWalls() {
 		return this.checkedWalls;
 	}
-	
-	public ArrayList<String> getReachableFloors(){
+
+	public ArrayList<String> getReachableFloors() {
 		return this.reachableFloors;
+		
 	}
 
 	public int getFitness() {
@@ -86,12 +90,13 @@ public class CodedLevel {
 	public char[][] getLevel() {
 		return this.level;
 	}
-/**
- * 
- * @param x X Index des zu wechselnden Elements
- * @param y y Index des zu wechselnden Elements
- * @param s neue Element
- */
+
+	/**
+	 * 
+	 * @param x X Index des zu wechselnden Elements
+	 * @param y y Index des zu wechselnden Elements
+	 * @param s neue Element
+	 */
 	public void changeField(int x, int y, char s) {
 		if (this.level[x][y] == Constants.REFEERNCE_EXIT)
 			this.hasExit = false;
@@ -110,9 +115,10 @@ public class CodedLevel {
 		}
 		this.level[x][y] = s;
 	}
-/**
- * Gibt das Level aus
- */
+
+	/**
+	 * Gibt das Level aus
+	 */
 	public void printLevel() {
 		for (int y = 0; y < this.ySize; y++) {
 			for (int x = 0; x < this.xSize; x++)
