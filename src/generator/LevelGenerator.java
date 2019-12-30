@@ -1,5 +1,7 @@
 package generator;
 
+import myGame.Level;
+
 /**
  * Erstellt mithilfe eines Genetischen Algorithmuses ein kodiertes Level
  * 
@@ -356,9 +358,11 @@ public class LevelGenerator {
 
 	public static void main(String[] args) {
 		LevelGenerator lg = new LevelGenerator();
-		// lg.test(8, 8);
-		lg.generateLevel(20, 20).printLevel();
-		// lg.generateLevel(5, 5).printLevel();
+		CodedLevel lvlc = lg.generateLevel(30, 30);
+		lvlc.printLevel();
+		LevelParser lp= new LevelParser();
+		Level lvl = lp.parseLevel(lvlc);
+		lp.generateTextureMap(lvl,".\\res", "result");
 	}
 
 }

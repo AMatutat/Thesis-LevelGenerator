@@ -1,7 +1,7 @@
 package myGame;
 
 public class Start extends Surface {
-	private String texture ="./res/images/start.jpg";
+	private String texture =".\\res\\images\\start.jpg";
 
 	@Override
 	public String getTexture() {

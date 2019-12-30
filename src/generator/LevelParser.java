@@ -1,5 +1,11 @@
 package generator;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import interfaces.*;
 import myGame.*;
 
@@ -11,6 +17,7 @@ public class LevelParser {
 
 	/**
 	 * Parst ein kodiertes Level zu einer Instanz der Klasse Level
+	 * 
 	 * @param level kodiertes Level
 	 * @return erzeugtes Level
 	 */
@@ -104,6 +111,32 @@ public class LevelParser {
 	 * @return ob das generieren erfolgreich war
 	 */
 	public boolean generateTextureMap(Level lvl, String path, String name) {
-		return false;
+		try {
+			BufferedImage img1;
+			BufferedImage joinedImgLine = null;
+			BufferedImage joinedImgComplete = null;
+			img1 = ImageIO.read(new File(lvl.getLevel()[0][0].getTexture()));
+			for (int y = 0; y < lvl.getYSize(); y++) {
+				for (int x = 1; x < lvl.getXSize(); x++) {
+					BufferedImage img2 = ImageIO.read(new File(lvl.getLevel()[x][y].getTexture()));
+					joinedImgLine = JoinImage.joinBufferedImageSide(img1, img2);
+					img1 = joinedImgLine;
+				}
+				if (y == 0)
+					joinedImgComplete = joinedImgLine;
+				else
+					joinedImgComplete = JoinImage.joinBufferedImageDown(joinedImgComplete, joinedImgLine);
+				img1 = ImageIO.read(new File(lvl.getLevel()[0][y].getTexture()));
+			}
+			boolean success = ImageIO.write(joinedImgComplete, "png", new File(path + "\\" + name + ".png"));
+			System.out.println("saved success? " + success);
+			if (!success)
+				return false;
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 }

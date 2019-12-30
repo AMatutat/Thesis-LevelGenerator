@@ -6,7 +6,7 @@ public class Floor extends Surface{
 	
 	private Item itemPlaced;
 	private Monster monsterPlaced;
-	private String texture ="./res/images/floor.jpg";
+	private String texture =".\\res\\images\\floor.jpg";
 
 	
 	public String getTexture() {

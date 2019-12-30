@@ -40,7 +40,7 @@ public class Constants {
 	/**
 	 * Schwelltwert ab den ein Level für gut befunden wird
 	 */
-	static int THRESHOLD_FITNESS = 750;
+	static int THRESHOLD_FITNESS = 770;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, für jeden erreichbaren Floor im
 	 * level
@@ -62,7 +62,7 @@ public class Constants {
 	/**
 	 * Symbolisiert ein Wall Surface im Array
 	 */
-	static char REFERENCE_WALL = '#';
+	static char REFERENCE_WALL = '0';
 	/**
 	 * Symbolisiert ein Exit Surface im Array
 	 */
