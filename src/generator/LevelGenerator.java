@@ -25,17 +25,13 @@ public class LevelGenerator {
 			throw new IllegalArgumentException("Population must be even");
 
 		int fieldcounter = xSize * ySize - (2 * xSize) - (2 * ySize) + 4;
-		System.out.println(fieldcounter);
-		int floors = (int) (fieldcounter * (Constants.CHANCE_TO_BE_FLOOR / 100f));
-		System.out.println(floors);
-		int walls = (int) ((fieldcounter * ((100 - Constants.CHANCE_TO_BE_FLOOR) / 100f)) / 3);
-		System.out.println(walls);
-		Constants.THRESHOLD_FITNESS = (int) (Constants.THRESHOLD_VALUE * ((fieldcounter * Constants.FLOOR_IS_REACHABLE)
-				+
-				//(walls * Constants.WALL_IS_CONNECTED)
+		int floors = (int) (fieldcounter * Constants.CHANCE_TO_BE_FLOOR);
+		int walls = (int) (fieldcounter * (1 - Constants.CHANCE_TO_BE_FLOOR));
+		int threshold = (int) (Constants.THRESHOLD_FITNESS * ((floors * Constants.FLOOR_IS_REACHABLE)
+				+ (walls/ySize * Constants.WALL_IS_CONNECTED) 
 				+ Constants.EXIT_IS_REACHABLE));
 
-		System.out.println(Constants.THRESHOLD_FITNESS);
+		System.out.println(threshold);
 
 		// Startgeneration erzeugen
 		CodedLevel[] startPopulation = new CodedLevel[Constants.POPULATIONSIZE];
@@ -49,11 +45,11 @@ public class LevelGenerator {
 			for (CodedLevel lvl : startPopulation) {
 				placeStartAndEnd(lvl);
 				int fitness = getFitness(lvl);
-				if (fitness >= Constants.THRESHOLD_FITNESS && isReachable(lvl, lvl.getExit()[0], lvl.getExit()[1])) {
+				if (fitness >= threshold && isReachable(lvl, lvl.getExit()[0], lvl.getExit()[1])) {
 					removeUnreachableFloors(lvl);
 					return lvl;
 				}
-				
+
 				lvl.setFitness(fitness);
 				lvl.resetList();
 			}
@@ -68,7 +64,7 @@ public class LevelGenerator {
 				do {
 					parentB = selectParent(startPopulation);
 				} while (parentA == parentB);
-				if ((int) (Math.random() * 100 + 1) <= Constants.CHANCE_FOR_CROSSOVER) {
+				if (Math.random() <= Constants.CHANCE_FOR_CROSSOVER) {
 					newPopulation[i] = crossover(parentA, parentB);
 					newPopulation[i + 1] = crossover(parentB, parentA);
 				} else {
@@ -107,7 +103,7 @@ public class LevelGenerator {
 				if (x == 0 || y == 0 || y == ySize - 1 || x == xSize - 1)
 					level[x][y] = Constants.REFERENCE_WALL;
 
-				else if ((int) (Math.random() * 100 + 1) <= Constants.CHANCE_TO_BE_FLOOR)
+				else if (Math.random() <= Constants.CHANCE_TO_BE_FLOOR)
 					level[x][y] = Constants.REFERENCE_FLOOR;
 				else
 					level[x][y] = Constants.REFERENCE_WALL;
@@ -326,7 +322,7 @@ public class LevelGenerator {
 	private void mutate(CodedLevel lvl) {
 		for (int y = 1; y < lvl.getYSize() - 1; y++) {
 			for (int x = 1; x < lvl.getXSize() - 1; x++) {
-				if ((int) (Math.random() * 100 + 1) <= Constants.CHANCE_FOR_MUTATION) {
+				if (Math.random() <= Constants.CHANCE_FOR_MUTATION) {
 					if ((lvl.getLevel())[x][y] == Constants.REFERENCE_WALL)
 						lvl.changeField(x, y, Constants.REFERENCE_FLOOR);
 					else
@@ -360,11 +356,9 @@ public class LevelGenerator {
 		for (int x = 1; x < lvl.getXSize() - 1; x++) {
 			for (int y = 1; y < lvl.getYSize() - 1; y++) {
 				if (lvl.getLevel()[x][y] == Constants.REFERENCE_FLOOR) {
-					if (!isReachable(lvl, x, y)) {
-						System.out.println("change");
+					if (!isReachable(lvl, x, y))
 						lvl.changeField(x, y, Constants.REFERENCE_WALL);
-					}
-			
+
 				}
 			}
 		}
@@ -374,7 +368,7 @@ public class LevelGenerator {
 	public static void main(String[] args) {
 		LevelGenerator lg = new LevelGenerator();
 		for (int i = 0; i < 10; i++) {
-			CodedLevel lvlc = lg.generateLevel(30, 30);
+			CodedLevel lvlc = lg.generateLevel(40, 50);
 			lvlc.printLevel();
 			LevelParser lp = new LevelParser();
 			Level lvl = lp.parseLevel(lvlc);

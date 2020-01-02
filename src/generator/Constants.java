@@ -8,25 +8,25 @@ package generator;
  */
 public class Constants {
 
-	static double THRESHOLD_VALUE= 0.9;
+	
 	/**
 	 * Schwelltwert ab den ein Level für gut befunden wird
 	 */
-	static int THRESHOLD_FITNESS;
+	static float THRESHOLD_FITNESS= 1f;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, wenn eine Wand oder Wandkette mit
 	 * der Ausenwand verbunden ist
 	 */
-	static int WALL_IS_CONNECTED = 5;
+	static int WALL_IS_CONNECTED = 2;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, für jeden erreichbaren Floor im
 	 * level
 	 */
-	static int FLOOR_IS_REACHABLE = 15;
+	static int FLOOR_IS_REACHABLE = 1;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, wenn das Ende erreichbar ist
 	 */
-	static int EXIT_IS_REACHABLE = 15;
+	static int EXIT_IS_REACHABLE = 5;
 	/**
 	 * Größe der Startpopulation
 	 */
@@ -34,15 +34,15 @@ public class Constants {
 	/**
 	 * Warscheinlichkeit das ein zufällig erstelltes Surface ein Floor ist n/100
 	 */
-	static int CHANCE_TO_BE_FLOOR = 70;
+	static float CHANCE_TO_BE_FLOOR = 0.7f;
 	/**
 	 * Warscheinlichkeit das eine Mutation durchgeführt wird n/100
 	 */
-	static int CHANCE_FOR_MUTATION = 1;
+	static float CHANCE_FOR_MUTATION = 0.1f;
 	/**
 	 * Warscheinlichkeit das ein Crossover durchgeführt wird n/100
 	 */
-	static int CHANCE_FOR_CROSSOVER = 60;
+	static float CHANCE_FOR_CROSSOVER = 0.6f;
 	/**
 	 * Anzahl ab der ein komplett neuer Durchlauf gestartet wird, da sich der
 	 * aktuelle Durchlauf festgefahren hat
