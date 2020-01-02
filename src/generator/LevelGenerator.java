@@ -10,23 +10,6 @@ import myGame.Level;
  */
 public class LevelGenerator {
 
-	public void test(int x, int y) {
-
-		for (int i = 0; i < Constants.POPULATIONSIZE; i++) {
-			CodedLevel level = generateRandomLevel(x, y);
-			placeStartAndEnd(level);
-
-			try {
-				System.out.println(getFitness(level));
-
-			} catch (Exception e) {
-				System.out.println("error " + e);
-			}
-			level.printLevel();
-		}
-
-	}
-
 	/**
 	 * Generiert ein kodiertes Level
 	 * 
@@ -41,11 +24,24 @@ public class LevelGenerator {
 		if (Constants.POPULATIONSIZE % 2 != 0)
 			throw new IllegalArgumentException("Population must be even");
 
+		int fieldcounter = xSize * ySize - (2 * xSize) - (2 * ySize) + 4;
+		System.out.println(fieldcounter);
+		int floors = (int) (fieldcounter * (Constants.CHANCE_TO_BE_FLOOR / 100f));
+		System.out.println(floors);
+		int walls = (int) ((fieldcounter * ((100 - Constants.CHANCE_TO_BE_FLOOR) / 100f)) / 3);
+		System.out.println(walls);
+		Constants.THRESHOLD_FITNESS = (int) (Constants.THRESHOLD_VALUE * ((fieldcounter * Constants.FLOOR_IS_REACHABLE)
+				+
+				//(walls * Constants.WALL_IS_CONNECTED)
+				+ Constants.EXIT_IS_REACHABLE));
+
+		System.out.println(Constants.THRESHOLD_FITNESS);
+
 		// Startgeneration erzeugen
 		CodedLevel[] startPopulation = new CodedLevel[Constants.POPULATIONSIZE];
 		for (int i = 0; i < Constants.POPULATIONSIZE; i++)
 			startPopulation[i] = (generateRandomLevel(xSize, ySize));
-		
+
 		// Durchlauf
 		for (int generation = 0; generation < Constants.MAXIMAL_GENERATION; generation++) {
 			System.out.println(generation);
@@ -53,8 +49,11 @@ public class LevelGenerator {
 			for (CodedLevel lvl : startPopulation) {
 				placeStartAndEnd(lvl);
 				int fitness = getFitness(lvl);
-				if (fitness >= Constants.THRESHOLD_FITNESS && isReachable(lvl,lvl.getExit()[0],lvl.getExit()[1]))
+				if (fitness >= Constants.THRESHOLD_FITNESS && isReachable(lvl, lvl.getExit()[0], lvl.getExit()[1])) {
+					removeUnreachableFloors(lvl);
 					return lvl;
+				}
+				
 				lvl.setFitness(fitness);
 				lvl.resetList();
 			}
@@ -89,8 +88,8 @@ public class LevelGenerator {
 
 		// Neustart wenn Schwellwert überschritten wurde
 		System.out.println("restart");
-		 return generateLevel(xSize, ySize);
-		//return null;
+		return generateLevel(xSize, ySize);
+		// return null;
 	}
 
 	/**
@@ -356,13 +355,31 @@ public class LevelGenerator {
 		}
 	}
 
+	private void removeUnreachableFloors(CodedLevel lvl) {
+		lvl.resetList();
+		for (int x = 1; x < lvl.getXSize() - 1; x++) {
+			for (int y = 1; y < lvl.getYSize() - 1; y++) {
+				if (lvl.getLevel()[x][y] == Constants.REFERENCE_FLOOR) {
+					if (!isReachable(lvl, x, y)) {
+						System.out.println("change");
+						lvl.changeField(x, y, Constants.REFERENCE_WALL);
+					}
+			
+				}
+			}
+		}
+
+	}
+
 	public static void main(String[] args) {
 		LevelGenerator lg = new LevelGenerator();
-		CodedLevel lvlc = lg.generateLevel(30, 30);
-		lvlc.printLevel();
-		LevelParser lp= new LevelParser();
-		Level lvl = lp.parseLevel(lvlc);
-		lp.generateTextureMap(lvl,".\\res", "result");
+		for (int i = 0; i < 10; i++) {
+			CodedLevel lvlc = lg.generateLevel(30, 30);
+			lvlc.printLevel();
+			LevelParser lp = new LevelParser();
+			Level lvl = lp.parseLevel(lvlc);
+			lp.generateTextureMap(lvl, ".\\res", "result" + i);
+		}
 	}
 
 }

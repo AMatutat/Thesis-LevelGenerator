@@ -8,14 +8,33 @@ package generator;
  */
 public class Constants {
 
+	static double THRESHOLD_VALUE= 0.9;
+	/**
+	 * Schwelltwert ab den ein Level für gut befunden wird
+	 */
+	static int THRESHOLD_FITNESS;
+	/**
+	 * Faktor der auf die Fitness gerechnet wird, wenn eine Wand oder Wandkette mit
+	 * der Ausenwand verbunden ist
+	 */
+	static int WALL_IS_CONNECTED = 5;
+	/**
+	 * Faktor der auf die Fitness gerechnet wird, für jeden erreichbaren Floor im
+	 * level
+	 */
+	static int FLOOR_IS_REACHABLE = 15;
+	/**
+	 * Faktor der auf die Fitness gerechnet wird, wenn das Ende erreichbar ist
+	 */
+	static int EXIT_IS_REACHABLE = 15;
 	/**
 	 * Größe der Startpopulation
 	 */
-	static int POPULATIONSIZE =1000;
+	static int POPULATIONSIZE =500;
 	/**
 	 * Warscheinlichkeit das ein zufällig erstelltes Surface ein Floor ist n/100
 	 */
-	static int CHANCE_TO_BE_FLOOR = 60;
+	static int CHANCE_TO_BE_FLOOR = 70;
 	/**
 	 * Warscheinlichkeit das eine Mutation durchgeführt wird n/100
 	 */
@@ -38,31 +57,13 @@ public class Constants {
 	 */
 	static int MINIMAL_YSIZE = 4;
 	/**
-	 * Schwelltwert ab den ein Level für gut befunden wird
-	 */
-	static int THRESHOLD_FITNESS = 770;
-	/**
-	 * Faktor der auf die Fitness gerechnet wird, für jeden erreichbaren Floor im
-	 * level
-	 */
-	static int FLOOR_IS_REACHABLE = 3;
-	/**
-	 * Faktor der auf die Fitness gerechnet wird, wenn das Ende erreichbar ist
-	 */
-	static int EXIT_IS_REACHABLE = 15;
-	/**
-	 * Faktor der auf die Fitness gerechnet wird, wenn eine Wand oder Wandkette mit
-	 * der Ausenwand verbunden ist
-	 */
-	static int WALL_IS_CONNECTED = 3;
-	/**
 	 * Symbolisiert ein Floor Surface im Array
 	 */
-	static char REFERENCE_FLOOR = ' ';
+	static char REFERENCE_FLOOR = 'F';
 	/**
 	 * Symbolisiert ein Wall Surface im Array
 	 */
-	static char REFERENCE_WALL = '0';
+	static char REFERENCE_WALL = 'W';
 	/**
 	 * Symbolisiert ein Exit Surface im Array
 	 */
