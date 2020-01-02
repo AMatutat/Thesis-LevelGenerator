@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class CodedLevel {
 
 	private char[][] level;
-	private int fitness;
+	private float fitness;
 	private final int xSize;
 	private final int ySize;
 	private boolean hasStart = false;
@@ -33,7 +33,7 @@ public class CodedLevel {
 		this.ySize = ySize;
 	}
 
-	public void setFitness(final int fitness) {
+	public void setFitness(final float fitness) {
 		this.fitness = fitness;
 	}
 
@@ -45,6 +45,10 @@ public class CodedLevel {
 		this.reachableFloors = new ArrayList<String>();
 
 	}
+	
+	public void resetWallList() {
+		this.checkedWalls= new ArrayList<String>();
+	}
 
 	public ArrayList<String> getCheckedWalls() {
 		return this.checkedWalls;
@@ -52,10 +56,11 @@ public class CodedLevel {
 
 	public ArrayList<String> getReachableFloors() {
 		return this.reachableFloors;
-		
-	}
 
-	public int getFitness() {
+	}
+	
+
+	public float getFitness() {
 		return this.fitness;
 	}
 

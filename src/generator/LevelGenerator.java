@@ -28,10 +28,8 @@ public class LevelGenerator {
 		int floors = (int) (fieldcounter * Constants.CHANCE_TO_BE_FLOOR);
 		int walls = (int) (fieldcounter * (1 - Constants.CHANCE_TO_BE_FLOOR));
 		int threshold = (int) (Constants.THRESHOLD_FITNESS * ((floors * Constants.FLOOR_IS_REACHABLE)
-				+ (walls/ySize * Constants.WALL_IS_CONNECTED) 
-				+ Constants.EXIT_IS_REACHABLE));
+				+ (walls * Constants.WALL_IS_CONNECTED) + Constants.EXIT_IS_REACHABLE));
 
-		System.out.println(threshold);
 
 		// Startgeneration erzeugen
 		CodedLevel[] startPopulation = new CodedLevel[Constants.POPULATIONSIZE];
@@ -40,13 +38,13 @@ public class LevelGenerator {
 
 		// Durchlauf
 		for (int generation = 0; generation < Constants.MAXIMAL_GENERATION; generation++) {
-			System.out.println(generation);
 			// Start und Exit platzieren, Fitness prüfen
 			for (CodedLevel lvl : startPopulation) {
 				placeStartAndEnd(lvl);
-				int fitness = getFitness(lvl);
+				float fitness = getFitness(lvl);
 				if (fitness >= threshold && isReachable(lvl, lvl.getExit()[0], lvl.getExit()[1])) {
-					removeUnreachableFloors(lvl);
+					//removeUnreachableFloors(lvl);
+					System.out.println(generation);
 					return lvl;
 				}
 
@@ -154,13 +152,19 @@ public class LevelGenerator {
 	 * @param level dessen Fitness berechnet werden soll
 	 * @return Fitness des Levels guteFitness>schlechteFitness
 	 */
-	private int getFitness(final CodedLevel level) {
-		int fitness = 0;
+	private float getFitness(final CodedLevel level) {
+		float fitness = 0f;
 		for (int x = 1; x < level.getXSize() - 1; x++) {
 			for (int y = 1; y < level.getYSize() - 1; y++) {
 				if (level.getLevel()[x][y] == Constants.REFERENCE_WALL) {
-					if (isConnected(level, x, y))
-						fitness += Constants.WALL_IS_CONNECTED;
+						if (isConnected(level, x, y))
+							fitness += Constants.WALL_IS_CONNECTED;
+						else if (level.getCheckedWalls().size()>1){
+							fitness += (Constants.WALL_IS_CONNECTED/10);
+						}
+						else fitness-=Constants.WALL_IS_CONNECTED;
+
+						level.resetWallList();
 				} else if (level.getLevel()[x][y] == Constants.REFEERNCE_EXIT) {
 					if (isReachable(level, x, y))
 						fitness += Constants.EXIT_IS_REACHABLE;
@@ -320,9 +324,10 @@ public class LevelGenerator {
 	 * 
 	 */
 	private void mutate(CodedLevel lvl) {
+		float pmut = 1/((lvl.getXSize()-1)*(lvl.getYSize()-1));
 		for (int y = 1; y < lvl.getYSize() - 1; y++) {
 			for (int x = 1; x < lvl.getXSize() - 1; x++) {
-				if (Math.random() <= Constants.CHANCE_FOR_MUTATION) {
+				if (Math.random() <= pmut) {
 					if ((lvl.getLevel())[x][y] == Constants.REFERENCE_WALL)
 						lvl.changeField(x, y, Constants.REFERENCE_FLOOR);
 					else
@@ -368,11 +373,12 @@ public class LevelGenerator {
 	public static void main(String[] args) {
 		LevelGenerator lg = new LevelGenerator();
 		for (int i = 0; i < 10; i++) {
-			CodedLevel lvlc = lg.generateLevel(40, 50);
+			CodedLevel lvlc = lg.generateLevel(20, 20);
 			lvlc.printLevel();
+
 			LevelParser lp = new LevelParser();
 			Level lvl = lp.parseLevel(lvlc);
-			lp.generateTextureMap(lvl, ".\\res", "result" + i);
+			lp.generateTextureMap(lvl, ".\\res\\results", "result" + i);
 		}
 	}
 

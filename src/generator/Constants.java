@@ -12,21 +12,21 @@ public class Constants {
 	/**
 	 * Schwelltwert ab den ein Level für gut befunden wird
 	 */
-	static float THRESHOLD_FITNESS= 1f;
+	static float THRESHOLD_FITNESS= 0.90f;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, wenn eine Wand oder Wandkette mit
 	 * der Ausenwand verbunden ist
 	 */
-	static int WALL_IS_CONNECTED = 2;
+	static int WALL_IS_CONNECTED = 1;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, für jeden erreichbaren Floor im
 	 * level
 	 */
-	static int FLOOR_IS_REACHABLE = 1;
+	static int FLOOR_IS_REACHABLE = 2;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, wenn das Ende erreichbar ist
 	 */
-	static int EXIT_IS_REACHABLE = 5;
+	static int EXIT_IS_REACHABLE = 25;
 	/**
 	 * Größe der Startpopulation
 	 */
@@ -34,11 +34,8 @@ public class Constants {
 	/**
 	 * Warscheinlichkeit das ein zufällig erstelltes Surface ein Floor ist n/100
 	 */
-	static float CHANCE_TO_BE_FLOOR = 0.7f;
-	/**
-	 * Warscheinlichkeit das eine Mutation durchgeführt wird n/100
-	 */
-	static float CHANCE_FOR_MUTATION = 0.1f;
+	static float CHANCE_TO_BE_FLOOR = 0.8f;
+
 	/**
 	 * Warscheinlichkeit das ein Crossover durchgeführt wird n/100
 	 */
@@ -47,7 +44,7 @@ public class Constants {
 	 * Anzahl ab der ein komplett neuer Durchlauf gestartet wird, da sich der
 	 * aktuelle Durchlauf festgefahren hat
 	 */
-	static int MAXIMAL_GENERATION = 200;
+	static int MAXIMAL_GENERATION = 1000;
 	/**
 	 * Minmiale breite des Levels
 	 */
