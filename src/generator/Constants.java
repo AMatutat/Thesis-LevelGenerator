@@ -12,7 +12,7 @@ public class Constants {
 	/**
 	 * Schwelltwert ab den ein Level für gut befunden wird
 	 */
-	static float THRESHOLD_FITNESS= 0.82f;
+	static float THRESHOLD_FITNESS= 0.75f;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, wenn eine Wand oder Wandkette mit
 	 * der Ausenwand verbunden ist
