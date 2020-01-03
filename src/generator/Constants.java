@@ -12,17 +12,17 @@ public class Constants {
 	/**
 	 * Schwelltwert ab den ein Level für gut befunden wird
 	 */
-	static float THRESHOLD_FITNESS= 0.90f;
+	static float THRESHOLD_FITNESS= 0.82f;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, wenn eine Wand oder Wandkette mit
 	 * der Ausenwand verbunden ist
 	 */
-	static int WALL_IS_CONNECTED = 1;
+	static int WALL_IS_CONNECTED = 2;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, für jeden erreichbaren Floor im
 	 * level
 	 */
-	static int FLOOR_IS_REACHABLE = 2;
+	static int FLOOR_IS_REACHABLE = 3;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, wenn das Ende erreichbar ist
 	 */
@@ -34,7 +34,7 @@ public class Constants {
 	/**
 	 * Warscheinlichkeit das ein zufällig erstelltes Surface ein Floor ist n/100
 	 */
-	static float CHANCE_TO_BE_FLOOR = 0.8f;
+	static float CHANCE_TO_BE_FLOOR = 0.7f;
 
 	/**
 	 * Warscheinlichkeit das ein Crossover durchgeführt wird n/100
