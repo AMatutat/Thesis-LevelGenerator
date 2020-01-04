@@ -30,7 +30,7 @@ public class Constants {
 	/**
 	 * Größe der Startpopulation
 	 */
-	static int POPULATIONSIZE =500;
+	static int POPULATIONSIZE =100;
 	/**
 	 * Warscheinlichkeit das ein zufällig erstelltes Surface ein Floor ist n/100
 	 */
@@ -44,7 +44,7 @@ public class Constants {
 	 * Anzahl ab der ein komplett neuer Durchlauf gestartet wird, da sich der
 	 * aktuelle Durchlauf festgefahren hat
 	 */
-	static int MAXIMAL_GENERATION = 1000;
+	static int MAXIMAL_GENERATION = 400;
 	/**
 	 * Minmiale breite des Levels
 	 */

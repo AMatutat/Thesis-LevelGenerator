@@ -14,7 +14,7 @@ import jxl.write.Number;
 /**
  * Erstellt mithilfe eines Genetischen Algorithmuses ein kodiertes Level
  * 
- * @author André Matutat
+ * @author Andrï¿½ Matutat
  *
  */
 public class LevelGenerator {
@@ -23,11 +23,10 @@ public class LevelGenerator {
 	 * Generiert ein kodiertes Level
 	 * 
 	 * @param xSize Breite des Levels
-	 * @param ySize Höhe des Levels
+	 * @param ySize Hï¿½he des Levels
 	 * @return kodiertes Level
 	 */
 	public int generationLog = 0;
-	public int threshold = 0;
 
 	public CodedLevel generateLevel(int xSize, int ySize) throws IllegalArgumentException {
 		if (xSize < Constants.MINIMAL_XSIZE || ySize < Constants.MINIMAL_YSIZE)
@@ -37,12 +36,7 @@ public class LevelGenerator {
 			throw new IllegalArgumentException("Population must be even");
 
 		this.generationLog = 0;
-
-		int fieldcounter = xSize * ySize - (2 * xSize) - (2 * ySize) + 4;
-		int floors = (int) (fieldcounter * Constants.CHANCE_TO_BE_FLOOR);
-		int walls = (int) (fieldcounter * (1 - Constants.CHANCE_TO_BE_FLOOR));
-		threshold = (int) (Constants.THRESHOLD_FITNESS * ((floors * Constants.FLOOR_IS_REACHABLE)
-				+ (walls * Constants.WALL_IS_CONNECTED) + Constants.EXIT_IS_REACHABLE));
+		CodedLevel bestLevel = null;
 
 		// Startgeneration erzeugen
 		CodedLevel[] startPopulation = new CodedLevel[Constants.POPULATIONSIZE];
@@ -51,25 +45,21 @@ public class LevelGenerator {
 
 		// Durchlauf
 		for (int generation = 0; generation < Constants.MAXIMAL_GENERATION; generation++) {
-			this.generationLog++;
-			// Start und Exit platzieren, Fitness prüfen
+
+			// Start und Exit platzieren, Fitness prï¿½fen
 			for (CodedLevel lvl : startPopulation) {
 				placeStartAndEnd(lvl);
 				float fitness = calculateFitness(lvl);
 				lvl.setFitness(fitness);
 				lvl.resetList();
-				if (fitness >= threshold && isReachable(lvl, lvl.getExit()[0], lvl.getExit()[1])) {
-					removeUnreachableFloors(lvl);
-					System.out.println(generation);
-					return lvl;
-				}
+
 			}
 
 			// Kombinieren
 			CodedLevel[] newPopulation = new CodedLevel[Constants.POPULATIONSIZE];
 			for (int i = 0; i < startPopulation.length; i += 2) {
 
-				// Elternpaar Auswählen
+				// Elternpaar Auswï¿½hlen
 				CodedLevel parentA = selectParent(startPopulation);
 				CodedLevel parentB;
 				do {
@@ -89,21 +79,29 @@ public class LevelGenerator {
 				mutate(lvl);
 			}
 
-			// Neue Population ist die Startpopulation für die nächste Generation
+			// Neue Population ist die Startpopulation fï¿½r die nï¿½chste Generation
 			startPopulation = newPopulation;
+			if (bestLevel == null)
+				bestLevel = startPopulation[0];
+			for (CodedLevel lvl : startPopulation)
+				if (bestLevel.getFitness() < lvl.getFitness() && isReachable(lvl, lvl.getExit()[0], lvl.getExit()[1])) {
+					System.out.println("New best Level");
+					bestLevel = lvl;
+					this.generationLog=generation;
+				}
+			System.out.println(generation+" finished");
+
 		}
 
-		// Neustart wenn Schwellwert überschritten wurde
-		System.out.println("restart");
-		return generateLevel(xSize, ySize);
-		// return null;
+		removeUnreachableFloors(bestLevel);
+		return bestLevel;
 	}
 
 	/**
-	 * Erstellt ein zufälliges CodedLevel
+	 * Erstellt ein zufï¿½lliges CodedLevel
 	 * 
 	 * @param xSize Breite des Levels
-	 * @param ySize Höhe des Levels
+	 * @param ySize Hï¿½he des Levels
 	 * @return generiertes Level
 	 */
 	private CodedLevel generateRandomLevel(final int xSize, final int ySize) {
@@ -126,7 +124,7 @@ public class LevelGenerator {
 	}
 
 	/**
-	 * Platziert Referenzen für Eingang und Ausgang des Levels auf ein zufällgen
+	 * Platziert Referenzen fï¿½r Eingang und Ausgang des Levels auf ein zufï¿½llgen
 	 * Floor
 	 * 
 	 * @param lvl Level in dem Eingang und Ausgang platziert werden soll
@@ -190,7 +188,7 @@ public class LevelGenerator {
 	}
 
 	/**
-	 * Prüft ob eine Wand mit der Aussenwand verbunden ist.
+	 * Prï¿½ft ob eine Wand mit der Aussenwand verbunden ist.
 	 * 
 	 * @param level
 	 * @param x     X Index der Wand
@@ -205,7 +203,7 @@ public class LevelGenerator {
 		if (x == level.getXSize() - 1 || x == 0 || y == level.getYSize() - 1 || y == 0)
 			return true;
 
-		// Hinzufügen der Wall um loops zu verhindern.
+		// Hinzufï¿½gen der Wall um loops zu verhindern.
 		level.getCheckedWalls().add(x + "" + y);
 		boolean connected = false;
 		// Rekursiver aufurf mit allen Nachbarn
@@ -230,7 +228,7 @@ public class LevelGenerator {
 	}
 
 	/**
-	 * Prüft ob ein Floor Surface vom Start aus erreichbar ist
+	 * Prï¿½ft ob ein Floor Surface vom Start aus erreichbar ist
 	 * 
 	 * @param level
 	 * @param x     X Index des Floors
@@ -282,9 +280,9 @@ public class LevelGenerator {
 	}
 
 	/**
-	 * Wählt ein Elternteil aus Roulett Wheel Selection
+	 * Wï¿½hlt ein Elternteil aus Roulett Wheel Selection
 	 * 
-	 * @param population aus der gewählt werden soll
+	 * @param population aus der gewï¿½hlt werden soll
 	 * @return Index des Elternteils
 	 */
 	private CodedLevel selectParent(final CodedLevel[] population) {
@@ -386,18 +384,22 @@ public class LevelGenerator {
 	public static void main(String[] args) throws InterruptedException {
 
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_HHmmss");
-		LocalDateTime now = LocalDateTime.now();
+		
 		int x = 30;
 		int y = 30;
 		int gen = 0;
 		float fit = 0f;
-		int imax = 10;
+		int imax = 100;
 		LevelGenerator lg = new LevelGenerator();
 
 		Workbook workbook;
 		WritableWorkbook wworkbook = null;
 		try {
-
+			
+			for (int j=0;j<10;j++) {
+				gen=0;
+				fit=0f;
+				LocalDateTime now = LocalDateTime.now();
 			try {
 				workbook = Workbook.getWorkbook(new File("logFiles.xls"));
 				wworkbook = Workbook.createWorkbook(new File("temp.xls"), workbook);
@@ -409,18 +411,22 @@ public class LevelGenerator {
 				System.exit(1);
 			}
 
+		
+			
+	
 			for (int i = 0; i < imax; i++) {
 				CodedLevel lvlc = lg.generateLevel(x, y);
-				//lvlc.printLevel();
+				System.out.println(i+" :lvl generated");
 				fit += lvlc.getFitness();
 				gen += lg.generationLog;
 
-				LevelParser lp = new LevelParser();
-				Level lvl = lp.parseLevel(lvlc);
-				lp.generateTextureMap(lvl, ".\\res\\results", "result" + i);
+				//LevelParser lp = new LevelParser();
+				//Level lvl = lp.parseLevel(lvlc);
+				//lp.generateTextureMap(lvl, ".\\res\\results", "result" + i);
 			}
+		
 
-			WritableSheet wsheet = wworkbook.createSheet("Schwellwert_" + dtf.format(now), 0);
+			WritableSheet wsheet = wworkbook.createSheet("Generation_"+ dtf.format(now), 0);
 
 			wsheet.addCell(new Label(0, 0, "Population"));
 			wsheet.addCell(new Number(1, 0, Constants.POPULATIONSIZE));
@@ -439,8 +445,8 @@ public class LevelGenerator {
 			wsheet.addCell(new Label(0, 5, "Exit is Reachable"));
 			wsheet.addCell(new Number(1, 5, Constants.EXIT_IS_REACHABLE));
 
-			wsheet.addCell(new Label(0, 6, "Schwellwert"));
-			wsheet.addCell(new Number(1, 6, Constants.THRESHOLD_FITNESS));
+			wsheet.addCell(new Label(0, 6, "Max Generationen"));
+			wsheet.addCell(new Number(1, 6, Constants.MAXIMAL_GENERATION));
 
 			wsheet.addCell(new Label(0, 7, "Crossoverchance"));
 			wsheet.addCell(new Number(1, 7, Constants.CHANCE_FOR_CROSSOVER));
@@ -451,8 +457,6 @@ public class LevelGenerator {
 			wsheet.addCell(new Label(0, 9, "d Fitness"));
 			wsheet.addCell(new Number(1, 9, ((fit / imax))));
 
-			wsheet.addCell(new Label(0, 10, "Schwellwert als Zahl"));
-			wsheet.addCell(new Number(1, 10, lg.threshold));
 
 			wworkbook.write();
 			wworkbook.close();
@@ -465,9 +469,13 @@ public class LevelGenerator {
 			File f = new File("temp.xls"); // file to be delete
 			f.delete();
 			System.out.println("fineshed");
+			
+			Constants.MAXIMAL_GENERATION+=10;	
+		}
 
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+			
 	}
 }
