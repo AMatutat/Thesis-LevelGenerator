@@ -89,7 +89,6 @@ public class LevelGenerator {
 					bestLevel = lvl;
 					this.generationLog=generation;
 				}
-			System.out.println(generation+" finished");
 
 		}
 
@@ -171,10 +170,8 @@ public class LevelGenerator {
 					if (isConnected(level, x, y))
 						fitness += Constants.WALL_IS_CONNECTED;
 					else if (level.getCheckedWalls().size() > 1) {
-						fitness += (Constants.WALL_IS_CONNECTED / 10);
-					} else
-						fitness -= Constants.WALL_IS_CONNECTED;
-
+						fitness += (Constants.WALL_IS_CONNECTED*Constants.WALL_HAS_NEIGHBOR);
+					}
 					level.resetWallList();
 				} else if (level.getLevel()[x][y] == Constants.REFEERNCE_EXIT) {
 					if (isReachable(level, x, y))
@@ -389,24 +386,28 @@ public class LevelGenerator {
 		int y = 30;
 		int gen = 0;
 		float fit = 0f;
-		int imax = 100;
+		int imax = 10;
 		LevelGenerator lg = new LevelGenerator();
 
+		String temp="temp.xls";
+		String log="GenerationLog.xls";
+		String sheetName="Generation_";
+		
 		Workbook workbook;
 		WritableWorkbook wworkbook = null;
 		try {
 			
 			
-			for (int j=0;j<10;j++) {
+			for (int j=0;j<100;j++) {
 				gen=0;
 				fit=0f;
 				LocalDateTime now = LocalDateTime.now();
 			try {
-				workbook = Workbook.getWorkbook(new File("logFiles.xls"));
-				wworkbook = Workbook.createWorkbook(new File("temp.xls"), workbook);
+				workbook = Workbook.getWorkbook(new File(log));
+				wworkbook = Workbook.createWorkbook(new File(temp), workbook);
 				workbook.close();
 			} catch (FileNotFoundException e) {
-				wworkbook = Workbook.createWorkbook(new File(".\\temp.xls"));
+				wworkbook = Workbook.createWorkbook(new File(temp));
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.exit(1);
@@ -427,7 +428,7 @@ public class LevelGenerator {
 			}
 		
 
-			WritableSheet wsheet = wworkbook.createSheet("Generation_"+ dtf.format(now), 0);
+			WritableSheet wsheet = wworkbook.createSheet(sheetName+ dtf.format(now), 0);
 
 			wsheet.addCell(new Label(0, 0, "Population"));
 			wsheet.addCell(new Number(1, 0, Constants.POPULATIONSIZE));
@@ -462,17 +463,18 @@ public class LevelGenerator {
 			wworkbook.write();
 			wworkbook.close();
 
-			workbook = Workbook.getWorkbook(new File(".\\temp.xls"));
-			wworkbook = Workbook.createWorkbook(new File(".\\logFiles.xls"), workbook);
+			workbook = Workbook.getWorkbook(new File(temp));
+			wworkbook = Workbook.createWorkbook(new File(log), workbook);
 			wworkbook.write();
 			wworkbook.close();
 			workbook.close();
-			File f = new File("temp.xls"); // file to be delete
+			File f = new File(temp); // file to be delete
 			f.delete();
 			System.out.println("fineshed");
 			
-			Constants.MAXIMAL_GENERATION+=400;	
-		}
+			Constants.MAXIMAL_GENERATION+=50;
+			//Constants.CHANCE_FOR_CROSSOVER+=0.01;
+			}
 
 		} catch (Exception e) {
 			System.out.println(e);

@@ -22,6 +22,9 @@ public class Constants {
 	 * Faktor der auf die Fitness gerechnet wird, für jeden erreichbaren Floor im
 	 * level
 	 */
+	
+	static float WALL_HAS_NEIGHBOR=0.1f;
+	
 	static int FLOOR_IS_REACHABLE = 3;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, wenn das Ende erreichbar ist
@@ -44,7 +47,7 @@ public class Constants {
 	 * Anzahl ab der ein komplett neuer Durchlauf gestartet wird, da sich der
 	 * aktuelle Durchlauf festgefahren hat
 	 */
-	static int MAXIMAL_GENERATION = 400;
+	static int MAXIMAL_GENERATION = 100;
 	/**
 	 * Minmiale breite des Levels
 	 */
