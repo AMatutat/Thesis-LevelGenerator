@@ -396,6 +396,7 @@ public class LevelGenerator {
 		WritableWorkbook wworkbook = null;
 		try {
 			
+			
 			for (int j=0;j<10;j++) {
 				gen=0;
 				fit=0f;
@@ -470,7 +471,7 @@ public class LevelGenerator {
 			f.delete();
 			System.out.println("fineshed");
 			
-			Constants.MAXIMAL_GENERATION+=10;	
+			Constants.MAXIMAL_GENERATION+=400;	
 		}
 
 		} catch (Exception e) {

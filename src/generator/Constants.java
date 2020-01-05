@@ -30,7 +30,7 @@ public class Constants {
 	/**
 	 * Größe der Startpopulation
 	 */
-	static int POPULATIONSIZE =100;
+	static int POPULATIONSIZE =500;
 	/**
 	 * Warscheinlichkeit das ein zufällig erstelltes Surface ein Floor ist n/100
 	 */
