@@ -37,7 +37,7 @@ public class Constants {
 	/**
 	 * Warscheinlichkeit das ein zufällig erstelltes Surface ein Floor ist n/100
 	 */
-	static float CHANCE_TO_BE_FLOOR = 0.7f;
+	static float CHANCE_TO_BE_FLOOR = 0.6f;
 
 	/**
 	 * Warscheinlichkeit das ein Crossover durchgeführt wird n/100

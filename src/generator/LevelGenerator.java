@@ -76,7 +76,7 @@ public class LevelGenerator {
 
 			// Mutieren
 			for (CodedLevel lvl : newPopulation) {
-				mutate(lvl);
+				mutate2(lvl);
 			}
 
 			// Neue Population ist die Startpopulation f�r die n�chste Generation
@@ -345,6 +345,58 @@ public class LevelGenerator {
 		}
 
 	}
+	
+	private void mutate2(CodedLevel lvl) {
+		float pmut=0.3f;
+		for (int y=2; y<lvl.getYSize()-2;y++) {
+			if(Math.random()<pmut) {
+				for (int x=2;x<lvl.getXSize()-2;x++) {
+					if (lvl.getLevel()[x][y]==Constants.REFERENCE_WALL) {
+						lvl.resetWallList();
+						int v=x;
+						boolean first=true;
+						
+						while(!isConnected(lvl, v, y)) {
+							//System.out.println(v);
+							//lvl.printLevel();
+							//Nach rechts schieben
+							if(v>=lvl.getXSize()/2) {
+								//Vertauschen
+							
+								char c=lvl.getLevel()[v+1][y];
+								lvl.changeField(v+1, y, Constants.REFERENCE_WALL);
+								lvl.changeField(v, y, c);
+							
+								v++;
+								
+								//Wenn ein Surface nach rechts geschoben wird, muss die alte Position erneut überprüft werden
+								//da evtl. dort wieder eine Wand steht. 
+								if (first) {
+									first=false;
+									--x;
+								}
+							}
+							//Nach links schieben
+							else {
+								//vertauschen
+								char c=lvl.getLevel()[v-1][y];
+								lvl.changeField(v-1, y, Constants.REFERENCE_WALL);
+								lvl.changeField(v, y, c);
+								//Beim nächsten Run selbes Surface an neuer Position überprüfen
+								v--;
+							
+							}
+							
+							lvl.resetWallList();
+							
+						}
+					}
+				}
+				 
+				 
+			}
+		}
+	}
 
 	/**
 	 * Bubblesort nach Fitness
@@ -379,8 +431,12 @@ public class LevelGenerator {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_HHmmss");
+		LevelGenerator lg= new LevelGenerator();
+		CodedLevel l=lg.generateLevel(20, 20);
+				System.out.println(lg.generationLog);
+		LevelParser p = new LevelParser();
+		p.generateTextureMap(p.parseLevel(l), "./", "name");
+		/*DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_HHmmss");
 		
 		int x = 30;
 		int y = 30;
@@ -478,7 +534,7 @@ public class LevelGenerator {
 
 		} catch (Exception e) {
 			System.out.println(e);
-		}
+		}*/
 			
 	}
 }
