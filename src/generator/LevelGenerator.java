@@ -14,22 +14,24 @@ import jxl.write.Number;
 /**
  * Erstellt mithilfe eines Genetischen Algorithmuses ein kodiertes Level
  * 
- * @author André Matutat
+ * @author Andrï¿½ Matutat
  *
  */
 public class LevelGenerator {
 
 	/**
+	 * Zum loggen der Generation des besten levels
+	 */
+	public int generationLog = 0;
+
+	/**
 	 * Generiert ein kodiertes Level
 	 * 
 	 * @param xSize Breite des Levels
-	 * @param ySize Höhe des Levels
+	 * @param ySize Hï¿½he des Levels
 	 * @return kodiertes Level
 	 */
-	public int generationLog = 0;
-	public int threshold = 0;
-
-	public CodedLevel generateLevel(int xSize, int ySize) throws IllegalArgumentException {
+	public CodedLevel generateLevel(int xSize, int ySize, int fitnessVersion, int parentSlectionVersion, int crossoverVersion, int mutationVersion) throws IllegalArgumentException {
 		if (xSize < Constants.MINIMAL_XSIZE || ySize < Constants.MINIMAL_YSIZE)
 			throw new IllegalArgumentException(
 					"Size must be at least " + Constants.MINIMAL_XSIZE + "x" + Constants.MINIMAL_YSIZE);
@@ -37,12 +39,7 @@ public class LevelGenerator {
 			throw new IllegalArgumentException("Population must be even");
 
 		this.generationLog = 0;
-
-		int fieldcounter = xSize * ySize - (2 * xSize) - (2 * ySize) + 4;
-		int floors = (int) (fieldcounter * Constants.CHANCE_TO_BE_FLOOR);
-		int walls = (int) (fieldcounter * (1 - Constants.CHANCE_TO_BE_FLOOR));
-		threshold = (int) (Constants.THRESHOLD_FITNESS * ((floors * Constants.FLOOR_IS_REACHABLE)
-				+ (walls * Constants.WALL_IS_CONNECTED) + Constants.EXIT_IS_REACHABLE));
+		CodedLevel bestLevel = null;
 
 		// Startgeneration erzeugen
 		CodedLevel[] startPopulation = new CodedLevel[Constants.POPULATIONSIZE];
@@ -51,33 +48,67 @@ public class LevelGenerator {
 
 		// Durchlauf
 		for (int generation = 0; generation < Constants.MAXIMAL_GENERATION; generation++) {
-			this.generationLog++;
-			// Start und Exit platzieren, Fitness prüfen
+
+			// Start und Exit platzieren, Fitness prï¿½fen
 			for (CodedLevel lvl : startPopulation) {
 				placeStartAndEnd(lvl);
-				float fitness = calculateFitness(lvl);
+
+				float fitness;
+				switch (fitnessVersion) {
+				case 1:
+					fitness = fitness1(lvl);
+					break;
+				default:
+					fitness = fitness1(lvl);
+				}
+
 				lvl.setFitness(fitness);
 				lvl.resetList();
-				if (fitness >= threshold && isReachable(lvl, lvl.getExit()[0], lvl.getExit()[1])) {
-					removeUnreachableFloors(lvl);
-					System.out.println(generation);
-					return lvl;
-				}
+
+				if ((bestLevel == null || bestLevel.getFitness() < fitness)
+						&& isReachable(lvl, lvl.getExit()[0], lvl.getExit()[1]))
+					bestLevel = lvl.copyLevel();
+
 			}
 
 			// Kombinieren
 			CodedLevel[] newPopulation = new CodedLevel[Constants.POPULATIONSIZE];
 			for (int i = 0; i < startPopulation.length; i += 2) {
 
-				// Elternpaar Auswählen
-				CodedLevel parentA = selectParent(startPopulation);
+				// Elternpaar Auswï¿½hlen
+				CodedLevel parentA;
 				CodedLevel parentB;
+
+				switch (parentSlectionVersion) {
+				case 1:
+					parentA = selectParent1(startPopulation);
+					break;
+				default:
+					parentA = selectParent1(startPopulation);
+				}
+
 				do {
-					parentB = selectParent(startPopulation);
+					switch (parentSlectionVersion) {
+					case 1:
+						parentB = selectParent1(startPopulation);
+						break;
+					default:
+						parentB = selectParent1(startPopulation);
+					}
 				} while (parentA == parentB);
+
 				if (Math.random() <= Constants.CHANCE_FOR_CROSSOVER) {
-					newPopulation[i] = crossover(parentA, parentB);
-					newPopulation[i + 1] = crossover(parentB, parentA);
+
+					switch (crossoverVersion) {
+					case 1:
+						newPopulation[i] = crossover1(parentA, parentB);
+						newPopulation[i + 1] = crossover1(parentB, parentA);
+						break;
+					default:
+						newPopulation[i] = crossover1(parentA, parentB);
+						newPopulation[i + 1] = crossover1(parentB, parentA);
+					}
+
 				} else {
 					newPopulation[i] = parentA;
 					newPopulation[i + 1] = parentB;
@@ -86,24 +117,41 @@ public class LevelGenerator {
 
 			// Mutieren
 			for (CodedLevel lvl : newPopulation) {
-				mutate(lvl);
+				switch (mutationVersion) {
+				case 1:
+					mutate1(lvl);
+					break;
+				case 2:
+					mutate2(lvl);
+					break;
+				default:
+					mutate1(lvl);
+					break;
+				}
 			}
 
-			// Neue Population ist die Startpopulation für die nächste Generation
+			// Neue Population ist die Startpopulation fï¿½r die nï¿½chste Generation
 			startPopulation = newPopulation;
+
+			for (CodedLevel lvl : newPopulation)
+				if ((bestLevel == null || bestLevel.getFitness() < lvl.getFitness())
+						&& isReachable(lvl, lvl.getExit()[0], lvl.getExit()[1])) {
+					bestLevel = lvl.copyLevel();
+					this.generationLog = generation + 1;
+				}
+
 		}
 
-		// Neustart wenn Schwellwert überschritten wurde
-		System.out.println("restart");
-		return generateLevel(xSize, ySize);
-		// return null;
+		if (bestLevel==null) return generateLevel(xSize,ySize,fitnessVersion,parentSlectionVersion,crossoverVersion,mutationVersion);
+		removeUnreachableFloors(bestLevel);
+		return bestLevel;
 	}
 
 	/**
-	 * Erstellt ein zufälliges CodedLevel
+	 * Erstellt ein zufï¿½lliges CodedLevel
 	 * 
 	 * @param xSize Breite des Levels
-	 * @param ySize Höhe des Levels
+	 * @param ySize Hï¿½he des Levels
 	 * @return generiertes Level
 	 */
 	private CodedLevel generateRandomLevel(final int xSize, final int ySize) {
@@ -126,7 +174,7 @@ public class LevelGenerator {
 	}
 
 	/**
-	 * Platziert Referenzen für Eingang und Ausgang des Levels auf ein zufällgen
+	 * Platziert Referenzen fï¿½r Eingang und Ausgang des Levels auf ein zufï¿½llgen
 	 * Floor
 	 * 
 	 * @param lvl Level in dem Eingang und Ausgang platziert werden soll
@@ -165,7 +213,7 @@ public class LevelGenerator {
 	 * @param level dessen Fitness berechnet werden soll
 	 * @return Fitness des Levels guteFitness>schlechteFitness
 	 */
-	private float calculateFitness(final CodedLevel level) {
+	private float fitness1(final CodedLevel level) {
 		float fitness = 0f;
 		for (int x = 1; x < level.getXSize() - 1; x++) {
 			for (int y = 1; y < level.getYSize() - 1; y++) {
@@ -173,10 +221,8 @@ public class LevelGenerator {
 					if (isConnected(level, x, y))
 						fitness += Constants.WALL_IS_CONNECTED;
 					else if (level.getCheckedWalls().size() > 1) {
-						fitness += (Constants.WALL_IS_CONNECTED / 10);
-					} else
-						fitness -= Constants.WALL_IS_CONNECTED;
-
+						fitness += Constants.WALL_HAS_NEIGHBOR;
+					}
 					level.resetWallList();
 				} else if (level.getLevel()[x][y] == Constants.REFEERNCE_EXIT) {
 					if (isReachable(level, x, y))
@@ -190,7 +236,7 @@ public class LevelGenerator {
 	}
 
 	/**
-	 * Prüft ob eine Wand mit der Aussenwand verbunden ist.
+	 * Prï¿½ft ob eine Wand mit der Aussenwand verbunden ist.
 	 * 
 	 * @param level
 	 * @param x     X Index der Wand
@@ -205,7 +251,7 @@ public class LevelGenerator {
 		if (x == level.getXSize() - 1 || x == 0 || y == level.getYSize() - 1 || y == 0)
 			return true;
 
-		// Hinzufügen der Wall um loops zu verhindern.
+		// Hinzufï¿½gen der Wall um loops zu verhindern.
 		level.getCheckedWalls().add(x + "" + y);
 		boolean connected = false;
 		// Rekursiver aufurf mit allen Nachbarn
@@ -230,7 +276,7 @@ public class LevelGenerator {
 	}
 
 	/**
-	 * Prüft ob ein Floor Surface vom Start aus erreichbar ist
+	 * Prï¿½ft ob ein Floor Surface vom Start aus erreichbar ist
 	 * 
 	 * @param level
 	 * @param x     X Index des Floors
@@ -282,12 +328,12 @@ public class LevelGenerator {
 	}
 
 	/**
-	 * Wählt ein Elternteil aus Roulett Wheel Selection
+	 * Wï¿½hlt ein Elternteil aus Roulett Wheel Selection
 	 * 
-	 * @param population aus der gewählt werden soll
+	 * @param population aus der gewï¿½hlt werden soll
 	 * @return Index des Elternteils
 	 */
-	private CodedLevel selectParent(final CodedLevel[] population) {
+	private CodedLevel selectParent1(final CodedLevel[] population) {
 		int fitSum = 0;
 		for (CodedLevel lvl : population) {
 			fitSum += lvl.getFitness();
@@ -312,7 +358,7 @@ public class LevelGenerator {
 	 * @param lvl2 Zweites Level
 	 * @return Kombiniertes Level
 	 */
-	private CodedLevel crossover(final CodedLevel lvl1, final CodedLevel lvl2) {
+	private CodedLevel crossover1(final CodedLevel lvl1, final CodedLevel lvl2) {
 
 		CodedLevel newLevel = new CodedLevel(new char[lvl1.getXSize()][lvl1.getYSize()], lvl1.getXSize(),
 				lvl1.getYSize());
@@ -336,11 +382,10 @@ public class LevelGenerator {
 	 * @param lvl Level welches mutiert werden soll
 	 * 
 	 */
-	private void mutate(CodedLevel lvl) {
-		float pmut = 1 / ((lvl.getXSize() - 1) * (lvl.getYSize() - 1));
+	private void mutate1(CodedLevel lvl) {
 		for (int y = 1; y < lvl.getYSize() - 1; y++) {
 			for (int x = 1; x < lvl.getXSize() - 1; x++) {
-				if (Math.random() <= pmut) {
+				if (Math.random() <= Constants.CHANCE_FOR_MUTATION) {
 					if ((lvl.getLevel())[x][y] == Constants.REFERENCE_WALL)
 						lvl.changeField(x, y, Constants.REFERENCE_FLOOR);
 					else
@@ -349,6 +394,56 @@ public class LevelGenerator {
 			}
 		}
 
+	}
+
+	private void mutate2(CodedLevel lvl) {
+		for (int y = 2; y < lvl.getYSize() - 2; y++) {
+			if (Math.random() < Constants.CHANCE_FOR_MUTATION) {
+				for (int x = 2; x < lvl.getXSize() - 2; x++) {
+					if (lvl.getLevel()[x][y] == Constants.REFERENCE_WALL) {
+						lvl.resetWallList();
+						int v = x;
+						boolean first = true;
+
+						while (!isConnected(lvl, v, y)) {
+
+							// Nach rechts schieben
+							if (v >= lvl.getXSize() / 2) {
+								// Vertauschen
+
+								char c = lvl.getLevel()[v + 1][y];
+								lvl.changeField(v + 1, y, Constants.REFERENCE_WALL);
+								lvl.changeField(v, y, c);
+
+								v++;
+
+								// Wenn ein Surface nach rechts geschoben wird, muss die alte Position erneut
+								// Ã¼berprÃ¼ft werden
+								// da evtl. dort wieder eine Wand steht.
+								if (first) {
+									first = false;
+									--x;
+								}
+							}
+							// Nach links schieben
+							else {
+								// vertauschen
+								char c = lvl.getLevel()[v - 1][y];
+								lvl.changeField(v - 1, y, Constants.REFERENCE_WALL);
+								lvl.changeField(v, y, c);
+								// Beim nÃ¤chsten Run selbes Surface an neuer Position Ã¼berprÃ¼fen
+								v--;
+
+							}
+
+							lvl.resetWallList();
+
+						}
+					}
+				}
+
+			}
+		}
 	}
 
 	/**
@@ -380,94 +475,120 @@ public class LevelGenerator {
 				}
 			}
 		}
-
+		lvl.resetList();
 	}
 
 	public static void main(String[] args) throws InterruptedException {
 
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_HHmmss");
-		LocalDateTime now = LocalDateTime.now();
-		int x = 30;
-		int y = 30;
-		int gen = 0;
-		float fit = 0f;
-		int imax = 10;
-		LevelGenerator lg = new LevelGenerator();
+		boolean logResults = true;
+		boolean generateTexture=false;
+		String startmsg = "Test";
+		String imgName="level";
+		int xSize = 30;
+		int ySize = 30;
+		int fitnessVersion = 1;
+		int parentSelectionVersion = 1;
+		int crossoverVersion = 1;
+		int mutationVersion = 1;
 
+		int levelsPerSetting = 3;
+		int differentSettings = 3;
+
+		int generationOfBestLevelsSum = 0;
+		float fitnessOfBestLevelsSum = 0f;
+
+		LevelGenerator lg = new LevelGenerator();
+		LevelParser pa = new LevelParser();
+
+		String tempLogFile = "temp.xls";
+		String logFile = "ChangedPMutLOW_GB"+"_+M"+mutationVersion+"_C"+crossoverVersion+"_F"+fitnessVersion+".xls";
+		String sheetName = "_";
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_HHmmss");
 		Workbook workbook;
-		WritableWorkbook wworkbook = null;
+		WritableWorkbook tempWorkbook = null;
+		WritableSheet wsheet = null;
+
 		try {
 
-			try {
-				workbook = Workbook.getWorkbook(new File("logFiles.xls"));
-				wworkbook = Workbook.createWorkbook(new File("temp.xls"), workbook);
+			if (logResults) {
+				try {
+					workbook = Workbook.getWorkbook(new File("./results/logs/"+logFile));
+					tempWorkbook = Workbook.createWorkbook(new File(tempLogFile), workbook);
+					workbook.close();
+				} catch (FileNotFoundException e) {
+					tempWorkbook = Workbook.createWorkbook(new File(tempLogFile));
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.exit(1);
+				} finally {
+					LocalDateTime now = LocalDateTime.now();
+					wsheet = tempWorkbook.createSheet(sheetName + dtf.format(now), 0);
+					wsheet.addCell(new Label(1, 0, "XSize"));
+					wsheet.addCell(new Label(2, 0, "YSize"));
+					wsheet.addCell(new Label(3, 0, "Population"));
+					wsheet.addCell(new Label(4, 0, "Value Connected"));
+					wsheet.addCell(new Label(5, 0, "Value Reachable"));
+					wsheet.addCell(new Label(6, 0, "Exit is Reachable"));
+					wsheet.addCell(new Label(7, 0, "Chance to be Floor"));
+					wsheet.addCell(new Label(8, 0, "Max Generationen"));
+					wsheet.addCell(new Label(9, 0, "Crossoverchance"));
+					wsheet.addCell(new Label(10, 0, "Mutationschance"));
+					wsheet.addCell(new Label(11, 0, "d Generation"));
+					wsheet.addCell(new Label(12, 0, "d Fitness"));
+				}
+			}
+
+			for (int j = 0; j < differentSettings; j++) {
+				System.out.println(startmsg);
+				generationOfBestLevelsSum = 0;
+				fitnessOfBestLevelsSum = 0f;
+
+				for (int i = 0; i < levelsPerSetting; i++) {
+					CodedLevel lvlc = lg.generateLevel(xSize, ySize, fitnessVersion, parentSelectionVersion,
+							crossoverVersion, mutationVersion);
+					System.out.println(i+1 + " :lvl generated");
+					fitnessOfBestLevelsSum += lvlc.getFitness();
+					generationOfBestLevelsSum += lg.generationLog;
+					if(generateTexture)
+					pa.generateTextureMap(pa.parseLevel(lvlc), "./results/img", (imgName+j+i));
+				}
+
+				if (logResults) {
+					wsheet.addCell(new Number(1, (1 + j), xSize));
+					wsheet.addCell(new Number(2, (1 + j), ySize));
+					wsheet.addCell(new Number(3, (1 + j), Constants.POPULATIONSIZE));
+					wsheet.addCell(new Number(4, (1 + j), Constants.WALL_IS_CONNECTED));
+					wsheet.addCell(new Number(5, (1 + j), Constants.FLOOR_IS_REACHABLE));
+					wsheet.addCell(new Number(6, (1 + j), Constants.EXIT_IS_REACHABLE));
+					wsheet.addCell(new Number(7, (1 + j), Constants.CHANCE_TO_BE_FLOOR));
+					wsheet.addCell(new Number(8, (1 + j), Constants.MAXIMAL_GENERATION));
+					wsheet.addCell(new Number(9, (1 + j), Constants.CHANCE_FOR_CROSSOVER));
+					wsheet.addCell(new Number(10, (1 + j), Constants.CHANCE_FOR_MUTATION));
+					wsheet.addCell(new Number(11, (1 + j), (generationOfBestLevelsSum / levelsPerSetting)));
+					wsheet.addCell(new Number(12, (1 + j), ((fitnessOfBestLevelsSum / levelsPerSetting))));
+					
+
+				}
+
+				// Parameter ändern
+			}
+
+			if (logResults) {
+				tempWorkbook.write();
+				tempWorkbook.close();
+				workbook = Workbook.getWorkbook(new File(tempLogFile));
+				tempWorkbook = Workbook.createWorkbook(new File("./results/logs/"+logFile), workbook);
+				tempWorkbook.write();
+				tempWorkbook.close();
 				workbook.close();
-			} catch (FileNotFoundException e) {
-				wworkbook = Workbook.createWorkbook(new File(".\\temp.xls"));
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.exit(1);
+				File fi = new File(tempLogFile);
+				fi.delete();
+				System.out.println("fineshed");
 			}
-
-			for (int i = 0; i < imax; i++) {
-				CodedLevel lvlc = lg.generateLevel(x, y);
-				//lvlc.printLevel();
-				fit += lvlc.getFitness();
-				gen += lg.generationLog;
-
-				LevelParser lp = new LevelParser();
-				Level lvl = lp.parseLevel(lvlc);
-				lp.generateTextureMap(lvl, ".\\res\\results", "result" + i);
-			}
-
-			WritableSheet wsheet = wworkbook.createSheet("Schwellwert_" + dtf.format(now), 0);
-
-			wsheet.addCell(new Label(0, 0, "Population"));
-			wsheet.addCell(new Number(1, 0, Constants.POPULATIONSIZE));
-
-			wsheet.addCell(new Label(0, 1, "XSize"));
-			wsheet.addCell(new Number(1, 1, x));
-			wsheet.addCell(new Label(0, 2, "YSize"));
-			wsheet.addCell(new Number(1, 2, y));
-
-			wsheet.addCell(new Label(0, 3, "Value Connected"));
-			wsheet.addCell(new Number(1, 3, Constants.WALL_IS_CONNECTED));
-
-			wsheet.addCell(new Label(0, 4, "Value Reachable"));
-			wsheet.addCell(new Number(1, 4, Constants.FLOOR_IS_REACHABLE));
-
-			wsheet.addCell(new Label(0, 5, "Exit is Reachable"));
-			wsheet.addCell(new Number(1, 5, Constants.EXIT_IS_REACHABLE));
-
-			wsheet.addCell(new Label(0, 6, "Schwellwert"));
-			wsheet.addCell(new Number(1, 6, Constants.THRESHOLD_FITNESS));
-
-			wsheet.addCell(new Label(0, 7, "Crossoverchance"));
-			wsheet.addCell(new Number(1, 7, Constants.CHANCE_FOR_CROSSOVER));
-
-			wsheet.addCell(new Label(0, 8, "d Generation"));
-			wsheet.addCell(new Number(1, 8, (gen / imax)));
-
-			wsheet.addCell(new Label(0, 9, "d Fitness"));
-			wsheet.addCell(new Number(1, 9, ((fit / imax))));
-
-			wsheet.addCell(new Label(0, 10, "Schwellwert als Zahl"));
-			wsheet.addCell(new Number(1, 10, lg.threshold));
-
-			wworkbook.write();
-			wworkbook.close();
-
-			workbook = Workbook.getWorkbook(new File(".\\temp.xls"));
-			wworkbook = Workbook.createWorkbook(new File(".\\logFiles.xls"), workbook);
-			wworkbook.write();
-			wworkbook.close();
-			workbook.close();
-			File f = new File("temp.xls"); // file to be delete
-			f.delete();
-			System.out.println("fineshed");
 
 		} catch (Exception e) {
-			System.out.println(e);
+		e.printStackTrace();
 		}
+
 	}
 }
