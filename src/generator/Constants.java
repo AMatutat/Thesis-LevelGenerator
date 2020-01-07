@@ -7,12 +7,31 @@ package generator;
  *
  */
 public class Constants {
-
+	/**
+	 * Warscheinlichkeit das eine Mutation durchgeführt wird
+	 */
+	static float CHANCE_FOR_MUTATION=0.1f;
+	/**
+	 * Warscheinlichkeit das ein Crossover durchgeführt wird
+	 */
+	static float CHANCE_FOR_CROSSOVER = 0.6f;
+	
 	
 	/**
-	 * Schwelltwert ab den ein Level für gut befunden wird
+	 * Größe der Startpopulation
 	 */
-	static float THRESHOLD_FITNESS= 0.75f;
+	static int POPULATIONSIZE =50;
+	/**
+	 * Anzahl ab der ein komplett neuer Durchlauf gestartet wird, da sich der
+	 * aktuelle Durchlauf festgefahren hat
+	 */
+	static int MAXIMAL_GENERATION = 10;
+	
+	/**
+	 * Warscheinlichkeit das ein zufällig erstelltes Surface ein Floor ist n/100
+	 */
+	static float CHANCE_TO_BE_FLOOR = 0.6f;
+	
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, wenn eine Wand oder Wandkette mit
 	 * der Ausenwand verbunden ist
@@ -21,33 +40,25 @@ public class Constants {
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, für jeden erreichbaren Floor im
 	 * level
+	 * 	 */	
+	/**
+	 * Teilpunkte, für jeden Wall Nachbar einer Wall
 	 */
+	static float WALL_HAS_NEIGHBOR=0.2f;
 	
-	static float WALL_HAS_NEIGHBOR=0.1f;
 	
 	static int FLOOR_IS_REACHABLE = 3;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, wenn das Ende erreichbar ist
 	 */
 	static int EXIT_IS_REACHABLE = 25;
-	/**
-	 * Größe der Startpopulation
-	 */
-	static int POPULATIONSIZE =500;
-	/**
-	 * Warscheinlichkeit das ein zufällig erstelltes Surface ein Floor ist n/100
-	 */
-	static float CHANCE_TO_BE_FLOOR = 0.6f;
+	
+	
+	
+	
 
-	/**
-	 * Warscheinlichkeit das ein Crossover durchgeführt wird n/100
-	 */
-	static float CHANCE_FOR_CROSSOVER = 0.6f;
-	/**
-	 * Anzahl ab der ein komplett neuer Durchlauf gestartet wird, da sich der
-	 * aktuelle Durchlauf festgefahren hat
-	 */
-	static int MAXIMAL_GENERATION = 100;
+	
+	
 	/**
 	 * Minmiale breite des Levels
 	 */

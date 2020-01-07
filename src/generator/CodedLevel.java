@@ -37,6 +37,16 @@ public class CodedLevel {
 		this.fitness = fitness;
 	}
 
+	public CodedLevel copyLevel() {
+		CodedLevel r = new CodedLevel(new char[this.xSize][this.ySize], this.xSize, this.ySize);
+		r.setFitness(this.fitness);
+
+		for (int x = 0; x < this.xSize; x++)
+			for (int y = 0; y < this.ySize; y++)
+				r.changeField(x, y, this.level[x][y]);
+		return r;
+	}
+
 	/**
 	 * Reseted Hilfslisten
 	 */
@@ -45,9 +55,9 @@ public class CodedLevel {
 		this.reachableFloors = new ArrayList<String>();
 
 	}
-	
+
 	public void resetWallList() {
-		this.checkedWalls= new ArrayList<String>();
+		this.checkedWalls = new ArrayList<String>();
 	}
 
 	public ArrayList<String> getCheckedWalls() {
@@ -58,7 +68,6 @@ public class CodedLevel {
 		return this.reachableFloors;
 
 	}
-	
 
 	public float getFitness() {
 		return this.fitness;
