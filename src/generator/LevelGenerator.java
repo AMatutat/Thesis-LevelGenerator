@@ -31,7 +31,8 @@ public class LevelGenerator {
 	 * @param ySize H�he des Levels
 	 * @return kodiertes Level
 	 */
-	public CodedLevel generateLevel(int xSize, int ySize, int fitnessVersion, int parentSlectionVersion, int crossoverVersion, int mutationVersion) throws IllegalArgumentException {
+	public CodedLevel generateLevel(int xSize, int ySize, int fitnessVersion, int parentSlectionVersion,
+			int crossoverVersion, int mutationVersion) throws IllegalArgumentException {
 		if (xSize < Constants.MINIMAL_XSIZE || ySize < Constants.MINIMAL_YSIZE)
 			throw new IllegalArgumentException(
 					"Size must be at least " + Constants.MINIMAL_XSIZE + "x" + Constants.MINIMAL_YSIZE);
@@ -142,7 +143,9 @@ public class LevelGenerator {
 
 		}
 
-		if (bestLevel==null) return generateLevel(xSize,ySize,fitnessVersion,parentSlectionVersion,crossoverVersion,mutationVersion);
+		if (bestLevel == null)
+			return generateLevel(xSize, ySize, fitnessVersion, parentSlectionVersion, crossoverVersion,
+					mutationVersion);
 		removeUnreachableFloors(bestLevel);
 		return bestLevel;
 	}
@@ -481,9 +484,9 @@ public class LevelGenerator {
 	public static void main(String[] args) throws InterruptedException {
 
 		boolean logResults = true;
-		boolean generateTexture=false;
+		boolean generateTexture = false;
 		String startmsg = "Test";
-		String imgName="level";
+		String imgName = "level";
 		int xSize = 30;
 		int ySize = 30;
 		int fitnessVersion = 1;
@@ -501,7 +504,8 @@ public class LevelGenerator {
 		LevelParser pa = new LevelParser();
 
 		String tempLogFile = "temp.xls";
-		String logFile = "ChangedPMutLOW_GB"+"_+M"+mutationVersion+"_C"+crossoverVersion+"_F"+fitnessVersion+".xls";
+		String logFile = "ChangedPMutLOW_GB" + "_+M" + mutationVersion + "_C" + crossoverVersion + "_F" + fitnessVersion
+				+ ".xls";
 		String sheetName = "_";
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_HHmmss");
 		Workbook workbook;
@@ -512,7 +516,7 @@ public class LevelGenerator {
 
 			if (logResults) {
 				try {
-					workbook = Workbook.getWorkbook(new File("./results/logs/"+logFile));
+					workbook = Workbook.getWorkbook(new File("./results/logs/" + logFile));
 					tempWorkbook = Workbook.createWorkbook(new File(tempLogFile), workbook);
 					workbook.close();
 				} catch (FileNotFoundException e) {
@@ -546,11 +550,11 @@ public class LevelGenerator {
 				for (int i = 0; i < levelsPerSetting; i++) {
 					CodedLevel lvlc = lg.generateLevel(xSize, ySize, fitnessVersion, parentSelectionVersion,
 							crossoverVersion, mutationVersion);
-					System.out.println(i+1 + " :lvl generated");
+					System.out.println(i + 1 + " :lvl generated");
 					fitnessOfBestLevelsSum += lvlc.getFitness();
 					generationOfBestLevelsSum += lg.generationLog;
-					if(generateTexture)
-					pa.generateTextureMap(pa.parseLevel(lvlc), "./results/img", (imgName+j+i));
+					if (generateTexture)
+						pa.generateTextureMap(pa.parseLevel(lvlc), "./results/img", (imgName + j + i));
 				}
 
 				if (logResults) {
@@ -566,7 +570,6 @@ public class LevelGenerator {
 					wsheet.addCell(new Number(10, (1 + j), Constants.CHANCE_FOR_MUTATION));
 					wsheet.addCell(new Number(11, (1 + j), (generationOfBestLevelsSum / levelsPerSetting)));
 					wsheet.addCell(new Number(12, (1 + j), ((fitnessOfBestLevelsSum / levelsPerSetting))));
-					
 
 				}
 
@@ -577,7 +580,7 @@ public class LevelGenerator {
 				tempWorkbook.write();
 				tempWorkbook.close();
 				workbook = Workbook.getWorkbook(new File(tempLogFile));
-				tempWorkbook = Workbook.createWorkbook(new File("./results/logs/"+logFile), workbook);
+				tempWorkbook = Workbook.createWorkbook(new File("./results/logs/" + logFile), workbook);
 				tempWorkbook.write();
 				tempWorkbook.close();
 				workbook.close();
@@ -587,7 +590,7 @@ public class LevelGenerator {
 			}
 
 		} catch (Exception e) {
-		e.printStackTrace();
+			e.printStackTrace();
 		}
 
 	}
