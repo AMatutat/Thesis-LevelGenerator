@@ -399,15 +399,14 @@ public class LevelGenerator {
 	}
 
 	private CodedLevel[] crossover2(final CodedLevel lvl1, final CodedLevel lvl2) {
-		int cut1 = ((int) Math.random() * lvl1.getYSize());
-		int cut2 = ((int) Math.random() * lvl1.getYSize());
+		int cut1 = ((int) (Math.random() * lvl1.getYSize()));
+		int cut2 = ((int) (Math.random() * lvl1.getYSize()));
 
 		if (cut1 > cut2) {
 			int temp = cut1;
 			cut1 = cut2;
 			cut2 = temp;
 		}
-
 		CodedLevel newLevelA = new CodedLevel(new char[lvl1.getXSize()][lvl1.getYSize()], lvl1.getXSize(),
 				lvl1.getYSize());
 
@@ -539,12 +538,12 @@ public class LevelGenerator {
 
 	public static void main(String[] args) throws InterruptedException {
 
-		boolean logResults = true;
+		boolean logResults = false;
 		boolean generateTexture = false;
 		String startmsg = "Test";
 		String imgName = "level";
-		int xSize = 30;
-		int ySize = 30;
+		int xSize = 5;
+		int ySize = 10;
 		int fitnessVersion = 1;
 		int parentSelectionVersion = 1;
 		int crossoverVersion = 1;
