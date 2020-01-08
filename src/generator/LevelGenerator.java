@@ -68,7 +68,11 @@ public class LevelGenerator {
 
 				if ((bestLevel == null || bestLevel.getFitness() < fitness)
 						&& isReachable(lvl, lvl.getExit()[0], lvl.getExit()[1]))
+				{
 					bestLevel = lvl.copyLevel();
+					generationLog=generation+1;
+				}
+				
 
 			}
 
@@ -573,18 +577,19 @@ public class LevelGenerator {
 	public static void main(String[] args) throws InterruptedException {
 
 		boolean logResults = true;
-		boolean generateTexture = true;
+		boolean generateTexture =false;
 		String startmsg = "DifferentFintessVersions";
 		String imgName = "level";
-		int xSize = 20;
-		int ySize = 20;
+		int xSize = 30;
+		int ySize = 30;
 		int fitnessVersion = 1;
 		int parentSelectionVersion = 1;
-		int crossoverVersion = 2;
+		int crossoverVersion = 1;
 		int mutationVersion = 2;
-
+		
+		
 		int levelsPerSetting = 10;
-		int differentSettings = 2;
+		int differentSettings = 7;
 
 		int generationOfBestLevelsSum = 0;
 		float fitnessOfBestLevelsSum = 0f;
@@ -593,8 +598,9 @@ public class LevelGenerator {
 		LevelParser pa = new LevelParser();
 
 		String tempLogFile = "temp.xls";
-		String logFile = "ChangedPMutLOW_GB" + "_+M" + mutationVersion + "_C" + crossoverVersion + "_F" + fitnessVersion
-				+ ".xls";
+		//String logFile = "DiffTests" + "_+M" + mutationVersion + "_C" + crossoverVersion + "_F" + fitnessVersion
+		//		+ ".xls";
+		String logFile="AllSettingsV1.xls";
 		String sheetName = "_";
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_HHmmss");
 		Workbook workbook;
@@ -620,16 +626,19 @@ public class LevelGenerator {
 					wsheet = tempWorkbook.createSheet(sheetName + dtf.format(now), 0);
 					wsheet.addCell(new Label(1, 0, "XSize"));
 					wsheet.addCell(new Label(2, 0, "YSize"));
-					wsheet.addCell(new Label(3, 0, "Population"));
+					wsheet.addCell(new Label(3, 0, "Population"));		
 					wsheet.addCell(new Label(4, 0, "Value Connected"));
 					wsheet.addCell(new Label(5, 0, "Value Reachable"));
 					wsheet.addCell(new Label(6, 0, "Exit is Reachable"));
 					wsheet.addCell(new Label(7, 0, "Chance to be Floor"));
 					wsheet.addCell(new Label(8, 0, "Max Generationen"));
-					wsheet.addCell(new Label(9, 0, "Crossoverchance"));
-					wsheet.addCell(new Label(10, 0, "Mutationschance"));
-					wsheet.addCell(new Label(11, 0, "d Generation"));
-					wsheet.addCell(new Label(12, 0, "d Fitness"));
+					wsheet.addCell(new Label(9, 0, "Crossover Version"));
+					wsheet.addCell(new Label(10, 0, "Crossoverchance"));
+					wsheet.addCell(new Label(11, 0, "CMutation Version"));
+					wsheet.addCell(new Label(12, 0, "Mutationschance"));
+					wsheet.addCell(new Label(13, 0, "Fitness Version"));
+					wsheet.addCell(new Label(14, 0, "d Generation"));
+					wsheet.addCell(new Label(15, 0, "d Fitness"));
 				}
 			}
 
@@ -657,15 +666,52 @@ public class LevelGenerator {
 					wsheet.addCell(new Number(6, (1 + j), Constants.EXIT_IS_REACHABLE));
 					wsheet.addCell(new Number(7, (1 + j), Constants.CHANCE_TO_BE_FLOOR));
 					wsheet.addCell(new Number(8, (1 + j), Constants.MAXIMAL_GENERATION));
-					wsheet.addCell(new Number(9, (1 + j), Constants.CHANCE_FOR_CROSSOVER));
-					wsheet.addCell(new Number(10, (1 + j), Constants.CHANCE_FOR_MUTATION));
-					wsheet.addCell(new Number(11, (1 + j), (generationOfBestLevelsSum / levelsPerSetting)));
-					wsheet.addCell(new Number(12, (1 + j), ((fitnessOfBestLevelsSum / levelsPerSetting))));
+					wsheet.addCell(new Number(9, (1 + j), crossoverVersion));
+					wsheet.addCell(new Number(10, (1 + j), Constants.CHANCE_FOR_CROSSOVER));
+					wsheet.addCell(new Number(11, (1 + j), mutationVersion));
+					wsheet.addCell(new Number(12, (1 + j), Constants.CHANCE_FOR_MUTATION));
+					wsheet.addCell(new Number(13, (1 + j), fitnessVersion));
+					wsheet.addCell(new Number(14, (1 + j), (generationOfBestLevelsSum / levelsPerSetting)));
+					wsheet.addCell(new Number(15, (1 + j), ((fitnessOfBestLevelsSum / levelsPerSetting))));
 
 				}
 
 				// Parameter ändern
-				fitnessVersion=2;
+				switch(j) {
+				case 0: 
+					fitnessVersion=1;
+					crossoverVersion=1;
+					mutationVersion=2;					
+					break;
+				case 1:
+					fitnessVersion=1;
+					crossoverVersion=2;
+					mutationVersion=1;					
+					break;
+				case 2:
+					fitnessVersion=1;
+					crossoverVersion=2;
+					mutationVersion=2;					
+					break;
+				case 3:
+					fitnessVersion=2;
+					crossoverVersion=1;
+					mutationVersion=1;					
+					break;
+				case 4:
+					fitnessVersion=2;
+					crossoverVersion=1;
+					mutationVersion=2;					
+					break;
+				case 5:
+					fitnessVersion=2;
+					crossoverVersion=2;
+					mutationVersion=2;					
+					break;	
+					
+				
+				
+				}
 			}
 
 			if (logResults) {

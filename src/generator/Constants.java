@@ -25,7 +25,7 @@ public class Constants {
 	 * Anzahl ab der ein komplett neuer Durchlauf gestartet wird, da sich der
 	 * aktuelle Durchlauf festgefahren hat
 	 */
-	static int MAXIMAL_GENERATION = 100;
+	static int MAXIMAL_GENERATION = 20;
 	
 	/**
 	 * Warscheinlichkeit das ein zufällig erstelltes Surface ein Floor ist n/100
