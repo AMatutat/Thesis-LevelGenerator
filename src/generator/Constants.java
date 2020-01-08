@@ -20,12 +20,12 @@ public class Constants {
 	/**
 	 * Größe der Startpopulation
 	 */
-	static int POPULATIONSIZE =50;
+	static int POPULATIONSIZE =500;
 	/**
 	 * Anzahl ab der ein komplett neuer Durchlauf gestartet wird, da sich der
 	 * aktuelle Durchlauf festgefahren hat
 	 */
-	static int MAXIMAL_GENERATION = 10;
+	static int MAXIMAL_GENERATION = 100;
 	
 	/**
 	 * Warscheinlichkeit das ein zufällig erstelltes Surface ein Floor ist n/100
@@ -44,8 +44,8 @@ public class Constants {
 	/**
 	 * Teilpunkte, für jeden Wall Nachbar einer Wall
 	 */
-	static float WALL_HAS_NEIGHBOR=0.2f;
-	
+	static float WALL_HAS_NEIGHBOR=0.1f;
+	static float WALL_NEIGHBOR_IS_FLOOR=-0.5f;
 	
 	static int FLOOR_IS_REACHABLE = 3;
 	/**

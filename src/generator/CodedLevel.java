@@ -119,13 +119,21 @@ public class CodedLevel {
 			this.hasStart = false;
 
 		if (s == Constants.REFEERNCE_EXIT) {
-			this.hasExit = true;
-			this.exit[0] = x;
-			this.exit[1] = y;
+			if (this.hasExit)
+				s = Constants.REFERENCE_FLOOR;
+			else {
+				this.hasExit = true;
+				this.exit[0] = x;
+				this.exit[1] = y;
+			}
 		} else if (s == Constants.REFERENCE_START) {
-			this.hasStart = true;
-			this.start[0] = x;
-			this.start[1] = y;
+			if (this.hasStart)
+				s = Constants.REFERENCE_FLOOR;
+			else {
+				this.hasStart = true;
+				this.start[0] = x;
+				this.start[1] = y;
+			}
 		}
 		this.level[x][y] = s;
 	}

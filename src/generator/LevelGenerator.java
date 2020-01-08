@@ -237,11 +237,46 @@ public class LevelGenerator {
 				} else if (level.getLevel()[x][y] == Constants.REFEERNCE_EXIT) {
 					if (isReachable(level, x, y))
 						fitness += Constants.EXIT_IS_REACHABLE;
-				} else if (isReachable(level, x, y))
-					fitness += Constants.FLOOR_IS_REACHABLE;
+				
+					
+				} else if (level.getLevel()[x][y]==Constants.REFERENCE_FLOOR && isReachable(level, x, y))
+						fitness += Constants.FLOOR_IS_REACHABLE;
+				}
+					
 			}
-		}
+		
 		level.resetList();
+		return fitness;
+	}
+	
+	private float fitness2(final CodedLevel lvl) {
+		float fitness=0;		
+		for (int x=1;x<lvl.getXSize()-1;x++) {
+			for(int y=1;y<lvl.getYSize()-1;y++){
+				if(lvl.getLevel()[x][y]==Constants.REFERENCE_WALL) {
+					if (isConnected(lvl, x, y))
+						fitness += Constants.WALL_IS_CONNECTED;
+					if(lvl.getLevel()[x-1][y]!=Constants.REFERENCE_WALL)
+						fitness+=Constants.WALL_NEIGHBOR_IS_FLOOR;
+					if(lvl.getLevel()[x+1][y]!=Constants.REFERENCE_WALL)
+						fitness+=Constants.WALL_NEIGHBOR_IS_FLOOR;
+					if(lvl.getLevel()[x][y-1]!=Constants.REFERENCE_WALL)
+						fitness+=Constants.WALL_NEIGHBOR_IS_FLOOR;
+					if(lvl.getLevel()[x][y+1]!=Constants.REFERENCE_WALL)
+						fitness+=Constants.WALL_NEIGHBOR_IS_FLOOR;
+				}				
+				else if (lvl.getLevel()[x][y] == Constants.REFEERNCE_EXIT) {
+					if (isReachable(lvl, x, y))
+						fitness += Constants.EXIT_IS_REACHABLE;
+				} else if (lvl.getLevel()[x][y]==Constants.REFERENCE_FLOOR && isReachable(lvl, x, y))
+					fitness += Constants.FLOOR_IS_REACHABLE;
+				
+			
+			}
+			
+			}
+		if (fitness<=0) fitness=1;
+		lvl.resetList();
 		return fitness;
 	}
 
@@ -296,7 +331,7 @@ public class LevelGenerator {
 	private boolean isReachable(CodedLevel level, int x, int y) {
 		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT
 				&& level.getLevel()[x][y] != Constants.REFERENCE_START)
-			throw new IllegalArgumentException("Surface must be a floor");
+			throw new IllegalArgumentException("Surface must be a floor. Is "+level.getLevel()[x][y]);
 
 		if (level.getReachableFloors().size() <= 0)
 			createReachableList(level, level.getStart()[0], level.getStart()[1]);
@@ -308,8 +343,7 @@ public class LevelGenerator {
 	private void createReachableList(CodedLevel level, int x, int y) {
 		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT
 				&& level.getLevel()[x][y] != Constants.REFERENCE_START)
-			throw new IllegalArgumentException("Surface must be a floor");
-
+			throw new IllegalArgumentException("Surface must be a floor Is "+level.getLevel()[x][y]);
 		level.getReachableFloors().add(x + "" + y);
 
 		if ((level.getLevel()[x - 1][y] == Constants.REFERENCE_FLOOR
@@ -538,19 +572,19 @@ public class LevelGenerator {
 
 	public static void main(String[] args) throws InterruptedException {
 
-		boolean logResults = false;
-		boolean generateTexture = false;
-		String startmsg = "Test";
+		boolean logResults = true;
+		boolean generateTexture = true;
+		String startmsg = "DifferentFintessVersions";
 		String imgName = "level";
-		int xSize = 5;
-		int ySize = 10;
+		int xSize = 20;
+		int ySize = 20;
 		int fitnessVersion = 1;
 		int parentSelectionVersion = 1;
-		int crossoverVersion = 1;
-		int mutationVersion = 1;
+		int crossoverVersion = 2;
+		int mutationVersion = 2;
 
-		int levelsPerSetting = 3;
-		int differentSettings = 3;
+		int levelsPerSetting = 10;
+		int differentSettings = 2;
 
 		int generationOfBestLevelsSum = 0;
 		float fitnessOfBestLevelsSum = 0f;
@@ -567,6 +601,8 @@ public class LevelGenerator {
 		WritableWorkbook tempWorkbook = null;
 		WritableSheet wsheet = null;
 
+		
+	
 		try {
 
 			if (logResults) {
@@ -629,6 +665,7 @@ public class LevelGenerator {
 				}
 
 				// Parameter ändern
+				fitnessVersion=2;
 			}
 
 			if (logResults) {
