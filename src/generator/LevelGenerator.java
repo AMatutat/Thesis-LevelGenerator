@@ -99,15 +99,22 @@ public class LevelGenerator {
 				} while (parentA == parentB);
 
 				if (Math.random() <= Constants.CHANCE_FOR_CROSSOVER) {
-
+					CodedLevel combined[];
 					switch (crossoverVersion) {
 					case 1:
-						newPopulation[i] = crossover1(parentA, parentB);
-						newPopulation[i + 1] = crossover1(parentB, parentA);
+						combined = crossover1(parentA, parentB);
+						newPopulation[i] = combined[0];
+						newPopulation[i + 1] = combined[1];
+						break;
+					case 2:
+						combined = crossover2(parentA, parentB);
+						newPopulation[i] = combined[0];
+						newPopulation[i + 1] = combined[1];
 						break;
 					default:
-						newPopulation[i] = crossover1(parentA, parentB);
-						newPopulation[i + 1] = crossover1(parentB, parentA);
+						combined = crossover1(parentA, parentB);
+						newPopulation[i] = combined[0];
+						newPopulation[i + 1] = combined[1];
 					}
 
 				} else {
@@ -361,22 +368,71 @@ public class LevelGenerator {
 	 * @param lvl2 Zweites Level
 	 * @return Kombiniertes Level
 	 */
-	private CodedLevel crossover1(final CodedLevel lvl1, final CodedLevel lvl2) {
+	private CodedLevel[] crossover1(final CodedLevel lvl1, final CodedLevel lvl2) {
 
-		CodedLevel newLevel = new CodedLevel(new char[lvl1.getXSize()][lvl1.getYSize()], lvl1.getXSize(),
+		CodedLevel newLevelA = new CodedLevel(new char[lvl1.getXSize()][lvl1.getYSize()], lvl1.getXSize(),
 				lvl1.getYSize());
-		int x;
-		for (x = 0; x < lvl1.getXSize() / 2; x++) {
+
+		for (int x = 0; x < lvl1.getXSize(); x++) {
 			for (int y = 0; y < lvl1.getYSize(); y++) {
-				newLevel.changeField(x, y, lvl1.getLevel()[x][y]);
+
+				if (x >= lvl1.getXSize() / 2)
+					newLevelA.changeField(x, y, lvl2.getLevel()[x][y]);
+				else
+					newLevelA.changeField(x, y, lvl1.getLevel()[x][y]);
 			}
 		}
-		for (x = x; x < lvl1.getXSize(); x++) {
+
+		CodedLevel newLevelB = new CodedLevel(new char[lvl1.getXSize()][lvl1.getYSize()], lvl1.getXSize(),
+				lvl1.getYSize());
+		for (int x = 0; x < lvl1.getXSize(); x++) {
 			for (int y = 0; y < lvl1.getYSize(); y++) {
-				newLevel.changeField(x, y, lvl1.getLevel()[x][y]);
+				if (x >= lvl1.getXSize() / 2)
+					newLevelB.changeField(x, y, lvl1.getLevel()[x][y]);
+				else
+					newLevelB.changeField(x, y, lvl2.getLevel()[x][y]);
 			}
 		}
-		return newLevel;
+		CodedLevel c[] = { newLevelA, newLevelB };
+
+		return c;
+	}
+
+	private CodedLevel[] crossover2(final CodedLevel lvl1, final CodedLevel lvl2) {
+		int cut1 = ((int) Math.random() * lvl1.getYSize());
+		int cut2 = ((int) Math.random() * lvl1.getYSize());
+
+		if (cut1 > cut2) {
+			int temp = cut1;
+			cut1 = cut2;
+			cut2 = temp;
+		}
+
+		CodedLevel newLevelA = new CodedLevel(new char[lvl1.getXSize()][lvl1.getYSize()], lvl1.getXSize(),
+				lvl1.getYSize());
+
+		for (int y = 0; y < lvl1.getYSize(); y++) {
+			for (int x = 0; x < lvl1.getXSize(); x++) {
+				if (y >= cut1 && y <= cut2)
+					newLevelA.changeField(x, y, lvl2.getLevel()[x][y]);
+				else
+					newLevelA.changeField(x, y, lvl1.getLevel()[x][y]);
+			}
+		}
+
+		CodedLevel newLevelB = new CodedLevel(new char[lvl1.getXSize()][lvl1.getYSize()], lvl1.getXSize(),
+				lvl1.getYSize());
+		for (int y = 0; y < lvl1.getYSize(); y++) {
+			for (int x = 0; x < lvl1.getXSize(); x++) {
+				if (y >= cut1 && y <= cut2)
+					newLevelB.changeField(x, y, lvl1.getLevel()[x][y]);
+				else
+					newLevelB.changeField(x, y, lvl2.getLevel()[x][y]);
+			}
+		}
+
+		CodedLevel c[] = { newLevelA, newLevelB };
+		return c;
 	}
 
 	/**
