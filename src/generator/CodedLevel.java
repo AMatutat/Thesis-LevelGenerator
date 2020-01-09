@@ -3,9 +3,9 @@ package generator;
 import java.util.ArrayList;
 
 /**
- * Symbolisiert ein Level für die dauer des Erstellunsprozesses
+ * Symbolisiert ein Level fï¿½r die dauer des Erstellunsprozesses
  * 
- * @author André Matutat
+ * @author Andrï¿½ Matutat
  *
  */
 public class CodedLevel {
@@ -25,7 +25,7 @@ public class CodedLevel {
 	/**
 	 * @param level Kodiertes Level
 	 * @param xSize Breite des Levels
-	 * @param ySize Höhe des Levels
+	 * @param ySize Hï¿½he des Levels
 	 */
 	public CodedLevel(final char[][] level, int xSize, int ySize) {
 		this.level = level;
@@ -51,8 +51,8 @@ public class CodedLevel {
 	 * Reseted Hilfslisten
 	 */
 	public void resetList() {
-		this.checkedWalls = new ArrayList<String>();
-		this.reachableFloors = new ArrayList<String>();
+		this.checkedWalls.clear();
+		this.reachableFloors.clear();
 
 	}
 

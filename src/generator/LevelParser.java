@@ -10,7 +10,7 @@ import interfaces.*;
 import myGame.*;
 
 /* 
- * @author André Matutat
+ * @author Andrï¿½ Matutat
  *
  */
 public class LevelParser {
@@ -34,6 +34,8 @@ public class LevelParser {
 					lvl[x][y] = new Start();
 				else if (level.getLevel()[x][y] == Constants.REFEERNCE_EXIT)
 					lvl[x][y] = new Exit();
+				else 
+					lvl[x][y]= new Test();
 			}
 		}
 
@@ -41,7 +43,7 @@ public class LevelParser {
 	}
 
 	/**
-	 * Setzt ein Monster auf ein Zufälliges Surface
+	 * Setzt ein Monster auf ein Zufï¿½lliges Surface
 	 * 
 	 * @param lvl            in welchem Level soll das Monster platziert werden
 	 * @param monster        Monster welches platziert werden soll
@@ -60,7 +62,7 @@ public class LevelParser {
 	}
 
 	/**
-	 * Setzt ein Item auf ein Zufälliges Surface
+	 * Setzt ein Item auf ein Zufï¿½lliges Surface
 	 * 
 	 * @param lvl            in welchem Level soll das Item platziert werden
 	 * @param item           Item welches platziert werden soll
@@ -81,7 +83,7 @@ public class LevelParser {
 	}
 
 	/**
-	 * Wechselt ein zufälliges Surface aus
+	 * Wechselt ein zufï¿½lliges Surface aus
 	 * 
 	 * @param lvl        in welchem ein Surface ausgetauscht werden soll
 	 * @param newSurface neues Surface
@@ -102,9 +104,9 @@ public class LevelParser {
 	}
 
 	/**
-	 * Erstellt die TexturenMap für ein Level
+	 * Erstellt die TexturenMap fï¿½r ein Level
 	 * 
-	 * @param lvl  Level für welchem die TexturenMap generiert werden soll
+	 * @param lvl  Level fï¿½r welchem die TexturenMap generiert werden soll
 	 * @param path Pfad zum Speicherort an der die TexturenMap gespeichert werden
 	 *             soll
 	 * @param name Name der TexturenMap

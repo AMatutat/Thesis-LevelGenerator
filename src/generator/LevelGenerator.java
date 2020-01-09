@@ -152,11 +152,7 @@ public class LevelGenerator {
 					this.generationLog = generation + 1;
 				}
 
-		}
-
-		if (bestLevel == null)
-			return generateLevel(xSize, ySize, fitnessVersion, parentSlectionVersion, crossoverVersion,
-					mutationVersion);
+		}	
 		removeUnreachableFloors(bestLevel);
 		return bestLevel;
 	}
@@ -229,6 +225,7 @@ public class LevelGenerator {
 	 */
 	private float fitness1(final CodedLevel level) {
 		float fitness = 0f;
+		level.resetList();
 		for (int x = 1; x < level.getXSize() - 1; x++) {
 			for (int y = 1; y < level.getYSize() - 1; y++) {
 				if (level.getLevel()[x][y] == Constants.REFERENCE_WALL) {
@@ -249,12 +246,12 @@ public class LevelGenerator {
 					
 			}
 		
-		level.resetList();
 		return fitness;
 	}
 	
 	private float fitness2(final CodedLevel lvl) {
 		float fitness=0;		
+		lvl.resetList();
 		for (int x=1;x<lvl.getXSize()-1;x++) {
 			for(int y=1;y<lvl.getYSize()-1;y++){
 				if(lvl.getLevel()[x][y]==Constants.REFERENCE_WALL) {
@@ -280,7 +277,6 @@ public class LevelGenerator {
 			
 			}
 		if (fitness<=0) fitness=1;
-		lvl.resetList();
 		return fitness;
 	}
 
@@ -340,7 +336,7 @@ public class LevelGenerator {
 		if (level.getReachableFloors().size() <= 0)
 			createReachableList(level, level.getStart()[0], level.getStart()[1]);
 
-		return level.getReachableFloors().contains(x + "" + y);
+		return level.getReachableFloors().contains(x + "_" + y);
 
 	}
 
@@ -348,30 +344,31 @@ public class LevelGenerator {
 		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT
 				&& level.getLevel()[x][y] != Constants.REFERENCE_START)
 			throw new IllegalArgumentException("Surface must be a floor Is "+level.getLevel()[x][y]);
-		level.getReachableFloors().add(x + "" + y);
+		
+		level.getReachableFloors().add(x + "_" + y);
 
 		if ((level.getLevel()[x - 1][y] == Constants.REFERENCE_FLOOR
 				|| level.getLevel()[x - 1][y] == Constants.REFEERNCE_EXIT
 				|| level.getLevel()[x - 1][y] == Constants.REFERENCE_START)
-				&& !level.getReachableFloors().contains((x - 1) + "" + y))
+				&& !level.getReachableFloors().contains((x - 1) + "_" + y))
 			createReachableList(level, x - 1, y);
 
 		if ((level.getLevel()[x + 1][y] == Constants.REFERENCE_FLOOR
 				|| level.getLevel()[x + 1][y] == Constants.REFEERNCE_EXIT
 				|| level.getLevel()[x + 1][y] == Constants.REFERENCE_START)
-				&& !level.getReachableFloors().contains((x + 1) + "" + y))
+				&& !level.getReachableFloors().contains((x + 1) + "_" + y))
 			createReachableList(level, x + 1, y);
 
 		if ((level.getLevel()[x][y - 1] == Constants.REFERENCE_FLOOR
 				|| level.getLevel()[x][y - 1] == Constants.REFEERNCE_EXIT
 				|| level.getLevel()[x][y - 1] == Constants.REFERENCE_START)
-				&& !level.getReachableFloors().contains(x + "" + (y - 1)))
+				&& !level.getReachableFloors().contains(x + "_" + (y - 1)))
 			createReachableList(level, x, y - 1);
 
 		if ((level.getLevel()[x][y + 1] == Constants.REFERENCE_FLOOR
 				|| level.getLevel()[x][y + 1] == Constants.REFEERNCE_EXIT
 				|| level.getLevel()[x][y + 1] == Constants.REFERENCE_START)
-				&& !level.getReachableFloors().contains(x + "" + (y + 1)))
+				&& !level.getReachableFloors().contains(x + "_" + (y + 1)))
 			createReachableList(level, x, y + 1);
 	}
 
@@ -532,7 +529,6 @@ public class LevelGenerator {
 
 							}
 
-							lvl.resetWallList();
 
 						}
 					}
@@ -562,34 +558,34 @@ public class LevelGenerator {
 
 	private void removeUnreachableFloors(CodedLevel lvl) {
 		lvl.resetList();
-		for (int x = 1; x < lvl.getXSize() - 1; x++) {
-			for (int y = 1; y < lvl.getYSize() - 1; y++) {
+		for (int x = 0; x < lvl.getXSize(); x++) {
+			for (int y = 0; y < lvl.getYSize(); y++) {
 				if (lvl.getLevel()[x][y] == Constants.REFERENCE_FLOOR) {
 					if (!isReachable(lvl, x, y))
-						lvl.changeField(x, y, Constants.REFERENCE_WALL);
-
+					lvl.changeField(x, y, Constants.REFERENCE_WALL);
 				}
 			}
 		}
-		lvl.resetList();
 	}
-
+	
+	
+	
 	public static void main(String[] args) throws InterruptedException {
 
-		boolean logResults = true;
-		boolean generateTexture =false;
+		boolean logResults = false;
+		boolean generateTexture = true;
 		String startmsg = "DifferentFintessVersions";
 		String imgName = "level";
-		int xSize = 30;
-		int ySize = 30;
-		int fitnessVersion = 1;
+		int xSize = 20;
+		int ySize = 20;
+		int fitnessVersion = 2;
 		int parentSelectionVersion = 1;
 		int crossoverVersion = 1;
 		int mutationVersion = 2;
 		
 		
 		int levelsPerSetting = 10;
-		int differentSettings = 7;
+		int differentSettings = 1;
 
 		int generationOfBestLevelsSum = 0;
 		float fitnessOfBestLevelsSum = 0f;
@@ -676,7 +672,7 @@ public class LevelGenerator {
 
 				}
 
-				// Parameter ändern
+				// Parameter ï¿½ndern
 				switch(j) {
 				case 0: 
 					fitnessVersion=1;
