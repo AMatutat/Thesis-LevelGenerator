@@ -572,20 +572,20 @@ public class LevelGenerator {
 	
 	public static void main(String[] args) throws InterruptedException {
 
-		boolean logResults = false;
-		boolean generateTexture = true;
-		String startmsg = "DifferentFintessVersions";
+		boolean logResults = true;
+		boolean generateTexture = false;
+		String startmsg = "AllSettings";
 		String imgName = "level";
-		int xSize = 20;
-		int ySize = 20;
-		int fitnessVersion = 2;
+		int xSize = 10;
+		int ySize = 10;
+		int fitnessVersion = 1;
 		int parentSelectionVersion = 1;
 		int crossoverVersion = 1;
-		int mutationVersion = 2;
+		int mutationVersion = 1;
 		
 		
 		int levelsPerSetting = 10;
-		int differentSettings = 1;
+		int differentSettings = 7;
 
 		int generationOfBestLevelsSum = 0;
 		float fitnessOfBestLevelsSum = 0f;
@@ -596,8 +596,8 @@ public class LevelGenerator {
 		String tempLogFile = "temp.xls";
 		//String logFile = "DiffTests" + "_+M" + mutationVersion + "_C" + crossoverVersion + "_F" + fitnessVersion
 		//		+ ".xls";
-		String logFile="AllSettingsV1.xls";
-		String sheetName = "_";
+		String logFile="DifferentParameters.xls";
+		String sheetName = "V1_";
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_HHmmss");
 		Workbook workbook;
 		WritableWorkbook tempWorkbook = null;
@@ -638,7 +638,15 @@ public class LevelGenerator {
 				}
 			}
 
+		
+			for (int a=0;a<10;a++) {
 			for (int j = 0; j < differentSettings; j++) {
+				Constants.CHANCE_FOR_CROSSOVER=0f;
+				for (int k=0; k<20;k++) {
+					Constants.CHANCE_FOR_MUTATION=0f;
+					for (int l=0; l<20;l++) {
+						Constants.POPULATIONSIZE=100;
+						for (int p=0;p<10;p++) {
 				System.out.println(startmsg);
 				generationOfBestLevelsSum = 0;
 				fitnessOfBestLevelsSum = 0f;
@@ -671,7 +679,16 @@ public class LevelGenerator {
 					wsheet.addCell(new Number(15, (1 + j), ((fitnessOfBestLevelsSum / levelsPerSetting))));
 
 				}
+				
+				Constants.POPULATIONSIZE+=100;
+						}
 
+					Constants.CHANCE_FOR_MUTATION+=0.05f;
+				
+				
+				}
+					Constants.CHANCE_FOR_CROSSOVER+=0.05;
+				}
 				// Parameter �ndern
 				switch(j) {
 				case 0: 
@@ -708,6 +725,11 @@ public class LevelGenerator {
 				
 				
 				}
+			
+				xSize+=10;
+				ySize+=10;
+			}
+			
 			}
 
 			if (logResults) {
