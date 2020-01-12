@@ -34,8 +34,7 @@ public class LevelParser {
 					lvl[x][y] = new Start();
 				else if (level.getLevel()[x][y] == Constants.REFEERNCE_EXIT)
 					lvl[x][y] = new Exit();
-				else 
-					lvl[x][y]= new Test();
+				
 			}
 		}
 
