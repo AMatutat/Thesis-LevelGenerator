@@ -2,7 +2,13 @@
 
 ## Konzept
 
-- Anforderungen 
+### Anforderungen an das Projekt
+
+Da die Teilnehmer neben den vorgegebenen Aufgaben auch selbständig Kreativ werden sollen, muss der Leve Generator möglichst flexibel sein und so zum Beispiel die verwendung von Sonderfeldern ermöglichen. Der in dieser Arbeit entwickelte Level Generator wird in der Lage sein, einfache 2D Level in kodierter Form zu erzeugen, welche dann mithilfe von einen Parser in die Dungeon-Implementierung eingeladen werden können. Der Generator soll in der Lage sein, anhand der implementierten Oberflächen, die benötige Texturenmap, des levels zu erzeugen.  Es wird die möglichkeit gegeben, Iselbst Implementierte tems sowie Monster im generierten Level zufällig zu verteilen. Es sollen Türen und die dazugehörenden Schlüssel so im Level verteilt werden, dass der Schlüssel erreicht werden kann ohne durch die Tür gehen zu müssen. Die Levelgröße wird nach belieben Auswählbar sein. 
+
+Level werden statisch generiert, und können nicht zur selben zeit genutzt werden wie sie generiert werden. Es werden keine änderungen der Spielregeln ermöglicht und unterstützt, der Spieler kann sich nur auf die davor vorgesehenen Felder bewegen, änderugen wie das Sprengen von Wänden oder überspringen von Hindernissen wird nicht unterstützt. In einigen Aufgaben werden die Teilnehmer aufgefordert, sogeannte Quests (Aufgaben im Spiel) zu erstellen, der Level Generator wird keine Quests erzeugen können, es wird aber möglich sein, ein generiertes Level um Quests zu erweitern. Sowohl die eigenständige generierung von Texturen als auch die Skalierung von Texturgrößen ist nicht bestandteil dieser Arbeit. Der Level Generator wird nicht mit Fokus auf Laufzeit entwickelt. 
+
+### Planung
 
 Die Level werden mithilfe eines Genetischen Algorithemn generiert. Level bestehen aus, vom spieler begehbare, Böden und aus unbegehbare Wänden, sowie genau einen Ein und genau einen Ausgang. Damit ein Level spielbar ist, muss der Ausgang über Böden mit den Eingang verbunden sein. 
 
