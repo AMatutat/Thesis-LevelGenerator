@@ -31,8 +31,9 @@ public class LevelGenerator {
 	 * @param ySize H�he des Levels
 	 * @return kodiertes Level
 	 */
-	public CodedLevel generateLevel(int xSize, int ySize, int fitnessVersion, int parentSlectionVersion,
-			int crossoverVersion, int mutationVersion) throws IllegalArgumentException {
+	public CodedLevel generateLevel(final int xSize, final int ySize, final int fitnessVersion,
+			final int parentSlectionVersion, final int crossoverVersion, final int mutationVersion)
+			throws IllegalArgumentException {
 		if (xSize < Constants.MINIMAL_XSIZE || ySize < Constants.MINIMAL_YSIZE)
 			throw new IllegalArgumentException(
 					"Size must be at least " + Constants.MINIMAL_XSIZE + "x" + Constants.MINIMAL_YSIZE);
@@ -84,19 +85,19 @@ public class LevelGenerator {
 
 				switch (parentSlectionVersion) {
 				case 1:
-					parentA = selectParent1(startPopulation);
+					parentA = roulettWheelSelection(startPopulation);
 					break;
 				default:
-					parentA = selectParent1(startPopulation);
+					parentA = roulettWheelSelection(startPopulation);
 				}
 
 				do {
 					switch (parentSlectionVersion) {
 					case 1:
-						parentB = selectParent1(startPopulation);
+						parentB = roulettWheelSelection(startPopulation);
 						break;
 					default:
-						parentB = selectParent1(startPopulation);
+						parentB = roulettWheelSelection(startPopulation);
 					}
 				} while (parentA == parentB);
 
@@ -104,17 +105,17 @@ public class LevelGenerator {
 					CodedLevel combined[];
 					switch (crossoverVersion) {
 					case 1:
-						combined = crossover1(parentA, parentB);
+						combined = onePointCrossover(parentA, parentB);
 						newPopulation[i] = combined[0];
 						newPopulation[i + 1] = combined[1];
 						break;
 					case 2:
-						combined = crossover2(parentA, parentB);
+						combined = multipointCrossover(parentA, parentB);
 						newPopulation[i] = combined[0];
 						newPopulation[i + 1] = combined[1];
 						break;
 					default:
-						combined = crossover1(parentA, parentB);
+						combined = onePointCrossover(parentA, parentB);
 						newPopulation[i] = combined[0];
 						newPopulation[i + 1] = combined[1];
 					}
@@ -129,16 +130,16 @@ public class LevelGenerator {
 			for (CodedLevel lvl : newPopulation) {
 				switch (mutationVersion) {
 				case 1:
-					mutate1(lvl);
+					bitFlipMutation(lvl);
 					break;
 				case 2:
-					mutate2(lvl);
+					fixRowMutation(lvl);
 					break;
 				case 3:
-					mutate3(lvl);
+					gameOfLifeMutation(lvl);
 					break;
 				default:
-					mutate1(lvl);
+					bitFlipMutation(lvl);
 					break;
 				}
 			}
@@ -190,7 +191,7 @@ public class LevelGenerator {
 	 * 
 	 * @param lvl Level in dem Eingang und Ausgang platziert werden soll
 	 */
-	private void placeStartAndEnd(CodedLevel lvl) {
+	private void placeStartAndEnd(final CodedLevel lvl) {
 		boolean change = false;
 
 		if (!lvl.hasStart()) {
@@ -287,7 +288,7 @@ public class LevelGenerator {
 	 * @param y     Y Index der Wand
 	 * @return
 	 */
-	private boolean isConnected(CodedLevel level, int x, int y) {
+	private boolean isConnected(final CodedLevel level, final int x, final int y) {
 
 		if (level.getLevel()[x][y] != Constants.REFERENCE_WALL)
 			throw new IllegalArgumentException("Surface must be a wall");
@@ -327,7 +328,7 @@ public class LevelGenerator {
 	 * @param y     Y Index des Floors
 	 * @return
 	 */
-	private boolean isReachable(CodedLevel level, int x, int y) {
+	private boolean isReachable(final CodedLevel level, final int x, final int y) {
 		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT
 				&& level.getLevel()[x][y] != Constants.REFERENCE_START)
 			throw new IllegalArgumentException("Surface must be a floor. Is " + level.getLevel()[x][y]);
@@ -339,7 +340,7 @@ public class LevelGenerator {
 
 	}
 
-	private void createReachableList(CodedLevel level, int x, int y) {
+	private void createReachableList(final CodedLevel level, final int x, final int y) {
 		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT
 				&& level.getLevel()[x][y] != Constants.REFERENCE_START)
 			throw new IllegalArgumentException("Surface must be a floor Is " + level.getLevel()[x][y]);
@@ -377,7 +378,7 @@ public class LevelGenerator {
 	 * @param population aus der gew�hlt werden soll
 	 * @return Index des Elternteils
 	 */
-	private CodedLevel selectParent1(final CodedLevel[] population) {
+	private CodedLevel roulettWheelSelection(final CodedLevel[] population) {
 		int fitSum = 0;
 		for (CodedLevel lvl : population) {
 			fitSum += lvl.getFitness();
@@ -402,7 +403,7 @@ public class LevelGenerator {
 	 * @param lvl2 Zweites Level
 	 * @return Kombiniertes Level
 	 */
-	private CodedLevel[] crossover1(final CodedLevel lvl1, final CodedLevel lvl2) {
+	private CodedLevel[] onePointCrossover(final CodedLevel lvl1, final CodedLevel lvl2) {
 
 		CodedLevel newLevelA = new CodedLevel(new char[lvl1.getXSize()][lvl1.getYSize()], lvl1.getXSize(),
 				lvl1.getYSize());
@@ -432,7 +433,7 @@ public class LevelGenerator {
 		return c;
 	}
 
-	private CodedLevel[] crossover2(final CodedLevel lvl1, final CodedLevel lvl2) {
+	private CodedLevel[] multipointCrossover(final CodedLevel lvl1, final CodedLevel lvl2) {
 		int cut1 = ((int) (Math.random() * lvl1.getYSize()));
 		int cut2 = ((int) (Math.random() * lvl1.getYSize()));
 
@@ -474,7 +475,7 @@ public class LevelGenerator {
 	 * @param lvl Level welches mutiert werden soll
 	 * 
 	 */
-	private void mutate1(CodedLevel lvl) {
+	private void bitFlipMutation(final CodedLevel lvl) {
 		for (int y = 1; y < lvl.getYSize() - 1; y++) {
 			for (int x = 1; x < lvl.getXSize() - 1; x++) {
 				if (Math.random() <= Constants.CHANCE_FOR_MUTATION) {
@@ -487,7 +488,7 @@ public class LevelGenerator {
 		}
 	}
 
-	private void mutate2(CodedLevel lvl) {
+	private void fixRowMutation(final CodedLevel lvl) {
 		for (int y = 2; y < lvl.getYSize() - 2; y++) {
 			if (Math.random() < Constants.CHANCE_FOR_MUTATION) {
 				for (int x = 2; x < lvl.getXSize() - 2; x++) {
@@ -535,8 +536,8 @@ public class LevelGenerator {
 		}
 	}
 
-	private void mutate3(CodedLevel level) {
-		CodedLevel tempLevel =level.copyLevel();
+	private void gameOfLifeMutation(CodedLevel level) {
+		CodedLevel tempLevel = level.copyLevel();
 		for (int x = 1; x < tempLevel.getXSize() - 1; x++) {
 			for (int y = 1; y < tempLevel.getYSize() - 1; y++) {
 				int lebendeNachbarn = 0;
@@ -549,19 +550,18 @@ public class LevelGenerator {
 						lebendeNachbarn++;
 					if (level.getLevel()[x][y - 1] == Constants.REFERENCE_WALL)
 						lebendeNachbarn++;
-					if (lebendeNachbarn==3 && level.getLevel()[x][y] == Constants.REFERENCE_FLOOR)
+					if (lebendeNachbarn == 3 && level.getLevel()[x][y] == Constants.REFERENCE_FLOOR)
 						tempLevel.changeField(x, y, Constants.REFERENCE_WALL);
-					else if ((lebendeNachbarn < 1 || lebendeNachbarn <=3)
+					else if ((lebendeNachbarn < 1 || lebendeNachbarn <= 3)
 							&& level.getLevel()[x][y] == Constants.REFERENCE_WALL) {
 						tempLevel.changeField(x, y, Constants.REFERENCE_FLOOR);
 					}
-
 
 				}
 			}
 
 		}
-		level=tempLevel.copyLevel();
+		level = tempLevel.copyLevel();
 	}
 
 	/**
@@ -582,7 +582,7 @@ public class LevelGenerator {
 		}
 	}
 
-	private void removeUnreachableFloors(CodedLevel lvl) {
+	private void removeUnreachableFloors(final CodedLevel lvl) {
 		lvl.resetList();
 		for (int x = 0; x < lvl.getXSize(); x++) {
 			for (int y = 0; y < lvl.getYSize(); y++) {
@@ -628,8 +628,6 @@ public class LevelGenerator {
 		WritableSheet wsheet = null;
 		int counter = 0;
 
-		
-		
 		try {
 
 			if (logResults) {
@@ -664,13 +662,13 @@ public class LevelGenerator {
 			}
 
 			for (int j = 0; j < differentSettings; j++) {
-				System.out.println("Setting "+j);
+				System.out.println("Setting " + j);
 				Constants.CHANCE_FOR_CROSSOVER = 0f;
 				for (int k = 0; k < 5; k++) {
 					Constants.CHANCE_FOR_MUTATION = 0f;
-					System.out.println("Crossover "+Constants.CHANCE_FOR_CROSSOVER);
+					System.out.println("Crossover " + Constants.CHANCE_FOR_CROSSOVER);
 					for (int l = 0; l < 5; l++) {
-						System.out.println("Mutation "+Constants.CHANCE_FOR_MUTATION);
+						System.out.println("Mutation " + Constants.CHANCE_FOR_MUTATION);
 						counter++;
 						generationOfBestLevelsSum = 0;
 						fitnessOfBestLevelsSum = 0f;
@@ -678,7 +676,7 @@ public class LevelGenerator {
 						for (int i = 0; i < levelsPerSetting; i++) {
 							CodedLevel lvlc = lg.generateLevel(xSize, ySize, fitnessVersion, parentSelectionVersion,
 									crossoverVersion, mutationVersion);
-						//	System.out.println(i + 1 + " :lvl generated");
+							// System.out.println(i + 1 + " :lvl generated");
 							fitnessOfBestLevelsSum += lvlc.getFitness();
 							generationOfBestLevelsSum += lg.generationLog;
 							if (generateTexture)
@@ -715,34 +713,34 @@ public class LevelGenerator {
 				case 0:
 					fitnessVersion = 1;
 					crossoverVersion = 2;
-					mutationVersion= 2;
+					mutationVersion = 2;
 					break;
 
 				case 1:
 					fitnessVersion = 2;
 					crossoverVersion = 1;
-					mutationVersion= 2;
+					mutationVersion = 2;
 					break;
 				case 2:
 					fitnessVersion = 2;
 					crossoverVersion = 2;
-					mutationVersion= 2;
+					mutationVersion = 2;
 					break;
 				case 3:
 					fitnessVersion = 1;
 					crossoverVersion = 2;
-					mutationVersion= 3;
+					mutationVersion = 3;
 					break;
 
 				case 4:
 					fitnessVersion = 2;
 					crossoverVersion = 1;
-					mutationVersion= 3;
+					mutationVersion = 3;
 					break;
 				case 5:
 					fitnessVersion = 2;
 					crossoverVersion = 2;
-					mutationVersion= 3;
+					mutationVersion = 3;
 					break;
 
 				}

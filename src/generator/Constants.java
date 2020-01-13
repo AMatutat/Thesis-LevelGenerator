@@ -10,77 +10,70 @@ public class Constants {
 	/**
 	 * Warscheinlichkeit das eine Mutation durchgeführt wird
 	 */
-	static float CHANCE_FOR_MUTATION=0.1f;
+	static float CHANCE_FOR_MUTATION = 0.1f;
 	/**
 	 * Warscheinlichkeit das ein Crossover durchgeführt wird
 	 */
 	static float CHANCE_FOR_CROSSOVER = 0.6f;
-	
-	
+
 	/**
 	 * Größe der Startpopulation
 	 */
-	static int POPULATIONSIZE =500;
+	static final int POPULATIONSIZE = 500;
 	/**
 	 * Anzahl ab der ein komplett neuer Durchlauf gestartet wird, da sich der
 	 * aktuelle Durchlauf festgefahren hat
 	 */
-	static int MAXIMAL_GENERATION = 50;
-	
+	static final int MAXIMAL_GENERATION = 50;
+
 	/**
 	 * Warscheinlichkeit das ein zufällig erstelltes Surface ein Floor ist n/100
 	 */
-	static float CHANCE_TO_BE_FLOOR = 0.6f;
-	
+	static final float CHANCE_TO_BE_FLOOR = 0.6f;
+
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, wenn eine Wand oder Wandkette mit
 	 * der Ausenwand verbunden ist
 	 */
-	static int WALL_IS_CONNECTED = 2;
+	static final int WALL_IS_CONNECTED = 2;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, für jeden erreichbaren Floor im
 	 * level
-	 * 	 */	
+	 */
 	/**
 	 * Teilpunkte, für jeden Wall Nachbar einer Wall
 	 */
-	static float WALL_HAS_NEIGHBOR=0.1f;
-	static float WALL_NEIGHBOR_IS_FLOOR=-0.5f;
-	
-	static int FLOOR_IS_REACHABLE = 3;
+	static final float WALL_HAS_NEIGHBOR = 0.1f;
+	static final float WALL_NEIGHBOR_IS_FLOOR = -0.5f;
+
+	static final int FLOOR_IS_REACHABLE = 3;
 	/**
 	 * Faktor der auf die Fitness gerechnet wird, wenn das Ende erreichbar ist
 	 */
-	static int EXIT_IS_REACHABLE = 25;
-	
-	
-	
-	
+	static final int EXIT_IS_REACHABLE = 25;
 
-	
-	
 	/**
 	 * Minmiale breite des Levels
 	 */
-	static int MINIMAL_XSIZE = 4;
+	static final int MINIMAL_XSIZE = 4;
 	/**
 	 * Minimale tiefe des Levels
 	 */
-	static int MINIMAL_YSIZE = 4;
+	static final int MINIMAL_YSIZE = 4;
 	/**
 	 * Symbolisiert ein Floor Surface im Array
 	 */
-	static char REFERENCE_FLOOR = 'F';
+	static final char REFERENCE_FLOOR = 'F';
 	/**
 	 * Symbolisiert ein Wall Surface im Array
 	 */
-	static char REFERENCE_WALL = 'W';
+	static final char REFERENCE_WALL = 'W';
 	/**
 	 * Symbolisiert ein Exit Surface im Array
 	 */
-	static char REFEERNCE_EXIT = 'X';
+	static final char REFEERNCE_EXIT = 'X';
 	/**
 	 * Symbolisiert ein Start Surface im Array
 	 */
-	static char REFERENCE_START = 'S';
+	static final char REFERENCE_START = 'S';
 }
