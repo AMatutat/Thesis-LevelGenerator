@@ -1,25 +1,16 @@
 # Eigene Ideen, Konzepte, Methoden
 
-<!--
-*   Darstellung der eigenen Ideen und Konzepte zur Lösung der Fragestellung
-*   Vergleich mit bekannten Lösungen: Worin unterscheiden sich die eigenen Ansätze von den bekannten? Wo liegen mögliche Vor- oder Nachteile?
-*   Wie soll das Konzept umgesetzt werden? Beschreibung der zur Umsetzung eingesetzten Methoden
-
-Umfang: typisch ca. 20% ... 30% der Arbeit -> 20 Seiten
--->
-
 ## Konzept
-Die Level werden mithilfe eines Genetischen Algorithmus generiert. Level bestehen aus, vom spieler begehbare, Böden und aus unbegehbare Wänden, sowie genau einen Ein und genau einen Ausgang. Damit ein Level spielbar ist, muss der Ausgang über Böden mit den Eingang verbunden sein. 
+
+Die Level werden mithilfe eines Genetischen Algorithemn generiert. Level bestehen aus, vom spieler begehbare, Böden und aus unbegehbare Wänden, sowie genau einen Ein und genau einen Ausgang. Damit ein Level spielbar ist, muss der Ausgang über Böden mit den Eingang verbunden sein. 
 
 Das so erzeugte, kodierte Level, wird mithilfe eines Parsers in das, von den Studenten umgesetzte, PM-Dungeon integriert. Der Parser soll Monster, Items uns Spezialfelder verteilen können. Außerdem soll der Parser die Grafik des Levels generien, damit diese von den Studierenden verwendet werden kann.
 
+### Genetische Algorithmen
 
+Genetische Algorithmen (von nun an GA genannt) wurden von John Holland entwickelt. Sie gehören zur klasse der stochastischen Optimierungsverfahren ( (<https://de.wikipedia.org/wiki/Evolution%C3%A4rer_Algorithmus>)und kann mit einer gesteuerten Zufallssuche verglichen werden.
 
-### Genetische Algorithmen was ist das
-
-Genetische Algorithmen (manchmal auch Evolutionäre Algoithmen genannt) wurden von John Holland entwickelt. Sie gehören zur klasse der stochastischen Optimierungsverfahren ( (<https://de.wikipedia.org/wiki/Evolution%C3%A4rer_Algorithmus>)und kann mit einer gesteuerten Zufallssuche verglichen werden.
-
-In Genetischen Algorithmen haben wir eine Population an möglichen Lösungen zu einem Problem welche mithilfe von Rekombination und Mutation neue Kinder erzeugen, dies wiederholt sich über mehrere Generationen. Jeder Lösung wird ein Fitnesswert zugewiesen der die Warscheinlchkeit der weiterverbreitung beinflusst, angeleht an Dawins Surival of the Fittest theorie. Durch diese Verfahren erzeugen wir mit jeder Generation bessere Lösungen. 
+In GAs existiert eine Population an möglichen Lösungen zu einem Problem welche mithilfe von Rekombination und Mutation neue Kinder erzeugen, dies wiederholt sich über mehrere Generationen. Jeder Lösung wird ein Fitnesswert zugewiesen der die Warscheinlchkeit der weiterverbreitung beinflusst, angeleht an Dawins Surival of the Fittest theorie. Durch diese Verfahren erzeugen wir mit jeder Generation bessere Lösungen. 
 
 Es wird eine Startpopulation mit n vielen zufällig erzeugten kodierten Individiumen erstellt. Jedes Individium repräsentiert dabei einen kodireten Lösungstring, wobei jedes Zeichen dabei eine Problemvariable represnetiert. Genetetische Algorithmen werden in der Regel zwar Binär Kodiert, es gibt aber auch Reelwertigkodierte Genetische Algoirthmen. 
 
@@ -53,13 +44,23 @@ Genetische Algorithmen haben eine hand voll an Vorteilen im vergleich zu herköm
 
 ### Vergleich mit anderen Lösungen
 
+Das hier beschreibene Lösungskonzept benötigt keinerlei Daten vor den Benutzung, sowohl Layout als auch Inhalt der Level werden voll automatisch generiert, die Studierenden müssen jedeglich die gewünschte Level größe angeben. Durch die  Natur von GAs ist keine Generierung der Level in echtzeit möglich. das Konzept ermöglicht es, sowohl die gewünschte Anzahl an Level vor den eigentlichen Spielstart zu generieren, als auch mithilfe von Parrallerisierung, da sich GAs besonders gut dafür eigenen. 
+
 ### Wie soll das Konzept umgesetzt werden
 
-Um die Level mithilfe eines Genetischen Algorithmuses zu erzeugen, werden die oben beschriebenen Schrittes umgesetzt. Um best mögliche Ergebnisse zu erzielen werden verschiedene Fintess, Rekombinations und Mutationsverfahren implementiert. Nach der Entwicklung werden mithilfe von Testdaten die besten Verfahren und Parameter Einstellungen herausgefunden. Die vielversprechensten Ergebnisse werden mithilfe einer Umfrage bewertet.
+#### Entwicklungsumgebung
+
+Da das Modul "Programmier Methoden" die Programmiersprache Java verwendet, und daher die Studierenden ihr eigenes PM-Dungeon, welches den Level Generator verwenden wird, auch in Java implementieren werden, wird das hier Vorgestellte Konzept und die daraus folgende Implmentierung auch auf Java basieren. Es werden prinzipien der Objektorientierten Programmierung verwendet. 
+
+Um die Level mithilfe eines GAs zu erzeugen, werden die oben beschriebenen Schrittes umgesetzt. Um best mögliche Ergebnisse zu erzielen werden verschiedene Fintess, Rekombinations und Mutationsverfahren implementiert. Nach der Entwicklung werden mithilfe von Testdaten die besten Verfahren und Parameter Einstellungen herausgefunden. Die vielversprechensten Ergebnisse werden mithilfe einer Umfrage bewertet.
+
+#### Umsetzung des Genetischen Algorithmuses
 
 Die Räume werden durch ein zwei Dimensionales Char Array repräsentiert, wobei jeder Char ein Feld im Raum darstellt, die indeze repräsentieren die x bzw. y Koordinate des Feldes im Raum, der Wert des Char gibt an ob das Feld eine Wand, ein Boden, der Eingang oder der Ausgang ist. 
 
 Die Startpopulation wird erzeugt, indem jeden Feld zufällig entweder den Wert Boden oder Wand zugewiesen wird, wobei die Warscheinlichkeit Boden bzw. Wand zu werden unterschiedlich sein kann. Alle Ausenfelder werden zu Wänden, um ein Level abzugrenzen.  Es werden zufällig Start und Ende im Level platziert. 
+
+##### Fitness
 
 Um die Fitness der einzelnen Räume zu bestimmen, werden verschiedenen Faktoren berücksichtigt. 
 
@@ -67,13 +68,19 @@ Die erste implementierung der Fitnessfunktion berücksichtigt die Anzahl der err
 
 Die zweite Implementierte Fitnessfunktion erweitert die erste Fitnessfunktion indem sie für jede Wand prüft, ob diese Böden als Nachbar hat, ist dies der Fall wir die Fitness verringert. Damit sollen einzelnd abstehende Wandfelder, sowie einzelne in die Wand ragende Bodenfelder verhindern. Die Bestrafung sollte möglichst gering ausfallen, um weiterhin NIschen zu ermöglichen. Da durch die Bestrafungsmechanik eine negative Fitness möglich ist, müsste dies im Selekitonsverfahren beachtet werden. Da in dieser Implementierung die Chance auf einen negativen Wert sehr gering ist, spielt die Beachtung von Negativen Fitnesswerte keine große Rolle, deswegen wird eine minimum Fitness von 1 festgelegt. 
 
+##### Selektion
+
 Als Selektionverfahren wird die Roulett Wheel Selection implementiert. Die Roulett Wheel Selection gehört zu den Fitness Proportionate Selection. Dadurch wird gewährleistet, das besonders gute Lösungen eine sehr hohe Chance für die nächsten Generationen ausgewählt zu werden. Da, wie oben beschreiben, keine Negativen Fitnesswerte beschrieben werden müssen, und von einer großen Spannweite an Fitnesswerten auszugehen ist, ist von einer Rank Selection abzusehen. Da bei der Tournament Selction besonders schlechte Lösungen fast keine Chance haben zu überleben, und so die Gefahr steigt, in einen Lokalen Maxium stecken zu bleiben, ist auch dieses Verfahren für die Problemstellung ungeeignet. 
 
 Beim der Roulett Whell Selection werden die einzelnen Individume auf einen Tortendiagramm abgebildet, wobei die größe von der Fitness des jeweiligen Indiviums abhängig ist. Ähnlich zu einen Glückrat wird ein Fixpunkt am Diagramm platziert, das Diagramm rotiert und das Indivum gewählt auf den der Fixpunkt zeigt.
 
+##### Rekombination
+
 Als Rekombinationsverfahren wird ein One-Point-Crossover verwendet. Dabei werden die Räume in exakt der Mitte auf X-Achse geschnitten und neu zusammengesetzt. 
 
 Für die zweite Variante der Rekombination wird ein Multi-Point-Crossover verfahren verwendet. Es werden zufällig zwei schnitte auf der Y-Achse gemacht und das Mittelteil der beiden Räume ausgetauscht.   
+
+##### Mutation
 
 Als erstes Mutationsverfahren wird eine Variante des Bit-Flip Verfahren implementiert. Dabei wird jedes Feld, mit Ausnahmen der Ausenwände, mit einer Gewissen Warscheinlichkeit verändert. Wände werden  zu Böden und Böden zu Wände.
 
@@ -99,30 +106,27 @@ Als Abbruchbedingung soll ein Fitnessschwellwert verwendet werden, sollte eine L
 
 Sollte nach einer Gewissen Generationenanzahl keine verwendbare Lösung gefunden worden sein, ist davon auszugehen, das die Population sich in einen Lokalen Maximum festgesetzt hat und ein neustart wird ausgeführt. Der Generationen Grenzwert muss durch Tests bestimmt werden. 
 
-Ist das Level fertig generiert kann es mithilfe des Parsers aus seiner Kodierten Form in ein spielbares Level verwandelt werden. Dabei werden alle Felderreferenzen durch die jeweilgen Implementationen der Studenten ausgetauscht. Um Monster, Items und Spezialfelder zu verteilen wird das jeweilige Objekt zufällig, auf eine dafür vorgesehne Oberfläche platziert. Der Parser ist auch in der Lage, die grafik eines Levels zu generieren. 
-
-Den Studenten wird eine anzahl an Interfaces gegeben, welche in ihren Programmen Integriert werden müssen, damit der Parser korekt arbeiten kann. Studenten werden auch in der Lage sein den Parser nach bedarf anzupassen bzw. zu erweitern. 
+#### Erweiterung um Räume und Flure
 
 Um Level in verschiedene unteräume auzuteilen, ohne auf zufällige erzeugung, Raum ähnlicher Sturkturen zu hoffen, kann der Algorithmus erweitert werden. Hierzu werden die bisher erzeugten Level, als Raum interpretiert, zufällig im Level verteilt und mithilfe von Tunneln verbunden. Um Verbindungen zwischen den einzelnen Räume zu erzeugen, wird von jeden Raum aus, in unterschiedlicher Reihenfolge, jede Richtung nach angrenzenden Nachbar Räumen abgesucht, wird ein Raum gefunden, wird auf direkten Wege eine Verbindung hergestellt. Der so erzeugte Flur kann wiederum auch als Raum interpretiert werden und von anderen Räumen als anschlusspunkt genutzt werden. Es werden wieder zufällig Levelstart und Levelende platziert. Sollte ein Raum vom Start aus nicht erreichbar sein, weil sich in seiner Reichweite kein weiterer Raumbefindet, wird der nächste Verbunde Raum gesucht und eine Verbindung hergestellt. 
 
 In dem so erzeugten Level können auch Türen und Schlüssel verteilt werden. Türen werden in Fluren platziert, Schlüssel werden im Level so verteilt, das sie erreichbar sind ohne die Tür zu passieren. 
 
-Die Zusammensetzung der Level könnte auch mithilfe von Genetischen Algorithmen umgesetzt werden, wird in dieser Implementierung allerdings nicht gemacht. 
+Die Zusammensetzung der Level könnte auch mithilfe von GAs umgesetzt werden, wird in dieser Implementierung allerdings nicht gemacht. 
 
-Das Konzept wird in Java unter verwendung von Objekt Orientierter Programmierung umgesetzt.
+#### Integration in das PM-Dungeon
 
-Die Klasse CodedLevel represäntiert die einzelnen Indivume der Population und speichert das zwei dimensionale Char Array ab. 
+Ist das Level fertig generiert kann es mithilfe des Parsers aus seiner Kodierten Form in ein spielbares Level verwandelt werden. Dabei werden alle Felderreferenzen durch die jeweilgen Implementationen der Studenten ausgetauscht. Um Monster, Items und Spezialfelder zu verteilen wird das jeweilige Objekt zufällig, auf eine dafür vorgesehne Oberfläche platziert. Der Parser ist auch in der Lage, die grafik eines Levels zu generieren. 
 
-Die Klasse LevelGenerator implementiert den Genetischen Algorithmus. Sie enthällt die verschiedenen Implementierungen der Funktionen sowie steuert sie den ablauf der Generierung. Sie enthällt den Startpunkt welcher vom User benutzt wird um ein Level generieren zu lassen. 
+Den Studenten wird eine anzahl an Interfaces gegeben, welche in ihren Programmen Integriert werden müssen, damit der Parser korekt arbeiten kann. Studenten werden auch in der Lage sein den Parser nach bedarf anzupassen bzw. zu erweitern. 
 
-Die Klasse Constants enthällt alle wichtigen Konsanten des Programmes. 
+##### Diagramme
 
-Die Klasse LevelParser enthällt die Implementierung des Parsers. 
+- UML Klassendiagramm 
+- beschreibung der einzelnen Methoden
 
-- UML Klassendiagramm
+Die Klasse CodedLevel represäntiert die einzelnen Indivume der Population und speichert das zwei dimensionale Char Array ab. Die Klasse LevelGenerator implementiert den GA. Sie enthällt die verschiedenen Implementierungen der Funktionen sowie steuert sie den ablauf der Generierung. Sie enthällt den Startpunkt welcher vom User benutzt wird um ein Level generieren zu lassen. Die Klasse Constants enthällt alle wichtigen Konsanten des Programmes. Die Klasse LevelParser enthällt die Implementierung des Parsers. 
 
 - Sequenzdiagramm
-
-- beschreibung der einzelnen Methoden
 
   
