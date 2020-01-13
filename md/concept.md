@@ -130,12 +130,13 @@ Den Studenten wird eine anzahl an Interfaces gegeben, welche in ihren Programmen
 
 ##### Diagramme
 
-- UML Klassendiagramm 
+![UML Klassendiagramm \label{fig:UML}](figs/LG_UML.png){width=80%}
+
 - beschreibung der einzelnen Methoden
 
 Die Klasse CodedLevel represäntiert die einzelnen Indivume der Population und speichert das zwei dimensionale Char Array ab. Die Klasse LevelGenerator implementiert den GA. Sie enthällt die verschiedenen Implementierungen der Funktionen sowie steuert sie den ablauf der Generierung. Sie enthällt den Startpunkt welcher vom User benutzt wird um ein Level generieren zu lassen. Die Klasse Constants enthällt alle wichtigen Konsanten des Programmes. Die Klasse LevelParser enthällt die Implementierung des Parsers. 
 
-- Sequenzdiagramm
+
 
 
 ## Anforderungen an gutes Level Design
