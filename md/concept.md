@@ -2,6 +2,8 @@
 
 ## Konzept
 
+- Anforderungen 
+
 Die Level werden mithilfe eines Genetischen Algorithemn generiert. Level bestehen aus, vom spieler begehbare, Böden und aus unbegehbare Wänden, sowie genau einen Ein und genau einen Ausgang. Damit ein Level spielbar ist, muss der Ausgang über Böden mit den Eingang verbunden sein. 
 
 Das so erzeugte, kodierte Level, wird mithilfe eines Parsers in das, von den Studenten umgesetzte, PM-Dungeon integriert. Der Parser soll Monster, Items uns Spezialfelder verteilen können. Außerdem soll der Parser die Grafik des Levels generien, damit diese von den Studierenden verwendet werden kann.
@@ -129,4 +131,6 @@ Die Klasse CodedLevel represäntiert die einzelnen Indivume der Population und s
 
 - Sequenzdiagramm
 
-  
+
+## Anforderungen an gutes Level Design
+
