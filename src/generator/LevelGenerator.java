@@ -120,7 +120,7 @@ public class LevelGenerator {
 					fixRowMutation(lvl);
 					break;
 				case 3:
-					gameOfLifeMutation(lvl);
+					lvl=gameOfLifeMutation(lvl);
 					break;
 				default:
 					bitFlipMutation(lvl);
@@ -470,7 +470,7 @@ public class LevelGenerator {
 		}
 	}
 
-	private void gameOfLifeMutation(CodedLevel level) {
+	private CodedLevel gameOfLifeMutation(CodedLevel level) {
 		CodedLevel tempLevel = level.copyLevel();
 		for (int x = 1; x < tempLevel.getXSize() - 1; x++) {
 			for (int y = 1; y < tempLevel.getYSize() - 1; y++) {
@@ -495,7 +495,7 @@ public class LevelGenerator {
 			}
 
 		}
-		level = tempLevel.copyLevel();
+		return tempLevel;
 	}
 
 	private void removeUnreachableFloors(final CodedLevel lvl) {
@@ -518,13 +518,13 @@ public class LevelGenerator {
 		String imgName = "level";
 		int xSize = 20;
 		int ySize = 20;
-		int fitnessVersion = 2;
+		int fitnessVersion = 1;
 		int parentSelectionVersion = 1;
-		int crossoverVersion = 2;
-		int mutationVersion = 3;
+		int crossoverVersion = 1;
+		int mutationVersion = 2;
 
 		int levelsPerSetting = 5;
-		int differentSettings = 1;
+		int differentSettings = 7;
 
 		int generationOfBestLevelsSum = 0;
 		float fitnessOfBestLevelsSum = 0f;
