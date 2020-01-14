@@ -11,18 +11,19 @@ Umfang: typisch ca. 8% ... 10% der Arbeit => 8 Seiten
 
 # Einleitung
 
-Im Module Programmier Methoden im Studienfach Informatik an der Fachhochule Bielefeld, sollen Studierende ihre kenntnisse der Programmiersprache Java festingen und Methodischen vorgehen in der Programmierung kennenleren. Um die Motivation der Teilnehmer zu erhöhen und so den Lehrnerfolg zu steigern, wurde das zum Module zugehörige Praktikum umstrukturiert, die Teilnehmer ein eigenes 2D Pixel Rollsenspiel, angeleht an Spiele wie Shattered Pixel Dungeon, schrittweise konzeptionieren und umsetzten. 
+## Motivation
 
-- Kurze erklärung mit Bildern was Shattered Pixel Dungeon ist. Erläuterung des Rouge Like/Light Genres. 
+Im Module Programmiermethoden des Studiengangs Informatik, an der Fachhochschule Bielefeld, sollen die Teilnehmer ihre Kenntnisse in der Programmiersprache Java erweitern und in gängige Methoden der Softwareentwicklung eingeführt werden. Die Teilnehmer sollen ein tieferes Verständnis für die Prinzipien der Objektorientierten Programmierung erwerben und grundlegende Architekturmuster kennen lernen. Die Teilnehmer sollen Git verwenden, um Erfahrungen in der Versionsverwaltung zu erlangen. Die Teilnehmer sollen grundlegende Programmiere Konventionen kennen und beachten lernen.  [Prüfungsordnung]
 
-Da die Teilenehmer ihr enwickeltes Spiel auch spielen können sollen, werden neben der Spiellogik, spielbaren Characteren, Gegnern und Items auch Level benötigt. Es könnte zwar eine Anzahl an Level zur verfügung gestellt werden, oder von den Studierenden selbst ertellt werden, da dies aber sowohl zu einer geringen Anzahl an Level führen würde, als auch am eigentlichen Lernziel des Modules vorbei geht, soll den Studierenden ein Level Generator zur Verfügung gestellt werden. 
+Um diese Lernziele zu erreichen, findet neben der Vorlesung, welche den Lernstoff theoretisch bearbeitet, auch ein Praktikum statt, in dem die Teilnehmer regelmäßig vorgegebene Aufgaben in kleinen Gruppen bearbeiten müssen um dann ihre Lösungen vorzustellen. Die Teilnahme an den Praktikum ist für den Abschluss des Studienganges verpflichtend. [Prüfungsordnung]
 
-In dieser Arbeit werden gängige verfahren zur voll- und halbautomatischen Level generierung vorgesellt und miteinander verglichen. Es wird ein Konzept erarbeitet um einen eigenen Level Generator basierend auf Genetischen Algorithmen zu erstellen, dieses Konzept wird dann auch umgesetzt. 
+Für das Somersemster 2020 wurde ein neues Praktikums Konzept entwickelt. Die sonst oft unabhängig voneinander gestellten Aufgaben wurden in ein größeres Gesamtprojekt eingearbeitet. Die Teilnehmer werden im laufe des Semester  eine eigenes 2D Rouge Like Computerrollenspiel, angelehnt an das bereits existierende Shattered Pixel Dungeon, in der Programmiersprache Java entwickeln. Die Teilnehmer werden jede Woche ihr neu erlangtes Wissen nutzen, um das Spiel Stück für Stück aufzubauen und zu erweitern. Durch diese Umstrukturierung soll ein tieferes Verständnis für zusammenhänge einzelner Konzepte vermittelt werden. Ebenso soll die Motivation eigenständig an den Projekt weiterzuarbeiten der Teilnehmer dadurch gestiegen werden, das Erfolgserlebnisse nicht nur theoretisch Einfluss nehmen, sondern sich auch praktisch im Spiel aufzeigen. [MA Arbeit]
 
-Mit den Level Generator sollen die Teilnehmer in der Lage sein, beliebig viele unterschiedliche Level in ihr Programm zu laden, ohne eigene Kenntnisse in den Thematik Leveldesign oder automatischen Geneierung von Leveln zu benötigen. Dennoch soll es für besonders motivierte Teilnehmer die möglichkeit geben, selbst eingriffe in den Code zu tätigen, um den Generator nach ihren wünschen anzupassen. 
+ 
+
+## Ziel und Struktur der Arbeit
 
 
 
-Der Level Generator soll zum Lernerfolg der Studierenden beitragen. 
+## Shattered Pixel Dungeon
 
-- Aufbau der Arbeit, wann kommt was. 
