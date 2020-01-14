@@ -33,7 +33,7 @@ public class LevelGenerator {
 		// Durchlauf
 		for (int generation = 0; generation < Constants.MAXIMAL_GENERATION; generation++) {
 
-			// Start und Exit platzieren, Fitness pr�fen
+			// Start und Exit platzieren, Fitness pruefen
 			for (CodedLevel lvl : startPopulation) {
 				placeStartAndEnd(lvl);
 
@@ -63,7 +63,7 @@ public class LevelGenerator {
 			CodedLevel[] newPopulation = new CodedLevel[Constants.POPULATIONSIZE];
 			for (int i = 0; i < startPopulation.length; i += 2) {
 
-				// Elternpaar Ausw�hlen
+				// Elternpaar Auswaehlen
 				CodedLevel parentA;
 				CodedLevel parentB;
 
@@ -128,7 +128,7 @@ public class LevelGenerator {
 				}
 			}
 
-			// Neue Population ist die Startpopulation f�r die n�chste Generation
+			// Neue Population ist die Startpopulation fuer die naehste Generation
 			startPopulation = newPopulation;
 
 			
@@ -257,7 +257,7 @@ public class LevelGenerator {
 		if (x == level.getXSize() - 1 || x == 0 || y == level.getYSize() - 1 || y == 0)
 			return true;
 
-		// Hinzuf�gen der Wall um loops zu verhindern.
+		// Hinzufuegen der Wall um loops zu verhindern.
 		level.getCheckedWalls().add(x + "" + y);
 		boolean connected = false;
 		// Rekursiver aufurf mit allen Nachbarn
@@ -428,23 +428,23 @@ public class LevelGenerator {
 				for (int x = 2; x < lvl.getXSize() - 2; x++) {
 					if (lvl.getLevel()[x][y] == Constants.REFERENCE_WALL) {
 						lvl.resetWallList();
-						int v = x;
+						int actX = x;
 						boolean first = true;
 
-						while (!isConnected(lvl, v, y)) {
+						while (!isConnected(lvl, actX, y)) {
 
 							// Nach rechts schieben
-							if (v >= lvl.getXSize() / 2) {
+							if (actX >= lvl.getXSize() / 2) {
 								// Vertauschen
 
-								char c = lvl.getLevel()[v + 1][y];
-								lvl.changeField(v + 1, y, Constants.REFERENCE_WALL);
-								lvl.changeField(v, y, c);
+								char c = lvl.getLevel()[actX + 1][y];
+								lvl.changeField(actX + 1, y, Constants.REFERENCE_WALL);
+								lvl.changeField(actX, y, c);
 
-								v++;
+								actX++;
 
 								// Wenn ein Surface nach rechts geschoben wird, muss die alte Position erneut
-								// überprüft werden
+								// ueberprueft werden
 								// da evtl. dort wieder eine Wand steht.
 								if (first) {
 									first = false;
@@ -454,11 +454,11 @@ public class LevelGenerator {
 							// Nach links schieben
 							else {
 								// vertauschen
-								char c = lvl.getLevel()[v - 1][y];
-								lvl.changeField(v - 1, y, Constants.REFERENCE_WALL);
-								lvl.changeField(v, y, c);
-								// Beim nächsten Run selbes Surface an neuer Position überprüfen
-								v--;
+								char c = lvl.getLevel()[actX - 1][y];
+								lvl.changeField(actX - 1, y, Constants.REFERENCE_WALL);
+								lvl.changeField(actX, y, c);
+								// Beim naechsten Run selbes Surface an neuer Position ueberpruefen
+								actX--;
 
 							}
 
