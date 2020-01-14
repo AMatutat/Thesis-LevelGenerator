@@ -114,14 +114,6 @@ Als Abbruchbedingung soll ein Fitnessschwellwert verwendet werden, sollte eine L
 
 Sollte nach einer Gewissen Generationenanzahl keine verwendbare Lösung gefunden worden sein, ist davon auszugehen, das die Population sich in einen Lokalen Maximum festgesetzt hat und ein neustart wird ausgeführt. Der Generationen Grenzwert muss durch Tests bestimmt werden. 
 
-#### Erweiterung um Räume und Flure
-
-Um Level in verschiedene unteräume auzuteilen, ohne auf zufällige erzeugung, Raum ähnlicher Sturkturen zu hoffen, kann der Algorithmus erweitert werden. Hierzu werden die bisher erzeugten Level, als Raum interpretiert, zufällig im Level verteilt und mithilfe von Tunneln verbunden. Um Verbindungen zwischen den einzelnen Räume zu erzeugen, wird von jeden Raum aus, in unterschiedlicher Reihenfolge, jede Richtung nach angrenzenden Nachbar Räumen abgesucht, wird ein Raum gefunden, wird auf direkten Wege eine Verbindung hergestellt. Der so erzeugte Flur kann wiederum auch als Raum interpretiert werden und von anderen Räumen als anschlusspunkt genutzt werden. Es werden wieder zufällig Levelstart und Levelende platziert. Sollte ein Raum vom Start aus nicht erreichbar sein, weil sich in seiner Reichweite kein weiterer Raumbefindet, wird der nächste Verbunde Raum gesucht und eine Verbindung hergestellt. 
-
-In dem so erzeugten Level können auch Türen und Schlüssel verteilt werden. Türen werden in Fluren platziert, Schlüssel werden im Level so verteilt, das sie erreichbar sind ohne die Tür zu passieren. 
-
-Die Zusammensetzung der Level könnte auch mithilfe von GAs umgesetzt werden, wird in dieser Implementierung allerdings nicht gemacht. 
-
 #### Integration in das PM-Dungeon
 
 Ist das Level fertig generiert kann es mithilfe des Parsers aus seiner Kodierten Form in ein spielbares Level verwandelt werden. Dabei werden alle Felderreferenzen durch die jeweilgen Implementationen der Studenten ausgetauscht. Um Monster, Items und Spezialfelder zu verteilen wird das jeweilige Objekt zufällig, auf eine dafür vorgesehne Oberfläche platziert. Der Parser ist auch in der Lage, die grafik eines Levels zu generieren. 
