@@ -14,8 +14,17 @@ Umfang: typisch ca. 30% ... 40% der Arbeit =30 Seiten
 ### generateLevel
 
 ```java
-	public CodedLevel generateLevel(final int xSize, final int ySize,)
-	CodedLevel bestLevel = null;
+public CodedLevel generateLevel(final int xSize, final int ySize, final int fitnessVersion,
+			final int parentSlectionVersion, final int crossoverVersion, final int mutationVersion)
+			throws IllegalArgumentException {
+		if (xSize < Constants.MINIMAL_XSIZE || ySize < Constants.MINIMAL_YSIZE)
+			throw new IllegalArgumentException(
+					"Size must be at least " + Constants.MINIMAL_XSIZE + "x" + Constants.MINIMAL_YSIZE);
+	
+
+		this.generationLog = 0;
+		CodedLevel bestLevel = null;
+
 		// Startgeneration erzeugen
 		CodedLevel[] startPopulation = new CodedLevel[Constants.POPULATIONSIZE];
 		for (int i = 0; i < Constants.POPULATIONSIZE; i++)
@@ -23,38 +32,78 @@ Umfang: typisch ca. 30% ... 40% der Arbeit =30 Seiten
 
 		// Durchlauf
 		for (int generation = 0; generation < Constants.MAXIMAL_GENERATION; generation++) {
-			// Start und Exit platzieren, Fitness prï¿½fen
+
+			// Start und Exit platzieren, Fitness pruefen
 			for (CodedLevel lvl : startPopulation) {
 				placeStartAndEnd(lvl);
-				float fitness = fitness(lvl);						
+
+				float fitness;
+				switch (fitnessVersion) {
+				case 1:
+					fitness = fitness1(lvl);
+					break;
+				case 2: 
+					fitness = fitness2(lvl);
+				default:
+					fitness = fitness1(lvl);
 				}
-            
+
 				lvl.setFitness(fitness);
 				lvl.resetList();
-            
+
 				if ((bestLevel == null || bestLevel.getFitness() < fitness)
-						&& isReachable(lvl, lvl.getExit()[0], lvl.getExit()[1])) {
-					bestLevel = lvl.copyLevel();	
+						&& isReachable(lvl, lvl.getExit().x, lvl.getExit().y)) {
+					bestLevel = lvl.copyLevel();
+					generationLog = generation + 1;
 				}
-        }
+
+			}
 
 			// Kombinieren
 			CodedLevel[] newPopulation = new CodedLevel[Constants.POPULATIONSIZE];
 			for (int i = 0; i < startPopulation.length; i += 2) {
 
-				// Elternpaar Auswï¿½hlen
+				// Elternpaar Auswaehlen
 				CodedLevel parentA;
-				CodedLevel parentB;			
+				CodedLevel parentB;
+
+				switch (parentSlectionVersion) {
+				case 1:
 					parentA = roulettWheelSelection(startPopulation);
-				do {				
-					parentB = roulettWheelSelection(startPopulation);				
+					break;
+				default:
+					parentA = roulettWheelSelection(startPopulation);
+				}
+
+				do {
+					switch (parentSlectionVersion) {
+					case 1:
+						parentB = roulettWheelSelection(startPopulation);
+						break;
+					default:
+						parentB = roulettWheelSelection(startPopulation);
+					}
 				} while (parentA == parentB);
 
 				if (Math.random() <= Constants.CHANCE_FOR_CROSSOVER) {
-					CodedLevel combined[];					
-						combined = crossover(parentA, parentB);
+					CodedLevel combined[];
+					switch (crossoverVersion) {
+					case 1:
+						combined = onePointCrossover(parentA, parentB);
 						newPopulation[i] = combined[0];
-						newPopulation[i + 1] = combined[1];	
+						newPopulation[i + 1] = combined[1];
+						break;
+					case 2:
+						combined = multipointCrossover(parentA, parentB);
+						newPopulation[i] = combined[0];
+						newPopulation[i + 1] = combined[1];
+						break;
+					default:
+						combined = onePointCrossover(parentA, parentB);
+						newPopulation[i] = combined[0];
+						newPopulation[i + 1] = combined[1];
+					}
+
 				} else {
 					newPopulation[i] = parentA;
 					newPopulation[i + 1] = parentB;
@@ -63,18 +112,37 @@ Umfang: typisch ca. 30% ... 40% der Arbeit =30 Seiten
 
 			// Mutieren
 			for (CodedLevel lvl : newPopulation) {
-				mutation(lvl);
+				switch (mutationVersion) {
+				case 1:
+					bitFlipMutation(lvl);
+					break;
+				case 2:
+					fixRowMutation(lvl);
+					break;
+				case 3:
+					gameOfLifeMutation(lvl);
+					break;
+				default:
+					bitFlipMutation(lvl);
+					break;
+				}
 			}
 
-			// Neue Population ist die Startpopulation für die nächste Generation
+			// Neue Population ist die Startpopulation fuer die naehste Generation
 			startPopulation = newPopulation;
 
-			for (CodedLevel lvl : newPopulation)
+			
+			
+			for (CodedLevel lvl : newPopulation) 
 				if ((bestLevel == null || bestLevel.getFitness() < lvl.getFitness())
-						&& isReachable(lvl, lvl.getExit()[0], lvl.getExit()[1])) {
-					bestLevel = lvl.copyLevel();				
+						&& isReachable(lvl, lvl.getExit().x, lvl.getExit().y)) {
+					bestLevel = lvl.copyLevel();
+					this.generationLog = generation + 1;
 				}
-}
+			
+				
+
+		}
 		removeUnreachableFloors(bestLevel);
 		return bestLevel;
 	}
@@ -83,18 +151,21 @@ Umfang: typisch ca. 30% ... 40% der Arbeit =30 Seiten
 ### GenerateRandomLevel
 
 ```java
-private CodedLevel generateRandomLevel(final int xSize, final int ySize) {
-		char[][] level = new char[xSize][ySize];
+char[][] level = new char[xSize][ySize];
 		for (int y = 0; y < ySize; y++) {
 			for (int x = 0; x < xSize; x++) {
+
 				if (x == 0 || y == 0 || y == ySize - 1 || x == xSize - 1)
 					level[x][y] = Constants.REFERENCE_WALL;
+
 				else if (Math.random() <= Constants.CHANCE_TO_BE_FLOOR)
 					level[x][y] = Constants.REFERENCE_FLOOR;
-                    else
+				else
 					level[x][y] = Constants.REFERENCE_WALL;
+
 			}
 		}
+
 		return new CodedLevel(level, xSize, ySize);
 	}
 ```
@@ -102,8 +173,8 @@ private CodedLevel generateRandomLevel(final int xSize, final int ySize) {
 ### Place Start and End
 
 ```java
-private void placeStartAndEnd(final CodedLevel lvl) {
-		boolean change = false;
+boolean change = false;
+
 		if (!lvl.hasStart()) {
 			do {
 				// xSize druch 3 damit der Eingang im linken drittel spawnt
@@ -119,7 +190,7 @@ private void placeStartAndEnd(final CodedLevel lvl) {
 		if (!lvl.hasExit()) {
 			do {
 				// Exit soll im rechten drittel Spawnen
-				int x = (int) (Math.random() * lvl.getXSize() / 3) + 2 * (int)(lvl.getXSize()/3);
+				int x = (int) (Math.random() * lvl.getXSize() / 3) + 2 * (int) (lvl.getXSize() / 3);
 				int y = (int) (Math.random() * lvl.getYSize());
 				if (y != 0 && y != lvl.getYSize() - 1 && x != 0 && x != lvl.getXSize() - 1) {
 					lvl.changeField(x, y, Constants.REFEERNCE_EXIT);
@@ -149,10 +220,12 @@ private void placeStartAndEnd(final CodedLevel lvl) {
 					if (isReachable(level, x, y))
 						fitness += Constants.EXIT_IS_REACHABLE;
 
-				} else if (level.getLevel()[x][y] == Constants.REFERENCE_FLOOR && 	 	      isReachable(level, x, y)) 
+				} else if (level.getLevel()[x][y] == Constants.REFERENCE_FLOOR && isReachable(level, x, y))
 					fitness += Constants.FLOOR_IS_REACHABLE;
 			}
+
 		}
+
 		return fitness;
 	}
 ```
@@ -160,7 +233,8 @@ private void placeStartAndEnd(final CodedLevel lvl) {
 ### fitness2
 
 ```java
-private float fitness2(final CodedLevel lvl) {
+
+	private float fitness2(final CodedLevel lvl) {
 		float fitness = 0;
 		lvl.resetList();
 		for (int x = 1; x < lvl.getXSize() - 1; x++) {
@@ -194,7 +268,7 @@ private float fitness2(final CodedLevel lvl) {
 ### is Connected 
 
 ```java
-private boolean isConnected(final CodedLevel level, final int x, final int y) {
+	private boolean isConnected(final CodedLevel level, final int x, final int y) {
 
 		if (level.getLevel()[x][y] != Constants.REFERENCE_WALL)
 			throw new IllegalArgumentException("Surface must be a wall");
@@ -202,7 +276,7 @@ private boolean isConnected(final CodedLevel level, final int x, final int y) {
 		if (x == level.getXSize() - 1 || x == 0 || y == level.getYSize() - 1 || y == 0)
 			return true;
 
-		// Hinzufï¿½gen der Wall um loops zu verhindern.
+		// Hinzufuegen der Wall um loops zu verhindern.
 		level.getCheckedWalls().add(x + "" + y);
 		boolean connected = false;
 		// Rekursiver aufurf mit allen Nachbarn
@@ -230,23 +304,26 @@ private boolean isConnected(final CodedLevel level, final int x, final int y) {
 ### is reachable
 
 ```java
-private boolean isReachable(final CodedLevel level, final int x, final int y) {
+
+	private boolean isReachable(final CodedLevel level, final int x, final int y) {
 		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT
 				&& level.getLevel()[x][y] != Constants.REFERENCE_START)
 			throw new IllegalArgumentException("Surface must be a floor. Is " + level.getLevel()[x][y]);
 
 		if (level.getReachableFloors().size() <= 0)
-			createReachableList(level, level.getStart()[0], level.getStart()[1]);
+			createReachableList(level, level.getStart().x,level.getStart().y);
 
 		return level.getReachableFloors().contains(x + "_" + y);
 
 	}
+
 ```
 
 ### createRechableList
 
 ```java
-	if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT
+private void createReachableList(final CodedLevel level, final int x, final int y) {
+		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT
 				&& level.getLevel()[x][y] != Constants.REFERENCE_START)
 			throw new IllegalArgumentException("Surface must be a floor Is " + level.getLevel()[x][y]);
 
@@ -276,13 +353,13 @@ private boolean isReachable(final CodedLevel level, final int x, final int y) {
 				&& !level.getReachableFloors().contains(x + "_" + (y + 1)))
 			createReachableList(level, x, y + 1);
 	}
-
 ```
 
 ### roulettWheelSelection
 
 ```java
-private CodedLevel roulettWheelSelection(final CodedLevel[] population) {
+
+	private CodedLevel roulettWheelSelection(final CodedLevel[] population) {
 		int fitSum = 0;
 		for (CodedLevel lvl : population) {
 			fitSum += lvl.getFitness();
@@ -378,7 +455,6 @@ private CodedLevel[] multipointCrossover(final CodedLevel lvl1, final CodedLevel
 ### Bit Flip Mutation
 
 ```
-
 private void bitFlipMutation(final CodedLevel lvl) {
 		for (int y = 1; y < lvl.getYSize() - 1; y++) {
 			for (int x = 1; x < lvl.getXSize() - 1; x++) {
@@ -402,23 +478,23 @@ private void fixRowMutation(final CodedLevel lvl) {
 				for (int x = 2; x < lvl.getXSize() - 2; x++) {
 					if (lvl.getLevel()[x][y] == Constants.REFERENCE_WALL) {
 						lvl.resetWallList();
-						int v = x;
+						int actX = x;
 						boolean first = true;
 
-						while (!isConnected(lvl, v, y)) {
+						while (!isConnected(lvl, actX, y)) {
 
 							// Nach rechts schieben
-							if (v >= lvl.getXSize() / 2) {
+							if (actX >= lvl.getXSize() / 2) {
 								// Vertauschen
 
-								char c = lvl.getLevel()[v + 1][y];
-								lvl.changeField(v + 1, y, Constants.REFERENCE_WALL);
-								lvl.changeField(v, y, c);
+								char c = lvl.getLevel()[actX + 1][y];
+								lvl.changeField(actX + 1, y, Constants.REFERENCE_WALL);
+								lvl.changeField(actX, y, c);
 
-								v++;
+								actX++;
 
 								// Wenn ein Surface nach rechts geschoben wird, muss die alte Position erneut
-								// Ã¼berprÃ¼ft werden
+								// ueberprueft werden
 								// da evtl. dort wieder eine Wand steht.
 								if (first) {
 									first = false;
@@ -428,15 +504,18 @@ private void fixRowMutation(final CodedLevel lvl) {
 							// Nach links schieben
 							else {
 								// vertauschen
-								char c = lvl.getLevel()[v - 1][y];
-								lvl.changeField(v - 1, y, Constants.REFERENCE_WALL);
-								lvl.changeField(v, y, c);
-								// Beim nÃ¤chsten Run selbes Surface an neuer Position Ã¼berprÃ¼fen
-								v--;
+								char c = lvl.getLevel()[actX - 1][y];
+								lvl.changeField(actX - 1, y, Constants.REFERENCE_WALL);
+								lvl.changeField(actX, y, c);
+								// Beim naechsten Run selbes Surface an neuer Position ueberpruefen
+								actX--;
+
 							}
+
 						}
 					}
 				}
+
 			}
 		}
 	}
