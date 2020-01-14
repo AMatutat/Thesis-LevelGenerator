@@ -1,6 +1,5 @@
 package generator;
 
-import myGame.Level;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,34 +10,17 @@ import jxl.Workbook;
 import jxl.write.*;
 import jxl.write.Number;
 
-/**
- * Erstellt mithilfe eines Genetischen Algorithmuses ein kodiertes Level
- * 
- * @author Andr� Matutat
- *
- */
 public class LevelGenerator {
 
-	/**
-	 * Zum loggen der Generation des besten levels
-	 */
 	public int generationLog = 0;
 
-	/**
-	 * Generiert ein kodiertes Level
-	 * 
-	 * @param xSize Breite des Levels
-	 * @param ySize H�he des Levels
-	 * @return kodiertes Level
-	 */
 	public CodedLevel generateLevel(final int xSize, final int ySize, final int fitnessVersion,
 			final int parentSlectionVersion, final int crossoverVersion, final int mutationVersion)
 			throws IllegalArgumentException {
 		if (xSize < Constants.MINIMAL_XSIZE || ySize < Constants.MINIMAL_YSIZE)
 			throw new IllegalArgumentException(
 					"Size must be at least " + Constants.MINIMAL_XSIZE + "x" + Constants.MINIMAL_YSIZE);
-		if (Constants.POPULATIONSIZE % 2 != 0)
-			throw new IllegalArgumentException("Population must be even");
+	
 
 		this.generationLog = 0;
 		CodedLevel bestLevel = null;
@@ -60,6 +42,8 @@ public class LevelGenerator {
 				case 1:
 					fitness = fitness1(lvl);
 					break;
+				case 2: 
+					fitness = fitness2(lvl);
 				default:
 					fitness = fitness1(lvl);
 				}
@@ -68,7 +52,7 @@ public class LevelGenerator {
 				lvl.resetList();
 
 				if ((bestLevel == null || bestLevel.getFitness() < fitness)
-						&& isReachable(lvl, lvl.getExit()[0], lvl.getExit()[1])) {
+						&& isReachable(lvl, lvl.getExit().x, lvl.getExit().y)) {
 					bestLevel = lvl.copyLevel();
 					generationLog = generation + 1;
 				}
@@ -147,25 +131,22 @@ public class LevelGenerator {
 			// Neue Population ist die Startpopulation f�r die n�chste Generation
 			startPopulation = newPopulation;
 
-			for (CodedLevel lvl : newPopulation)
+			
+			
+			for (CodedLevel lvl : newPopulation) 
 				if ((bestLevel == null || bestLevel.getFitness() < lvl.getFitness())
-						&& isReachable(lvl, lvl.getExit()[0], lvl.getExit()[1])) {
+						&& isReachable(lvl, lvl.getExit().x, lvl.getExit().y)) {
 					bestLevel = lvl.copyLevel();
 					this.generationLog = generation + 1;
 				}
+			
+				
 
 		}
 		removeUnreachableFloors(bestLevel);
 		return bestLevel;
 	}
 
-	/**
-	 * Erstellt ein zuf�lliges CodedLevel
-	 * 
-	 * @param xSize Breite des Levels
-	 * @param ySize H�he des Levels
-	 * @return generiertes Level
-	 */
 	private CodedLevel generateRandomLevel(final int xSize, final int ySize) {
 		char[][] level = new char[xSize][ySize];
 		for (int y = 0; y < ySize; y++) {
@@ -185,12 +166,6 @@ public class LevelGenerator {
 		return new CodedLevel(level, xSize, ySize);
 	}
 
-	/**
-	 * Platziert Referenzen f�r Eingang und Ausgang des Levels auf ein zuf�llgen
-	 * Floor
-	 * 
-	 * @param lvl Level in dem Eingang und Ausgang platziert werden soll
-	 */
 	private void placeStartAndEnd(final CodedLevel lvl) {
 		boolean change = false;
 
@@ -219,12 +194,6 @@ public class LevelGenerator {
 		}
 	}
 
-	/**
-	 * Berechnet die Fitness eines Levels
-	 * 
-	 * @param level dessen Fitness berechnet werden soll
-	 * @return Fitness des Levels guteFitness>schlechteFitness
-	 */
 	private float fitness1(final CodedLevel level) {
 		float fitness = 0f;
 		level.resetList();
@@ -280,14 +249,6 @@ public class LevelGenerator {
 		return fitness;
 	}
 
-	/**
-	 * Pr�ft ob eine Wand mit der Aussenwand verbunden ist.
-	 * 
-	 * @param level
-	 * @param x     X Index der Wand
-	 * @param y     Y Index der Wand
-	 * @return
-	 */
 	private boolean isConnected(final CodedLevel level, final int x, final int y) {
 
 		if (level.getLevel()[x][y] != Constants.REFERENCE_WALL)
@@ -320,21 +281,13 @@ public class LevelGenerator {
 		return connected;
 	}
 
-	/**
-	 * Pr�ft ob ein Floor Surface vom Start aus erreichbar ist
-	 * 
-	 * @param level
-	 * @param x     X Index des Floors
-	 * @param y     Y Index des Floors
-	 * @return
-	 */
 	private boolean isReachable(final CodedLevel level, final int x, final int y) {
 		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT
 				&& level.getLevel()[x][y] != Constants.REFERENCE_START)
 			throw new IllegalArgumentException("Surface must be a floor. Is " + level.getLevel()[x][y]);
 
 		if (level.getReachableFloors().size() <= 0)
-			createReachableList(level, level.getStart()[0], level.getStart()[1]);
+			createReachableList(level, level.getStart().x,level.getStart().y);
 
 		return level.getReachableFloors().contains(x + "_" + y);
 
@@ -372,12 +325,6 @@ public class LevelGenerator {
 			createReachableList(level, x, y + 1);
 	}
 
-	/**
-	 * W�hlt ein Elternteil aus Roulett Wheel Selection
-	 * 
-	 * @param population aus der gew�hlt werden soll
-	 * @return Index des Elternteils
-	 */
 	private CodedLevel roulettWheelSelection(final CodedLevel[] population) {
 		int fitSum = 0;
 		for (CodedLevel lvl : population) {
@@ -396,13 +343,6 @@ public class LevelGenerator {
 		return null;
 	}
 
-	/**
-	 * Kombiniert zwei Level
-	 * 
-	 * @param lvl1 Erstes Level
-	 * @param lvl2 Zweites Level
-	 * @return Kombiniertes Level
-	 */
 	private CodedLevel[] onePointCrossover(final CodedLevel lvl1, final CodedLevel lvl2) {
 
 		CodedLevel newLevelA = new CodedLevel(new char[lvl1.getXSize()][lvl1.getYSize()], lvl1.getXSize(),
@@ -469,12 +409,6 @@ public class LevelGenerator {
 		return c;
 	}
 
-	/**
-	 * Mutiert, mit einer gewissen Warscheinlichkeit, jedes Feld des Levels
-	 * 
-	 * @param lvl Level welches mutiert werden soll
-	 * 
-	 */
 	private void bitFlipMutation(final CodedLevel lvl) {
 		for (int y = 1; y < lvl.getYSize() - 1; y++) {
 			for (int x = 1; x < lvl.getXSize() - 1; x++) {
@@ -564,24 +498,6 @@ public class LevelGenerator {
 		level = tempLevel.copyLevel();
 	}
 
-	/**
-	 * Bubblesort nach Fitness
-	 * 
-	 * @param population
-	 */
-	private void sortByFitness(CodedLevel[] population) {
-		CodedLevel temp;
-		for (int i = 1; i < population.length; i++) {
-			for (int j = 0; j < population.length - i; j++) {
-				if (population[j].getFitness() > population[j + 1].getFitness()) {
-					temp = population[j];
-					population[j] = population[j + 1];
-					population[j + 1] = temp;
-				}
-			}
-		}
-	}
-
 	private void removeUnreachableFloors(final CodedLevel lvl) {
 		lvl.resetList();
 		for (int x = 0; x < lvl.getXSize(); x++) {
@@ -596,19 +512,19 @@ public class LevelGenerator {
 
 	public static void main(String[] args) throws InterruptedException {
 
-		boolean logResults = true;
-		boolean generateTexture = false;
+		boolean logResults = false;
+		boolean generateTexture = true;
 		String startmsg = "AllSettings";
 		String imgName = "level";
 		int xSize = 20;
 		int ySize = 20;
-		int fitnessVersion = 1;
+		int fitnessVersion = 2;
 		int parentSelectionVersion = 1;
-		int crossoverVersion = 1;
-		int mutationVersion = 2;
+		int crossoverVersion = 2;
+		int mutationVersion = 3;
 
 		int levelsPerSetting = 5;
-		int differentSettings = 7;
+		int differentSettings = 1;
 
 		int generationOfBestLevelsSum = 0;
 		float fitnessOfBestLevelsSum = 0f;

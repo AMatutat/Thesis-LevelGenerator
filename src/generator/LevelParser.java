@@ -33,7 +33,6 @@ public class LevelParser {
 	}
 
 	public void placeMonster(final Level lvl, final Monster monster, final ISurface surfaceToPutOn) throws Exception {
-
 		ArrayList<ISurface> checkedSurfaces = new ArrayList<ISurface>();
 		while (checkedSurfaces.size() < lvl.getXSize() * lvl.getYSize()) {
 			int x = (int) Math.random() * lvl.getXSize();

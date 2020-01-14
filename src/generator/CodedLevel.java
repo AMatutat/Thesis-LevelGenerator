@@ -14,10 +14,8 @@ public class CodedLevel {
 	private float fitness;
 	private final int xSize;
 	private final int ySize;
-	private boolean hasStart = false;
-	private boolean hasExit = false;
-	private int[] exit = new int[2];
-	private int[] start = new int[2];
+	private Point exit = null;
+	private Point start = null;
 
 	private ArrayList<String> checkedWalls = new ArrayList<String>();
 	private ArrayList<String> reachableFloors = new ArrayList<String>();
@@ -74,11 +72,15 @@ public class CodedLevel {
 	}
 
 	public boolean hasStart() {
-		return this.hasStart;
+		if (this.start != null)
+			return true;
+		return false;
 	}
 
 	public boolean hasExit() {
-		return this.hasExit;
+		if (this.exit != null)
+			return true;
+		return false;
 	}
 
 	public int getXSize() {
@@ -89,14 +91,14 @@ public class CodedLevel {
 		return this.ySize;
 	}
 
-	public int[] getExit() {
-		if (hasExit)
+	public Point getExit() {
+		if (hasExit())
 			return this.exit;
 		return null;
 	}
 
-	public int[] getStart() {
-		if (hasStart)
+	public Point getStart() {
+		if (hasStart())
 			return this.start;
 		return null;
 	}
@@ -113,26 +115,22 @@ public class CodedLevel {
 	 */
 	public void changeField(int x, int y, char s) {
 		if (this.level[x][y] == Constants.REFEERNCE_EXIT)
-			this.hasExit = false;
+			this.exit = null;
 
 		else if (this.level[x][y] == Constants.REFERENCE_START)
-			this.hasStart = false;
+			this.start = null;
 
 		if (s == Constants.REFEERNCE_EXIT) {
-			if (this.hasExit)
+			if (this.hasExit())
 				s = Constants.REFERENCE_FLOOR;
 			else {
-				this.hasExit = true;
-				this.exit[0] = x;
-				this.exit[1] = y;
+				this.exit=new Point(x,y);
 			}
 		} else if (s == Constants.REFERENCE_START) {
-			if (this.hasStart)
+			if (this.hasStart())
 				s = Constants.REFERENCE_FLOOR;
 			else {
-				this.hasStart = true;
-				this.start[0] = x;
-				this.start[1] = y;
+				this.start=new Point(x,y);
 			}
 		}
 		this.level[x][y] = s;

@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 
 public class JoinImage {
 
-	public static BufferedImage joinBufferedImageSide(BufferedImage img1, BufferedImage img2) {
+	public static BufferedImage joinBufferedImageSide(final BufferedImage img1, final BufferedImage img2) {
 		int wid = img1.getWidth() + img2.getWidth();
 		int height = Math.max(img1.getHeight(), img2.getHeight());
 		BufferedImage newImage = new BufferedImage(wid, height, BufferedImage.TYPE_INT_ARGB);
@@ -21,7 +21,7 @@ public class JoinImage {
 		return newImage;
 	}
 
-	public static BufferedImage joinBufferedImageDown(BufferedImage img1, BufferedImage img2) {
+	public static BufferedImage joinBufferedImageDown(final BufferedImage img1, final BufferedImage img2) {
 		{
 			int wid = Math.max(img1.getWidth(), img2.getWidth());
 			int height = img1.getHeight() + img2.getHeight();

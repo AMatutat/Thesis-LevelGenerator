@@ -76,4 +76,11 @@ public class Constants {
 	 * Symbolisiert ein Start Surface im Array
 	 */
 	static final char REFERENCE_START = 'S';
+	
+	static final char REFERENCE_EMPTY = ' ';
+	
+	static final char REFERENCE_NORTH = 'N';
+	static final char REFERENCE_SOUTH = 'S';
+	static final char REFERENCE_EAST = 'E';
+	static final char REFERENCE_WEST = 'W';
 }
