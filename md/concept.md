@@ -87,12 +87,29 @@ Zur Levelgenerierung bieten sich fast alle bekannten Mutationsverfahren an. In d
 
 Die GA wird dann beendet, wenn ein lösbares Level den Fitnessschwellwert überschreitet. Der Fitnessschwellwert ergibt sich aus der maximal Erreichbaren Fitness. Da die maximal erreichbare Fitness aufgrund von Zufallsfaktoren nicht exakt bestimmt werden kann, wird sich ihr angenähert:
 
-$$ AnzahlBoeden \approx \text{ CHANCE_TO_BE_FLOOR } * \Sum{  }{  }{  }Felder \linebreak
+```latex
+AnzahlBoeden \approx \text{ CHANCE_TO_BE_FLOOR } * \Sum{  }{  }{  }Felder \linebreak
 AnzahlWaende \approx \text{ 1-CHANCE_TO_BE_FLOOR } * \Sum{  }{  }{  }Felder \linebreak
-MaxFitness\approx \text{PUNKTE_FUER_ERREICHBARKEIT} * \text{ AnzahlBoeden } + \text{PUNKTE_FUER_VERBUNDEN} * \text{ AnzahlWaende } + \text{ PUNKTE_FUER_LOESBAR } $$
-
+MaxFitness\approx \text{PUNKTE_FUER_ERREICHBARKEIT} * \text{ AnzahlBoeden } + \text{PUNKTE_FUER_VERBUNDEN} * \text{ AnzahlWaende } + \text{ PUNKTE_FUER_LOESBAR }
+```
 Um Zufallswerte auszugleichen, wird der Schwellwert unter den berechneten Wert angesiedelt. 
 
+![UML LevelGenerator. Eigene Grafik](figs/levelGen.PNG){width=50%}
 
-### Parser
+### LevelParser
 
+Die Klasse LevelParser stellt alle Methoden zur Verfügung die benötigt werden um von einen generierten CodedLevel zu einen richtigen Level mit Monstern und Items zu gelangen. Um den Parser so zu gestalten, das er für möglichst alle Implementierungen der Teilnehmer funktionsfähig ist, werden eine Reihe an Interfaces vorgegeben welche von den Teilnehmer in ihre Implementation integriert werden müssen. 
+
+Mithilfe des Interfaces ILevel wird sichergestellt, das die Klasse Level die Methoden getXSize und getYSize, welche die Maße der Level zurückgeben sowie die Methode getLevel welches ein zwei Dimensionales ISurface Array zurückliefert, welches Analog zu den aus CodedLevel bekannten Array den Levelaufbau darstellt. Das Interface ISurface muss von jeder Oberfläche implementiert werden, es versichert Methoden zur Platzierung von Monstern und Items. Ebenso muss die Methode getTexture implementiert werden, welche den Pfad zu einer Grafik liefert, die auf der Levelgrafik die jeweilige Oberfläche darstellen soll. 
+
+Die parseLevel Methode verwandelt ein CodedLevel in ein richtiges Level um. Die chars welche bisher als Referenzen für Oberflächen gedient haben, werden durch Instanzen der entsprechenden Oberflächen ausgetauscht. 
+
+Der Parser nutzt die von ISurface bereitgestellte Methoden um übergebene Monster oder Items auf zufällige Felder zu verteilen. Sollen neben Wänden oder Böden auch andere Oberflächen integriert werden, bietet der Parser eine Funktion zum austauschen einer Zufällig gewählten Instanz des Oberflächentypes A um eine Instanz des Oberflächentypes B zu platzieren. 
+
+Die Funktion generateTextureMap itteriert über das zwei Dimensionale ISurface Array und holt sich mithilfe der getTexture Methode die Texturen der einzelnen Oberflächen und fügt diese nacheinander zusammen und speichert das erzeugte Bild ab. Dadurch das die Textur nicht Typ weise sondern Instanz weise ausgelesen wird, wird es den Teilnehmern ermöglicht, Wände mit unterschiedlichen Texturen zu verwenden. 
+
+![UML LevelParser und Interfaces. Eigene Grafik](figs/parser.PNG){width=50%}
+
+Das Klassendiagramm für den kompletten Generator ist in Abbildung ... so sehen. 
+
+![Komplettes UML. Eigene Grafik](figs/classUML.PNG){width=100%}

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>910</x>
+      <y>266</y>
+      <w>231</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>CodedLevel
+--
+-level: char[][]
+-xSize: int
+-ySize: int
+-fitness: float
+-start: Point
+-exit: Point
+
+
+--
++CodedLevel (level: char[][], xSize: int, ySize: int)
++changeField (x: int, y: int, wert: char): void
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>791</x>
+      <y>532</y>
+      <w>357</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>LevelGenerator
+
+--
+
+--
++generateLevel (xSize: int, ySize: int): CodedLevel
+-generateRandomLevel (xSize: int, ySize: int): void
+-calculateFitness (level: CodedLevel): float
+-roulettWheelSelection (population: CodedLevel[]): CodedLevel
+-onePointCrossover (parentA: CodedLevel, parentB: CodedLevel): CodedLevel[]
+-bitFlipMutation (level: CodedLevel): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>406</x>
+      <y>266</y>
+      <w>413</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>LevelParser
+--
+
+--
++parseLevel (level: CodedLevel): Level
++placeMonster (level: Level, monster: Monster, surfaceToPutOn: ISurface): void
++placeItem (level: Level, item: Item, surfaceToPutOn: ISurface): void
++changeSurface (levle: Level, newSurface: ISurface, oldSurfaceType: ISurface): void
++generateTextureMap (level: Level, path: String, name: String): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>133</y>
+      <w>147</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+ILevel
+--
+--
++getXSize(): int
++getYSize(): int
++getLevel(): ISurface[][]
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>308</x>
+      <y>133</y>
+      <w>252</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+ISurface
+--
+--
++getTexture(): String
++setMonsterOnSurface (monster: Monster): boolean
++setItemOnSurface (item: Item): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>553</x>
+      <y>161</y>
+      <w>133</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>735</x>
+      <y>196</y>
+      <w>21</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>434</x>
+      <y>196</y>
+      <w>21</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>812</x>
+      <y>315</y>
+      <w>112</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>973</x>
+      <y>406</y>
+      <w>21</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+</diagram>
