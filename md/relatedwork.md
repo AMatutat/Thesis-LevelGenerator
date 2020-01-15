@@ -1,6 +1,7 @@
 # Stand der Technik/Forschung, vergleichbare Arbeiten
 
 <!--
+
 *   Darstellung relevanter Ansätze aus der Praxis bzw. Forschung
 *   Einordnung und Bewertung der Konzepte und Lösungen in Bezug auf die Ziele der Arbeit
 
