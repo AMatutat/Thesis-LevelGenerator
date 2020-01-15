@@ -43,7 +43,7 @@ F=Boden		X=Ende
 
 Eine Instanz der Klasse CodedLevel ist ein Chromosom, also eine mögliche Lösung bzw. ein Level. Neben den Char Array welches den Levelaufbau entspricht und Informationen über die Größe des Levels, besitzen CodedLevel eine Fitness welche die Güte der Lösung angibt sowie Informationen über den Standort der Start- bzw. Endpunktes.  
 
-![UML CodedLevel. Eigene Grafik](figs/codedLevel.PNG){width=50%}
+![UML CodedLevel. Eigene Grafik](figs/codedLevel.PNG){width=150%}
 
 Neben Getter und Setter verfügt die Klasse über die changeField Methode. Diese verändert den Allel eines Gens auf den übergebenen Wert. Zwar könnte diese Änderung auch direkt am Array vorgenommen werden, dann würden allerdings Änderungen an der Position der Start und Ausgänge evtl. verloren gehen. Sollte ein Start  bzw. Ausgang gesetzt werden, obwohl schon einer Vorhanden ist, wird stattdessen ein Boden gesetzt, ist keiner vorhanden werden die Koordinaten dem entsprechenden Attribut zugewiesen.  
 
@@ -94,7 +94,7 @@ MaxFitness\approx \text{PUNKTE_FUER_ERREICHBARKEIT} * \text{ AnzahlBoeden } + \t
 ```
 Um Zufallswerte auszugleichen, wird der Schwellwert unter den berechneten Wert angesiedelt. 
 
-![UML LevelGenerator. Eigene Grafik](figs/levelGen.png){width=50%}
+![UML LevelGenerator. Eigene Grafik](figs/levelGen.png){width=150%}
 
 ### LevelParser
 
@@ -108,8 +108,8 @@ Der Parser nutzt die von ISurface bereitgestellte Methoden um übergebene Monste
 
 Die Funktion generateTextureMap itteriert über das zwei Dimensionale ISurface Array und holt sich mithilfe der getTexture Methode die Texturen der einzelnen Oberflächen und fügt diese nacheinander zusammen und speichert das erzeugte Bild ab. Dadurch das die Textur nicht Typ weise sondern Instanz weise ausgelesen wird, wird es den Teilnehmern ermöglicht, Wände mit unterschiedlichen Texturen zu verwenden. 
 
-![UML LevelParser und Interfaces. Eigene Grafik](figs/parser.PNG){width=50%}
+![UML LevelParser und Interfaces. Eigene Grafik](figs/parser.PNG){width=150%}
 
 Das Klassendiagramm für den kompletten Generator ist in Abbildung ... zu sehen.
 . 
-![Komplettes UML Klassendiagramm. Eigene Grafik](figs/classUML.png){width=100%}
+![Komplettes UML Klassendiagramm. Eigene Grafik](figs/classUML.png){width=150%}
