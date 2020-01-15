@@ -46,15 +46,15 @@ Da Genetische Algorithmen sich an der Evolution orientieren, haben viele Fachbeg
 Erbinformationen in einer Menge von Chromosomen gespeichert ist. Im Zusammenhang mit genetischen Algorithmen werden die Begriffe Individuum und
 Chromosom jedoch meistens gleichgesetzt." https://ls11-www.cs.tu-dortmund.de/lehre/SoSe03/PG431/Ausarbeitungen/GA_Selzam.pdf
 
-### Gen
+**Gen**
 
 Ein Gen ist genau eine Sequenz im Individuum. Je nach Kontext kann es sich hierbei um eine einzelne Stelle oder mehrere Stellen im Individuum handeln.
 
-### Allel
+**Allel**
 
 Allel beschreibt den exakten Wert eines Gens. 
 
-### Population / Generation
+** Population / Generation ** 
 
 Einer Menge gleichartiger Individuen wird als Population bezeichnet. Die Anzahl der Individuen gibt die Populationsgröße an. Sterben Individuen oder werden neune geboren, verändert sich die Größe der Population. Betrachtet man eine Population über mehrerer Zeitpunkte, spricht man von Generationen. 
 
@@ -89,13 +89,13 @@ $$ g=(g_{ 0  }....g_{ m }) \in\left\{ 0,1 \right\}^{ m }  $$
 
 Verwendet man die Binäre Kodierung, muss man am ende die Lösung mithilfe einer Dekodierungsfunktion zurück wandeln. 
 
-$$ T:\left\{ 0,1 \right\}^{ m } \arrow \R^{ n } $$
+$$ T: \left\{ 0,1 \right\}^{ m } \to R^{ n } $$
 
 Eine andere Variante ist die reellwertige Kodierung. Sie funktioniert ähnlich zu der Binären Kodierung, nur wird hier jeden Gen ein reellwertige Wert zugewiesen. Eine Dekodierung ist nicht nötig. 
 
-$$ g=(g_{ 0  }....g_{ m }) \in \left\{ \R \right\}^{ m }  $$
+$$ g=(g_{ 0  }....g_{ m }) \in \left\{ R \right\}^{ m }  $$
 
-Die Gene der Startpopulation werden zufällig bestimmt. 
+Die Allel der Gene der Startpopulation werden zufällig bestimmt. 
 
 ### Bewertung
 
@@ -109,7 +109,7 @@ Bei der Selektion werden die Individuen ausgewählt, welche die nächste Generat
 
 Es folgt eine Auflistung und Erklärung bekannter Selektionsverfahren. Bei jeden Verfahren werden die ausgewählten Individuen auch zurück in die Ursprungspopulation gelegt, es ist also möglich das selbe Individuum mehrfach auszuwählen. Es wird solange Ausgewählt bis die neue Population die gewünschte Größe erreicht hat, diese ist in der Regel genauso groß oder größer als die Ursprungspopulation. 
 
-#### Fitness Proportionate Selection 
+**Fitness Proportionate Selection** 
 
 Bei der Fitness Proportionate Selection hat jedes Individuum die Chance ausgewählt zu werden. Die Chance ausgewählt zu werden ist abhängig von der FItness des Individuums. Besonders gute Lösungen haben also hohe Chance ausgewählt zu werden, schlechtere Lösungen können dennoch ausgewählt werden um so die vielfallt der Population zu gewährleisten. 
 
@@ -121,16 +121,16 @@ Das **Stochastic Universal Sampling** erweitert die Roulett Wheel Selection um e
 
 Fitness Proportionate Selektionsverfahren funktionieren nicht in Fällen, in dem Fitnesswerte negativ sein können. 
 
-#### Tournament Selektion
+**Tournament Selektion**
 
 Bei der Tournamen Selektion werden zufällig k Individuen aus der Ursprungspopulation ausgewählt, das Individuum mit der höchsten Fitness wird in die nächste Generation aufgenommen. Dieses Verfahren ermöglicht zwar auch schlechteren Lösungen Ausgewählt zu werden, versichert aber das die schlechteste Lösung nicht ausgewählt werden kann und die beste Lösung auf jeden Fall ausgewählt wird. Tournament Selektion funktioniert auch bei negativen Fitnesswerten. 
 ![Bildliche Darstellung der TS <https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_parent_selection.htm>](figs/tournament_selection.png){width=100%}
 
-#### Rank Selektion
+** Rank Selektion**
 
 Bei der Rank Selektion wird die Population anhand der Fitnesswerte der Lösungen sortiert. Für die Auswahl spielt nicht mehr der Fitnesswert sondern die Platzierung der Lösung eine Rolle. Höher platzierte Lösungen haben eine höhere Chance ausgewählt zu werden als niedrig platzierte Lösungen. Der Chancenunterschied ist je nach Problemstellung zu wählen. Rank Selektion kann auch bei negativen Fitnesswerten verwendet werden. 
 
-#### Zufällige Selektion
+**Zufällige Selektion**
 
 Bei der zufälligen Selektion werden zufällig Individuen aus der Population ausgewählt. Dieses Verfahren wird für gewöhnlich vermieden, da es keinerlei Filter Mechanismen gibt und die suche nicht gesteuert werden kann. 
 
@@ -142,12 +142,12 @@ Ob zwei Eltern miteinander Rekombiniert werden, ist Abhängig von der festgelegt
 
 Es folgt eine Erläuterung einiger verbreitetet Crossoververfahren. Je nach Problemstellung kann auch ein Individuelles verfahren Zielführend sein. 
 
-### Point Crossover
+**Point Crossover**
 Beim Point Crossover verfahren werden beide Eltern an einer oder mehrere Stellen in Segmente geteitl. Die Segmente der Eltern werden miteinander vertauscht um die Kinder zu erzeugen. 
 
 ![Bildliche Darstellung des Multi Point Crossoververfahren  https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_crossover.htm](figs/multi_point_crossover.png){width=100%}
 
-### Uniform Crossover
+**Uniform Crossover**
 
 Beim Unform Crossover wird jedes Gen eines Elternteils betrachtet, es gibt eine 50% Chance dass das Gen mit dem entsprechenden Gegenstück des anderen Elternteils ausgetauscht wird. 
 
