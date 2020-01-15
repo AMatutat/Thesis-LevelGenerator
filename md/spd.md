@@ -18,7 +18,7 @@ Klassische Computer Rollenspiele führen den Spieler so durch eine handgebaute W
 
 Neben der Geschichte spielt der Kampf die zweite Große Rolle in Rollenspiele. Im laufe der Zeit haben sich zwei Kampfsysteme im Markt etabliert. Rundenbasierte Kampfsysteme bleiben der Pen and Paper Vorlage treu, und lassen Spieler und Monster nacheinander ihre Angriffe tätigen. In Actionbasierten Kamfpsystemen wird der Kampf in Echtzeit ausgetragen, hier spielen vor allem Treffervermögen und Ausweichtalent eine rolle. 
 
-![Rundenbasierte Kampfszene aus Final Fantasy 7](figs/Ff7_kampf.jpg){width=50%}
+![Rundenbasierte Kampfszene aus Final Fantasy 7](figs/ff7.jpg){width=50%}
 
 ![Kampfszene aus den Actionrollenspiel Dark Souls](figs/darksoulskampof.jpg){width=50%}
 
