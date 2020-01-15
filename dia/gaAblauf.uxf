@@ -4,8 +4,8 @@
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>520</x>
-      <y>230</y>
+      <x>560</x>
+      <y>220</y>
       <w>100</w>
       <h>40</h>
     </coordinates>
@@ -16,8 +16,8 @@ bewerten</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>520</x>
-      <y>140</y>
+      <x>560</x>
+      <y>130</y>
       <w>100</w>
       <h>40</h>
     </coordinates>
@@ -28,8 +28,8 @@ erzeugen</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>450</x>
-      <y>300</y>
+      <x>490</x>
+      <y>290</y>
       <w>240</w>
       <h>120</h>
     </coordinates>
@@ -41,8 +41,8 @@ Abbruchbedingung erreicht?
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>820</x>
-      <y>340</y>
+      <x>860</x>
+      <y>330</y>
       <w>100</w>
       <h>40</h>
     </coordinates>
@@ -52,8 +52,8 @@ Abbruchbedingung erreicht?
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>820</x>
-      <y>430</y>
+      <x>860</x>
+      <y>420</y>
       <w>100</w>
       <h>40</h>
     </coordinates>
@@ -63,8 +63,8 @@ Abbruchbedingung erreicht?
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>820</x>
-      <y>510</y>
+      <x>860</x>
+      <y>500</y>
       <w>100</w>
       <h>40</h>
     </coordinates>
@@ -72,21 +72,10 @@ Abbruchbedingung erreicht?
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLSpecialState</id>
-    <coordinates>
-      <x>1410</x>
-      <y>30</y>
-      <w>40</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>type=decision</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLState</id>
     <coordinates>
-      <x>780</x>
-      <y>590</y>
+      <x>820</x>
+      <y>580</y>
       <w>190</w>
       <h>40</h>
     </coordinates>
@@ -96,8 +85,8 @@ Abbruchbedingung erreicht?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>860</x>
-      <y>540</y>
+      <x>900</x>
+      <y>530</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -107,8 +96,8 @@ Abbruchbedingung erreicht?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>860</x>
-      <y>460</y>
+      <x>900</x>
+      <y>450</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -118,8 +107,8 @@ Abbruchbedingung erreicht?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>860</x>
-      <y>370</y>
+      <x>900</x>
+      <y>360</y>
       <w>30</w>
       <h>80</h>
     </coordinates>
@@ -129,8 +118,8 @@ Abbruchbedingung erreicht?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
-      <y>170</y>
+      <x>600</x>
+      <y>160</y>
       <w>30</w>
       <h>80</h>
     </coordinates>
@@ -140,8 +129,8 @@ Abbruchbedingung erreicht?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
-      <y>260</y>
+      <x>600</x>
+      <y>250</y>
       <w>30</w>
       <h>60</h>
     </coordinates>
@@ -151,8 +140,8 @@ Abbruchbedingung erreicht?
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>470</x>
-      <y>510</y>
+      <x>510</x>
+      <y>500</y>
       <w>180</w>
       <h>40</h>
     </coordinates>
@@ -162,8 +151,8 @@ Abbruchbedingung erreicht?
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>680</x>
-      <y>340</y>
+      <x>720</x>
+      <y>330</y>
       <w>160</w>
       <h>40</h>
     </coordinates>
@@ -174,8 +163,8 @@ Nein</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
-      <y>410</y>
+      <x>600</x>
+      <y>400</y>
       <w>40</w>
       <h>120</h>
     </coordinates>
@@ -187,8 +176,8 @@ Ja
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>610</x>
-      <y>240</y>
+      <x>650</x>
+      <y>230</y>
       <w>450</w>
       <h>30</h>
     </coordinates>
@@ -198,8 +187,8 @@ Ja
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1030</x>
-      <y>240</y>
+      <x>1070</x>
+      <y>230</y>
       <w>30</w>
       <h>390</h>
     </coordinates>
@@ -209,8 +198,8 @@ Ja
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>960</x>
-      <y>600</y>
+      <x>1000</x>
+      <y>590</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
