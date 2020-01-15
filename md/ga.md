@@ -85,15 +85,15 @@ Zu beginn muss das betrachtete Problem kodiert werden. Das bedeutet das alle rel
 
 Bei der Binären Kodierung besteht ein Chromosom aus n vielen Genen. Jeden Gen wir ein binärer Wert zugewiesen und repräsentiert dabei eine Problemvariable. Aus den Genen wird dann ein Bitstring erzeugt. 
 
-g=(g_{ 0  }....g_{ m }) \in\left\{ 0,1 \right\}^{ m }  
+$$ g=(g_{ 0  }....g_{ m }) \in\left\{ 0,1 \right\}^{ m }  $$
 
 Verwendet man die Binäre Kodierung, muss man am ende die Lösung mithilfe einer Dekodierungsfunktion zurück wandeln. 
 
-T:\left\{ 0,1 \right\}^{ m }\arrow\R^{ n }
+$$ T:\left\{ 0,1 \right\}^{ m }\arrow\R^{ n } $$
 
 Eine andere Variante ist die reellwertige Kodierung. Sie funktioniert ähnlich zu der Binären Kodierung, nur wird hier jeden Gen ein reellwertige Wert zugewiesen. Eine Dekodierung ist nicht nötig. 
 
-g=(g_{ 0  }....g_{ m }) \in\left\{ \R \right\}^{ m }  
+$$ g=(g_{ 0  }....g_{ m }) \in\left\{ \R \right\}^{ m }  $$
 
 Die Gene der Startpopulation werden zufällig bestimmt. 
 
@@ -138,7 +138,7 @@ Bei der zufälligen Selektion werden zufällig Individuen aus der Population aus
 
 Bei der Rekombination werden zwei Selektierte Lösungen neu zusammengesetzt. Die beiden Ursprünglichen Lösungen bezeichnet man als Eltern, die neu erzeugten Lösungen als Kinder. 
 
-Ob zwei Eltern miteinander Rekombiniert werden, ist Abhängig von der festgelegten Crossoverchance. In GAs liegt diese für gewöhnlich bei \approx 60%. Die Rekombination vermischt den Genpool der Eltern und soll so für eine möglichst diverse Population sorgen.
+Ob zwei Eltern miteinander Rekombiniert werden, ist Abhängig von der festgelegten Crossoverchance. In GAs liegt diese für gewöhnlich bei $\approx$ 60%. Die Rekombination vermischt den Genpool der Eltern und soll so für eine möglichst diverse Population sorgen.
 
 Es folgt eine Erläuterung einiger verbreitetet Crossoververfahren. Je nach Problemstellung kann auch ein Individuelles verfahren Zielführend sein. 
 
