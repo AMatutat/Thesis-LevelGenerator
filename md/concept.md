@@ -18,7 +18,7 @@ Alle Konstanten werden von der Klasse Constants als statische Variablen zur Verf
 
 ### GA
 
-#### Kodierung
+#### Kodierung	
 
 Die Kodierung der Level passt sich der vorgesehenen Implementation in die Spielogik an. Ein Level kann als zwei Dimensionales Array verstanden werden, die einzelnen Felder im Array sind Felder im Level. Der Spieler bewegt sich pro Zug genau um ein Feld. 
 
@@ -52,11 +52,11 @@ Neben Getter und Setter verfügt die Klasse über die changeField Methode. Diese
 Die Klasse Level Generator beinhaltet die Implementation des GA. Sie beinhaltet die Implementationen aller Subroutinen. Sie verfügt über die Methode generateLevel, welche als Einstiegspunkt in den GA gesehen werden kann. Ihr werden die gewünschte Level Größe übergeben und dann kümmert Sie sich um die Durchführung des GA Ablaufes. 
 
 ##### Erzeugen der Startpopulation
-
+\linebreak
 Um die Startpopulation zu erzeugen werden die Level zufällig mit Oberflächen gefüllt. Die CHANCE_TO_BE_FLOOR gibt an, mit welche Chance eine Oberfläche ein Boden wird. Alle Außenfelder des Levels werden mit Wänden gefüllt, um einen Level Abschluss darzustellen. Ein und Ausgang werden zufällig auf Böden gesetzt.
 
 ##### Fitnessfunktion
-
+\linebreak
 Die Fitnessfunktion bewertet die Level. Die Bewertungskriterien sollen dabei helfen, dass das Level in größere Bodenflächen, den Räumen verbunden durch Wandketten, den Fluren. 
 
 Jedes Bewertungskriterium hat dabei eine andere Wertigkeit. Die Bewertungskriterien sind
@@ -72,7 +72,7 @@ Die Lösbarkeit ist eines Levels ist Kernvoraussetzung um als gültige Lösung z
 Das dritte Kriterium soll vor allem einzeln im Level platzierte Wände vermeiden, da diese in der Logik des Spiels keinen Sinn erfüllen und daher vom Spieler als störend empfunden werden und die Immersion mindern. Für jede Wand die direkt oder indirekt über Nachbarn mit der außen Wand verbunden sind gibt es Fitnesspunkte. Dadurch sollen Wandketten gefördert werden. Die Verbindung mit den Außenwänden ist vom klassischen Hausaufbau inspiriert, da dort in der Regel auch jede Wand in irgendeiner Form mit der Außenwand verbunden ist. Da die hier generierten Level auch größere Dungeon darstellen sollen, könnten auch Säulenartige Strukturen oder Stützwände wünschenswert sein. Daher gibt es für Wände, die zwar keine Anbindung an den Levelrand haben, jedoch mit anderen Wänden verbunden sind, Teilpunkte. 
 
 ##### Selektion und Rekombination
-
+\linebreak
 Als Selektionsverfahren wird das im Abschnitt .... beschreibende Roulette Wheel Selection Verfahren genutzt. Da keine negative Fitness erreicht werden kann als auch von einer großen Spannbreite an Bewertungen ausgegangen werden kann, bietet sich ein Rank Selection Verfahren nicht an. Alternativ wäre auch die Verwendung der Tournament Selektion denkbar. 
 
 Sollte die es zu einen Crossover, abhängig von der CHANCE_FOR_CROSSOVER, kommen, werden beide Eltern mithilfe des One-Point-Crossover rekombiniert. Dieses Verfahren hat eine geringer Chance, gute Level Strukturen zu zerstören, da nur ein großer und nicht viele kleine Eingriffe am Level durchgeführt werden. 
@@ -80,11 +80,11 @@ Sollte die es zu einen Crossover, abhängig von der CHANCE_FOR_CROSSOVER, kommen
 Das Uniform Crossover Verfahren würde wieder eine komplett Zufällige Anordnung von Böden und Wänden zu folge ziehen und ist daher für die Generierung von Leveln nicht geeignet. 
 
 ##### Mutation
-
+\linebreak
 Zur Levelgenerierung bieten sich fast alle bekannten Mutationsverfahren an. In dieser Implementierung wird eine angepasste Version der Bit-Flip Mutation verwendet. Ignorieren wir bei der Mutation Start und Ausgangspunkt, bleiben noch Felder die entweder Böden oder Wände sind. Es wird für jedes Gen überprüft ob es zur Mutation kommt, und wenn ja, wird der Allel des Gen geändert. Wände werden zu Böden und Böden zu Wände. 
 
 #### Abbruchkriterium
-
+\linebreak
 Die GA wird dann beendet, wenn ein lösbares Level den Fitnessschwellwert überschreitet. Der Fitnessschwellwert ergibt sich aus der maximal Erreichbaren Fitness. Da die maximal erreichbare Fitness aufgrund von Zufallsfaktoren nicht exakt bestimmt werden kann, wird sich ihr angenähert:
 
 ```latex
@@ -94,7 +94,7 @@ MaxFitness\approx \text{PUNKTE_FUER_ERREICHBARKEIT} * \text{ AnzahlBoeden } + \t
 ```
 Um Zufallswerte auszugleichen, wird der Schwellwert unter den berechneten Wert angesiedelt. 
 
-![UML LevelGenerator. Eigene Grafik](figs/levelGen.PNG){width=50%}
+![UML LevelGenerator. Eigene Grafik](figs/levelGen.png){width=50%}
 
 ### LevelParser
 
