@@ -43,7 +43,7 @@ F=Boden		X=Ende
 
 Eine Instanz der Klasse CodedLevel ist ein Chromosom, also eine mögliche Lösung bzw. ein Level. Neben den Char Array welches den Levelaufbau entspricht und Informationen über die Größe des Levels, besitzen CodedLevel eine Fitness welche die Güte der Lösung angibt sowie Informationen über den Standort der Start- bzw. Endpunktes.  
 
-![UML CodedLevel. Eigene Grafik](figs/codedLevel.PNG){width=100%}
+![UML CodedLevel. Eigene Grafik](figs/codedLevel.PNG){width=50%}
 
 Neben Getter und Setter verfügt die Klasse über die changeField Methode. Diese verändert den Allel eines Gens auf den übergebenen Wert. Zwar könnte diese Änderung auch direkt am Array vorgenommen werden, dann würden allerdings Änderungen an der Position der Start und Ausgänge evtl. verloren gehen. Sollte ein Start  bzw. Ausgang gesetzt werden, obwohl schon einer Vorhanden ist, wird stattdessen ein Boden gesetzt, ist keiner vorhanden werden die Koordinaten dem entsprechenden Attribut zugewiesen.  
 
@@ -87,9 +87,9 @@ Zur Levelgenerierung bieten sich fast alle bekannten Mutationsverfahren an. In d
 
 Die GA wird dann beendet, wenn ein lösbares Level den Fitnessschwellwert überschreitet. Der Fitnessschwellwert ergibt sich aus der maximal Erreichbaren Fitness. Da die maximal erreichbare Fitness aufgrund von Zufallsfaktoren nicht exakt bestimmt werden kann, wird sich ihr angenähert:
 
-$$ AnzahlBöden \approx \text{ CHANCE_TO_BE_FLOOR } * \Sum{  }{  }{  }Felder \linebreak
-AnzahlWände \approx \text{ 1-CHANCE_TO_BE_FLOOR } * \Sum{  }{  }{  }Felder \linebreak
-MaxFitness\approx \text{PUNKTE_FÜR_ERREICHBARKEIT} * \text{ AnzahlBöden } + \text{PUNKTE_FÜR_VERBUNDEN} * \text{ AnzahlWände } + \text{ PUNKTE_FÜR_LÖSBAR } $$
+$$ AnzahlBoeden \approx \text{ CHANCE_TO_BE_FLOOR } * \Sum{  }{  }{  }Felder \linebreak
+AnzahlWaende \approx \text{ 1-CHANCE_TO_BE_FLOOR } * \Sum{  }{  }{  }Felder \linebreak
+MaxFitness\approx \text{PUNKTE_FUER_ERREICHBARKEIT} * \text{ AnzahlBoeden } + \text{PUNKTE_FUER_VERBUNDEN} * \text{ AnzahlWaende } + \text{ PUNKTE_FUER_LOESBAR } $$
 
 Um Zufallswerte auszugleichen, wird der Schwellwert unter den berechneten Wert angesiedelt. 
 
