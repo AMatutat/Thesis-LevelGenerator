@@ -62,7 +62,7 @@ Einer Menge gleichartiger Individuen wird als Population bezeichnet. Die Anzahl 
 
 GAs folgen einer Reihe an Subrutinen, die sich solange Wiederholen bis eine Abbruchbedingung erreicht ist. 
 
-![Ablauf eines generischen GAs](figs/gaAblauf.png){width=50%}
+![Ablauf eines generischen GAs](figs/gaAblauf.png){width=100%}
 
 Abbildung ... zeigt den zugrunde legenden Ablauf von GAs. 
 
@@ -89,11 +89,11 @@ $$ g=(g_{ 0  }....g_{ m }) \in\left\{ 0,1 \right\}^{ m }  $$
 
 Verwendet man die Binäre Kodierung, muss man am ende die Lösung mithilfe einer Dekodierungsfunktion zurück wandeln. 
 
-$$ T:\left\{ 0,1 \right\}^{ m }\arrow\R^{ n } $$
+$$ T:\left\{ 0,1 \right\}^{ m } \arrow \R^{ n } $$
 
 Eine andere Variante ist die reellwertige Kodierung. Sie funktioniert ähnlich zu der Binären Kodierung, nur wird hier jeden Gen ein reellwertige Wert zugewiesen. Eine Dekodierung ist nicht nötig. 
 
-$$ g=(g_{ 0  }....g_{ m }) \in\left\{ \R \right\}^{ m }  $$
+$$ g=(g_{ 0  }....g_{ m }) \in \left\{ \R \right\}^{ m }  $$
 
 Die Gene der Startpopulation werden zufällig bestimmt. 
 
@@ -115,7 +115,7 @@ Bei der Fitness Proportionate Selection hat jedes Individuum die Chance ausgewä
 
 Eine gängige Art der Umsetzung dieses Verfahren ist die **Roulett Wheel Selection**. Angelehnt an Glücksräder, wird ein ein Rad in n Teile zerteilt, wobei n die Summe der Fitness der Population entspricht. Jedes Individuum der Population enthält entsprechend seiner Fitness Anteile am Rad. Am Rad wird ein Fix Punkt angesetzt, das Rad wird rotiert und das Individuum ausgewählt auf dessen Anteil der Fix Punkt stehenbleibt.
 
-![Bildliche Darstellung der RWS](figs/roulette_wheel_selection.png <https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_parent_selection.htm>){width=50%}
+![Bildliche Darstellung der RWS  <https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_parent_selection.htm>](figs/roulette_wheel_selection.png){width=100%}
 
 Das **Stochastic Universal Sampling** erweitert die Roulett Wheel Selection um einen zweiten Fixpunkt. So können zeitgleich zwei Individuen ausgewählt werden. 
 
@@ -124,7 +124,7 @@ Fitness Proportionate Selektionsverfahren funktionieren nicht in Fällen, in dem
 #### Tournament Selektion
 
 Bei der Tournamen Selektion werden zufällig k Individuen aus der Ursprungspopulation ausgewählt, das Individuum mit der höchsten Fitness wird in die nächste Generation aufgenommen. Dieses Verfahren ermöglicht zwar auch schlechteren Lösungen Ausgewählt zu werden, versichert aber das die schlechteste Lösung nicht ausgewählt werden kann und die beste Lösung auf jeden Fall ausgewählt wird. Tournament Selektion funktioniert auch bei negativen Fitnesswerten. 
-![Bildliche Darstellung der TS](figs/tournament_selection.png <https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_parent_selection.htm>){width=50%}
+![Bildliche Darstellung der TS <https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_parent_selection.htm>](figs/tournament_selection.png){width=100%}
 
 #### Rank Selektion
 
@@ -145,13 +145,13 @@ Es folgt eine Erläuterung einiger verbreitetet Crossoververfahren. Je nach Prob
 ### Point Crossover
 Beim Point Crossover verfahren werden beide Eltern an einer oder mehrere Stellen in Segmente geteitl. Die Segmente der Eltern werden miteinander vertauscht um die Kinder zu erzeugen. 
 
-![Bildliche Darstellung des Multi Point Crossoververfahren  https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_crossover.htm](figs/multi_point_crossover.png){width=50%}
+![Bildliche Darstellung des Multi Point Crossoververfahren  https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_crossover.htm](figs/multi_point_crossover.png){width=100%}
 
 ### Uniform Crossover
 
 Beim Unform Crossover wird jedes Gen eines Elternteils betrachtet, es gibt eine 50% Chance dass das Gen mit dem entsprechenden Gegenstück des anderen Elternteils ausgetauscht wird. 
 
-![Bildliche Darstellung des Uniform Crossoververfahren https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_crossover.htm](figs/uniform_crossover.png){width=50%}
+![Bildliche Darstellung des Uniform Crossoververfahren https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_crossover.htm](figs/uniform_crossover.png){width=100%}
 
 ### Mutation
 
