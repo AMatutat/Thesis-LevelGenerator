@@ -40,15 +40,23 @@ Zwar gibt es zwischen den einzelnen Formen inhaltliche unterschiede, allerdings 
 
 Da Genetische Algorithmen sich an der Evolution orientieren, haben viele Fachbegriffe der Genetik ihren Weg in die Informatik gefunden. Im Folgenden werden die, für Genetische Algorithmen und diese Arbeit, relevanten Begriffe in ihrer Bedeutung inerhalb der Informatik, erläutert. 
 
-**Individuum / Chromosom** <br>"Ein Individuum im biologischen Sinne ist ein lebender Organismus, dessen
+**Individuum / Chromosom** 
+
+"Ein Individuum im biologischen Sinne ist ein lebender Organismus, dessen
 Erbinformationen in einer Menge von Chromosomen gespeichert ist. Im Zusammenhang mit genetischen Algorithmen werden die Begriffe Individuum und
 Chromosom jedoch meistens gleichgesetzt." https://ls11-www.cs.tu-dortmund.de/lehre/SoSe03/PG431/Ausarbeitungen/GA_Selzam.pdf
 
-**Gen**<br>Ein Gen ist genau eine Sequenz im Individuum. Je nach Kontext kann es sich hierbei um eine einzelne Stelle oder mehrere Stellen im Individuum handeln.
+**Gen**
 
-**Allel** <br>Allel beschreibt den exakten Wert eines Gens. 
+Ein Gen ist genau eine Sequenz im Individuum. Je nach Kontext kann es sich hierbei um eine einzelne Stelle oder mehrere Stellen im Individuum handeln.
 
-**Population / Generation**<br>Einer Menge gleichartiger Individuen wird als Population bezeichnet. Die Anzahl der Individuen gibt die Populationsgröße an. Sterben Individuen oder werden neune geboren, verändert sich die Größe der Population. Betrachtet man eine Population über mehrerer Zeitpunkte, spricht man von Generationen. 
+**Allel**
+
+Allel beschreibt den exakten Wert eines Gens. 
+
+**Population / Generation**
+
+Einer Menge gleichartiger Individuen wird als Population bezeichnet. Die Anzahl der Individuen gibt die Populationsgröße an. Sterben Individuen oder werden neune geboren, verändert sich die Größe der Population. Betrachtet man eine Population über mehrerer Zeitpunkte, spricht man von Generationen. 
 
 ## Ablauf
 
