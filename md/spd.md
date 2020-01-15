@@ -26,7 +26,7 @@ Neben der Geschichte spielt der Kampf die zweite Große Rolle in Rollenspiele. I
 
 <https://en.wikipedia.org/wiki/Rogue_(video_game)>
 
-Das Rollenspiel Rouge: Exploring the Dungoens of Doom, ist ein, in den 1980er entwickeltes, Rollenspiel. Der Spieler bewegt sich durch ein Levelsystem, den Dungeon, um am ende das Magische Amulett von Yendor zu erlangen. Auf den Weg dorthin gilt es die feindlichen Monster zu besiegen. 
+Das Adventure Rouge: Exploring the Dungoens of Doom, ist ein, in den 1980er entwickeltes, Videospiel. Der Spieler bewegt sich Rundenbasiert durch ein Levelsystem, den Dungeon, um am ende das Magische Amulett von Yendor zu erlangen. Auf den Weg dorthin gilt es die feindlichen Monster zu besiegen. 
 
 ![Ein typisches Level aus den Spiel Rouge](figs/rogue.jpg){width=80%}
 
@@ -57,7 +57,7 @@ Zu beginn des Spiels wählt der Spieler eine der vier Charakterklassen aus. Zur 
 - Schurke: Nahkämpfer der auf Planung und Hinterhalte fußt 
 - Jäger: Fernkämpfer der vor allem Bögen verwendet
 
-Der Spieler startet auf der obersten ebene eines Dungeons. Ziel ist es, möglichst tief in das Dungeon einzudringen, je tiefer der Spieler ist, desto schwieriger wird das Spiel. In den einzelnen Ebenen begegnen den Spieler die unterschiedlichsten Monster, durch dessen Tötung der Spieler Erfahrung sammelt, wurde genug Erfahrung gesammelt, steigt der Spieler auf, dies ermöglicht ihn, seine Spielfigur mit neuen Fähigkeiten auszustatten. Ebenso lassen besiegte Gegner Ausrüstungsgegenstände wie Heiltränke oder Waffen fallen. Um Erfolg im Spiel zu haben, sollte man also nicht nur versuchen möglichst schnell möglichst tief in das Dungeon einzudringen, sondern auch viele Gegner zu besiegen um an Erfahrung und Items zu gelangen. 
+Der Spieler startet auf der obersten ebene eines Dungeons. Ziel ist es, möglichst tief in das Dungeon einzudringen, je tiefer der Spieler ist, desto schwieriger wird das Spiel. In den einzelnen Ebenen begegnen den Spieler die unterschiedlichsten Monster, durch dessen Tötung der Spieler Erfahrung sammelt, wurde genug Erfahrung gesammelt, steigt der Spieler auf, dies ermöglicht ihn, seine Spielfigur mit neuen Fähigkeiten auszustatten. Ebenso lassen besiegte Gegner Ausrüstungsgegenstände wie Heiltränke oder Waffen fallen. Um Erfolg im Spiel zu haben, sollte man also nicht nur versuchen möglichst schnell möglichst tief in das Dungeon einzudringen, sondern auch viele Gegner zu besiegen um an Erfahrung und Items zu gelangen. Das Spiel wird genau wie Rouge Rundenbasiert gespielt. 
 
 Darüber hinaus bietet Shattered Pixel Dungeon noch viele weiter Features wie Subklassen oder Verzauberungen, welche hier nicht weiter beschrieben werden, da diese für das Verständnis des Spielablaufes nicht nötig sind.
 
