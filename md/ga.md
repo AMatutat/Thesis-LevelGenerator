@@ -33,3 +33,5 @@ Die Neuepopulation wird zur Startpopulation für den nächsten Durchgang, bis di
 Genetische Algorithmen haben eine hand voll an Vorteilen im vergleich zu herkömmlichen Lösungen. So lassen sich Genetische Algoirhtmen besonders gut parrallel vewenden. Außerdem liefern sie bereits nach kurzer Zeit lösungen, die mit der Zeit immer besser werden, und liefern dabei nicht nur eine Lösung sondern eine Liste an möglichen Lösungen. 
 
 <(https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_introduction.htm>)
+
+fixtext
