@@ -10,6 +10,11 @@ Den Generator sollen möglichst wenig Informationen über die Regeln guten Level
 
 Der Generator muss nicht in der Lage sein, neue Spielregeln, wie das Sprengen von Wänden durch Bomben, in den Generierungsprozess zu beachten. Der Generator muss Texturen nicht selbständig erzeugen oder  die Größenverhältnisse übergebener Texturen anpassen. Der Generator muss keine Quests oder Boss Gegner erzeugen. Der Generator muss keine Level in Echtzeit erzeugen können. Es wird kein Fokus auf die Optimierung der Laufzeit gelegt. 
 
+## Bewertungskriterien
+
+- was bedeutet lösbar?
+- was bedeutet schön?
+
 ## Konzept zur prozeduralen Level Generierung basierend auf einen GA
 
 Der Generator wird aus zwei Teilen zusammensetzt. Der erste Teil ist der GA selbst, er generiert Level die aus Wänden, Böden einen Start und einen Ziel bestehen. Der zweite Teil ist ein Parser, der für die Integration der erzeugten Level in die Spiellogik zuständig ist. Der Parser ist auch dafür verantwortlich, das Monster und Items im Level platziert werden, er  soll die Möglichkeit bieten, einzelne Wände und Böden gegen andere Oberflächen auszutauschen. Er ist für die Generierung der Levelgrafik verantwortlich. 
@@ -17,6 +22,8 @@ Der Generator wird aus zwei Teilen zusammensetzt. Der erste Teil ist der GA selb
 Alle Konstanten werden von der Klasse Constants als statische Variablen zur Verfügung gestellt. Um Konstanten in der weiteren Beschreibung des Konzeptes darzustellen, werden alle verwendeten Konstanten in Großbuchstaben geschrieben. Die Werte der Konstanten werden erst durch praktische Tests festgelegt werden können. 
 
 ### GA
+
+- erklären welche Mischform von GA EA verwendet wird und warum. 
 
 #### Kodierung	
 
@@ -71,6 +78,8 @@ Die Lösbarkeit ist eines Levels ist Kernvoraussetzung um als gültige Lösung z
 
 Das dritte Kriterium soll vor allem einzeln im Level platzierte Wände vermeiden, da diese in der Logik des Spiels keinen Sinn erfüllen und daher vom Spieler als störend empfunden werden und die Immersion mindern. Für jede Wand die direkt oder indirekt über Nachbarn mit der außen Wand verbunden sind gibt es Fitnesspunkte. Dadurch sollen Wandketten gefördert werden. Die Verbindung mit den Außenwänden ist vom klassischen Hausaufbau inspiriert, da dort in der Regel auch jede Wand in irgendeiner Form mit der Außenwand verbunden ist. Da die hier generierten Level auch größere Dungeon darstellen sollen, könnten auch Säulenartige Strukturen oder Stützwände wünschenswert sein. Daher gibt es für Wände, die zwar keine Anbindung an den Levelrand haben, jedoch mit anderen Wänden verbunden sind, Teilpunkte. 
 
+- Kriterien die nach und nach auch noch integriert werden könnten 
+
 ##### Selektion und Rekombination
 
 Als Selektionsverfahren wird das im Abschnitt .... beschreibende Roulette Wheel Selection Verfahren genutzt. Da keine negative Fitness erreicht werden kann als auch von einer großen Spannbreite an Bewertungen ausgegangen werden kann, bietet sich ein Rank Selection Verfahren nicht an. Alternativ wäre auch die Verwendung der Tournament Selektion denkbar. 
@@ -79,9 +88,13 @@ Sollte die es zu einen Crossover, abhängig von der CHANCE_FOR_CROSSOVER, kommen
 
 Das Uniform Crossover Verfahren würde wieder eine komplett Zufällige Anordnung von Böden und Wänden zu folge ziehen und ist daher für die Generierung von Leveln nicht geeignet. 
 
+- zweites Selektionsverfahren beschreiben
+
 ##### Mutation 
 
 Zur Levelgenerierung bieten sich fast alle bekannten Mutationsverfahren an. In dieser Implementierung wird eine angepasste Version der Bit-Flip Mutation verwendet. Ignorieren wir bei der Mutation Start und Ausgangspunkt, bleiben noch Felder die entweder Böden oder Wände sind. Es wird für jedes Gen überprüft ob es zur Mutation kommt, und wenn ja, wird der Allel des Gen geändert. Wände werden zu Böden und Böden zu Wände. 
+
+- Mutationsverfahren 2 und drei beschreiben
 
 #### Abbruchkriterium
 
