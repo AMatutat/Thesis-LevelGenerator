@@ -5,10 +5,10 @@ import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import combiner.LevelParser;
 import jxl.Workbook;
 import jxl.write.*;
 import jxl.write.Number;
+import parser.LevelParser;
 
 public class LevelGenerator {
 

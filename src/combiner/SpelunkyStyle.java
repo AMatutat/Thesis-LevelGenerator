@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import ga.CodedLevel;
 import ga.Constants;
 import ga.LevelGenerator;
+import parser.LevelParser;
 
 public class SpelunkyStyle {
 

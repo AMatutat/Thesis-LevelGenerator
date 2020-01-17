@@ -6,6 +6,7 @@ import ga.CodedLevel;
 import ga.CodedRoom;
 import ga.Constants;
 import ga.LevelGenerator;
+import parser.LevelParser;
 
 public class ConnectedRoomGenerator {
 
