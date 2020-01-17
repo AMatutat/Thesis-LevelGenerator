@@ -2,8 +2,8 @@ package combiner;
 
 import java.util.ArrayList;
 
+import constants.Reference;
 import ga.CodedLevel;
-import ga.Constants;
 import ga.LevelGenerator;
 import parser.LevelParser;
 
@@ -29,7 +29,7 @@ public class SpelunkyStyle {
 		for (int i = 0; i < 16; i++) {
 			rooms[i] = lg.generateLevel(10, 9, 2, 1, 2, 2);
 			if (i != startFrame)
-				rooms[i].changeField(rooms[i].getStart().x, rooms[i].getStart().y, Constants.REFERENCE_FLOOR);
+				rooms[i].changeField(rooms[i].getStart().x, rooms[i].getStart().y, Reference.REFERENCE_FLOOR);
 		}
 
 		ArrayList<Integer> criticalPath = new ArrayList<Integer>();
@@ -45,21 +45,21 @@ public class SpelunkyStyle {
 				// remove for WEST
 				if (aktuellerFrame - 1 == nextFrame) {
 					int field = (int) (Math.random() * 7) + 1;
-					removeWall(rooms[aktuellerFrame], Constants.REFERENCE_WEST, field);
-					removeWall(rooms[nextFrame], Constants.REFERENCE_EAST, field);
+					removeWall(rooms[aktuellerFrame], Reference.REFERENCE_WEST, field);
+					removeWall(rooms[nextFrame], Reference.REFERENCE_EAST, field);
 				}
 				// remove for EAST
 				if (aktuellerFrame + 1 == nextFrame) {
 					int field = (int) (Math.random() * 7) + 1;
-					removeWall(rooms[aktuellerFrame], Constants.REFERENCE_EAST, field);
-					removeWall(rooms[nextFrame], Constants.REFERENCE_WEST, field);
+					removeWall(rooms[aktuellerFrame], Reference.REFERENCE_EAST, field);
+					removeWall(rooms[nextFrame], Reference.REFERENCE_WEST, field);
 				}
 
 				// remove for South
 				if (aktuellerFrame + 4 == nextFrame) {
 					int field = (int) (Math.random() * 8) + 1;
-					removeWall(rooms[aktuellerFrame], Constants.REFERENCE_SOUTH, field);
-					removeWall(rooms[nextFrame], Constants.REFERENCE_NORTH, field);
+					removeWall(rooms[aktuellerFrame], Reference.REFERENCE_SOUTH, field);
+					removeWall(rooms[nextFrame], Reference.REFERENCE_NORTH, field);
 
 				}
 
@@ -73,7 +73,7 @@ public class SpelunkyStyle {
 		// remove exits
 		for (int i = 0; i < 16; i++) {
 			if (i != endFrame)
-				rooms[i].changeField(rooms[i].getExit().x, rooms[i].getExit().y, Constants.REFERENCE_FLOOR);
+				rooms[i].changeField(rooms[i].getExit().x, rooms[i].getExit().y, Reference.REFERENCE_FLOOR);
 		}
 
 		while (!key) {
@@ -81,8 +81,8 @@ public class SpelunkyStyle {
 			int x = (int) (Math.random() * 10);
 			int y = (int) (Math.random() * 9);
 
-			if (room.getLevel()[x][y] == Constants.REFERENCE_FLOOR) {
-				room.changeField(x, y, Constants.REFERENCE_FLOOR_WITH_KEY);
+			if (room.getLevel()[x][y] == Reference.REFERENCE_FLOOR) {
+				room.changeField(x, y, Reference.REFERENCE_FLOOR_WITH_KEY);
 				key = true;
 			}
 
@@ -103,7 +103,7 @@ public class SpelunkyStyle {
 				bx = 10 * ((int) r % 4);
 				for (int x = 0; x < 10; x++) {
 					if (bx == 0 || by == 0 || by == 35 || bx == 39)
-						level.changeField(bx, by, Constants.REFERENCE_WALL);
+						level.changeField(bx, by, Reference.REFERENCE_WALL);
 					else
 						level.changeField(bx, by, toCpy.getLevel()[x][y]);
 
@@ -162,10 +162,10 @@ public class SpelunkyStyle {
 				if (!change && room - 1 >= 0) {
 					if (Math.random() > 0.7) {
 						int field = (int) (Math.random() * 7) + 1;
-						removeWall(rooms[room - 1], Constants.REFERENCE_EAST, field);
-						removeWall(rooms[room], Constants.REFERENCE_WEST, field);
+						removeWall(rooms[room - 1], Reference.REFERENCE_EAST, field);
+						removeWall(rooms[room], Reference.REFERENCE_WEST, field);
 						if (!door) {
-							rooms[room - 1].changeField(9, field, Constants.REFERENCE_DOOR);
+							rooms[room - 1].changeField(9, field, Reference.REFERENCE_DOOR);
 							door = true;
 						}
 
@@ -185,10 +185,10 @@ public class SpelunkyStyle {
 				if (!change && room % 4 != 3) {
 					if (Math.random() > 0.7) {
 						int field = (int) (Math.random() * 7) + 1;
-						removeWall(rooms[room + 1], Constants.REFERENCE_WEST, field);
-						removeWall(rooms[room], Constants.REFERENCE_EAST, field);
+						removeWall(rooms[room + 1], Reference.REFERENCE_WEST, field);
+						removeWall(rooms[room], Reference.REFERENCE_EAST, field);
 						if (!door) {
-							rooms[room + 1].changeField(0, field, Constants.REFERENCE_DOOR);
+							rooms[room + 1].changeField(0, field, Reference.REFERENCE_DOOR);
 							door = true;
 						}
 						if (connected.contains(room + 1)) {
@@ -208,10 +208,10 @@ public class SpelunkyStyle {
 				if (!change && room + 4 < 16) {
 					if (Math.random() > 0.7) {
 						int field = (int) (Math.random() * 8) + 1;
-						removeWall(rooms[room], Constants.REFERENCE_SOUTH, field);
-						removeWall(rooms[room + 4], Constants.REFERENCE_NORTH, field);
+						removeWall(rooms[room], Reference.REFERENCE_SOUTH, field);
+						removeWall(rooms[room + 4], Reference.REFERENCE_NORTH, field);
 						if (!door) {
-							rooms[room + 4].changeField(field, 0, Constants.REFERENCE_DOOR);
+							rooms[room + 4].changeField(field, 0, Reference.REFERENCE_DOOR);
 							door = true;
 						}
 						if (connected.contains(room + 4)) {
@@ -238,26 +238,26 @@ public class SpelunkyStyle {
 
 	private void removeWall(CodedLevel room, int direction, int field) {
 		switch (direction) {
-		case Constants.REFERENCE_NORTH:
-			room.changeField(field, 0, Constants.REFERENCE_FLOOR);
-			if (room.getLevel()[field][1] == Constants.REFERENCE_WALL)
-				room.changeField(field, 1, Constants.REFERENCE_FLOOR);
+		case Reference.REFERENCE_NORTH:
+			room.changeField(field, 0, Reference.REFERENCE_FLOOR);
+			if (room.getLevel()[field][1] == Reference.REFERENCE_WALL)
+				room.changeField(field, 1, Reference.REFERENCE_FLOOR);
 			break;
-		case Constants.REFERENCE_SOUTH:
-			room.changeField(field, 8, Constants.REFERENCE_FLOOR);
-			if (room.getLevel()[field][7] == Constants.REFERENCE_WALL)
-				room.changeField(field, 7, Constants.REFERENCE_FLOOR);
+		case Reference.REFERENCE_SOUTH:
+			room.changeField(field, 8, Reference.REFERENCE_FLOOR);
+			if (room.getLevel()[field][7] == Reference.REFERENCE_WALL)
+				room.changeField(field, 7, Reference.REFERENCE_FLOOR);
 			break;
-		case Constants.REFERENCE_EAST:
-			room.changeField(9, field, Constants.REFERENCE_FLOOR);
-			if (room.getLevel()[8][field] == Constants.REFERENCE_WALL)
-				room.changeField(8, field, Constants.REFERENCE_FLOOR);
+		case Reference.REFERENCE_EAST:
+			room.changeField(9, field, Reference.REFERENCE_FLOOR);
+			if (room.getLevel()[8][field] == Reference.REFERENCE_WALL)
+				room.changeField(8, field, Reference.REFERENCE_FLOOR);
 			break;
 
-		case Constants.REFERENCE_WEST:
-			room.changeField(0, field, Constants.REFERENCE_FLOOR);
-			if (room.getLevel()[1][field] == Constants.REFERENCE_WALL)
-				room.changeField(1, field, Constants.REFERENCE_FLOOR);
+		case Reference.REFERENCE_WEST:
+			room.changeField(0, field, Reference.REFERENCE_FLOOR);
+			if (room.getLevel()[1][field] == Reference.REFERENCE_WALL)
+				room.changeField(1, field, Reference.REFERENCE_FLOOR);
 			break;
 		}
 

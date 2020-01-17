@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import constants.Parameter;
+import constants.Reference;
 import jxl.Workbook;
 import jxl.write.*;
 import jxl.write.Number;
@@ -17,20 +19,20 @@ public class LevelGenerator {
 	public CodedLevel generateLevel(final int xSize, final int ySize, final int fitnessVersion,
 			final int parentSlectionVersion, final int crossoverVersion, final int mutationVersion)
 			throws IllegalArgumentException {
-		if (xSize < Constants.MINIMAL_XSIZE || ySize < Constants.MINIMAL_YSIZE)
+		if (xSize <  Parameter.MINIMAL_XSIZE || ySize <  Parameter.MINIMAL_YSIZE)
 			throw new IllegalArgumentException(
-					"Size must be at least " + Constants.MINIMAL_XSIZE + "x" + Constants.MINIMAL_YSIZE);
+					"Size must be at least " +  Parameter.MINIMAL_XSIZE + "x" +  Parameter.MINIMAL_YSIZE);
 
 		this.generationLog = 0;
 		CodedLevel bestLevel = null;
 
 		// Startgeneration erzeugen
-		CodedLevel[] startPopulation = new CodedLevel[Constants.POPULATIONSIZE];
-		for (int i = 0; i < Constants.POPULATIONSIZE; i++)
+		CodedLevel[] startPopulation = new CodedLevel[Parameter.POPULATIONSIZE];
+		for (int i = 0; i <  Parameter.POPULATIONSIZE; i++)
 			startPopulation[i] = (generateRandomLevel(xSize, ySize));
 
 		// Durchlauf
-		for (int generation = 0; generation < Constants.MAXIMAL_GENERATION; generation++) {
+		for (int generation = 0; generation <  Parameter.MAXIMAL_GENERATION; generation++) {
 
 			// Start und Exit platzieren, Fitness pruefen
 			for (CodedLevel lvl : startPopulation) {
@@ -59,7 +61,7 @@ public class LevelGenerator {
 			}
 
 			// Kombinieren
-			CodedLevel[] newPopulation = new CodedLevel[Constants.POPULATIONSIZE];
+			CodedLevel[] newPopulation = new CodedLevel[ Parameter.POPULATIONSIZE];
 			for (int i = 0; i < startPopulation.length; i += 2) {
 
 				// Elternpaar Auswaehlen
@@ -84,7 +86,7 @@ public class LevelGenerator {
 					}
 				} while (parentA == parentB);
 
-				if (Math.random() <= Constants.CHANCE_FOR_CROSSOVER) {
+				if (Math.random() <=  Parameter.CHANCE_FOR_CROSSOVER) {
 					CodedLevel combined[];
 					switch (crossoverVersion) {
 					case 1:
@@ -148,12 +150,12 @@ public class LevelGenerator {
 			for (int x = 0; x < xSize; x++) {
 
 				if (x == 0 || y == 0 || y == ySize - 1 || x == xSize - 1)
-					level[x][y] = Constants.REFERENCE_WALL;
+					level[x][y] = Reference.REFERENCE_WALL;
 
-				else if (Math.random() <= Constants.CHANCE_TO_BE_FLOOR)
-					level[x][y] = Constants.REFERENCE_FLOOR;
+				else if (Math.random() <=  Parameter.CHANCE_TO_BE_FLOOR)
+					level[x][y] = Reference.REFERENCE_FLOOR;
 				else
-					level[x][y] = Constants.REFERENCE_WALL;
+					level[x][y] = Reference.REFERENCE_WALL;
 
 			}
 		}
@@ -170,7 +172,7 @@ public class LevelGenerator {
 				int x = (int) (Math.random() * lvl.getXSize() / 3);
 				int y = (int) (Math.random() * lvl.getYSize());
 				if (y != 0 && y != lvl.getYSize() - 1 && x != 0 && x != lvl.getXSize() - 1) {
-					lvl.changeField(x, y, Constants.REFERENCE_START);
+					lvl.changeField(x, y, Reference.REFERENCE_START);
 					change = true;
 				}
 			} while (!change);
@@ -182,7 +184,7 @@ public class LevelGenerator {
 				int x = (int) (Math.random() * lvl.getXSize() / 3) + 2 * (int) (lvl.getXSize() / 3);
 				int y = (int) (Math.random() * lvl.getYSize());
 				if (y != 0 && y != lvl.getYSize() - 1 && x != 0 && x != lvl.getXSize() - 1) {
-					lvl.changeField(x, y, Constants.REFEERNCE_EXIT);
+					lvl.changeField(x, y, Reference.REFEERNCE_EXIT);
 					change = true;
 				}
 			} while (!change);
@@ -194,19 +196,19 @@ public class LevelGenerator {
 		level.resetList();
 		for (int x = 1; x < level.getXSize() - 1; x++) {
 			for (int y = 1; y < level.getYSize() - 1; y++) {
-				if (level.getLevel()[x][y] == Constants.REFERENCE_WALL) {
+				if (level.getLevel()[x][y] == Reference.REFERENCE_WALL) {
 					if (isConnected(level, x, y))
-						fitness += Constants.WALL_IS_CONNECTED;
+						fitness +=  Parameter.WALL_IS_CONNECTED;
 					else if (level.getCheckedWalls().size() > 1) {
-						fitness += Constants.WALL_HAS_NEIGHBOR;
+						fitness +=  Parameter.WALL_HAS_NEIGHBOR;
 					}
 					level.resetWallList();
-				} else if (level.getLevel()[x][y] == Constants.REFEERNCE_EXIT) {
+				} else if (level.getLevel()[x][y] == Reference.REFEERNCE_EXIT) {
 					if (isReachable(level, x, y))
-						fitness += Constants.EXIT_IS_REACHABLE;
+						fitness +=  Parameter.EXIT_IS_REACHABLE;
 
-				} else if (level.getLevel()[x][y] == Constants.REFERENCE_FLOOR && isReachable(level, x, y))
-					fitness += Constants.FLOOR_IS_REACHABLE;
+				} else if (level.getLevel()[x][y] == Reference.REFERENCE_FLOOR && isReachable(level, x, y))
+					fitness +=  Parameter.FLOOR_IS_REACHABLE;
 			}
 
 		}
@@ -219,22 +221,22 @@ public class LevelGenerator {
 		lvl.resetList();
 		for (int x = 1; x < lvl.getXSize() - 1; x++) {
 			for (int y = 1; y < lvl.getYSize() - 1; y++) {
-				if (lvl.getLevel()[x][y] == Constants.REFERENCE_WALL) {
+				if (lvl.getLevel()[x][y] == Reference.REFERENCE_WALL) {
 					if (isConnected(lvl, x, y))
-						fitness += Constants.WALL_IS_CONNECTED;
-					if (lvl.getLevel()[x - 1][y] != Constants.REFERENCE_WALL)
-						fitness += Constants.WALL_NEIGHBOR_IS_FLOOR;
-					if (lvl.getLevel()[x + 1][y] != Constants.REFERENCE_WALL)
-						fitness += Constants.WALL_NEIGHBOR_IS_FLOOR;
-					if (lvl.getLevel()[x][y - 1] != Constants.REFERENCE_WALL)
-						fitness += Constants.WALL_NEIGHBOR_IS_FLOOR;
-					if (lvl.getLevel()[x][y + 1] != Constants.REFERENCE_WALL)
-						fitness += Constants.WALL_NEIGHBOR_IS_FLOOR;
-				} else if (lvl.getLevel()[x][y] == Constants.REFEERNCE_EXIT) {
+						fitness +=  Parameter.WALL_IS_CONNECTED;
+					if (lvl.getLevel()[x - 1][y] != Reference.REFERENCE_WALL)
+						fitness +=  Parameter.WALL_NEIGHBOR_IS_FLOOR;
+					if (lvl.getLevel()[x + 1][y] != Reference.REFERENCE_WALL)
+						fitness +=  Parameter.WALL_NEIGHBOR_IS_FLOOR;
+					if (lvl.getLevel()[x][y - 1] != Reference.REFERENCE_WALL)
+						fitness +=  Parameter.WALL_NEIGHBOR_IS_FLOOR;
+					if (lvl.getLevel()[x][y + 1] != Reference.REFERENCE_WALL)
+						fitness +=  Parameter.WALL_NEIGHBOR_IS_FLOOR;
+				} else if (lvl.getLevel()[x][y] == Reference.REFEERNCE_EXIT) {
 					if (isReachable(lvl, x, y))
-						fitness += Constants.EXIT_IS_REACHABLE;
-				} else if (lvl.getLevel()[x][y] == Constants.REFERENCE_FLOOR && isReachable(lvl, x, y))
-					fitness += Constants.FLOOR_IS_REACHABLE;
+						fitness +=  Parameter.EXIT_IS_REACHABLE;
+				} else if (lvl.getLevel()[x][y] == Reference.REFERENCE_FLOOR && isReachable(lvl, x, y))
+					fitness += Parameter.FLOOR_IS_REACHABLE;
 
 			}
 
@@ -246,7 +248,7 @@ public class LevelGenerator {
 
 	private boolean isConnected(final CodedLevel level, final int x, final int y) {
 
-		if (level.getLevel()[x][y] != Constants.REFERENCE_WALL)
+		if (level.getLevel()[x][y] != Reference.REFERENCE_WALL)
 			throw new IllegalArgumentException("Surface must be a wall");
 		// Wenn Wand Ausenwand ist -> return true
 		if (x == level.getXSize() - 1 || x == 0 || y == level.getYSize() - 1 || y == 0)
@@ -256,19 +258,19 @@ public class LevelGenerator {
 		level.getCheckedWalls().add(x + "" + y);
 		boolean connected = false;
 		// Rekursiver aufurf mit allen Nachbarn
-		if (level.getLevel()[x - 1][y] == Constants.REFERENCE_WALL
+		if (level.getLevel()[x - 1][y] == Reference.REFERENCE_WALL
 				&& !level.getCheckedWalls().contains((x - 1) + "" + y))
 			if (isConnected(level, x - 1, y))
 				connected = true;
-		if (!connected && level.getLevel()[x + 1][y] == Constants.REFERENCE_WALL
+		if (!connected && level.getLevel()[x + 1][y] == Reference.REFERENCE_WALL
 				&& !level.getCheckedWalls().contains((x + 1) + "" + y))
 			if (isConnected(level, x + 1, y))
 				connected = true;
-		if (!connected && level.getLevel()[x][y - 1] == Constants.REFERENCE_WALL
+		if (!connected && level.getLevel()[x][y - 1] == Reference.REFERENCE_WALL
 				&& !level.getCheckedWalls().contains(x + "" + (y - 1)))
 			if (isConnected(level, x, y - 1))
 				connected = true;
-		if (!connected && level.getLevel()[x][y + 1] == Constants.REFERENCE_WALL
+		if (!connected && level.getLevel()[x][y + 1] == Reference.REFERENCE_WALL
 				&& !level.getCheckedWalls().contains(x + "" + (y + 1)))
 			if (isConnected(level, x, y + 1))
 				connected = true;
@@ -277,8 +279,8 @@ public class LevelGenerator {
 	}
 
 	private boolean isReachable(final CodedLevel level, final int x, final int y) {
-		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT
-				&& level.getLevel()[x][y] != Constants.REFERENCE_START)
+		if (level.getLevel()[x][y] != Reference.REFERENCE_FLOOR && level.getLevel()[x][y] != Reference.REFEERNCE_EXIT
+				&& level.getLevel()[x][y] != Reference.REFERENCE_START)
 			throw new IllegalArgumentException("Surface must be a floor. Is " + level.getLevel()[x][y]);
 
 		if (level.getReachableFloors().size() <= 0)
@@ -289,33 +291,33 @@ public class LevelGenerator {
 	}
 
 	private void createReachableList(final CodedLevel level, final int x, final int y) {
-		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT
-				&& level.getLevel()[x][y] != Constants.REFERENCE_START)
+		if (level.getLevel()[x][y] != Reference.REFERENCE_FLOOR && level.getLevel()[x][y] != Reference.REFEERNCE_EXIT
+				&& level.getLevel()[x][y] != Reference.REFERENCE_START)
 			throw new IllegalArgumentException("Surface must be a floor Is " + level.getLevel()[x][y]);
 
 		level.getReachableFloors().add(x + "_" + y);
 
-		if ((level.getLevel()[x - 1][y] == Constants.REFERENCE_FLOOR
-				|| level.getLevel()[x - 1][y] == Constants.REFEERNCE_EXIT
-				|| level.getLevel()[x - 1][y] == Constants.REFERENCE_START)
+		if ((level.getLevel()[x - 1][y] == Reference.REFERENCE_FLOOR
+				|| level.getLevel()[x - 1][y] == Reference.REFEERNCE_EXIT
+				|| level.getLevel()[x - 1][y] == Reference.REFERENCE_START)
 				&& !level.getReachableFloors().contains((x - 1) + "_" + y))
 			createReachableList(level, x - 1, y);
 
-		if ((level.getLevel()[x + 1][y] == Constants.REFERENCE_FLOOR
-				|| level.getLevel()[x + 1][y] == Constants.REFEERNCE_EXIT
-				|| level.getLevel()[x + 1][y] == Constants.REFERENCE_START)
+		if ((level.getLevel()[x + 1][y] == Reference.REFERENCE_FLOOR
+				|| level.getLevel()[x + 1][y] == Reference.REFEERNCE_EXIT
+				|| level.getLevel()[x + 1][y] == Reference.REFERENCE_START)
 				&& !level.getReachableFloors().contains((x + 1) + "_" + y))
 			createReachableList(level, x + 1, y);
 
-		if ((level.getLevel()[x][y - 1] == Constants.REFERENCE_FLOOR
-				|| level.getLevel()[x][y - 1] == Constants.REFEERNCE_EXIT
-				|| level.getLevel()[x][y - 1] == Constants.REFERENCE_START)
+		if ((level.getLevel()[x][y - 1] == Reference.REFERENCE_FLOOR
+				|| level.getLevel()[x][y - 1] == Reference.REFEERNCE_EXIT
+				|| level.getLevel()[x][y - 1] == Reference.REFERENCE_START)
 				&& !level.getReachableFloors().contains(x + "_" + (y - 1)))
 			createReachableList(level, x, y - 1);
 
-		if ((level.getLevel()[x][y + 1] == Constants.REFERENCE_FLOOR
-				|| level.getLevel()[x][y + 1] == Constants.REFEERNCE_EXIT
-				|| level.getLevel()[x][y + 1] == Constants.REFERENCE_START)
+		if ((level.getLevel()[x][y + 1] == Reference.REFERENCE_FLOOR
+				|| level.getLevel()[x][y + 1] == Reference.REFEERNCE_EXIT
+				|| level.getLevel()[x][y + 1] == Reference.REFERENCE_START)
 				&& !level.getReachableFloors().contains(x + "_" + (y + 1)))
 			createReachableList(level, x, y + 1);
 	}
@@ -407,11 +409,11 @@ public class LevelGenerator {
 	private void bitFlipMutation(final CodedLevel lvl) {
 		for (int y = 1; y < lvl.getYSize() - 1; y++) {
 			for (int x = 1; x < lvl.getXSize() - 1; x++) {
-				if (Math.random() <= Constants.CHANCE_FOR_MUTATION) {
-					if ((lvl.getLevel())[x][y] == Constants.REFERENCE_WALL)
-						lvl.changeField(x, y, Constants.REFERENCE_FLOOR);
-					else if ((lvl.getLevel())[x][y] == Constants.REFERENCE_FLOOR)
-						lvl.changeField(x, y, Constants.REFERENCE_WALL);
+				if (Math.random() <=  Parameter.CHANCE_FOR_MUTATION) {
+					if ((lvl.getLevel())[x][y] == Reference.REFERENCE_WALL)
+						lvl.changeField(x, y, Reference.REFERENCE_FLOOR);
+					else if ((lvl.getLevel())[x][y] == Reference.REFERENCE_FLOOR)
+						lvl.changeField(x, y, Reference.REFERENCE_WALL);
 				}
 			}
 		}
@@ -419,9 +421,9 @@ public class LevelGenerator {
 
 	private void fixRowMutation(final CodedLevel lvl) {
 		for (int y = 2; y < lvl.getYSize() - 2; y++) {
-			if (Math.random() < Constants.CHANCE_FOR_MUTATION) {
+			if (Math.random() <  Parameter.CHANCE_FOR_MUTATION) {
 				for (int x = 2; x < lvl.getXSize() - 2; x++) {
-					if (lvl.getLevel()[x][y] == Constants.REFERENCE_WALL) {
+					if (lvl.getLevel()[x][y] == Reference.REFERENCE_WALL) {
 						lvl.resetWallList();
 						int actX = x;
 						boolean first = true;
@@ -433,7 +435,7 @@ public class LevelGenerator {
 								// Vertauschen
 
 								char c = lvl.getLevel()[actX + 1][y];
-								lvl.changeField(actX + 1, y, Constants.REFERENCE_WALL);
+								lvl.changeField(actX + 1, y, Reference.REFERENCE_WALL);
 								lvl.changeField(actX, y, c);
 
 								actX++;
@@ -450,7 +452,7 @@ public class LevelGenerator {
 							else {
 								// vertauschen
 								char c = lvl.getLevel()[actX - 1][y];
-								lvl.changeField(actX - 1, y, Constants.REFERENCE_WALL);
+								lvl.changeField(actX - 1, y, Reference.REFERENCE_WALL);
 								lvl.changeField(actX, y, c);
 								// Beim naechsten Run selbes Surface an neuer Position ueberpruefen
 								actX--;
@@ -470,20 +472,20 @@ public class LevelGenerator {
 		for (int x = 1; x < tempLevel.getXSize() - 1; x++) {
 			for (int y = 1; y < tempLevel.getYSize() - 1; y++) {
 				int lebendeNachbarn = 0;
-				if (Math.random() <= Constants.CHANCE_FOR_MUTATION) {
-					if (level.getLevel()[x + 1][y] == Constants.REFERENCE_WALL)
+				if (Math.random() <=  Parameter.CHANCE_FOR_MUTATION) {
+					if (level.getLevel()[x + 1][y] == Reference.REFERENCE_WALL)
 						lebendeNachbarn++;
-					if (level.getLevel()[x - 1][y] == Constants.REFERENCE_WALL)
+					if (level.getLevel()[x - 1][y] == Reference.REFERENCE_WALL)
 						lebendeNachbarn++;
-					if (level.getLevel()[x][y + 1] == Constants.REFERENCE_WALL)
+					if (level.getLevel()[x][y + 1] == Reference.REFERENCE_WALL)
 						lebendeNachbarn++;
-					if (level.getLevel()[x][y - 1] == Constants.REFERENCE_WALL)
+					if (level.getLevel()[x][y - 1] == Reference.REFERENCE_WALL)
 						lebendeNachbarn++;
-					if (lebendeNachbarn == 3 && level.getLevel()[x][y] == Constants.REFERENCE_FLOOR)
-						tempLevel.changeField(x, y, Constants.REFERENCE_WALL);
+					if (lebendeNachbarn == 3 && level.getLevel()[x][y] == Reference.REFERENCE_FLOOR)
+						tempLevel.changeField(x, y, Reference.REFERENCE_WALL);
 					else if ((lebendeNachbarn < 1 || lebendeNachbarn <= 3)
-							&& level.getLevel()[x][y] == Constants.REFERENCE_WALL) {
-						tempLevel.changeField(x, y, Constants.REFERENCE_FLOOR);
+							&& level.getLevel()[x][y] == Reference.REFERENCE_WALL) {
+						tempLevel.changeField(x, y, Reference.REFERENCE_FLOOR);
 					}
 
 				}
@@ -497,9 +499,9 @@ public class LevelGenerator {
 		lvl.resetList();
 		for (int x = 0; x < lvl.getXSize(); x++) {
 			for (int y = 0; y < lvl.getYSize(); y++) {
-				if (lvl.getLevel()[x][y] == Constants.REFERENCE_FLOOR) {
+				if (lvl.getLevel()[x][y] == Reference.REFERENCE_FLOOR) {
 					if (!isReachable(lvl, x, y))
-						lvl.changeField(x, y, Constants.REFERENCE_WALL);
+						lvl.changeField(x, y, Reference.REFERENCE_WALL);
 				}
 			}
 		}
@@ -574,12 +576,12 @@ public class LevelGenerator {
 
 			for (int j = 0; j < differentSettings; j++) {
 				System.out.println("Setting " + j);
-				Constants.CHANCE_FOR_CROSSOVER = 0f;
+				 Parameter.CHANCE_FOR_CROSSOVER = 0f;
 				for (int k = 0; k < 5; k++) {
-					Constants.CHANCE_FOR_MUTATION = 0.00f;
-					System.out.println("Crossover " + Constants.CHANCE_FOR_CROSSOVER);
-					for (int l = 0; l < 5; l++) {
-						System.out.println("Mutation " + Constants.CHANCE_FOR_MUTATION);
+					 Parameter.CHANCE_FOR_MUTATION = 0.00f;
+					System.out.println("Crossover " +  Parameter.CHANCE_FOR_CROSSOVER);
+					for (int l = 0; l < 5; l++) { 
+						Parameter.CHANCE_FOR_MUTATION=0;
 						counter++;
 						generationOfBestLevelsSum = 0;
 						fitnessOfBestLevelsSum = 0f;
@@ -597,26 +599,26 @@ public class LevelGenerator {
 						if (logResults) {
 							wsheet.addCell(new Number(1, counter, xSize));
 							wsheet.addCell(new Number(2, counter, ySize));
-							wsheet.addCell(new Number(3, counter, Constants.POPULATIONSIZE));
-							wsheet.addCell(new Number(4, counter, Constants.WALL_IS_CONNECTED));
-							wsheet.addCell(new Number(5, counter, Constants.FLOOR_IS_REACHABLE));
-							wsheet.addCell(new Number(6, counter, Constants.EXIT_IS_REACHABLE));
-							wsheet.addCell(new Number(7, counter, Constants.CHANCE_TO_BE_FLOOR));
-							wsheet.addCell(new Number(8, counter, Constants.MAXIMAL_GENERATION));
+							wsheet.addCell(new Number(3, counter,  Parameter.POPULATIONSIZE));
+							wsheet.addCell(new Number(4, counter,  Parameter.WALL_IS_CONNECTED));
+							wsheet.addCell(new Number(5, counter,  Parameter.FLOOR_IS_REACHABLE));
+							wsheet.addCell(new Number(6, counter,  Parameter.EXIT_IS_REACHABLE));
+							wsheet.addCell(new Number(7, counter, Parameter.CHANCE_TO_BE_FLOOR));
+							wsheet.addCell(new Number(8, counter,  Parameter.MAXIMAL_GENERATION));
 							wsheet.addCell(new Number(9, counter, crossoverVersion));
-							wsheet.addCell(new Number(10, counter, Constants.CHANCE_FOR_CROSSOVER));
+							wsheet.addCell(new Number(10, counter,  Parameter.CHANCE_FOR_CROSSOVER));
 							wsheet.addCell(new Number(11, counter, mutationVersion));
-							wsheet.addCell(new Number(12, counter, Constants.CHANCE_FOR_MUTATION));
+							wsheet.addCell(new Number(12, counter,  Parameter.CHANCE_FOR_MUTATION));
 							wsheet.addCell(new Number(13, counter, fitnessVersion));
 							wsheet.addCell(new Number(14, counter, (generationOfBestLevelsSum / levelsPerSetting)));
 							wsheet.addCell(new Number(15, counter, ((fitnessOfBestLevelsSum / levelsPerSetting))));
 
 						}
 
-						Constants.CHANCE_FOR_MUTATION += 0.2f;
+						 Parameter.CHANCE_FOR_MUTATION += 0.2f;
 
 					}
-					Constants.CHANCE_FOR_CROSSOVER += 0.2f;
+					 Parameter.CHANCE_FOR_CROSSOVER += 0.2f;
 				}
 				// Parameter �ndern
 				switch (j) {

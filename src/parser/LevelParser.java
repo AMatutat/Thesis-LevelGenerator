@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import constants.Reference;
 import ga.CodedLevel;
-import ga.Constants;
 import interfaces.*;
 import myGame.*;
 
@@ -19,17 +19,17 @@ public class LevelParser {
 level.printLevel();
 		for (int x = 0; x < level.getXSize(); x++) {
 			for (int y = 0; y < level.getYSize(); y++) {
-				if (level.getLevel()[x][y] == Constants.REFERENCE_WALL)
+				if (level.getLevel()[x][y] == Reference.REFERENCE_WALL)
 					lvl[x][y] = new Wall();
-				else if (level.getLevel()[x][y] == Constants.REFERENCE_FLOOR)
+				else if (level.getLevel()[x][y] == Reference.REFERENCE_FLOOR)
 					lvl[x][y] = new Floor();
-				else if (level.getLevel()[x][y] == Constants.REFERENCE_START)
+				else if (level.getLevel()[x][y] == Reference.REFERENCE_START)
 					lvl[x][y] = new Start();
-				else if (level.getLevel()[x][y] == Constants.REFEERNCE_EXIT)
+				else if (level.getLevel()[x][y] == Reference.REFEERNCE_EXIT)
 					lvl[x][y] = new Exit();
-				else if (level.getLevel()[x][y] == Constants.REFERENCE_DOOR)
+				else if (level.getLevel()[x][y] == Reference.REFERENCE_DOOR)
 					lvl[x][y] = new Door();
-				else if (level.getLevel()[x][y] == Constants.REFERENCE_FLOOR_WITH_KEY)
+				else if (level.getLevel()[x][y] == Reference.REFERENCE_FLOOR_WITH_KEY)
 					lvl[x][y] = new Key();
 				
 				

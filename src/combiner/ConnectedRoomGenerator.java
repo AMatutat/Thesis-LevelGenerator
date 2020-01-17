@@ -2,9 +2,10 @@ package combiner;
 
 import java.util.ArrayList;
 
+import constants.*;
+import constants.Parameter;
 import ga.CodedLevel;
 import ga.CodedRoom;
-import ga.Constants;
 import ga.LevelGenerator;
 import parser.LevelParser;
 
@@ -17,21 +18,21 @@ public class ConnectedRoomGenerator {
 
 		for (int x = 0; x < level.getXSize(); x++)
 			for (int y = 0; y < level.getYSize(); y++)
-				level.getLevel()[x][y] = Constants.REFERENCE_EMPTY;
+				level.getLevel()[x][y] = Reference.REFERENCE_EMPTY;
 		int fe = xSize * ySize;
 		LevelGenerator lg = new LevelGenerator();
 		while (fe > 0) {
 			System.out.println("gen Level");
 			int xp = (int) (Math.random() * xSize);
 			int yp = (int) (Math.random() * ySize);
-			if (xp < Constants.MINIMAL_XSIZE)
-				xp = Constants.MINIMAL_XSIZE;
-			if (yp < Constants.MINIMAL_YSIZE)
-				yp = Constants.MINIMAL_YSIZE;
+			if (xp < Parameter.MINIMAL_XSIZE)
+				xp =  Parameter.MINIMAL_XSIZE;
+			if (yp <  Parameter.MINIMAL_YSIZE)
+				yp =  Parameter.MINIMAL_YSIZE;
 			CodedLevel rl = lg.generateLevel(xp, yp, 2, 1, 2, 2);
 			CodedRoom r = new CodedRoom(rl.getLevel(), rl.getXSize(), rl.getYSize());
-			r.changeField(rl.getStart().x, rl.getStart().y, Constants.REFERENCE_START);
-			r.changeField(rl.getExit().x, rl.getExit().y, Constants.REFEERNCE_EXIT);
+			r.changeField(rl.getStart().x, rl.getStart().y, Reference.REFERENCE_START);
+			r.changeField(rl.getExit().x, rl.getExit().y, Reference.REFEERNCE_EXIT);
 			rooms.add(r);
 			fe -= xp * yp;
 		}
@@ -43,9 +44,9 @@ public class ConnectedRoomGenerator {
 		// remove start and exit for each room
 		for (CodedLevel room : rooms) {
 			if (rooms.indexOf(room) != startRoom)
-				room.changeField(room.getStart().x, room.getStart().y, Constants.REFERENCE_WALL);
+				room.changeField(room.getStart().x, room.getStart().y, Reference.REFERENCE_WALL);
 			if (rooms.indexOf(room) != exitRoom)
-				room.changeField(room.getExit().x, room.getExit().y, Constants.REFERENCE_WALL);
+				room.changeField(room.getExit().x, room.getExit().y, Reference.REFERENCE_WALL);
 		}
 
 		// Platziere rooms
@@ -93,8 +94,8 @@ public class ConnectedRoomGenerator {
 		// leere Felder mit Walls auffüllen
 		for (int x = 0; x < level.getXSize(); x++)
 			for (int y = 0; y < level.getYSize(); y++)
-				if (level.getLevel()[x][y] == Constants.REFERENCE_EMPTY)
-					level.changeField(x, y, Constants.REFERENCE_WALL);
+				if (level.getLevel()[x][y] == Reference.REFERENCE_EMPTY)
+					level.changeField(x, y, Reference.REFERENCE_WALL);
 
 		return level;
 
@@ -119,7 +120,7 @@ public class ConnectedRoomGenerator {
 			// checken ob kein andere raum im weg ist
 			for (int x = xp; x < xp + room.getXSize() - 1; x++)
 				for (int y = yp; y < yp + room.getYSize() - 1; y++)
-					if (level.getLevel()[x][y] != Constants.REFERENCE_EMPTY)
+					if (level.getLevel()[x][y] != Reference.REFERENCE_EMPTY)
 						free = false;
 
 			if (free) {
@@ -231,33 +232,33 @@ public class ConnectedRoomGenerator {
 	 */
 
 	private void createReachableList(final CodedLevel level, final int x, final int y) {
-		if (level.getLevel()[x][y] != Constants.REFERENCE_FLOOR && level.getLevel()[x][y] != Constants.REFEERNCE_EXIT
-				&& level.getLevel()[x][y] != Constants.REFERENCE_START)
+		if (level.getLevel()[x][y] != Reference.REFERENCE_FLOOR && level.getLevel()[x][y] != Reference.REFEERNCE_EXIT
+				&& level.getLevel()[x][y] != Reference.REFERENCE_START)
 			throw new IllegalArgumentException("Surface must be a floor Is " + level.getLevel()[x][y]);
 
 		level.getReachableFloors().add(x + "_" + y);
 
-		if ((level.getLevel()[x - 1][y] == Constants.REFERENCE_FLOOR
-				|| level.getLevel()[x - 1][y] == Constants.REFEERNCE_EXIT
-				|| level.getLevel()[x - 1][y] == Constants.REFERENCE_START)
+		if ((level.getLevel()[x - 1][y] == Reference.REFERENCE_FLOOR
+				|| level.getLevel()[x - 1][y] == Reference.REFEERNCE_EXIT
+				|| level.getLevel()[x - 1][y] == Reference.REFERENCE_START)
 				&& !level.getReachableFloors().contains((x - 1) + "_" + y))
 			createReachableList(level, x - 1, y);
 
-		if ((level.getLevel()[x + 1][y] == Constants.REFERENCE_FLOOR
-				|| level.getLevel()[x + 1][y] == Constants.REFEERNCE_EXIT
-				|| level.getLevel()[x + 1][y] == Constants.REFERENCE_START)
+		if ((level.getLevel()[x + 1][y] == Reference.REFERENCE_FLOOR
+				|| level.getLevel()[x + 1][y] == Reference.REFEERNCE_EXIT
+				|| level.getLevel()[x + 1][y] == Reference.REFERENCE_START)
 				&& !level.getReachableFloors().contains((x + 1) + "_" + y))
 			createReachableList(level, x + 1, y);
 
-		if ((level.getLevel()[x][y - 1] == Constants.REFERENCE_FLOOR
-				|| level.getLevel()[x][y - 1] == Constants.REFEERNCE_EXIT
-				|| level.getLevel()[x][y - 1] == Constants.REFERENCE_START)
+		if ((level.getLevel()[x][y - 1] == Reference.REFERENCE_FLOOR
+				|| level.getLevel()[x][y - 1] == Reference.REFEERNCE_EXIT
+				|| level.getLevel()[x][y - 1] == Reference.REFERENCE_START)
 				&& !level.getReachableFloors().contains(x + "_" + (y - 1)))
 			createReachableList(level, x, y - 1);
 
-		if ((level.getLevel()[x][y + 1] == Constants.REFERENCE_FLOOR
-				|| level.getLevel()[x][y + 1] == Constants.REFEERNCE_EXIT
-				|| level.getLevel()[x][y + 1] == Constants.REFERENCE_START)
+		if ((level.getLevel()[x][y + 1] == Reference.REFERENCE_FLOOR
+				|| level.getLevel()[x][y + 1] == Reference.REFEERNCE_EXIT
+				|| level.getLevel()[x][y + 1] == Reference.REFERENCE_START)
 				&& !level.getReachableFloors().contains(x + "_" + (y + 1)))
 			createReachableList(level, x, y + 1);
 	}
@@ -276,26 +277,26 @@ public class ConnectedRoomGenerator {
 				// links oben
 				if (xAbstand < 0) {
 					for (int y = Math.abs(yAbstand); y > 0; y--) {						
-						level.changeField(r1.getMidPoint().x, r1.getMidPoint().y - y, Constants.REFERENCE_FLOOR);
+						level.changeField(r1.getMidPoint().x, r1.getMidPoint().y - y, Reference.REFERENCE_FLOOR);
 					}
 					for (int x = Math.abs(xAbstand); x > 0; x--) {
 						
 						
-			if(level.getLevel()[r1.getMidPoint().x - x][ r1.getMidPoint().y + yAbstand]!=Constants.REFERENCE_START && level.getLevel()[r1.getMidPoint().x - x][ r1.getMidPoint().y + yAbstand]!=Constants.REFEERNCE_EXIT)			
+			if(level.getLevel()[r1.getMidPoint().x - x][ r1.getMidPoint().y + yAbstand]!=Reference.REFERENCE_START && level.getLevel()[r1.getMidPoint().x - x][ r1.getMidPoint().y + yAbstand]!=Reference.REFEERNCE_EXIT)			
 						level.changeField(r1.getMidPoint().x - x, r1.getMidPoint().y + yAbstand,
-								Constants.REFERENCE_FLOOR);
+								Reference.REFERENCE_FLOOR);
 					}
 
 					// recht oben
 				} else {
 					for (int y = Math.abs(yAbstand); y > 0; y--) {
-						level.changeField(r1.getMidPoint().x, r1.getMidPoint().y - y, Constants.REFERENCE_FLOOR);
+						level.changeField(r1.getMidPoint().x, r1.getMidPoint().y - y, Reference.REFERENCE_FLOOR);
 					}
 					for (int x = 0; x <= xAbstand; x++) {
 						
-						if(level.getLevel()[r1.getMidPoint().x + x][ r1.getMidPoint().y + yAbstand]!=Constants.REFERENCE_START && level.getLevel()[r1.getMidPoint().x + x][ r1.getMidPoint().y + yAbstand]!=Constants.REFEERNCE_EXIT)			
+						if(level.getLevel()[r1.getMidPoint().x + x][ r1.getMidPoint().y + yAbstand]!=Reference.REFERENCE_START && level.getLevel()[r1.getMidPoint().x + x][ r1.getMidPoint().y + yAbstand]!=Reference.REFEERNCE_EXIT)			
 						level.changeField(r1.getMidPoint().x + x, r1.getMidPoint().y + yAbstand,
-								Constants.REFERENCE_FLOOR);
+								Reference.REFERENCE_FLOOR);
 					}
 
 				}
@@ -304,27 +305,27 @@ public class ConnectedRoomGenerator {
 				// links unten
 				if (xAbstand < 0) {
 					for (int y = 0; y <= yAbstand; y++) {
-						level.changeField(r1.getMidPoint().x, r1.getMidPoint().y + y, Constants.REFERENCE_FLOOR);
+						level.changeField(r1.getMidPoint().x, r1.getMidPoint().y + y, Reference.REFERENCE_FLOOR);
 					}
 
 					for (int x = Math.abs(xAbstand); x > 0; x--) {
 						
-						if(level.getLevel()[r1.getMidPoint().x - x][ r1.getMidPoint().y + yAbstand]!=Constants.REFERENCE_START && level.getLevel()[r1.getMidPoint().x - x][ r1.getMidPoint().y + yAbstand]!=Constants.REFEERNCE_EXIT)			
+						if(level.getLevel()[r1.getMidPoint().x - x][ r1.getMidPoint().y + yAbstand]!=Reference.REFERENCE_START && level.getLevel()[r1.getMidPoint().x - x][ r1.getMidPoint().y + yAbstand]!=Reference.REFEERNCE_EXIT)			
 						level.changeField(r1.getMidPoint().x - x, r1.getMidPoint().y + yAbstand,
-								Constants.REFERENCE_FLOOR);
+								Reference.REFERENCE_FLOOR);
 					}
 
 					// recht unten
 				} else {
 
 					for (int y = 0; y <= yAbstand; y++) {
-						level.changeField(r1.getMidPoint().x, r1.getMidPoint().y + y, Constants.REFERENCE_FLOOR);
+						level.changeField(r1.getMidPoint().x, r1.getMidPoint().y + y, Reference.REFERENCE_FLOOR);
 					}
 
 					for (int x = 0; x <= xAbstand; x++) {
-						if(level.getLevel()[r1.getMidPoint().x + x][ r1.getMidPoint().y + yAbstand]!=Constants.REFERENCE_START && level.getLevel()[r1.getMidPoint().x + x][ r1.getMidPoint().y + yAbstand]!=Constants.REFEERNCE_EXIT)		
+						if(level.getLevel()[r1.getMidPoint().x + x][ r1.getMidPoint().y + yAbstand]!=Reference.REFERENCE_START && level.getLevel()[r1.getMidPoint().x + x][ r1.getMidPoint().y + yAbstand]!=Reference.REFEERNCE_EXIT)		
 						level.changeField(r1.getMidPoint().x + x, r1.getMidPoint().y + yAbstand,
-								Constants.REFERENCE_FLOOR);
+								Reference.REFERENCE_FLOOR);
 					}
 				}
 			}

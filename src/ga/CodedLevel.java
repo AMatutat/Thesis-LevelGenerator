@@ -2,6 +2,8 @@ package ga;
 
 import java.util.ArrayList;
 
+import constants.Reference;
+
 /**
  * Symbolisiert ein Level f�r die dauer des Erstellunsprozesses
  * 
@@ -114,21 +116,21 @@ public class CodedLevel {
 	 * @param s neue Element
 	 */
 	public void changeField(int x, int y, char s) {
-		if (this.level[x][y] == Constants.REFEERNCE_EXIT)
+		if (this.level[x][y] == Reference.REFEERNCE_EXIT)
 			this.exit = null;
 
-		else if (this.level[x][y] == Constants.REFERENCE_START)
+		else if (this.level[x][y] == Reference.REFERENCE_START)
 			this.start = null;
 
-		if (s == Constants.REFEERNCE_EXIT) {
+		if (s == Reference.REFEERNCE_EXIT) {
 			if (this.hasExit())
-				s = Constants.REFERENCE_FLOOR;
+				s = Reference.REFERENCE_FLOOR;
 			else {
 				this.exit=new Point(x,y);
 			}
-		} else if (s == Constants.REFERENCE_START) {
+		} else if (s == Reference.REFERENCE_START) {
 			if (this.hasStart())
-				s = Constants.REFERENCE_FLOOR;
+				s = Reference.REFERENCE_FLOOR;
 			else {
 				this.start=new Point(x,y);
 			}
