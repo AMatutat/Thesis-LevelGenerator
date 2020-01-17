@@ -9,12 +9,16 @@ import parser.LevelParser;
 
 public class SpelunkyStyle {
 
-	public SpelunkyStyle() {
-		// TODO Auto-generated constructor stub
-	}
+	private final int ROWCOUNT = 4;
+	private final int COLUMNCOUNT = 4;
 
-	boolean key = false;
-	boolean door = false;
+	private final int ROOMCOUNT = ROWCOUNT * COLUMNCOUNT;
+	private final int ROOMXSIZE = 10;
+	private final int ROOMYSize = 9;
+	private final float CHANCE_FOR_CONNECTION = 0.7f;
+
+	boolean KEY_PLACED = false;
+	boolean DOOR_PLACED = false;
 
 	public CodedLevel generateLevel() {
 
@@ -22,12 +26,12 @@ public class SpelunkyStyle {
 		LevelGenerator lg = new LevelGenerator();
 
 		// Bestimmen wo start und ende ist
-		int startFrame = (int) (Math.random() * 4);
+		int startFrame = (int) (Math.random() * ROWCOUNT);
 		int endFrame;
 
 		// gen rooms, remove starts
-		for (int i = 0; i < 16; i++) {
-			rooms[i] = lg.generateLevel(10, 9, 2, 1, 2, 2);
+		for (int i = 0; i < ROOMCOUNT; i++) {
+			rooms[i] = lg.generateLevel(ROOMXSIZE, ROOMYSize, 2, 1, 2, 2);
 			if (i != startFrame)
 				rooms[i].changeField(rooms[i].getStart().x, rooms[i].getStart().y, Reference.REFERENCE_FLOOR);
 		}
@@ -38,26 +42,26 @@ public class SpelunkyStyle {
 		boolean run = true;
 		while (run) {
 			int nextFrame = move(aktuellerFrame, rooms);
-			if (nextFrame > 15)
+			if (nextFrame > ROOMCOUNT - 1)
 				run = false;
 			else if (!criticalPath.contains(nextFrame)) {
 
 				// remove for WEST
 				if (aktuellerFrame - 1 == nextFrame) {
-					int field = (int) (Math.random() * 7) + 1;
+					int field = (int) (Math.random() * (ROOMYSize - 2)) + 1;
 					removeWall(rooms[aktuellerFrame], Reference.REFERENCE_WEST, field);
 					removeWall(rooms[nextFrame], Reference.REFERENCE_EAST, field);
 				}
 				// remove for EAST
 				if (aktuellerFrame + 1 == nextFrame) {
-					int field = (int) (Math.random() * 7) + 1;
+					int field = (int) (Math.random() * (ROOMYSize - 2)) + 1;
 					removeWall(rooms[aktuellerFrame], Reference.REFERENCE_EAST, field);
 					removeWall(rooms[nextFrame], Reference.REFERENCE_WEST, field);
 				}
 
 				// remove for South
-				if (aktuellerFrame + 4 == nextFrame) {
-					int field = (int) (Math.random() * 8) + 1;
+				if (aktuellerFrame + ROWCOUNT == nextFrame) {
+					int field = (int) (Math.random() * (ROOMXSIZE - 2)) + 1;
 					removeWall(rooms[aktuellerFrame], Reference.REFERENCE_SOUTH, field);
 					removeWall(rooms[nextFrame], Reference.REFERENCE_NORTH, field);
 
@@ -71,45 +75,47 @@ public class SpelunkyStyle {
 		endFrame = criticalPath.get(criticalPath.size() - 1);
 
 		// remove exits
-		for (int i = 0; i < 16; i++) {
+		for (int i = 0; i < ROOMCOUNT; i++) {
 			if (i != endFrame)
 				rooms[i].changeField(rooms[i].getExit().x, rooms[i].getExit().y, Reference.REFERENCE_FLOOR);
 		}
 
-		while (!key) {
+		while (!KEY_PLACED) {
 			CodedLevel room = rooms[criticalPath.get((int) (Math.random() * criticalPath.size()))];
-			int x = (int) (Math.random() * 10);
-			int y = (int) (Math.random() * 9);
+			int x = (int) (Math.random() * ROOMXSIZE);
+			int y = (int) (Math.random() * ROOMYSize);
 
 			if (room.getLevel()[x][y] == Reference.REFERENCE_FLOOR) {
 				room.changeField(x, y, Reference.REFERENCE_FLOOR_WITH_KEY);
-				key = true;
+				KEY_PLACED = true;
 			}
 
 		}
 
 		connectUnconnected(rooms, criticalPath);
 
-		CodedLevel level = new CodedLevel(new char[40][36], 40, 36);
+		CodedLevel level = new CodedLevel(new char[ROWCOUNT * ROOMXSIZE][COLUMNCOUNT * ROOMYSize], ROWCOUNT * ROOMXSIZE,
+				COLUMNCOUNT * ROOMYSize);
 
-		int bx = 0;
-		int by = 0;
-		int bbx = 0;
-		for (int r = 0; r < 16; r++) {
-			CodedLevel toCpy = rooms[r];
-			bx = 10 * ((int) r % 4);
-			by = 9 * ((int) r / 4);
-			for (int y = 0; y < 9; y++) {
-				bx = 10 * ((int) r % 4);
-				for (int x = 0; x < 10; x++) {
-					if (bx == 0 || by == 0 || by == 35 || bx == 39)
-						level.changeField(bx, by, Reference.REFERENCE_WALL);
+		int levelX = 0;
+		int levelY = 0;
+		int tempX = 0;
+		for (int room = 0; room < ROOMCOUNT; room++) {
+			CodedLevel roomToCoppy = rooms[room];
+			levelX = 10 * ((int) room % ROWCOUNT);
+			levelY = 9 * ((int) room / COLUMNCOUNT);
+			for (int roomY = 0; roomY < ROOMYSize; roomY++) {
+				levelX = 10 * ((int) room % ROWCOUNT);
+				for (int roomX = 0; roomX < ROOMXSIZE; roomX++) {
+					if (levelX == 0 || levelY == 0 || levelY == COLUMNCOUNT * ROOMYSize - 1
+							|| levelX == ROWCOUNT * ROOMXSIZE - 1)
+						level.changeField(levelX, levelY, Reference.REFERENCE_WALL);
 					else
-						level.changeField(bx, by, toCpy.getLevel()[x][y]);
+						level.changeField(levelX, levelY, roomToCoppy.getLevel()[roomX][roomY]);
 
-					bx++;
+					levelX++;
 				}
-				by++;
+				levelY++;
 			}
 		}
 
@@ -123,22 +129,24 @@ public class SpelunkyStyle {
 		case 0:
 		case 1:
 			// end of row, move down
-			if (aktuellerFrame % 4 == 0)
-				aktuellerFrame += 4;
+			if (aktuellerFrame % ROWCOUNT == 0)
+				aktuellerFrame += ROWCOUNT;
 			else
 				aktuellerFrame--;
 			break;
 
+		// recht
 		case 2:
 		case 3:
-			if (aktuellerFrame % 4 == 3)
-				aktuellerFrame += 4;
+			if (aktuellerFrame % ROWCOUNT == ROWCOUNT - 1)
+				aktuellerFrame += ROWCOUNT;
 			else
 				aktuellerFrame++;
 			break;
 
+		// unten
 		case 4:
-			aktuellerFrame += 4;
+			aktuellerFrame += ROWCOUNT;
 			break;
 
 		}
@@ -148,25 +156,25 @@ public class SpelunkyStyle {
 	}
 
 	private void connectUnconnected(CodedLevel[] rooms, ArrayList<Integer> connected) {
-		ArrayList<Integer> unconnected = new ArrayList<Integer>();
-		for (int i = 0; i < 16; i++)
-			if (!connected.contains(i))
-				unconnected.add(i);
+		ArrayList<Integer> unconnectedRooms = new ArrayList<Integer>();
+		for (int room = 0; room < ROOMCOUNT; room++)
+			if (!connected.contains(room))
+				unconnectedRooms.add(room);
 
-		if (unconnected.size() > 0) {
-			Integer room = unconnected.get(0);
-			ArrayList<Integer> tempCon = new ArrayList<Integer>();
+		if (unconnectedRooms.size() > 0) {
+			Integer room = unconnectedRooms.get(0);
+			ArrayList<Integer> tempConnected = new ArrayList<Integer>();
 			while (!connected.contains(room)) {
 				boolean change = false;
 				// linker nachbar
 				if (!change && room - 1 >= 0) {
-					if (Math.random() > 0.7) {
-						int field = (int) (Math.random() * 7) + 1;
+					if (Math.random() < CHANCE_FOR_CONNECTION) {
+						int field = (int) (Math.random() * ROOMYSize - 2) + 1;
 						removeWall(rooms[room - 1], Reference.REFERENCE_EAST, field);
 						removeWall(rooms[room], Reference.REFERENCE_WEST, field);
-						if (!door) {
-							rooms[room - 1].changeField(9, field, Reference.REFERENCE_DOOR);
-							door = true;
+						if (!DOOR_PLACED) {
+							rooms[room - 1].changeField(ROOMXSIZE - 1, field, Reference.REFERENCE_DOOR);
+							DOOR_PLACED = true;
 						}
 
 						if (connected.contains(room - 1)) {
@@ -175,21 +183,21 @@ public class SpelunkyStyle {
 						}
 
 						else {
-							tempCon.add(room);
+							tempConnected.add(room);
 							change = true;
 							room = room - 1;
 						}
 					}
 				}
 				// rechter nachbar
-				if (!change && room % 4 != 3) {
-					if (Math.random() > 0.7) {
-						int field = (int) (Math.random() * 7) + 1;
+				if (!change && room % ROWCOUNT != ROWCOUNT - 1) {
+					if (Math.random() < CHANCE_FOR_CONNECTION) {
+						int field = (int) (Math.random() * ROOMYSize - 2) + 1;
 						removeWall(rooms[room + 1], Reference.REFERENCE_WEST, field);
 						removeWall(rooms[room], Reference.REFERENCE_EAST, field);
-						if (!door) {
+						if (!DOOR_PLACED) {
 							rooms[room + 1].changeField(0, field, Reference.REFERENCE_DOOR);
-							door = true;
+							DOOR_PLACED = true;
 						}
 						if (connected.contains(room + 1)) {
 							connected.add(room);
@@ -197,7 +205,7 @@ public class SpelunkyStyle {
 						}
 
 						else {
-							tempCon.add(room);
+							tempConnected.add(room);
 							room = room + 1;
 							change = true;
 						}
@@ -205,35 +213,34 @@ public class SpelunkyStyle {
 				}
 
 				// nachbar unten
-				if (!change && room + 4 < 16) {
-					if (Math.random() > 0.7) {
-						int field = (int) (Math.random() * 8) + 1;
+				if (!change && room + ROWCOUNT < ROOMCOUNT) {
+					if (Math.random() < CHANCE_FOR_CONNECTION) {
+						int field = (int) (Math.random() * ROOMXSIZE - 2) + 1;
 						removeWall(rooms[room], Reference.REFERENCE_SOUTH, field);
-						removeWall(rooms[room + 4], Reference.REFERENCE_NORTH, field);
-						if (!door) {
-							rooms[room + 4].changeField(field, 0, Reference.REFERENCE_DOOR);
-							door = true;
+						removeWall(rooms[room + ROWCOUNT], Reference.REFERENCE_NORTH, field);
+						if (!DOOR_PLACED) {
+							rooms[room + ROWCOUNT].changeField(field, 0, Reference.REFERENCE_DOOR);
+							DOOR_PLACED = true;
 						}
-						if (connected.contains(room + 4)) {
+						if (connected.contains(room + ROWCOUNT)) {
 							connected.add(room);
 							change = true;
 						}
 
 						else {
-							tempCon.add(room);
-							room = room + 4;
+							tempConnected.add(room);
+							room = room + ROWCOUNT;
 							change = true;
 						}
 					}
 				}
 
 			}
-			for (Integer i : tempCon)
+			for (Integer i : tempConnected)
 				connected.add(i);
 
 			connectUnconnected(rooms, connected);
 		}
-		System.out.println("testEnd");
 	}
 
 	private void removeWall(CodedLevel room, int direction, int field) {
@@ -249,9 +256,9 @@ public class SpelunkyStyle {
 				room.changeField(field, 7, Reference.REFERENCE_FLOOR);
 			break;
 		case Reference.REFERENCE_EAST:
-			room.changeField(9, field, Reference.REFERENCE_FLOOR);
-			if (room.getLevel()[8][field] == Reference.REFERENCE_WALL)
-				room.changeField(8, field, Reference.REFERENCE_FLOOR);
+			room.changeField(ROOMXSIZE - 1, field, Reference.REFERENCE_FLOOR);
+			if (room.getLevel()[ROOMYSize - 1][field] == Reference.REFERENCE_WALL)
+				room.changeField(ROOMYSize - 1, field, Reference.REFERENCE_FLOOR);
 			break;
 
 		case Reference.REFERENCE_WEST:
