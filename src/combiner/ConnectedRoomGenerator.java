@@ -1,6 +1,11 @@
-package generator;
+package combiner;
 
 import java.util.ArrayList;
+
+import ga.CodedLevel;
+import ga.CodedRoom;
+import ga.Constants;
+import ga.LevelGenerator;
 
 public class ConnectedRoomGenerator {
 

@@ -1,4 +1,4 @@
-package generator;
+package ga;
 
 public class CodedRoom extends CodedLevel {
 

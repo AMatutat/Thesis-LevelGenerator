@@ -1,4 +1,4 @@
-package generator;
+package ga;
 
 import java.util.ArrayList;
 

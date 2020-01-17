@@ -1,11 +1,11 @@
-package generator;
-
+package ga;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import combiner.LevelParser;
 import jxl.Workbook;
 import jxl.write.*;
 import jxl.write.Number;
@@ -20,7 +20,6 @@ public class LevelGenerator {
 		if (xSize < Constants.MINIMAL_XSIZE || ySize < Constants.MINIMAL_YSIZE)
 			throw new IllegalArgumentException(
 					"Size must be at least " + Constants.MINIMAL_XSIZE + "x" + Constants.MINIMAL_YSIZE);
-	
 
 		this.generationLog = 0;
 		CodedLevel bestLevel = null;
@@ -42,7 +41,7 @@ public class LevelGenerator {
 				case 1:
 					fitness = fitness1(lvl);
 					break;
-				case 2: 
+				case 2:
 					fitness = fitness2(lvl);
 				default:
 					fitness = fitness1(lvl);
@@ -120,7 +119,7 @@ public class LevelGenerator {
 					fixRowMutation(lvl);
 					break;
 				case 3:
-					lvl=gameOfLifeMutation(lvl);
+					lvl = gameOfLifeMutation(lvl);
 					break;
 				default:
 					bitFlipMutation(lvl);
@@ -131,16 +130,12 @@ public class LevelGenerator {
 			// Neue Population ist die Startpopulation fuer die naehste Generation
 			startPopulation = newPopulation;
 
-			
-			
-			for (CodedLevel lvl : newPopulation) 
+			for (CodedLevel lvl : newPopulation)
 				if ((bestLevel == null || bestLevel.getFitness() < lvl.getFitness())
 						&& isReachable(lvl, lvl.getExit().x, lvl.getExit().y)) {
 					bestLevel = lvl.copyLevel();
 					this.generationLog = generation + 1;
 				}
-			
-				
 
 		}
 		removeUnreachableFloors(bestLevel);
@@ -287,7 +282,7 @@ public class LevelGenerator {
 			throw new IllegalArgumentException("Surface must be a floor. Is " + level.getLevel()[x][y]);
 
 		if (level.getReachableFloors().size() <= 0)
-			createReachableList(level, level.getStart().x,level.getStart().y);
+			createReachableList(level, level.getStart().x, level.getStart().y);
 
 		return level.getReachableFloors().contains(x + "_" + y);
 
@@ -415,7 +410,7 @@ public class LevelGenerator {
 				if (Math.random() <= Constants.CHANCE_FOR_MUTATION) {
 					if ((lvl.getLevel())[x][y] == Constants.REFERENCE_WALL)
 						lvl.changeField(x, y, Constants.REFERENCE_FLOOR);
-					else
+					else if ((lvl.getLevel())[x][y] == Constants.REFERENCE_FLOOR)
 						lvl.changeField(x, y, Constants.REFERENCE_WALL);
 				}
 			}
@@ -512,19 +507,19 @@ public class LevelGenerator {
 
 	public static void main(String[] args) throws InterruptedException {
 
-		boolean logResults = false;
-		boolean generateTexture = true;
-		String startmsg = "AllSettings";
+		boolean logResults = true;
+		boolean generateTexture = false;
+		String startmsg = "AllSettings20x20";
 		String imgName = "level";
 		int xSize = 20;
 		int ySize = 20;
 		int fitnessVersion = 1;
 		int parentSelectionVersion = 1;
 		int crossoverVersion = 1;
-		int mutationVersion = 2;
+		int mutationVersion = 1;
 
 		int levelsPerSetting = 5;
-		int differentSettings = 7;
+		int differentSettings = 4;
 
 		int generationOfBestLevelsSum = 0;
 		float fitnessOfBestLevelsSum = 0f;
@@ -532,11 +527,11 @@ public class LevelGenerator {
 		LevelGenerator lg = new LevelGenerator();
 		LevelParser pa = new LevelParser();
 
-		String tempLogFile = "temp.xls";
+		String tempLogFile = "temp20x20M1t.xls";
 		// String logFile = "DiffTests" + "_+M" + mutationVersion + "_C" +
 		// crossoverVersion + "_F" + fitnessVersion
 		// + ".xls";
-		String logFile = "DifferentParameters.xls";
+		String logFile = "DifferentParametersM1.xls";
 		String sheetName = "V1_";
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd_MM_HHmmss");
 		Workbook workbook;
@@ -581,7 +576,7 @@ public class LevelGenerator {
 				System.out.println("Setting " + j);
 				Constants.CHANCE_FOR_CROSSOVER = 0f;
 				for (int k = 0; k < 5; k++) {
-					Constants.CHANCE_FOR_MUTATION = 0f;
+					Constants.CHANCE_FOR_MUTATION = 0.00f;
 					System.out.println("Crossover " + Constants.CHANCE_FOR_CROSSOVER);
 					for (int l = 0; l < 5; l++) {
 						System.out.println("Mutation " + Constants.CHANCE_FOR_MUTATION);
@@ -629,13 +624,13 @@ public class LevelGenerator {
 				case 0:
 					fitnessVersion = 1;
 					crossoverVersion = 2;
-					mutationVersion = 2;
+					// mutationVersion = 2;
 					break;
 
 				case 1:
 					fitnessVersion = 2;
 					crossoverVersion = 1;
-					mutationVersion = 2;
+					// mutationVersion = 2;
 					break;
 				case 2:
 					fitnessVersion = 2;

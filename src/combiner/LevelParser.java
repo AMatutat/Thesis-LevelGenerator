@@ -1,4 +1,4 @@
-package generator;
+package combiner;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import ga.CodedLevel;
+import ga.Constants;
 import interfaces.*;
 import myGame.*;
 
@@ -14,7 +16,7 @@ public class LevelParser {
 
 	public Level parseLevel(final CodedLevel level) {
 		ISurface[][] lvl = new ISurface[level.getXSize()][level.getYSize()];
-
+level.printLevel();
 		for (int x = 0; x < level.getXSize(); x++) {
 			for (int y = 0; y < level.getYSize(); y++) {
 				if (level.getLevel()[x][y] == Constants.REFERENCE_WALL)
@@ -25,6 +27,12 @@ public class LevelParser {
 					lvl[x][y] = new Start();
 				else if (level.getLevel()[x][y] == Constants.REFEERNCE_EXIT)
 					lvl[x][y] = new Exit();
+				else if (level.getLevel()[x][y] == Constants.REFERENCE_DOOR)
+					lvl[x][y] = new Door();
+				else if (level.getLevel()[x][y] == Constants.REFERENCE_FLOOR_WITH_KEY)
+					lvl[x][y] = new Key();
+				
+				
 
 			}
 		}
