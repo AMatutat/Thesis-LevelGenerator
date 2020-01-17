@@ -22,7 +22,6 @@ public class ConnectedRoomGenerator {
 		int fe = xSize * ySize;
 		LevelGenerator lg = new LevelGenerator();
 		while (fe > 0) {
-			System.out.println("gen Level");
 			int xp = (int) (Math.random() * xSize);
 			int yp = (int) (Math.random() * ySize);
 			if (xp < Parameter.MINIMAL_XSIZE)
@@ -51,25 +50,7 @@ public class ConnectedRoomGenerator {
 
 		// Platziere rooms
 		level = placeRooms(rooms, level);
-
-		// Suche nach Raum
-		/*
-		 * for (CodedRoom room : rooms) { searchRoom(level, room,
-		 * Constants.REFERENCE_NORTH); searchRoom(level, room,
-		 * Constants.REFERENCE_SOUTH); searchRoom(level, room,
-		 * Constants.REFERENCE_EAST); searchRoom(level, room, Constants.REFERENCE_WEST);
-		 * }
-		 */
-		// verbinde rooms eckig
-
-		/*
-		 * ArrayList<CodedRoom> connected = new ArrayList<CodedRoom>();
-		 * 
-		 * for (CodedRoom room : rooms) { level.changeField(room.getMidPoint().x,
-		 * room.getMidPoint().y, Constants.REFERENCE_FLOOR); if (isReachable(level,
-		 * room.getMidPoint().x, room.getMidPoint().y)) connected.add(room); else
-		 * notConnected.add(room); }
-		 */
+		
 		ArrayList<CodedRoom> notConnected = new ArrayList<CodedRoom>();
 		notConnected.add(rooms.get(0));
 		for (int j = 0; j < rooms.size() - 1; j++) {
@@ -106,7 +87,6 @@ public class ConnectedRoomGenerator {
 		int counter = 0;
 		int placed = 0;
 		while (placed < rooms.size() && counter < 100) {
-			System.out.println("place room");
 			CodedRoom room = rooms.get(placed);
 			int yp;
 			int xp;
@@ -151,118 +131,6 @@ public class ConnectedRoomGenerator {
 
 	}
 
-	/*
-	 * private void connectRoomsWithStraightFloors(CodedLevel level, CodedRoom room,
-	 * int direction, Point start) {
-	 * 
-	 * switch (direction) { case Constants.REFERENCE_NORTH: for (int y = start.y; y
-	 * > 0; y--) { if (level.getLevel()[start.x][y] == Constants.REFERENCE_EMPTY) {
-	 * level.changeField(start.x, y, Constants.REFERENCE_FLOOR);
-	 * level.changeField(start.x - 1, y, Constants.REFERENCE_WALL);
-	 * level.changeField(start.x + 1, y, Constants.REFERENCE_WALL); }
-	 * 
-	 * else if (level.getLevel()[start.x][y] == Constants.REFERENCE_WALL) {
-	 * level.changeField(start.x, y, Constants.REFERENCE_FLOOR); if
-	 * (level.getLevel()[start.x - 1][y] == Constants.REFERENCE_EMPTY)
-	 * level.changeField(start.x - 1, y, Constants.REFERENCE_WALL); if
-	 * (level.getLevel()[start.x + 1][y] == Constants.REFERENCE_EMPTY)
-	 * level.changeField(start.x + 1, y, Constants.REFERENCE_WALL); }
-	 * 
-	 * else if (level.getLevel()[start.x][y] == Constants.REFERENCE_FLOOR) { if
-	 * (level.getLevel()[start.x][start.y + 1] == Constants.REFERENCE_WALL)
-	 * level.changeField(start.x, start.y + 1, Constants.REFERENCE_FLOOR); break; }
-	 * }
-	 * 
-	 * break; case Constants.REFERENCE_SOUTH: for (int y = start.y; y <
-	 * level.getYSize(); y++) { if (level.getLevel()[start.x][y] ==
-	 * Constants.REFERENCE_EMPTY) { level.changeField(start.x, y,
-	 * Constants.REFERENCE_FLOOR); level.changeField(start.x - 1, y,
-	 * Constants.REFERENCE_WALL); level.changeField(start.x + 1, y,
-	 * Constants.REFERENCE_WALL); }
-	 * 
-	 * else if (level.getLevel()[start.x][y] == Constants.REFERENCE_WALL) {
-	 * level.changeField(start.x, y, Constants.REFERENCE_FLOOR); if
-	 * (level.getLevel()[start.x - 1][y] == Constants.REFERENCE_EMPTY)
-	 * level.changeField(start.x - 1, y, Constants.REFERENCE_WALL); if
-	 * (level.getLevel()[start.x + 1][y] == Constants.REFERENCE_EMPTY)
-	 * level.changeField(start.x + 1, y, Constants.REFERENCE_WALL); }
-	 * 
-	 * else if (level.getLevel()[start.x][y] == Constants.REFERENCE_FLOOR) { if
-	 * (level.getLevel()[start.x][start.y - 1] == Constants.REFERENCE_WALL)
-	 * level.changeField(start.x, start.y - 1, Constants.REFERENCE_FLOOR); break; }
-	 * } break; case Constants.REFERENCE_EAST: for (int x = start.x; x <
-	 * level.getXSize(); x++) { if (level.getLevel()[x][start.y] ==
-	 * Constants.REFERENCE_EMPTY) { level.changeField(x, start.y,
-	 * Constants.REFERENCE_FLOOR); level.changeField(x, start.y - 1,
-	 * Constants.REFERENCE_WALL); level.changeField(x, start.y + 1,
-	 * Constants.REFERENCE_WALL); }
-	 * 
-	 * else if (level.getLevel()[x][start.y] == Constants.REFERENCE_WALL) {
-	 * level.changeField(x, start.y, Constants.REFERENCE_FLOOR); if
-	 * (level.getLevel()[x][start.y - 1] == Constants.REFERENCE_EMPTY)
-	 * level.changeField(x, start.y - 1, Constants.REFERENCE_WALL); if
-	 * (level.getLevel()[x][start.y + 1] == Constants.REFERENCE_EMPTY)
-	 * level.changeField(x, start.y + 1, Constants.REFERENCE_WALL); }
-	 * 
-	 * else if (level.getLevel()[x][start.y] == Constants.REFERENCE_FLOOR) { if
-	 * (level.getLevel()[start.x + 1][start.y] == Constants.REFERENCE_WALL)
-	 * level.changeField(start.x + 1, start.y, Constants.REFERENCE_FLOOR); break; }
-	 * }
-	 * 
-	 * break; case Constants.REFERENCE_WEST: for (int x = start.x; x > 0; x--) {
-	 * 
-	 * if (level.getLevel()[x][start.y] == Constants.REFERENCE_EMPTY) {
-	 * level.changeField(x, start.y, Constants.REFERENCE_FLOOR);
-	 * level.changeField(x, start.y - 1, Constants.REFERENCE_WALL);
-	 * level.changeField(x, start.y + 1, Constants.REFERENCE_WALL); }
-	 * 
-	 * else if (level.getLevel()[x][start.y] == Constants.REFERENCE_WALL) {
-	 * level.changeField(x, start.y, Constants.REFERENCE_FLOOR); if
-	 * (level.getLevel()[x][start.y - 1] == Constants.REFERENCE_EMPTY)
-	 * level.changeField(x, start.y - 1, Constants.REFERENCE_WALL); if
-	 * (level.getLevel()[x][start.y + 1] == Constants.REFERENCE_EMPTY)
-	 * level.changeField(x, start.y + 1, Constants.REFERENCE_WALL); }
-	 * 
-	 * else if (level.getLevel()[x][start.y] == Constants.REFERENCE_FLOOR) { if
-	 * (level.getLevel()[start.x - 1][start.y] == Constants.REFERENCE_WALL)
-	 * level.changeField(start.x - 1, start.y, Constants.REFERENCE_FLOOR); break; }
-	 * } break; }
-	 * 
-	 * }
-	 */
-
-	private void createReachableList(final CodedLevel level, final int x, final int y) {
-		if (level.getLevel()[x][y] != Reference.REFERENCE_FLOOR && level.getLevel()[x][y] != Reference.REFEERNCE_EXIT
-				&& level.getLevel()[x][y] != Reference.REFERENCE_START)
-			throw new IllegalArgumentException("Surface must be a floor Is " + level.getLevel()[x][y]);
-
-		level.getReachableFloors().add(x + "_" + y);
-
-		if ((level.getLevel()[x - 1][y] == Reference.REFERENCE_FLOOR
-				|| level.getLevel()[x - 1][y] == Reference.REFEERNCE_EXIT
-				|| level.getLevel()[x - 1][y] == Reference.REFERENCE_START)
-				&& !level.getReachableFloors().contains((x - 1) + "_" + y))
-			createReachableList(level, x - 1, y);
-
-		if ((level.getLevel()[x + 1][y] == Reference.REFERENCE_FLOOR
-				|| level.getLevel()[x + 1][y] == Reference.REFEERNCE_EXIT
-				|| level.getLevel()[x + 1][y] == Reference.REFERENCE_START)
-				&& !level.getReachableFloors().contains((x + 1) + "_" + y))
-			createReachableList(level, x + 1, y);
-
-		if ((level.getLevel()[x][y - 1] == Reference.REFERENCE_FLOOR
-				|| level.getLevel()[x][y - 1] == Reference.REFEERNCE_EXIT
-				|| level.getLevel()[x][y - 1] == Reference.REFERENCE_START)
-				&& !level.getReachableFloors().contains(x + "_" + (y - 1)))
-			createReachableList(level, x, y - 1);
-
-		if ((level.getLevel()[x][y + 1] == Reference.REFERENCE_FLOOR
-				|| level.getLevel()[x][y + 1] == Reference.REFEERNCE_EXIT
-				|| level.getLevel()[x][y + 1] == Reference.REFERENCE_START)
-				&& !level.getReachableFloors().contains(x + "_" + (y + 1)))
-			createReachableList(level, x, y + 1);
-	}
-
 	private void connectRoomsWithSquareFloors(CodedLevel level, ArrayList<CodedRoom> rooms) {
 
 		for (int i = 0; i < rooms.size() - 1; i++) {
@@ -271,8 +139,6 @@ public class ConnectedRoomGenerator {
 
 			int xAbstand = r2.getMidPoint().x - r1.getMidPoint().x;
 			int yAbstand = r2.getMidPoint().y - r1.getMidPoint().y;
-			System.out.println(xAbstand);
-			System.out.println(yAbstand);
 			if (yAbstand < 0) {
 				// links oben
 				if (xAbstand < 0) {

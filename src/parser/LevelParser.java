@@ -16,7 +16,6 @@ public class LevelParser {
 
 	public Level parseLevel(final CodedLevel level) {
 		ISurface[][] lvl = new ISurface[level.getXSize()][level.getYSize()];
-level.printLevel();
 		for (int x = 0; x < level.getXSize(); x++) {
 			for (int y = 0; y < level.getYSize(); y++) {
 				if (level.getLevel()[x][y] == Reference.REFERENCE_WALL)
