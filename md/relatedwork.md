@@ -8,53 +8,38 @@
 Umfang: typisch ca. 15% ... 20% der Arbeit = 14 Seiten
 -->
 
-Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-
-
 ## Shattered Pixel Dungeon
 
 Um ein Verständnis dafür zu bekommen, welche Art von Spiel in den vom Generator erzeugten Level gespielt wird, werden in diesen Abschnitt die Grundkonzepte von Computer Rollenspiele insbesondere des Subgenres Rouge-Like beschrieben. Danach wird das Spiel: Shattered Pixel Dungeon noch einmal genauer beleuchtet, da dieses Inspiration für das neue Praktikums Konzept ist. 
 
 ### Rollenspiele
 
-Das Genre der Computer Rollenspiele entstand aus den klassischen Pen and Paper Rollenspiel. Der Spiele schlüpft in die Rolle einer oder mehrere Spielfiguren mit unterschiedlichsten Fähigkeiten um verschiedene Aufgaben zu erledigen, Erfahrung zu sammeln und Ausrüstung zu erbeuten. Durch die Inspiration klassischen Pen and Paper Spiele, spielen unterschiedliche Charakterwerte, sowie die werte der Ausrüstung eine entscheidende Rolle. Neben der Erfüllung der Aufgaben, um in der Geschichte weiterzukommen. ist essenzieller Bestandteil, die Charakterwerte durch Erfahrung aufzuwerten, neue Fähigkeiten zu erlernen und die Ausrüstung zu verbessern. <https://de.wikipedia.org/wiki/Computer-Rollenspiel>
+Das Genre der Computer Rollenspiele entstand aus den klassischen Pen and Paper Rollenspiel. Der Spieler schlüpft in die Rolle einer oder mehrere Spielfiguren mit unterschiedlichsten Fähigkeiten. Im Fokus des Spielerlebnisses steht die Erzählung einer Geschichte und das eintauchen in die Spielwelt. Aber auch die Verbesserung der Spielfigur und ihrer Ausrüstung nehmen einen großen Bestandteil der Spielerfahrung ein. Viele Spiele lassen den Spieler bereits zu beginn eine von mehreren Charakterklassen wählen. Die Klasse der Figur bestimmt, welche Ausrüstung sie benutzen kann und welche Fähigkeiten erlernt werden können. So werden unterschiedliche Spielstiele erschaffen, ein Zauberer spielt sich spürbar anders als ein Krieger. Im Vordergrund des Gameplay stehen das Lösen von Rätseln, führen von Dialogen und bekämpfen von Feinden. https://de.wikipedia.org/wiki/Computer-Rollenspiel <https://de.wikipedia.org/wiki/Action-Rollenspiel>
 
-Viele Spiele lassen den Spieler bereits zu beginn eine von mehreren Charakterklassen wählen. Die Klasse der Figur bestimmt meist, welche Ausrüstung sie benutzen kann und welche Fähigkeiten sie erlernen kann. Vor allem seid den großen Erfolg der Elder Scrolls Spiele, ermöglichen es allerdings immer mehr Spiele, die Klasse während des eigentlichen Spielens zu bestimmen, indem Fähigkeitspunkte frei verteilt werden können. So kann der Spieler auch verschiedene Klasse miteinander vermischen.
+Viele Rollenspiele ermöglichen es den Spieler  direkten Einfluss auf den verlauf der Geschichte zu nehmen. So muss sich der Spieler in The Witcher 2: Assassins of Kings, im ersten von drei Akten, für eine von zwei Seiten entscheiden. Die Wahl nimmt Einfluss darauf, von welcher Seite der im Spiel gezeigte Konflikt betrachtet wird. Auch dürfen weniger wichtige Entscheidungen vom Spieler übernommen werden, die zwar weniger Einfluss auf das große ganze nehmen, jedoch die Immersion steigern können. <https://www.gamestar.de/artikel/the-witcher-2-assassins-of-kings-einmalig-trotz-abschlussschwaeche,2322871,seite2.html>
 
-![Charakter auswahl zu beginn des Spiels Dragon Age 2 <https://www.gamestar.de/artikel/dragon-age-2-tipps-tricks-zum-rollenspiel,2321599.html](figs/da2char.jpg){width=80%}
+In der Entwicklungszeit der Rollenspiele haben sich vor allem zwei unterschiedliche Kampfsysteme hervorgetan. Rundenbasierte Systeme übernehmen das aus den Pen and Paper bekannte Runden System, in dem sich Spieler und Gegner jeweils Abwechselnd eine Kampaction ausführen, bis einer von beiden besiegt wurde. Actionbasierte Systeme laufen vor allem in Echtzeit ab, hier stehen vor allem schnelle Reaktionen und gute Reflexe im Vordergrund. Echtzeitbasierte Rollenspiele werden oft auch als Action-Rollenspiel oder Action-Adventure bezeichnet, um sie von klassischen Rollenspielen abzugrenzen. <https://de.wikipedia.org/wiki/Action-Rollenspiel>
 
-![Fähigkeitenübersicht im Spiel Risen https://www.spieletipps.de/artikel/2018/1/ ](figs/Risen.jpg){width=80%}
-
-
-
-Klassische Computer Rollenspiele führen den Spieler so durch eine handgebaute Welt und erzählen dabei ihre Geschichte. Viele Rollenspiele ermöglichen es den Spieler, direkten Einfluss auf den Ausgang der Geschichte zu nehmen. So kann der Spieler im Rollenspiel The Witcher 2: Assassins of Kings, im ersten von drei Akten eine Entscheidung treffen, die Einfluss darauf nimmt, von welcher Seite der im Spiel gezeigte Konflikt betrachtet wird. Auch dürfen weniger wichtige Entscheidungen vom Spieler übernommen werden, die zwar weniger Einfluss auf das große ganze nehmen, jedoch die Immersion verbessern.
-
-Neben der Geschichte spielt der Kampf die zweite Große Rolle in Rollenspiele. Im laufe der Zeit haben sich zwei Kampfsysteme im Markt etabliert. Rundenbasierte Kampfsysteme bleiben der Pen and Paper Vorlage treu, und lassen Spieler und Monster nacheinander ihre Angriffe tätigen. In Actionbasierten Kamfpsystemen wird der Kampf in Echtzeit ausgetragen, hier spielen vor allem Treffervermögen und Ausweichtalent eine rolle. 
-
-![Rundenbasierte Kampfszene aus Final Fantasy 7](figs/ff7.jpg){width=50%}
-
-![Kampfszene aus den Actionrollenspiel Dark Souls](figs/darksoulskampof.jpg){width=50%}
-
-### Rouge und Rouge-Like
+### Rouge
 
 <https://en.wikipedia.org/wiki/Rogue_(video_game)>
 
-Das Adventure Rouge: Exploring the Dungoens of Doom, ist ein, in den 1980er entwickeltes, Videospiel. Der Spieler bewegt sich Rundenbasiert durch ein Levelsystem, den Dungeon, um am ende das Magische Amulett von Yendor zu erlangen. Auf den Weg dorthin gilt es die feindlichen Monster zu besiegen. 
-
-![Ein typisches Level aus den Spiel Rouge](figs/rogue.jpg){width=80%}
-
+Das Videospiel Rouge: Exploring the Dungoens of Doom, ist ein, in den 1980er entwickeltes, Dungeoncrawler. Der Spieler bewegt sich Rundenbasiert durch ein aus ASCI-Zeichen bestehenden Levelsystem (vgl. Abbidlung ..) , um am ende das Magische Amulett von Yendor zu erlangen. Auf den Weg dorthin gilt es die feindlichen Monster zu besiegen. ![Ein typisches Level aus den Spiel Rouge](figs/rogue.jpg){width=80%}
 
 <https://www.gamasutra.com/view/feature/4013/the_history_of_rogue_have__you_.php?print=1> <https://en.wikipedia.org/wiki/Rogue_(video_game)>
 
-Besonders machte Rouge der damals unübliche Permanenten Tod, stirbt der Spieler verlor er seinen gesamten Fortschritt und musste von vorne beginnen, als auch die Tatsache, dass das Dungeon jedes mal zufällig neu generiert wurde. Rogue setzte als eines der ersten Spiele auf prozedurale Level Generierung um die Abwechslung und den Wiederspielwert zu steigern. In Abschnitt drei dieser Arbeit, wird genauer auf prozedurale Level Generierung eingegangen. 
+Glenn R. Wichman, einer der Entwickler von Rouge, schrieb in einen offenen Brief
 
-Glenn R. Wichman schrieb in einen offenen Brief
-
-"„But I think Rogue’s biggest contribution, and one that still stands out
+„But I think Rogue’s biggest contribution, and one that still stands out
 to this day, is that the computer itself generated the adventure in Rogue.
 Every time you played, you got a new adventure. That’s really what made
 it so popular for all those years in the early eighties.“<http://www.digital-eel.com/deep/A_Brief_History_of_Rogue.htm>"
+
+Die Level von Rouge werden bei jeden Spielstart neu generiert, man spielt also niemals zweimal das exakt selbe Spiel. In Verbindung mit Permadeath wurde so ein Abwechslungsreiches Spiel mit hohem Wiederspielwert erschaffen. Permadeath beschreibt ein Spielprinzip bei dem der Spielertot zum permanenten Verlust des Fortschritts führt und das Spiel von vorne gestartet werden muss. <https://en.wikipedia.org/wiki/Permadeath>
+
+#### Rougelikes
+
+„[...] Roguelikes are called Rouglikes, because the games are literally like Rouge [...]“ [@Brown2017]
 
 Da Rouge eines der ersten Spiele war die auf PCG setzten, waren sowohl Spieler als auch Entwickler von diesen Konzept begeistert. Wie Entwickler fühlten sich durch Inspiriert und entwickelten ihre eigenen Spiele mit PCG. <https://www.gamasutra.com/view/feature/4013/the_history_of_rogue_have__you_.php?print=1>
 
@@ -77,12 +62,15 @@ Darüber hinaus bietet Shattered Pixel Dungeon noch viele weiter Features wie Su
 
 ![Beispielausschnitt für das Leveldesign in Shattered Pixel Dungeon <https://www.holarse-linuxgaming.de/wiki/pixel_dungeon>](figs/spdss.png){width=50%}
 
-## Grundlagen des Leveldesign
+## Grundlagen Leveldesign
 
 ### Was ist Leveldesign
 
 - Definintion
+
 - unterschied zu level art
+
+  
 
 ### Regeln für gutes Leveldesign
 
@@ -104,27 +92,30 @@ Darüber hinaus bietet Shattered Pixel Dungeon noch viele weiter Features wie Su
 
 9. Unterstützt Gameplay
 
-   
 
 
 
-<!--
+## Prozedurale Levelgenerierung
+### Einführung PCG
+- Was ist das
+- Was macht man damit
 
-https://books.google.de/books?hl=de&lr=&id=FLzOBgAAQBAJ&oi=fnd&pg=PR5&dq=genetische+algorithmen+vorteile+nachteile&ots=fz0g2GBudt&sig=zc9xi5ksVjbQf5KFfcrWm0xWg6g#v=onepage&q=genetische%20algorithmen%20vorteile%20nachteile&f=false(https://books.google.de/books?hl=de&lr=&id=FLzOBgAAQBAJ&oi=fnd&pg=PR5&dq=genetische+algorithmen+vorteile+nachteile&ots=fz0g2GBudt&sig=zc9xi5ksVjbQf5KFfcrWm0xWg6g#v=onepage&q=genetische algorithmen vorteile nachteile&f=false
+### PCG zur Levelgenerierung
+- Vorteile von PCLs /Warum benutzt man es 
+- Nachteile, mit verweis auf die Regeln für Leveldesign
 
-<http://www.mathematik.tu-dortmund.de/papers/MehmetiAmreinKulmsMacinLoenserBogonosWaidhas2014.pdf>
-
-<https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_introduction.htm>
-
--->
-
-
-
-## Einführung in Genetische Algorithmen
+#### Bekannte Verfahren zur PLG 
+- Drunkards Walk
+- Spelunky
+- Minecraft
+- GA (Plattform beispiele )
 
 
+## Genetische Algorithmen 
 
-### Herkunft
+### Grundlagen
+
+#### Herkunft
 
 "Evolutionäre Algorithmen (EA) sind Optimierungsverfahren, die sich am Vorbild der biologischen Evolution orientieren."  <https://ls11-www.cs.tu-dortmund.de/lehre/SoSe03/PG431/Ausarbeitungen/GA_Selzam.pdf>
 
@@ -144,7 +135,7 @@ Zwar gibt es zwischen den einzelnen Formen inhaltliche unterschiede, allerdings 
 
 - Genauer den unterschied erklären
 
-### Grundbegriffe aus der Genetik
+#### Grundbegriffe aus der Genetik
 
 <https://ls11-www.cs.tu-dortmund.de/lehre/SoSe03/PG431/Ausarbeitungen/GA_Selzam.pdf>
 
@@ -168,7 +159,7 @@ Allel beschreibt den exakten Wert eines Gens.
 
 Einer Menge gleichartiger Individuen wird als Population bezeichnet. Die Anzahl der Individuen gibt die Populationsgröße an. Sterben Individuen oder werden neune geboren, verändert sich die Größe der Population. Betrachtet man eine Population über mehrerer Zeitpunkte, spricht man von Generationen. 
 
-### Ablauf
+#### Ablauf
 
 GAs folgen einer Reihe an Subrutinen, die sich solange Wiederholen bis eine Abbruchbedingung erreicht ist. 
 
@@ -189,7 +180,7 @@ Abbildung ... zeigt den zugrunde legenden Ablauf von GAs.
 
 Im folgenden werden die Einzelnen Subroutinen genauer beschrieben, sowie gängige Implementationen gezeigt. 
 
-#### Kodierung
+##### Kodierung
 
 Zu beginn muss das betrachtete Problem kodiert werden. Das bedeutet das alle relevanten Aspekte auf ein Chromosom abgebildet werden müssen. Hierbei gibt es zwei Kodierungsverfahren, die je nach Problem ausgewählt werden müssen.
 
@@ -207,13 +198,13 @@ $$ g=(g_{ 0  }....g_{ m }) \in \left\{ R \right\}^{ m }  $$
 
 Die Allel der Gene der Startpopulation werden zufällig bestimmt. 
 
-#### Bewertung
+##### Bewertung
 
 Die Bewertung erfolgt mithilfe der sogenannten Fitnessfunktion, angelehnt an Darwins Survival of the Fittest. Die Fitnessfunktion bewertet die güte eines Individuums, also wie nahe es schon an einer möglichen Lösung ist. Dabei weißt die Fitnessfunktion den Individuum eine reelle Zahl zu, die die Fitness darstellt. Im Regelfall ist eine höhere Fitness besser als eine geringer. 
 
 Die Implementation der Fitnessfunktion ist stark mit der eigentlichen Problemstellung verwoben. Da die Fitnessfunktion großen Einfluss darauf hat, in welche Richtung sich die Population entwickelt, sind die Bewertungskriterien so zu wählen, das sie zur Erreichung der Lösung beitragen. Da die Fitnessfunktion während der Laufzeit jedes einzelne Individuum jeder Population jeder Generation betrachtet, sollte bei der Implementierung auf Laufzeit Optimierung geachtet werden, eine komplexe Fitnessfunktion kann den gesamten GA verlangsamen. 
 
-#### Selektion
+##### Selektion
 
 - Fitnessdruck erklären
 
@@ -246,7 +237,7 @@ Bei der Rank Selektion wird die Population anhand der Fitnesswerte der Lösungen
 
 Bei der zufälligen Selektion werden zufällig Individuen aus der Population ausgewählt. Dieses Verfahren wird für gewöhnlich vermieden, da es keinerlei Filter Mechanismen gibt und die suche nicht gesteuert werden kann. 
 
-#### Rekombination
+##### Rekombination
 
 Bei der Rekombination werden zwei Selektierte Lösungen neu zusammengesetzt. Die beiden Ursprünglichen Lösungen bezeichnet man als Eltern, die neu erzeugten Lösungen als Kinder. 
 
@@ -265,7 +256,7 @@ Beim Unform Crossover wird jedes Gen eines Elternteils betrachtet, es gibt eine 
 
 ![Bildliche Darstellung des Uniform Crossoververfahren https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_crossover.htm](figs/uniform_crossover.png){width=100%}
 
-#### Mutation
+##### Mutation
 
 Die Mutation ist eine Zufällige Veränderung der Gene um eine neue Lösung zu erhalten. Genau wie die Rekombination wird sie genutzt um eine möglichst große Diversität der Population zu erzeugen. Durch Crossover erzeugte Kinder liegen im Suchbaum in der nähe der Eltern, durch die Mutation werden die Kinder von den Eltern weiter entfernt. 
 
@@ -289,11 +280,11 @@ Bei der Scramble Mutation wird eine Auswahl an zusammenhängenden Genen vermisch
 
 Bei der Scramble Mutation wird die Reihenfolge einer Auswahl an zusammenhängenden Genen umgedreht. Das erste Gen in der Sequenz wird zum letzten und umgedreht. 
 
-#### Abbruchbedingung
+##### Abbruchbedingung
 
 Die Abbruchbedingung ist für gewöhnlich dann erreicht, wenn eine gültige Lösung gefunden wurde. Je nach Problemstellung kann es auch das überschreiten eines gewissen Fitnessschwellwertes sein oder der durchlauf einer bestimmten Generationenanazahl. Es bietet sich an einen Neustart des GAs vorzunehmen, sollte nach einer gewissen Generationsanzahl keine Lösung gefunden worden sein. Der entsprechende Schwellwert sollte so gewählt werden, dass Erfahrungsgemäß keine Steigerung der Fitness zu erwarten ist und ist dementsprechend für jede Implementierung unterschiedlich. 
 
-### Vor und Nachteile
+#### Vor und Nachteile
 
 | Pro                                                         | Contra                                                       |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
@@ -306,10 +297,30 @@ Die Abbruchbedingung ist für gewöhnlich dann erreicht, wenn eine gültige Lös
 
 
 
-### Anwengunsbeispiele
+#### Anwengunsbeispiele
 
 <http://wwwisg.cs.uni-magdeburg.de/sim/vilab/2007/papers/12_genetisch_sharbich.pdf>
 
 <https://www.degruyter.com/view/j/auto.1995.43.issue-3/auto.1995.43.3.110/auto.1995.43.3.110.xml>
 
 GAs werden beispielsweise genutzt um das Profil eines Flügels und die Form des Rumpfes von Flugzeugen zu optimieren. Beim Brückenbau lassen sich Positionierung und Gewicht einzelner Bauteile optimieren. GAs werden auch für Schwellwertanpassung bei verschieden Algorithmen und Neuronalen Netzten genutzt. Sie können auch für Scheduling-Probleme verwendet werden um so zum Beispiel Stundenpläne in Schulen zu gestalten oder Routenplanung für Paketdienste. Im allgemeinen können GAs genutzt werden um NP-Schwere Probleme zu lösen. 
+
+
+
+
+<!--
+
+https://books.google.de/books?hl=de&lr=&id=FLzOBgAAQBAJ&oi=fnd&pg=PR5&dq=genetische+algorithmen+vorteile+nachteile&ots=fz0g2GBudt&sig=zc9xi5ksVjbQf5KFfcrWm0xWg6g#v=onepage&q=genetische%20algorithmen%20vorteile%20nachteile&f=false(https://books.google.de/books?hl=de&lr=&id=FLzOBgAAQBAJ&oi=fnd&pg=PR5&dq=genetische+algorithmen+vorteile+nachteile&ots=fz0g2GBudt&sig=zc9xi5ksVjbQf5KFfcrWm0xWg6g#v=onepage&q=genetische algorithmen vorteile nachteile&f=false
+
+<http://www.mathematik.tu-dortmund.de/papers/MehmetiAmreinKulmsMacinLoenserBogonosWaidhas2014.pdf>
+
+<https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_introduction.htm>
+
+-->
+
+
+
+
+
+
+
