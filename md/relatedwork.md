@@ -27,19 +27,45 @@ it so popular for all those years in the early eighties.“[@Wichman1997]
 
 Die Level von Rouge werden bei jeden Spielstart neu generiert, man spielt also niemals zweimal das exakt selbe Spiel. In Verbindung mit Permadeath wurde so ein Abwechslungsreiches Spiel mit hohem Wiederspielwert erschaffen. Permadeath beschreibt ein Spielprinzip bei dem der Spielertot zum permanenten Verlust des Fortschritts führt und das Spiel von vorne gestartet werden muss.
 
-#### Rougelikes
+### Rougelikes
+
+Da Rouge eines der ersten Spiele war die auf PCG setzten, waren sowohl Spieler als auch Entwickler von diesen Konzept begeistert. Viele Entwickler fühlten sich durch Rouge Inspiriert und entwickelten ihre eigenen Spiele mit PCG.[@Barton2009] Es entwickelte sich das Genre der Rouglikes. 
 
 „[...] Roguelikes are called Rouglikes, because the games are literally like Rouge [...]“ [@Brown2017]
 
-Da Rouge eines der ersten Spiele war die auf PCG setzten, waren sowohl Spieler als auch Entwickler von diesen Konzept begeistert. Wie Entwickler fühlten sich durch Inspiriert und entwickelten ihre eigenen Spiele mit PCG.[@Barton2009]
+2008 wurde auf der Internationale Rouglike Entwickler Konferenz eine Liste verschiedener Faktoren erstellt, welche dabei helfen sollen das Rouglike Genre genauer zu beschreiben und zu definieren wann ein Spiel *like rouge* ist. Diese List wurde später unter den Namen *Berliner Interpretation* bekannt. Folgende Faktoren wurden dabei herausgearbeitet: [@Conference2008]
 
-- Berliner Liste für RL
+| High value factors            | Erläuterung                                                  |
+| ----------------------------- | ------------------------------------------------------------ |
+| Random environment generation | The game world is randomly generated in a way that increases replayability. Appearance and placement of items is random. Appearance of monsters is fixed, their placement is random. Fixed content (plots or puzzles or vaults) removes randomness. |
+| Permadeath                    | You are not expected to win the game with your first character. You start over from the first level when you die. (It is possible to save games but the savefile is deleted upon loading.) The random environment makes this enjoyable rather than punishing. |
+| Turn-based                    | Each command corresponds to a single action/movement. The game is not sensitive to time, you can take your time to choose your action. |
+| Grid-based                    | The world is represented by a uniform grid of tiles. Monsters (and the player) take up one tile, regardless of size. |
+| Non-modal                     | Movement, battle and other actions take place in the same mode. Every action should be available at any point of the game. Violations to this are ADOM's overworld or Angband's and Crawl's shops. |
+| Complexity                    | The game has enough complexity to allow several solutions to common goals. This is obtained by providing enough item/monster and item/item interactions and is strongly connected to having just one mode. |
+| Resource management           | You have to manage your limited resources (e.g. food, healing potions) and find uses for the resources you receive. |
+| Hack'n'slash                  | Even though there can be much more to the game, killing lots of monsters is a very important part of a roguelike. The game is player-vs-world: there are no monster/monster relations (like enmities, or diplomacy). |
+| Exploration and discovery     | The game requires careful exploration of the dungeon levels and discovery of the usage of unidentified items. This has to be done anew every time the player starts a new game. |
+
+| Low value factors               | Erläuterung                                                  |
+| ------------------------------- | ------------------------------------------------------------ |
+| Single player character         | The player controls a single character. The game is player-centric, the world is viewed through that one character and that character's death is the end of the game. |
+| Monsters are similar to players | Rules that apply to the player apply to monsters as well. They have inventories, equipment, use items, cast spells etc. |
+| Tactical challenge              | You have to learn about the tactics before you can make any significant progress. This process repeats itself, i.e. early game knowledge is not enough to beat the late game. (Due to random environments and permanent death, roguelikes are challenging to new players.) The game's focus is on providing tactical challenges (as opposed to strategically working on the big picture, or solving puzzles). |
+| ASCII display                   | The traditional display for roguelikes is to represent the tiled world by ASCII characters. |
+| Dungeons                        | Roguelikes contain dungeons, such as levels composed of rooms and corridors. |
+| Numbers                         | The numbers used to describe the character (hit points, attributes etc.) are deliberately shown. |
+
+Die Berliner Interpretation wurde über die Jahre immer wieder kritisiert. Darren Grey kritisierte in seinen Blog Beitrag *Screw the Berliner Interpretation!* den "downright nonsense"[@Grey2013] der meisten Faktoren und ist der Auffassung die Berliner Interpretation schadete der kreativen Weiterentwicklung des Genres.[@Grey2013]
+
+Im laufe der Zeit hat die Berliner Interpretation immer mehr an Bedeutung verloren. Heute versteht man unter den Genre der Rougelikes Spiele die zufällig generierte Level mit Permadeath kombinieren. [@Brown2019] Dazu gehören unter anderen Spiele wie der Plattformer *Spelunky*, das Survival Spiel *Dont´t Starve* oder das Action-Adventure *The Binding of Isaac*.[@Wikipedia2020]
+
 
 ### Shattered Pixel Dungeon
 
-"**Shattered Pixel Dungeon** is a Roguelike RPG, with pixel art graphics and lots of variety and replayability. Every game is unique, with four different playable characters, randomized levels and enemies, and over 150 items to collect and use. The game is simple to get into, but has lots of depth. Strategy is required if you want to win!" [@00-Evan2019]
+Shattered Pixel Dungeon wäre laut der Berliner Interpretation ein echtes Rougelike. Es erfüllt alle Bedingungen, bis auf die ASCII Darstellung, der Definition. 
 
-Zu beginn des Spiels wählt der Spieler eine der vier Charakterklassen aus. Zur Auswahl stehen 
+Zu beginn des Spiels wählt der Spieler eine der vier Charakterklassen aus. Zur Auswahl stehen:
 
 - Krieger: Nahkämpfer mit Fokus auf hohe stärke und Lebensenergie
 - Magier:Fernkämpfer der Zauber verwendet
@@ -48,11 +74,13 @@ Zu beginn des Spiels wählt der Spieler eine der vier Charakterklassen aus. Zur 
 
 [@Pixeldungeon.fandom2019]
 
-Der Spieler startet auf der obersten ebene eines Dungeons. Ziel ist es, möglichst tief in das Dungeon einzudringen, je tiefer der Spieler ist, desto schwieriger wird das Spiel. In den einzelnen Ebenen begegnen den Spieler die unterschiedlichsten Monster, durch dessen Tötung der Spieler Erfahrung sammelt, wurde genug Erfahrung gesammelt, steigt der Spieler auf, dies ermöglicht ihn, seine Spielfigur mit neuen Fähigkeiten auszustatten. Ebenso lassen besiegte Gegner Ausrüstungsgegenstände wie Heiltränke oder Waffen fallen. Um Erfolg im Spiel zu haben, sollte man also nicht nur versuchen möglichst schnell möglichst tief in das Dungeon einzudringen, sondern auch viele Gegner zu besiegen um an Erfahrung und Items zu gelangen. Das Spiel wird genau wie Rouge Rundenbasiert gespielt. 
+Der Spieler startet auf der obersten ebene eines Dungeons. Ziel ist es, möglichst tief in das Dungeon einzudringen, je tiefer der Spieler gelant desto schwieriger wird das Spiel. In den einzelnen Ebenen begegnen den Spieler die unterschiedlichsten Monster, durch dessen Tötung der Spieler Erfahrung sammelt, wurde genug Erfahrung gesammelt, steigt der Spieler auf, dies ermöglicht ihn, seine Spielfigur mit neuen Fähigkeiten auszustatten. Ebenso lassen besiegte Gegner Ausrüstungsgegenstände wie Heiltränke oder Waffen fallen. Um Erfolg im Spiel zu haben, sollte man also nicht nur versuchen möglichst schnell möglichst tief in das Dungeon einzudringen, sondern auch viele Gegner zu besiegen um an Erfahrung und Items zu gelangen.
 
 Darüber hinaus bietet Shattered Pixel Dungeon noch viele weiter Features wie Subklassen oder Verzauberungen, welche hier nicht weiter beschrieben werden, da diese für das Verständnis des Spielablaufes nicht nötig sind.
 
 ![Beispielausschnitt für das Leveldesign in Shattered Pixel Dungeon [@Meldrian2015]](figs/spdss.png){width=50%}
+
+Abbildung ... zeigt einen Ausschnitt eines Dungeons aus dem Spiel. Besonders gut zu erkennen sind die Zufällig Verteilten Räume verbunden durch Flure sowie der *Fog of War* welcher die Monster außerhalb der Reichweite der Spielfigur unsichtbar macht. 
 
 ## Grundlagen Leveldesign
 

@@ -118,4 +118,45 @@
   isbn      = {9781940535111},
 }
 
+@Misc{Conference2008,
+  author  = {International Roguelike Development Conference},
+  title   = {Berlin Interpretation},
+  year    = {2008},
+  url     = {http://roguebasin.roguelikedevelopment.org/index.php?title=Berlin_Interpretation},
+  urldate = {2020-01-18},
+}
+
+@Conference{,
+}
+
+@Misc{Grey2013,
+  author  = {Darren Grey},
+  title   = {Screw the Berlin Interpretation!},
+  year    = {2013},
+  url     = {http://www.gamesofgrey.com/blog/?p=403},
+  urldate = {2020-01-18},
+}
+
+@Misc{Brown2019,
+  author  = {Mark Brown},
+  title   = {Roguelikes, Persistency, and Progression | Game Maker's Toolkit},
+  year    = {2019},
+  url     = {https://www.youtube.com/watch?v=G9FB5R4wVno&t=1s},
+  urldate = {2020-01-18},
+}
+
+@Misc{Wikipedia2020,
+  author  = {Wikipedia},
+  title   = {List of roguelikes},
+  year    = {2020},
+  url     = {https://en.wikipedia.org/wiki/List_of_roguelikes},
+  urldate = {2020-01-18},
+}
+
+@Manual{[,
+  title   = {Prüfungsordnung für den Bachelorstudiengang Informatik an der Fachhochschule Bielefeld},
+  edition = {2017},
+  year    = {2010},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
