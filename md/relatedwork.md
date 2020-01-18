@@ -100,9 +100,9 @@ Darüber hinaus bietet Shattered Pixel Dungeon noch viele weiter Features wie Su
 
 ##### Spelunky
 
-Spelunky ist ein 2D-Rougelike-Plattformer, es verbindet Elemente klassicher Jump and Runs mit den prozedural Generierten Leveln und Parmadeath des Rougelike Genres. 2016 veröffentlichte der Spelunky Entwickler Derek Yu das gleichnamige Buch Spelunky in dem er auf die Entwicklungsgeschichte eingeht und unteranderem den Algorithmus zur prozeduralen Level generierung erläutert. [@Yu2016]
+Spelunky ist ein 2D-Rougelike-Plattformer, es verbindet Elemente klassischer Jump and Runs mit den prozedural Generierten Leveln und Permadeath des Rougelike Genres. 2016 veröffentlichte der Spelunky Entwickler Derek Yu das gleichnamige Buch *Spelunky* in dem er auf die Entwicklungsgeschichte eingeht und unteranderem den Algorithmus zur prozeduralen Level Generierung erläutert. [@Yu2016]
 
-Jedes Level startat mit einen 4x4 Gitter aus jeweils 10x8 Felder großen leeren Räumen. Als erster Schritt der Generierung wird der kritische Pfad im Level generiert. Der kritische Pfad verbindet den Anfang des Levels mit dem Ende des Levels und repräsentiert so den Lösungsweg. 
+Jedes Level startet mit einen 4x4 Gitter aus jeweils 10x8 Felder großen leeren Räumen. Als erster Schritt der Generierung wird der kritische Pfad im Level generiert. Der kritische Pfad verbindet den Anfang des Levels mit dem Ende des Levels und repräsentiert so den Lösungsweg. 
 
 1. Wähle einen zufälligen Raum aus der ersten Reihe und markiere diesen als Eingang
 
@@ -124,9 +124,11 @@ Jedes Level startat mit einen 4x4 Gitter aus jeweils 10x8 Felder großen leeren 
    0. Raum wurde nicht passiert
    1. Raum braucht einen Ausgang links und rechts.
    2. Raum braucht einen Ausgang links, recht und nach unten. Liegt ein weiterer zweier Raum darüber, benötigt er zusätzlich einen Ausgang nach oben. 
-   3. Raum braucht einen Ausgang links, recht und auf nach oben.  
+   3. Raum braucht einen Ausgang links, recht und nach oben.  
 
-Die Markierung erfolgt entsprechend der Richtung durch die der Raum betreten bzw. verlassen wird. Die Raumanordnung kann durch eine 4x4 Matrix dargestellt werden. So ist garantiert, das entlang des kritischen Pfades eine lösbare Raumabfolge generiert wird. Das Porblem der Level lösbarkeit (vgl regeln level) wird dadruch gelöst. 
+Die Markierung erfolgt entsprechend der Richtung durch die der Raum betreten bzw. verlassen wird. Die Raumanordnung kann durch eine 4x4 Matrix dargestellt werden. So ist garantiert, das entlang des kritischen Pfades eine lösbare Raumabfolge generiert wird. Das Problem der Level Lösbarkeit (vgl regeln Level) wird dadurch gelöst. 
+
+Den Räumen abseits des Kritischen Pfades werden zufällig eine der Nummern zugewiesen. Dementsprechend werden sie entweder an den Pfad angeschlossen oder sind von ihn abgeschottet. Spelunky bietet den Spieler die Möglichkeit Wände mit Bomben zu sprengen oder mithilfe von verschließbaren Kletterseilen steil nach oben zu klettern. So können selbst vermeidlich unerreichbare Räume betreten werden, vorausgesetzt der Spieler hat die nötigen Items dafür gefunden. 
 
 Abbildung ... zeigt eine generiertes Spelunky Level. Die rote Linie entspricht dem kritischen Pfad, die Zahlen in den Raumecken die entsprechende Nummerierung. Die dunkel roten Blöcke zeigen noch einmal die Bedeutung der Nummerierung, und sind im eigentlichen Level nicht zu sehen. 
 
@@ -146,11 +148,13 @@ Jedes Template wird durch einen String dargestellt und kann als 10x8 Matrix vers
 | L        | Leiterteil                              |
 | P        | Leiterteil mit Fläche zum Stehen        |
 
-Um Monster und Items zu verteilen, wird zum Schluss für jedes als 1 gekennzeichnetes Feld entschieden, ob zum Beispiel ein Monster darauf oder darunter platziert wird. Bei der Platzierung nehmen auch umliegende Felder Einfluss, so werden  beispielsweise Truhen bevorzugt in Nischen platziert. So werden Spieler die auch Abseits des kritischen Pfades suchen, mit Items oder Schätzen belohnt. 
+Um Monster und Items zu verteilen, wird zum Schluss für jedes als **1** gekennzeichnetes Feld entschieden, ob zum Beispiel ein Monster darauf oder darunter platziert wird. Bei der Platzierung nehmen auch umliegende Felder Einfluss, so werden  beispielsweise Truhen bevorzugt in Nischen platziert. So werden Spieler die auch Abseits des kritischen Pfades suchen, mit Items oder Schätzen belohnt. 
 
-Um optische Abwechslung zu bieten werden die Level mit unterschiedlichen Visuellen Themen erstellt, so gibt es unteranderem Dschungel-, Eis- und Feuerlevel. Das Pacing wird in Spelunky nicht durch das Leveldesign kontrolliert sondern mithilfe eines Geistes. Der Geist spawnt dann, wenn der Spieler Zuviel Zeit in einen Level verbracht hat und führt bei Berührung zum sofortigen Game Over. Dadurch muss der Spieler regelmäßig die Entscheidung treffen ob er den Levelrand noch nach weiteren Items absucht und Gefahr läuft vom Geist getötet zu werden oder sich sofort zum Levelausgang begibt dafür aber keine Items oder Schätze mitnehmen kann, was den weiteren Fortschritt erschwert (vgl. Risk Reward). 
+Um optische Abwechslung zu bieten werden die Level mit unterschiedlichen Visuellen Themen erstellt, so gibt es unteranderem Dschungel-, Eis- und Feuerlevel. Das Pacing wird in Spelunky nicht durch das Leveldesign kontrolliert sondern mithilfe eines Geistes. Der Geist spawnt dann, wenn der Spieler Zuviel Zeit in einem Level verbracht hat und führt bei Berührung zum sofortigen Game Over. Dadurch muss der Spieler regelmäßig die Entscheidung treffen ob er den Levelrand noch nach weiteren Items absucht und Gefahr läuft vom Geist getötet zu werden oder sich sofort zum Levelausgang begibt dafür aber keine Items oder Schätze mitnehmen kann, was den weiteren Fortschritt erschwert (vgl. Risk Reward). 
 
-In seinen Buch schrieb Yu: "This system doesn´t create the most natural-looking caves ever, and players will quickly begin to recognize certain repeating landmarks and perhaps even sense that the levels are generated on a grid. But with enough templates and random mutations, there´s still plenty of variability. More importantly, it creates fun and engaging levels that the player can´t easily get stuck in, something much more valuable than realism when it comes to making an immersive experience"[@Yu2016]
+In seinen Buch schrieb Yu: 
+
+"This system doesn´t create the most natural-looking caves ever, and players will quickly begin to recognize certain repeating landmarks and perhaps even sense that the levels are generated on a grid. But with enough templates and random mutations, there´s still plenty of variability. More importantly, it creates fun and engaging levels that the player can´t easily get stuck in, something much more valuable than realism when it comes to making an immersive experience"[@Yu2016]
 
 ##### Drunkards Walk
 
@@ -161,7 +165,7 @@ In seinen Buch schrieb Yu: "This system doesn´t create the most natural-looking
 
 ### Grundlagen
 
-Da der für diese Arbeit entwickelte Level Generator auf Genetischen Algorithmen basiert, werden in diesen Abschnitt alle, zur Verständnis dieser Arbeit, relevanten Grundlagen erklärt. Es existiert eine Vielzahl an Literatur über Genetische Algorithmen, die hier präsentierten Informationen basieren auf Russell und Norvigs „Artificial Intelligence: A Modern Approach“(Kaptiel 4.1.4)[@RussellundNorvig2014]  und Volker Nissens „Einführung in Evolutionäre Algorithmen“[@Nissen2013]
+Da der für diese Arbeit entwickelte Level Generator auf Genetischen Algorithmen basiert, werden in diesen Abschnitt alle, zur Verständnis dieser Arbeit, relevanten Grundlagen erklärt. Es existiert eine Vielzahl an Literatur über Genetische Algorithmen, die hier präsentierten Informationen basieren auf Russell und Norvigs „Artificial Intelligence: A Modern Approach“(Kapitel 4.1.4)[@RussellundNorvig2014]  und Volker Nissens „Einführung in Evolutionäre Algorithmen“[@Nissen2013]
 
 #### Definition
 
