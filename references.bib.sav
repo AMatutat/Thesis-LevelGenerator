@@ -8,4 +8,114 @@
   urldate = {2020-01-18},
 }
 
+@Misc{Wikipedia2019,
+  author  = {Wikipedia},
+  title   = {Computer-Rollenspiel},
+  year    = {2019},
+  url     = {https://de.wikipedia.org/wiki/Computer-Rollenspiel},
+  urldate = {2020-01-18},
+}
+
+@Misc{Wikipedia2018,
+  author  = {Wikipedia},
+  title   = {Action-Rollenspiel},
+  year    = {2018},
+  url     = {https://de.wikipedia.org/wiki/Action-Rollenspiel},
+  urldate = {2020-01-18},
+}
+
+@Misc{Graf2011,
+  author  = {Michael Graf},
+  title   = {The Witcher 2: Assassins of Kings im Test - Einmalig trotz Abschlussschwäche},
+  year    = {2011},
+  url     = {https://www.gamestar.de/artikel/the-witcher-2-assassins-of-kings-einmalig-trotz-abschlussschwaeche,2322871,seite2.html},
+  urldate = {2020-01-18},
+}
+
+@Misc{Barton2009,
+  author  = {Matt Barton and Bill Loguidice},
+  title   = {The History of Rogue: Have @ You, You Deadly Zs},
+  year    = {2009},
+  url     = {https://www.gamasutra.com/view/feature/4013/the_history_of_rogue_have__you_.php?print=1},
+  urldate = {2020-01-18},
+}
+
+@Misc{Wichman1997,
+  author  = {Glenn R. Wichman},
+  title   = {A Brief History of Rogue},
+  year    = {1997},
+  url     = {http://www.digital-eel.com/deep/A_Brief_History_of_Rogue.htm},
+  urldate = {2020-01-18},
+}
+
+@Misc{00-Evan2019,
+  author  = {00-Evan},
+  title   = {Shattered Pixel Dungeon},
+  year    = {2019},
+  url     = {https://play.google.com/store/apps/details?id=com.shatteredpixel.shatteredpixeldungeon},
+  urldate = {2020-01-18},
+}
+
+@Misc{Pixeldungeon.fandom2019,
+  author  = {Pixeldungeon.fandom},
+  title   = {Shattered PD - Classes},
+  year    = {2019},
+  url     = {https://pixeldungeon.fandom.com/wiki/Mod-Shattered_Pixel_Dungeon/Classes},
+  urldate = {2020-01-18},
+}
+
+@Misc{Meldrian2015,
+  author  = {Meldrian},
+  title   = {Shattered Pixel Dungeon},
+  year    = {2015},
+  url     = {https://www.holarse-linuxgaming.de/wiki/pixel_dungeon},
+  urldate = {2020-01-18},
+}
+
+@Misc{Selzam2006,
+  author  = {Bianca Selzam},
+  title   = {Genetische Algorithmen},
+  year    = {2006},
+  url     = {https://ls11-www.cs.tu-dortmund.de/lehre/SoSe03/PG431/Ausarbeitungen/GA_Selzam.pdf},
+  urldate = {2020-01-18},
+}
+
+@Book{Holland1975,
+  title     = {Adaptation in Natural and Artificial Systems},
+  publisher = {The University of Michigan Press},
+  year      = {1975},
+  author    = {John Holland},
+  isbn      = {9780262275552},
+}
+
+@Book{,
+  title     = {Evolutionsstrategie. Optimierung technischer Systeme nach Prinzipien der biologischen Evolution},
+  publisher = {Frommann-Holzboog-Verlag},
+  year      = {1973},
+  author    = {Ingo Rechenberg},
+}
+
+@Book{Nissen2013,
+  title     = {Einführung in Evolutionäre Algorithmen: Optimierung nach dem Vorbild der Evolution},
+  publisher = {vieweg},
+  year      = {2013},
+  author    = {Vplker Nissen},
+  isbn      = {9783322938619},
+}
+
+@Book{Russell und Norvig 2014,
+  title     = {Artificial Intelligence: A Modern Approach},
+  publisher = {Prentice Hall},
+  year      = {2014},
+  author    = {Stuart J. Russell and Peter Norvig},
+  isbn      = {0-13-604259-7},
+}
+
+@Misc{tutorialspoint,
+  author  = {tutorialspoint},
+  title   = {Genetic Algorithms},
+  url     = {https://www.tutorialspoint.com/genetic_algorithm},
+  urldate = {2020-01-18},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

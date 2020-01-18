@@ -1,12 +1,6 @@
-# Stand der Technik/Forschung, vergleichbare Arbeiten
+# Prozedurale Content Generierung
 
-<!--
 
-*   Darstellung relevanter Ansätze aus der Praxis bzw. Forschung
-*   Einordnung und Bewertung der Konzepte und Lösungen in Bezug auf die Ziele der Arbeit
-
-Umfang: typisch ca. 15% ... 20% der Arbeit = 14 Seiten
--->
 
 ## Shattered Pixel Dungeon
 
@@ -14,53 +8,51 @@ Um ein Verständnis dafür zu bekommen, welche Art von Spiel in den vom Generato
 
 ### Rollenspiele
 
-Das Genre der Computer Rollenspiele entstand aus den klassischen Pen and Paper Rollenspiel. Der Spieler schlüpft in die Rolle einer oder mehrere Spielfiguren mit unterschiedlichsten Fähigkeiten. Im Fokus des Spielerlebnisses steht die Erzählung einer Geschichte und das eintauchen in die Spielwelt. Aber auch die Verbesserung der Spielfigur und ihrer Ausrüstung nehmen einen großen Bestandteil der Spielerfahrung ein. Viele Spiele lassen den Spieler bereits zu beginn eine von mehreren Charakterklassen wählen. Die Klasse der Figur bestimmt, welche Ausrüstung sie benutzen kann und welche Fähigkeiten erlernt werden können. So werden unterschiedliche Spielstiele erschaffen, ein Zauberer spielt sich spürbar anders als ein Krieger. Im Vordergrund des Gameplay stehen das Lösen von Rätseln, führen von Dialogen und bekämpfen von Feinden. https://de.wikipedia.org/wiki/Computer-Rollenspiel <https://de.wikipedia.org/wiki/Action-Rollenspiel>
+Das Genre der Computer Rollenspiele entstand aus den klassischen Pen and Paper Rollenspiel. Der Spieler schlüpft in die Rolle einer oder mehrere Spielfiguren mit unterschiedlichsten Fähigkeiten. Im Fokus des Spielerlebnisses steht die Erzählung einer Geschichte und das eintauchen in die Spielwelt. Aber auch die Verbesserung der Spielfigur und ihrer Ausrüstung nehmen einen großen Bestandteil der Spielerfahrung ein. Viele Spiele lassen den Spieler bereits zu beginn eine von mehreren Charakterklassen wählen. Die Klasse der Figur bestimmt, welche Ausrüstung sie benutzen kann und welche Fähigkeiten erlernt werden können. So werden unterschiedliche Spielstiele erschaffen, ein Zauberer spielt sich spürbar anders als ein Krieger. Im Vordergrund des Gameplay stehen das Lösen von Rätseln, führen von Dialogen und bekämpfen von Feinden. [@Wikipedia2019] [@wikipedia2018]
 
-Viele Rollenspiele ermöglichen es den Spieler  direkten Einfluss auf den verlauf der Geschichte zu nehmen. So muss sich der Spieler in The Witcher 2: Assassins of Kings, im ersten von drei Akten, für eine von zwei Seiten entscheiden. Die Wahl nimmt Einfluss darauf, von welcher Seite der im Spiel gezeigte Konflikt betrachtet wird. Auch dürfen weniger wichtige Entscheidungen vom Spieler übernommen werden, die zwar weniger Einfluss auf das große ganze nehmen, jedoch die Immersion steigern können. <https://www.gamestar.de/artikel/the-witcher-2-assassins-of-kings-einmalig-trotz-abschlussschwaeche,2322871,seite2.html>
+Viele Rollenspiele ermöglichen es den Spieler  direkten Einfluss auf den verlauf der Geschichte zu nehmen. So muss sich der Spieler in The Witcher 2: Assassins of Kings, im ersten von drei Akten, für eine von zwei Seiten entscheiden. Die Wahl nimmt Einfluss darauf, von welcher Seite der im Spiel gezeigte Konflikt betrachtet wird. Auch dürfen weniger wichtige Entscheidungen vom Spieler übernommen werden, die zwar weniger Einfluss auf das große ganze nehmen, jedoch die Immersion steigern können. [@Graf2011]
 
-In der Entwicklungszeit der Rollenspiele haben sich vor allem zwei unterschiedliche Kampfsysteme hervorgetan. Rundenbasierte Systeme übernehmen das aus den Pen and Paper bekannte Runden System, in dem sich Spieler und Gegner jeweils Abwechselnd eine Kampaction ausführen, bis einer von beiden besiegt wurde. Actionbasierte Systeme laufen vor allem in Echtzeit ab, hier stehen vor allem schnelle Reaktionen und gute Reflexe im Vordergrund. Echtzeitbasierte Rollenspiele werden oft auch als Action-Rollenspiel oder Action-Adventure bezeichnet, um sie von klassischen Rollenspielen abzugrenzen. <https://de.wikipedia.org/wiki/Action-Rollenspiel>
+In der Entwicklungszeit der Rollenspiele haben sich vor allem zwei unterschiedliche Kampfsysteme hervorgetan. Rundenbasierte Systeme übernehmen das aus den Pen and Paper bekannte Runden System, in dem sich Spieler und Gegner jeweils Abwechselnd eine Kampaction ausführen, bis einer von beiden besiegt wurde. Actionbasierte Systeme laufen vor allem in Echtzeit ab, hier stehen vor allem schnelle Reaktionen und gute Reflexe im Vordergrund. Echtzeitbasierte Rollenspiele werden oft auch als Action-Rollenspiel oder Action-Adventure bezeichnet, um sie von klassischen Rollenspielen abzugrenzen. [@Wikipedia2019]
 
 ### Rouge
 
-<https://en.wikipedia.org/wiki/Rogue_(video_game)>
-
-Das Videospiel Rouge: Exploring the Dungoens of Doom, ist ein, in den 1980er entwickeltes, Dungeoncrawler. Der Spieler bewegt sich Rundenbasiert durch ein aus ASCI-Zeichen bestehenden Levelsystem (vgl. Abbidlung ..) , um am ende das Magische Amulett von Yendor zu erlangen. Auf den Weg dorthin gilt es die feindlichen Monster zu besiegen. ![Ein typisches Level aus den Spiel Rouge](figs/rogue.jpg){width=80%}
-
-<https://www.gamasutra.com/view/feature/4013/the_history_of_rogue_have__you_.php?print=1> <https://en.wikipedia.org/wiki/Rogue_(video_game)>
+Das Videospiel Rouge: Exploring the Dungoens of Doom, ist ein, in den 1980er entwickeltes, Dungeoncrawler. Der Spieler bewegt sich Rundenbasiert durch ein aus ASCI-Zeichen bestehenden Levelsystem (vgl. Abbidlung ..) , um am ende das Magische Amulett von Yendor zu erlangen. Auf den Weg dorthin gilt es die feindlichen Monster zu besiegen. [@Barton2009] ![Ein typisches Level aus den Spiel Rouge [@Barton2009]](figs/rogue.jpg){width=80%}
 
 Glenn R. Wichman, einer der Entwickler von Rouge, schrieb in einen offenen Brief
 
 „But I think Rogue’s biggest contribution, and one that still stands out
 to this day, is that the computer itself generated the adventure in Rogue.
 Every time you played, you got a new adventure. That’s really what made
-it so popular for all those years in the early eighties.“<http://www.digital-eel.com/deep/A_Brief_History_of_Rogue.htm>"
+it so popular for all those years in the early eighties.“[@Wichman1997]
 
-Die Level von Rouge werden bei jeden Spielstart neu generiert, man spielt also niemals zweimal das exakt selbe Spiel. In Verbindung mit Permadeath wurde so ein Abwechslungsreiches Spiel mit hohem Wiederspielwert erschaffen. Permadeath beschreibt ein Spielprinzip bei dem der Spielertot zum permanenten Verlust des Fortschritts führt und das Spiel von vorne gestartet werden muss. <https://en.wikipedia.org/wiki/Permadeath>
+Die Level von Rouge werden bei jeden Spielstart neu generiert, man spielt also niemals zweimal das exakt selbe Spiel. In Verbindung mit Permadeath wurde so ein Abwechslungsreiches Spiel mit hohem Wiederspielwert erschaffen. Permadeath beschreibt ein Spielprinzip bei dem der Spielertot zum permanenten Verlust des Fortschritts führt und das Spiel von vorne gestartet werden muss.
 
 #### Rougelikes
 
 „[...] Roguelikes are called Rouglikes, because the games are literally like Rouge [...]“ [@Brown2017]
 
-Da Rouge eines der ersten Spiele war die auf PCG setzten, waren sowohl Spieler als auch Entwickler von diesen Konzept begeistert. Wie Entwickler fühlten sich durch Inspiriert und entwickelten ihre eigenen Spiele mit PCG. <https://www.gamasutra.com/view/feature/4013/the_history_of_rogue_have__you_.php?print=1>
+Da Rouge eines der ersten Spiele war die auf PCG setzten, waren sowohl Spieler als auch Entwickler von diesen Konzept begeistert. Wie Entwickler fühlten sich durch Inspiriert und entwickelten ihre eigenen Spiele mit PCG.[@Barton2009]
 
-Heute bezeichnet man Spiele die das Spielprinziept des Permanenten Todes mit prozedural erzeugten Level kombiniert, als Rouge-Like. <https://en.wikipedia.org/wiki/Roguelike>
+- Berliner Liste für RL
 
 ### Shattered Pixel Dungeon
 
-"**Shattered Pixel Dungeon** is a Roguelike RPG, with pixel art graphics and lots of variety and replayability. Every game is unique, with four different playable characters, randomized levels and enemies, and over 150 items to collect and use. The game is simple to get into, but has lots of depth. Strategy is required if you want to win!" <https://pixeldungeon.fandom.com/wiki/Mod-Shattered_Pixel_Dungeon>
+"**Shattered Pixel Dungeon** is a Roguelike RPG, with pixel art graphics and lots of variety and replayability. Every game is unique, with four different playable characters, randomized levels and enemies, and over 150 items to collect and use. The game is simple to get into, but has lots of depth. Strategy is required if you want to win!" [@00-Evan2019]
 
-Zu beginn des Spiels wählt der Spieler eine der vier Charakterklassen aus. Zur Auswahl stehen:<https://pixeldungeon.fandom.com/wiki/Mod-Shattered_Pixel_Dungeon/Classes#Rogue>
+Zu beginn des Spiels wählt der Spieler eine der vier Charakterklassen aus. Zur Auswahl stehen 
 
 - Krieger: Nahkämpfer mit Fokus auf hohe stärke und Lebensenergie
 - Magier:Fernkämpfer der Zauber verwendet
 - Schurke: Nahkämpfer der auf Planung und Hinterhalte fußt 
 - Jäger: Fernkämpfer der vor allem Bögen verwendet
 
+[@Pixeldungeon.fandom2019]
+
 Der Spieler startet auf der obersten ebene eines Dungeons. Ziel ist es, möglichst tief in das Dungeon einzudringen, je tiefer der Spieler ist, desto schwieriger wird das Spiel. In den einzelnen Ebenen begegnen den Spieler die unterschiedlichsten Monster, durch dessen Tötung der Spieler Erfahrung sammelt, wurde genug Erfahrung gesammelt, steigt der Spieler auf, dies ermöglicht ihn, seine Spielfigur mit neuen Fähigkeiten auszustatten. Ebenso lassen besiegte Gegner Ausrüstungsgegenstände wie Heiltränke oder Waffen fallen. Um Erfolg im Spiel zu haben, sollte man also nicht nur versuchen möglichst schnell möglichst tief in das Dungeon einzudringen, sondern auch viele Gegner zu besiegen um an Erfahrung und Items zu gelangen. Das Spiel wird genau wie Rouge Rundenbasiert gespielt. 
 
 Darüber hinaus bietet Shattered Pixel Dungeon noch viele weiter Features wie Subklassen oder Verzauberungen, welche hier nicht weiter beschrieben werden, da diese für das Verständnis des Spielablaufes nicht nötig sind.
 
-![Beispielausschnitt für das Leveldesign in Shattered Pixel Dungeon <https://www.holarse-linuxgaming.de/wiki/pixel_dungeon>](figs/spdss.png){width=50%}
+![Beispielausschnitt für das Leveldesign in Shattered Pixel Dungeon [@Meldrian2015]](figs/spdss.png){width=50%}
 
 ## Grundlagen Leveldesign
 
@@ -110,14 +102,15 @@ Darüber hinaus bietet Shattered Pixel Dungeon noch viele weiter Features wie Su
 - Minecraft
 - GA (Plattform beispiele )
 
-
 ## Genetische Algorithmen 
 
 ### Grundlagen
 
-#### Herkunft
+Da der für diese Arbeit entwickelte Level Generator auf Genetischen Algorithmen basiert, werden in diesen Abschnitt alle, zur Verständnis dieser Arbeit, relevanten Grundlagen erklärt. Es existiert eine Vielzahl an Literatur über Genetische Algorithmen, die hier präsentierten Informationen basieren auf Russell und Norvigs „Artificial Intelligence: A Modern Approach“(Kaptiel 4.1.4)[@Russell und Norvig 2014]  und Volker Nissens „Einführung in Evolutionäre Algorithmen“[@Nissen2013]
 
-"Evolutionäre Algorithmen (EA) sind Optimierungsverfahren, die sich am Vorbild der biologischen Evolution orientieren."  <https://ls11-www.cs.tu-dortmund.de/lehre/SoSe03/PG431/Ausarbeitungen/GA_Selzam.pdf>
+#### Definition
+
+"Evolutionäre Algorithmen (EA) sind Optimierungsverfahren, die sich am Vorbild der biologischen Evolution orientieren." [@Selzam2006]
 
 Vereinfacht ausgedrückt: Evolutionäre Algorithmen sind ein Verfahren zur kontrollierten und gesteuerten Zufalls suche. 
 
@@ -128,24 +121,19 @@ Es gibt vier, aus der Historie entstandenen unterscheidungsformen:
 - Evolutionsstrategien (ES)
 - Evolutionäre Programmierung (EP)
 
-GAs wurden Anfang der 60er Jahre von John Holland vorgestellt. [Holland, John: Adaptation in Natural and Artificial Systems; The University of Michigan Press, 1975] Zur selben Zeit entwickelte Hans-Paul-Schwefel und Ingo Rechenberg die Evolutionsstragien. [Rechenberg, Ingo: Evolutionsstrategie. Optimierung technischer Systeme
-nach Prinzipien der biologischen Evolution; Frommann-Holzboog-Verlag, Stuttgart 1973].
-
-Zwar gibt es zwischen den einzelnen Formen inhaltliche unterschiede, allerdings haben sich die Verfahren heutzutage so miteinander vermengt, das eine Unterscheidung in dieser Arbeit nicht weiter Zielführend ist. Im weiteren Verlauf wird von Genetischen Algorithmen gesprochen, auch dann wenn teils verfahren aus den Evolutionären Strategien besprochen oder angewandt werden.
+Allerdings haben sich die Verfahren heutzutage so miteinander vermengt, das eine Unterscheidung in dieser Arbeit nicht weiter Zielführend ist. Im weiteren Verlauf wird von Genetischen Algorithmen gesprochen, auch dann wenn teils verfahren aus den Evolutionären Strategien besprochen oder angewandt werden.
 
 - Genauer den unterschied erklären
 
 #### Grundbegriffe aus der Genetik
 
-<https://ls11-www.cs.tu-dortmund.de/lehre/SoSe03/PG431/Ausarbeitungen/GA_Selzam.pdf>
-
-Da Genetische Algorithmen sich an der Evolution orientieren, haben viele Fachbegriffe der Genetik ihren Weg in die Informatik gefunden. Im Folgenden werden die, für Genetische Algorithmen und diese Arbeit, relevanten Begriffe in ihrer Bedeutung inerhalb der Informatik, erläutert. 
+Da Genetische Algorithmen sich an der Evolution orientieren, haben viele Fachbegriffe der Genetik ihren Weg in die Informatik gefunden. Im Folgenden werden die, für Genetische Algorithmen und diese Arbeit, relevanten Begriffe in ihrer Bedeutung innerhalb der Informatik, erläutert. 
 
 **Individuum / Chromosom** 
 
 "Ein Individuum im biologischen Sinne ist ein lebender Organismus, dessen
 Erbinformationen in einer Menge von Chromosomen gespeichert ist. Im Zusammenhang mit genetischen Algorithmen werden die Begriffe Individuum und
-Chromosom jedoch meistens gleichgesetzt." https://ls11-www.cs.tu-dortmund.de/lehre/SoSe03/PG431/Ausarbeitungen/GA_Selzam.pdf
+Chromosom jedoch meistens gleichgesetzt." [@Selzam2006]
 
 **Gen**
 
@@ -163,7 +151,7 @@ Einer Menge gleichartiger Individuen wird als Population bezeichnet. Die Anzahl 
 
 GAs folgen einer Reihe an Subrutinen, die sich solange Wiederholen bis eine Abbruchbedingung erreicht ist. 
 
-![Ablauf eines generischen GAs](figs/gaAblauf.png){width=100%}
+![Ablauf eines generischen GAs. Eigene Grafik](figs/gaAblauf.png){width=100%}
 
 Abbildung ... zeigt den zugrunde legenden Ablauf von GAs. 
 
@@ -218,7 +206,7 @@ Bei der Fitness Proportionate Selection hat jedes Individuum die Chance ausgewä
 
 Eine gängige Art der Umsetzung dieses Verfahren ist die **Roulett Wheel Selection**. Angelehnt an Glücksräder, wird ein ein Rad in n Teile zerteilt, wobei n die Summe der Fitness der Population entspricht. Jedes Individuum der Population enthält entsprechend seiner Fitness Anteile am Rad. Am Rad wird ein Fix Punkt angesetzt, das Rad wird rotiert und das Individuum ausgewählt auf dessen Anteil der Fix Punkt stehenbleibt.
 
-![Bildliche Darstellung der RWS  <https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_parent_selection.htm>](figs/roulette_wheel_selection.png){width=100%}
+![Bildliche Darstellung der RWS [@tutorialspoint]](figs/roulette_wheel_selection.png){width=100%}
 
 Das **Stochastic Universal Sampling** erweitert die Roulett Wheel Selection um einen zweiten Fixpunkt. So können zeitgleich zwei Individuen ausgewählt werden. 
 
@@ -227,7 +215,7 @@ Fitness Proportionate Selektionsverfahren funktionieren nicht in Fällen, in dem
 **Tournament Selektion**
 
 Bei der Tournamen Selektion werden zufällig k Individuen aus der Ursprungspopulation ausgewählt, das Individuum mit der höchsten Fitness wird in die nächste Generation aufgenommen. Dieses Verfahren ermöglicht zwar auch schlechteren Lösungen Ausgewählt zu werden, versichert aber das die schlechtesten k-1 Lösungen nicht ausgewählt werden können und die beste Lösung auf jeden Fall ausgewählt wird. Tournament Selektion funktioniert auch bei negativen Fitnesswerten. 
-![Bildliche Darstellung der TS <https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_parent_selection.htm>](figs/tournament_selection.png){width=100%}
+![Bildliche Darstellung der TS [@tutorialspoint]](figs/tournament_selection.png){width=100%}
 
 **Rank Selektion**
 
@@ -248,7 +236,7 @@ Es folgt eine Erläuterung einiger verbreitetet Crossoververfahren. Je nach Prob
 **Point Crossover**
 Beim Point Crossover verfahren werden beide Eltern an einer oder mehrere Stellen in Segmente geteitl. Die Segmente der Eltern werden miteinander vertauscht um die Kinder zu erzeugen. 
 
-![Bildliche Darstellung des Multi Point Crossoververfahren  https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_crossover.htm](figs/multi_point_crossover.png){width=100%}
+![Bildliche Darstellung des Multi Point Crossoververfahren [@tutorialspoint]](figs/multi_point_crossover.png){width=100%}
 
 **Uniform Crossover**
 
@@ -297,26 +285,10 @@ Die Abbruchbedingung ist für gewöhnlich dann erreicht, wenn eine gültige Lös
 
 
 
-#### Anwengunsbeispiele
+## Levelgenerierung mit Genetischen Algorithmen
 
-<http://wwwisg.cs.uni-magdeburg.de/sim/vilab/2007/papers/12_genetisch_sharbich.pdf>
-
-<https://www.degruyter.com/view/j/auto.1995.43.issue-3/auto.1995.43.3.110/auto.1995.43.3.110.xml>
-
-GAs werden beispielsweise genutzt um das Profil eines Flügels und die Form des Rumpfes von Flugzeugen zu optimieren. Beim Brückenbau lassen sich Positionierung und Gewicht einzelner Bauteile optimieren. GAs werden auch für Schwellwertanpassung bei verschieden Algorithmen und Neuronalen Netzten genutzt. Sie können auch für Scheduling-Probleme verwendet werden um so zum Beispiel Stundenpläne in Schulen zu gestalten oder Routenplanung für Paketdienste. Im allgemeinen können GAs genutzt werden um NP-Schwere Probleme zu lösen. 
-
-
-
-
-<!--
-
-https://books.google.de/books?hl=de&lr=&id=FLzOBgAAQBAJ&oi=fnd&pg=PR5&dq=genetische+algorithmen+vorteile+nachteile&ots=fz0g2GBudt&sig=zc9xi5ksVjbQf5KFfcrWm0xWg6g#v=onepage&q=genetische%20algorithmen%20vorteile%20nachteile&f=false(https://books.google.de/books?hl=de&lr=&id=FLzOBgAAQBAJ&oi=fnd&pg=PR5&dq=genetische+algorithmen+vorteile+nachteile&ots=fz0g2GBudt&sig=zc9xi5ksVjbQf5KFfcrWm0xWg6g#v=onepage&q=genetische algorithmen vorteile nachteile&f=false
-
-<http://www.mathematik.tu-dortmund.de/papers/MehmetiAmreinKulmsMacinLoenserBogonosWaidhas2014.pdf>
-
-<https://www.tutorialspoint.com/genetic_algorithms/genetic_algorithms_introduction.htm>
-
--->
+- Mario 
+- Prinz of Persia
 
 
 
