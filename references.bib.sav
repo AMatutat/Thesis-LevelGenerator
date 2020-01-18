@@ -80,21 +80,6 @@
   urldate = {2020-01-18},
 }
 
-@Book{Holland1975,
-  title     = {Adaptation in Natural and Artificial Systems},
-  publisher = {The University of Michigan Press},
-  year      = {1975},
-  author    = {John Holland},
-  isbn      = {9780262275552},
-}
-
-@Book{,
-  title     = {Evolutionsstrategie. Optimierung technischer Systeme nach Prinzipien der biologischen Evolution},
-  publisher = {Frommann-Holzboog-Verlag},
-  year      = {1973},
-  author    = {Ingo Rechenberg},
-}
-
 @Book{Nissen2013,
   title     = {Einführung in Evolutionäre Algorithmen: Optimierung nach dem Vorbild der Evolution},
   publisher = {vieweg},
@@ -103,7 +88,7 @@
   isbn      = {9783322938619},
 }
 
-@Book{Russell und Norvig 2014,
+@Book{RussellundNorvig2014,
   title     = {Artificial Intelligence: A Modern Approach},
   publisher = {Prentice Hall},
   year      = {2014},
@@ -116,6 +101,21 @@
   title   = {Genetic Algorithms},
   url     = {https://www.tutorialspoint.com/genetic_algorithm},
   urldate = {2020-01-18},
+}
+
+@Misc{Kazemi,
+  author  = {Darius Kazemi},
+  title   = {Spelunky Generator Lessons},
+  url     = {http://tinysubversions.com/spelunkyGen/},
+  urldate = {2020-01-18},
+}
+
+@Book{Yu2016,
+  title     = {Spelunky. Boss Fight Books},
+  publisher = {Boss Fight Books},
+  year      = {2016},
+  author    = {Derek Yu},
+  isbn      = {9781940535111},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
