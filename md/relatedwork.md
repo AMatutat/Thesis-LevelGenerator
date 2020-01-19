@@ -90,45 +90,46 @@ Abbildung ... zeigt einen Ausschnitt eines Dungeons aus dem Spiel. Besonders gut
 
 - unterschied zu level art
 
-  
 
 ### Regeln für gutes Leveldesign
 
 1. Lösbarkeit
-
 2. Immersion
-
 3. Interaktionsvermögen
-
 4. Pacing
-
 5. Navigation
-
 6. Schwierigkeit
-
+1. Tomb Raider hat für unterschiedliche Aspekte unterschiedliche Schwierigkeitsgrade
 7. Risk and Reward
-
 8. Einzigartigkeit
-
 9. Unterstützt Gameplay
 
-
-
-
 ## Prozedurale Levelgenerierung
-### Einführung PCG
-- Was ist das
-- Was macht man damit
 
-### PCG zur Levelgenerierung
-- Vorteile von PCLs /Warum benutzt man es 
-- Nachteile, mit verweis auf die Regeln für Leveldesign
+Im folgenden Abschnitt wird das Prinzip der PCG, insbesondere der PLG beschrieben. Es werden die Vor- und Nachteiler der PLG erörtert und bekannte Verfahren präsentiert. Zuerst folgt eine Erklärung was PCG bzw. PLG bedeutet und wo sie angewendet wird. 
 
-#### PLG in der Praxis
+### Begriffserläuterung
+
+Prozedurale Levelgenerierung (PLG) ist ein Teilgebiet der Prozeduralen Contentgenerierung (PCG). PCG im allgemeinen beschreibt das automatische erstellen von Inhalten. Im Kontext Videospiele sind diese unter anderen Texturen, Items, Musik und Soundeffekte, 3D-Modelle und auch Spielwelten. Dabei werden Inhalte nicht vollständig Zufällig generiert, vielmehr werden handgebaute Inhalte verändert oder neu zusammengesetzt. Dabei bestimmen zufällig erzeugte Parameterwerte die genaue Art und Weise der Veränderung. [@Beca2017] 
+
+### Vor und Nachteile von PLG
+
+PLG wird vor allem genutzt um kosten bei der Entwicklung zu sparen.[@Remo2008] Ein guter Algorithmus kann auf Knopfdruck hunderte unterschiedliche Level generieren, für dessen Erstellung sonst mehrere Monate gebraucht werden würde.[@IntroversionSoftware2007] Der zweiter große Faktor ist die, aus der theoretisch unendlichen Anzahl an unterschiedlichen Level, resultierende erhöhte Wiederspielbarkeit.[@Beca2017] Besonders das Rougelike Genre (vgl. Abs. ) setzt auf PLG. Rougelikes verwenden PLG zusätzlich als Gameplay Feature. Durch sich stetig verändernden Leveln, kann der Spieler das Spiel nicht durch schieres Auswendiglernen der Levelstruktur gewinnen, er muss die Gameplay Mechaniken verstehen und meistern.[@Brown2019]
+
+Die Implementation eines PLG ist allerdings nicht trivial. Die theoretisch endlose Anzahl an Leveln erschwert das Testen und beheben von Bugs. Evtl. wurde ein Fehler nur in den getesteten Leveln behoben, kommt aber in anderen Leveln wieder vor.[@Remo2008] 
+
+Die Einhaltung der in Abschnitt ... vorgestellten Regeln für gutes Leveldesign ist bei PLG teilweise komplexer im vergleich zu handgebauten Leveln. 
+
+Die Lösbarkeit der Level zu gewährleisten ist bei handgebauten Level schnell und verlässlich möglich. Der Generator im Gegenzug muss darauf Programmiert sein, keine unpassierbaren Hindernisse auf den Kritischen pfaden zu platzieren oder benötigte Puzzleteile wie Türschlüssel so zu positionieren, dass sie erreicht werden können ohne dass zuvor das Puzzle gelöst werden muss. Die Kontrolle des Pacings und Ausbalancierung des Schwierigkeitsgrades sind selbst für Designer eine schwere Aufgabe, die viel Zeit zur Optimierung benötigen[@DevPlay2019], für einen Level Generator ist diese eine komplexe und fast unlösbare Aufgabe. Die Schwierigkeit eines Levels zu bestimmen ist, je nach Genre, sehr schwer und wird noch zusätzlich dadurch erschwert, dass die Generierten Level jederzeit im Spiel auftauchen können. Level sollten aber zu beginn des Spieles einfacher sein, da der Spieler die Mechaniken erst kennenlerne muss und gegen Ende schwerer werden um weiterhin eine Herausforderung zu bieten.  Prozedural generierte Level können aufgrund der verwendeten Muster, schnell repetitiv wirken. Das Spiel *No Man´s Sky* wurde unter anderen deswegen von Spielern und Fachpresse scharf kritisiert.[Reinartz2016] Den Algorithmus muss genug Flexibilität gegeben werden um Strukturen zu Mutieren (s.a. abs Spelunky). 
+
+Zusammengefasst lässt sich sagen, dass PLG besonders gut dafür geeignet sind um kostengünstig eine Vielzahl an abwechslungsreichen, aber nicht einzigartigen, Leveln zu erschaffen, die es schaffen Spieler dazu zu motivieren, Spiele immer wieder zu spielen. Die Umsetzung guter PLGs ist nicht trivial und erfordert komplexe Regeln und Strukturen. Einige Faktoren lassen sich mithilfe eines PLGs nur schwer oder gar nicht umsetzten. So muss das Pacing beispielsweise nicht über das Leveldesign sondern über Gamedesign Elemente gesteuert werden (vlg. abs. Spelunky). 
+
+
+### PLG in der Praxis
 
 Mittlerweile existieren eine Vielzahl an unterschiedlichen Algorithmen zur PLG. Im folgenden wird eine Auswahl von ihnen Vorgestellt. 
 
-##### Random Walk
+#### Random Walk
 
 Der Random Walk Algorithmus, auch als *Drunkard´s Walk* bekannt, wird eigentlich zur Generierung von nicht deterministischen Zeitreihen genutzt, um beispielsweise Aktienkurze in der Finanzmathematik zu modellieren. Er kann aber auch zur Erstellung Höhlenartiger Level genutzt werden. Beim Random Walk bewegt sich ein im leeren Dungeon gesetzter Akteur solange zufällig durch das Dungeon bis er die gewünschte Anzahl an unterschiedlichen Felder passiert hat. Passierte Felder werden als begehbaren Boden interpretiert, unpassierte Feld als unbegehbare Wände.[@Wikipedia2019a]
 
@@ -144,7 +145,7 @@ while noch nicht genug Boden im Level
 		vewandel das neue Feld in einen Boden
 ```
 
-![Durch Random Walk erstelltes Beispiel Level. eigene Grafik](figs/randomWalk.png){width=100%}
+![Durch Random Walk erstelltes Beispiel Level. eigene Grafik](figs/randomWalk.png){width=50%}
 
 Der Algorithmus bietet viele Parameter zum verändern, so kann die Levelgröße, die gewünschte Bodenfläche und die Wahrscheinlichkeit in die jeweiligen Himmelsrichtungen zu gehen bestimmt werden. 
 
@@ -152,7 +153,7 @@ Abbildung ... zeigt ein, mit den Random Walk erstellts, 50x50 großes Level mit 
 
 Der Algorithmus erzeugt vollständig verbundenen Level, mit unterschiedlich großen Räumen und Pfaden.[@Read2014] Die Lösbarkeit der Level kann so garantiert werden. Mit entsprechenden Skripts können Items abseits des Weges platziert werden und durch starke Monster geschützt werden, das kann zu guten Risk-Reward Momenten führen.
 
-##### Spelunky
+#### Spelunky
 
 Spelunky ist ein 2D-Rougelike-Plattformer, es verbindet Elemente klassischer Jump and Runs mit den prozedural Generierten Leveln und Permadeath des Rougelike Genres. 2016 veröffentlichte der Spelunky Entwickler Derek Yu das gleichnamige Buch *Spelunky* in dem er auf die Entwicklungsgeschichte eingeht und unteranderem den Algorithmus zur prozeduralen Level Generierung erläutert. [@Yu2016]
 
@@ -209,6 +210,8 @@ Um optische Abwechslung zu bieten werden die Level mit unterschiedlichen Visuell
 In seinen Buch schrieb Yu: 
 
 "This system doesn´t create the most natural-looking caves ever, and players will quickly begin to recognize certain repeating landmarks and perhaps even sense that the levels are generated on a grid. But with enough templates and random mutations, there´s still plenty of variability. More importantly, it creates fun and engaging levels that the player can´t easily get stuck in, something much more valuable than realism when it comes to making an immersive experience"[@Yu2016]
+
+#### No Man´s Sky
 
 
 

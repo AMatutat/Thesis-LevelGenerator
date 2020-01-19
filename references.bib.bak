@@ -156,4 +156,52 @@
   year    = {2010},
 }
 
+@Misc{Wikipedia2019a,
+  author  = {Wikipedia},
+  title   = {Random Walk},
+  year    = {2019},
+  url     = {https://de.wikipedia.org/w/index.php?title=Random_Walk&oldid},
+  urldate = {2020-01-19},
+}
+
+@Misc{Read2014,
+  author  = {Martin Read},
+  title   = {Random Walk Cave Generation},
+  year    = {2014},
+  url     = {http://www.roguebasin.com/index.php?title=Random_Walk_Cave_Generation},
+  urldate = {2020-01-19},
+}
+
+@Misc{Beca2017,
+  author  = {Scrott Beca},
+  title   = {Procedural generation: a primer for game devs},
+  year    = {2017},
+  url     = {https://www.gamasutra.com/blogs/ScottBeca/20170223/292255/Procedural_generation_a_primer_for_game_devs.php},
+  urldate = {2020-01-19},
+}
+
+@Misc{IntroversionSoftware2007,
+  author  = {Introversion Software},
+  title   = {Procedural Content Generation},
+  year    = {2007},
+  url     = {https://www.gamecareerguide.com/features/336/procedural_content_.php?page=1},
+  urldate = {2020-01-19},
+}
+
+@Misc{Remo2008,
+  author  = {Chris Remo},
+  title   = {MIGS: Far Cry 2's Guay On The Importance Of Procedural Content},
+  year    = {2008},
+  url     = {https://users.informatik.haw-hamburg.de/~schumann/BachelorArbeitKevinHagen.pdf#page=88&zoom=100,72,584},
+  urldate = {2020-01-19},
+}
+
+@Misc{DevPlay2019,
+  author  = {DevPlay},
+  title   = {DevPlay - Die Balancing-Tricks der Entwickler},
+  year    = {2019},
+  url     = {https://www.youtube.com/watch?v=1zhr7UKEflc},
+  urldate = {2020-01-19},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
