@@ -204,4 +204,27 @@
   urldate = {2020-01-19},
 }
 
+@Misc{Reinartz2016,
+  author  = {Manuel Reinartz},
+  title   = {"No Man's Sky": Hype, Enttäuschung, Kritik und der Fluch der Spieletrailer},
+  year    = {2016},
+  url     = {https://www.diepresse.com/5075546/no-mans-sky-hype-enttauschung-kritik-und-der-fluch-der-spieletrailer},
+  urldate = {2020-01-19},
+}
+
+@InProceedings{Ma2014,
+  author    = {Chongyang Ma and Nicholas Vining and Sylcain Lefebvre and Alla Sheffer},
+  title     = {Game Level Layout from Design Specification},
+  booktitle = {Computer Graphics Forum, Volume 33, Issue 2 (Eurographics 2014 Papers)},
+  year      = {2014},
+}
+
+@Misc{Nepozitek2018,
+  author  = {Ondřej Nepožitek},
+  title   = {ungeon Generator – Graph-Based Approach},
+  year    = {2018},
+  url     = {https://ondra.nepozitek.cz/blog/42/dungeon-generator-part-1-node-based-approach/},
+  urldate = {2020-01-19},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

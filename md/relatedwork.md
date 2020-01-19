@@ -127,7 +127,7 @@ Zusammengefasst lässt sich sagen, dass PLG besonders gut dafür geeignet sind u
 
 ### PLG in der Praxis
 
-Mittlerweile existieren eine Vielzahl an unterschiedlichen Algorithmen zur PLG. Im folgenden wird eine Auswahl von ihnen Vorgestellt. 
+Mittlerweile existieren eine Vielzahl an unterschiedlichen Algorithmen und Verfahren zur PLG. Im folgenden wird eine Auswahl von ihnen Vorgestellt. 
 
 #### Random Walk
 
@@ -211,12 +211,24 @@ In seinen Buch schrieb Yu:
 
 "This system doesn´t create the most natural-looking caves ever, and players will quickly begin to recognize certain repeating landmarks and perhaps even sense that the levels are generated on a grid. But with enough templates and random mutations, there´s still plenty of variability. More importantly, it creates fun and engaging levels that the player can´t easily get stuck in, something much more valuable than realism when it comes to making an immersive experience"[@Yu2016]
 
-#### No Man´s Sky
+#### Graph Based
 
+In den Paper *Game Level Layout from Design Specification* präsentierten unter anderen Chongyang Ma, einen Algorithmus der dazu in der Lage ist Level aus planaren Graphen zu generieren. Der Generator kann mithilfe weniger vorgegebener unterschiedlich geformter Räume aus einen Graphen gleich mehrere unterschiedliche Level Generieren.[@Ma2014]
 
+Abbildung ... zeigt einen, zur Generierung verwendbaren, planaren Graphen gibt das Levellayout vor. Die Knoten repräsentieren Räume, die Kanten stellen Verbindungen zwischen den Räumen da. Abbildung ... zeigt eine Auswahl an unterschiedlichen Räumen. Abbildung ... zeigt den daraus erzeugten Level.  
 
-- Minecraft
-- GA (Plattform beispiele )
+![Graph zeigt das Levellayout[@Ma2014]](figs/inputGraph.PNG){width=50%}
+
+![Formen aus den das Level gebaut wird[@Ma2014]](figs/buildingBlocks.PNG){width=50%}
+
+![Erzeugtes Level [@Ma2014]](figs/outputlevel.PNG){width=50%}
+
+Ziel des Algorithmus ist es, jeden Knoten eine Form und eine Position zuzuteilen, so das die durch den Graphen vorgegeben Levelstruktur erreicht wird. Dabei dürfen sich Räume nicht überlappen und Verbindungen müssen mithilfe von Türen möglich sein. Zwar könnte man einfach jede Möglichkeit durchspielen, dies wäre aber höchst Ineffizient. Stattdessen wird der Graph zuerst in Subgraphen zerlegt um die Komplexität des Problemes aufzuteilen, diese Subgrafen werden von Ma als "Chains" bezeichnet. In Chains, haben Knoten maximal zwei Nachbarn. Gültige Layouts für Chains zu finden ist deutlich einfacher als direkt den ganzen Graphen zu lösen. Zuerst wird eine Chain gelöst indem immer zwei Räume genommen werden, wobei die Position der ersten Raumes fest ist, der zweite Raum kann bewegt und rotiert werden. Dieses verfahren wird wiederholt, bis ein gültiges Layout für die komplette Chain gefunden wurde. Dann wird eine weitere Kette den Layout hinzugefügt, solange bis das gesamte Level erzeugt wurde. Da für jede Chain mehrere mögliche Layouts existieren, wird im Falle das kein gültiges Layout für das kombinieren zweier Chains gefunden werden kann, solange Backtracking betrieben bis der Level gelöst ist. [@Ma2014]
+
+Der Algorithmus bietet gleich mehrere Vorteile. Da das Levellayout vorgegeben wird, kann der Designer gezielt das Pacing des Levels beeinflusse. Durch den Graphen ist deutlich zu erkennen, welche Räume auf den kritischen Pfad liegen und welche Räume optional sind, Gegner und Items können entsprechend platziert werden. Im Vergleich zu anderen Generatoren werden allerdings viele Inputdaten benötigt. Der Algorithmus bietet die Möglichkeit abwechslungsreiche Level zu erschaffen, dafür müssen aber sowohl der Graph als auch die Input Räume gut gestaltet werden. 
+
+Ondřej Nepožitek optimierte und erweiterte den Algorithmus noch um mehrerer Features. So kann sein Version unter anderem Räume mit Fluren verbinden. [@Nepozitek2018]
+
 
 ## Genetische Algorithmen 
 
@@ -397,14 +409,6 @@ Die Abbruchbedingung ist für gewöhnlich dann erreicht, wenn eine gültige Lös
 | Lässt sich gut parallelisieren                              | Lösungen werden Zufällig gefunden, es gibt keine Garantie die beste Lösung zu finden. |
 | Liefert eine Menge an guten Lösungen, nicht nur eine Lösung |                                                              |
 | Verläuft sich nicht in lokalen Hochpunkten                  |                                                              |
-
-
-
-
-## Levelgenerierung mit Genetischen Algorithmen
-
-- Mario 
-- Prinz of Persia
 
 
 
