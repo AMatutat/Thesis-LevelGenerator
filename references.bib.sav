@@ -126,9 +126,6 @@
   urldate = {2020-01-18},
 }
 
-@Conference{,
-}
-
 @Misc{Grey2013,
   author  = {Darren Grey},
   title   = {Screw the Berlin Interpretation!},
@@ -153,10 +150,26 @@
   urldate = {2020-01-18},
 }
 
-@Manual{[,
+@Manual{Prüfungsordnung,
   title   = {Prüfungsordnung für den Bachelorstudiengang Informatik an der Fachhochschule Bielefeld},
   edition = {2017},
   year    = {2010},
+}
+
+@Misc{Wikipedia2019a,
+  author  = {Wikipedia},
+  title   = {Random Walk},
+  year    = {2019},
+  url     = {https://de.wikipedia.org/w/index.php?title=Random_Walk&oldid},
+  urldate = {2020-01-19},
+}
+
+@Misc{Read2014,
+  author  = {Martin Read},
+  title   = {Random Walk Cave Generation},
+  year    = {2014},
+  url     = {http://www.roguebasin.com/index.php?title=Random_Walk_Cave_Generation},
+  urldate = {2020-01-19},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

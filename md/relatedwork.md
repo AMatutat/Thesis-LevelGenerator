@@ -124,7 +124,33 @@ Abbildung ... zeigt einen Ausschnitt eines Dungeons aus dem Spiel. Besonders gut
 - Vorteile von PCLs /Warum benutzt man es 
 - Nachteile, mit verweis auf die Regeln für Leveldesign
 
-#### PLG in der Praxis 
+#### PLG in der Praxis
+
+Mittlerweile existieren eine Vielzahl an unterschiedlichen Algorithmen zur PLG. Im folgenden wird eine Auswahl von ihnen Vorgestellt. 
+
+##### Random Walk
+
+Der Random Walk Algorithmus, auch als *Drunkard´s Walk* bekannt, wird eigentlich zur Generierung von nicht deterministischen Zeitreihen genutzt, um beispielsweise Aktienkurze in der Finanzmathematik zu modellieren. Er kann aber auch zur Erstellung Höhlenartiger Level genutzt werden. Beim Random Walk bewegt sich ein im leeren Dungeon gesetzter Akteur solange zufällig durch das Dungeon bis er die gewünschte Anzahl an unterschiedlichen Felder passiert hat. Passierte Felder werden als begehbaren Boden interpretiert, unpassierte Feld als unbegehbare Wände.[@Wikipedia2019a]
+
+Der Folgende Pseudocode zeigt, wie ein einfaches 2D-Level mithilfe des Random Walk Algorithmuses erzeugt werden kann.[@Read2014]
+
+```
+erstelle ein Level in dem alle Felder Wände sind
+wähle ein Feld als Startpunkt aus
+vewandel das gewählte Feld in einen Boden
+while noch nicht genug Boden im Level
+	mache einen Schritt in eine Zufällige Richtung
+	if neues Feld ist Wand
+		vewandel das neue Feld in einen Boden
+```
+
+![Durch Random Walk erstelltes Beispiel Level. eigene Grafik](figs/randomWalk.png){width=100%}
+
+Der Algorithmus bietet viele Parameter zum verändern, so kann die Levelgröße, die gewünschte Bodenfläche und die Wahrscheinlichkeit in die jeweiligen Himmelsrichtungen zu gehen bestimmt werden. 
+
+Abbildung ... zeigt ein, mit den Random Walk erstellts, 50x50 großes Level mit 1200 Bodenfelder. Die Wahrscheinlichkeit in eine Richtung zu gehen lag bei jeweils 25%. Um das so erstellte Level tatsächlich bespielen zu können, müssen noch Start und Endpunkt auf Bodenflächen gesetzt werden. Das verteilen von Monstern und Items auf Bodenflächen wäre auch möglich. 
+
+Der Algorithmus erzeugt vollständig verbundenen Level, mit unterschiedlich großen Räumen und Pfaden.[@Read2014] Die Lösbarkeit der Level kann so garantiert werden. Mit entsprechenden Skripts können Items abseits des Weges platziert werden und durch starke Monster geschützt werden, das kann zu guten Risk-Reward Momenten führen.
 
 ##### Spelunky
 
@@ -184,7 +210,7 @@ In seinen Buch schrieb Yu:
 
 "This system doesn´t create the most natural-looking caves ever, and players will quickly begin to recognize certain repeating landmarks and perhaps even sense that the levels are generated on a grid. But with enough templates and random mutations, there´s still plenty of variability. More importantly, it creates fun and engaging levels that the player can´t easily get stuck in, something much more valuable than realism when it comes to making an immersive experience"[@Yu2016]
 
-##### Drunkards Walk
+
 
 - Minecraft
 - GA (Plattform beispiele )
