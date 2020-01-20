@@ -249,13 +249,11 @@ Es gibt vier, aus der Historie entstandenen unterscheidungsformen:
 - Evolutionsstrategien (ES)
 - Evolutionäre Programmierung (EP)
 
-Allerdings haben sich die Verfahren heutzutage so miteinander vermengt, das eine Unterscheidung in dieser Arbeit nicht weiter Zielführend ist. Im weiteren Verlauf wird von Genetischen Algorithmen gesprochen, auch dann wenn teils verfahren aus den Evolutionären Strategien besprochen oder angewandt werden.
-
-- Genauer den unterschied erklären
+Diese Variationen ähneln sich von Aufbau und Struktur sehr. Im folgenden werden GA betrachtet, zum Abschluss werden die wichtigsten Unterschiede der anderen Variationen erläutert.  
 
 #### Grundbegriffe aus der Genetik
 
-Da Genetische Algorithmen sich an der Evolution orientieren, haben viele Fachbegriffe der Genetik ihren Weg in die Informatik gefunden. Im Folgenden werden die, für Genetische Algorithmen und diese Arbeit, relevanten Begriffe in ihrer Bedeutung innerhalb der Informatik, erläutert. 
+Da EA sich an der Evolution orientieren, haben viele Fachbegriffe der Genetik ihren Weg in die Informatik gefunden. Im Folgenden werden die, für Genetische Algorithmen und diese Arbeit, relevanten Begriffe in ihrer Bedeutung innerhalb der Informatik, erläutert. 
 
 **Individuum / Chromosom** 
 
@@ -298,7 +296,7 @@ Im folgenden werden die Einzelnen Subroutinen genauer beschrieben, sowie gängig
 
 ##### Kodierung
 
-Zu beginn muss das betrachtete Problem kodiert werden. Das bedeutet das alle relevanten Aspekte auf ein Chromosom abgebildet werden müssen. Hierbei gibt es zwei Kodierungsverfahren, die je nach Problem ausgewählt werden müssen.
+Zu beginn muss das betrachtete Problem kodiert werden. Das bedeutet das alle relevanten Aspekte auf ein Chromosom abgebildet werden müssen. 
 
 Bei der Binären Kodierung besteht ein Chromosom aus n vielen Genen. Jeden Gen wir ein binärer Wert zugewiesen und repräsentiert dabei eine Problemvariable. Aus den Genen wird dann ein Bitstring erzeugt. 
 
@@ -308,33 +306,42 @@ Verwendet man die Binäre Kodierung, muss man am ende die Lösung mithilfe einer
 
 $$ T: \left\{ 0,1 \right\}^{ m } \to R^{ n } $$
 
-Eine andere Variante ist die reellwertige Kodierung. Sie funktioniert ähnlich zu der Binären Kodierung, nur wird hier jeden Gen ein reellwertige Wert zugewiesen. Eine Dekodierung ist nicht nötig. 
-
-$$ g=(g_{ 0  }....g_{ m }) \in \left\{ R \right\}^{ m }  $$
 
 Die Allel der Gene der Startpopulation werden zufällig bestimmt. 
 
 ##### Bewertung
 
-Die Bewertung erfolgt mithilfe der sogenannten Fitnessfunktion, angelehnt an Darwins Survival of the Fittest. Die Fitnessfunktion bewertet die güte eines Individuums, also wie nahe es schon an einer möglichen Lösung ist. Dabei weißt die Fitnessfunktion den Individuum eine reelle Zahl zu, die die Fitness darstellt. Im Regelfall ist eine höhere Fitness besser als eine geringer. 
+Die Bewertung erfolgt mithilfe der sogenannten Fitnessfunktion. Die Fitnessfunktion $F$ bewertet die güte eines Individuums, also wie nahe es schon an einer möglichen Lösung ist. Dabei weißt die Fitnessfunktion den Individuum eine reelle Zahl zu, die die Fitness darstellt. Im Regelfall ist eine höhere Fitness besser als eine geringer. 
 
 Die Implementation der Fitnessfunktion ist stark mit der eigentlichen Problemstellung verwoben. Da die Fitnessfunktion großen Einfluss darauf hat, in welche Richtung sich die Population entwickelt, sind die Bewertungskriterien so zu wählen, das sie zur Erreichung der Lösung beitragen. Da die Fitnessfunktion während der Laufzeit jedes einzelne Individuum jeder Population jeder Generation betrachtet, sollte bei der Implementierung auf Laufzeit Optimierung geachtet werden, eine komplexe Fitnessfunktion kann den gesamten GA verlangsamen. 
 
 ##### Selektion
 
-- Fitnessdruck erklären
+Bei der Selektion werden Individuen der Ausgangspopulation ausgewählt und in den "mating pool" kopiert, der die Grundlage für die später folgenden Mutation und Rekombination ist. Zu beachten ist, das ausgewählte Individuen nicht aus der Ausgangspopulation entfernt werden, sie können also mehrfach ausgewählt werden. Bei den gängigsten Selektionsverfahren spielt der Fitnesswert der einzelnen Individuen eine große Rolle, da er bestimmt wie hoch die Wahrscheinlichkeit ist, in den mating pool aufgenommen zu werden. Jedoch sollte man nicht nur die besten Individuen der Population auswählen, da nicht nachvollzogen werden kann, ob sich das Individuum in der nähe des globalen Hochpunkts befindet oder sich lediglich einen lokalen Hochpunkt nährt. Würde man nur die besten Individuen erlauben sich zu vermehren, würde sich die Population in eine Richtung festfahren. Die Selektion baut einen Fitnessdruck auf, da das überleben eines Individuum stark von seiner Fitness abhängt. Der Fitnessdruck entspricht daher den *Survival of the Fittest* Gedanken der Evolutionstheorie. 
 
-Bei der Selektion werden die Individuen ausgewählt, welche die nächste Generation bilden. Die gängigsten verfahren selektieren nach der Fitness der Individuen. Jedoch sollte man nicht nur die besten Individuen der Population auswählen, da nicht nachvollzogen werden kann, ob sich das Individuum in der nähe des globalen Hochpunkts befindet oder sich lediglich einen lokalen Hochpunkt nährt. Würde man nur die besten Individuen erlauben sich zu vermehren, würde sich die Population in eine Richtung festfahren. 
+Für GA gilt: $\mu$  Eltern erzeugen $\mu$ Kinder, daher die Populationsgröße bleibt über den gesamtem GA zeitraum konstant. 
 
-Es folgt eine Auflistung und Erklärung bekannter Selektionsverfahren. Bei jeden Verfahren werden die ausgewählten Individuen auch zurück in die Ursprungspopulation gelegt, es ist also möglich das selbe Individuum mehrfach auszuwählen. Es wird solange Ausgewählt bis die neue Population die gewünschte Größe erreicht hat, diese ist in der Regel genauso groß oder größer als die Ursprungspopulation. 
+Es folgt eine Auflistung und Erklärung bekannter Selektionsverfahren.
 
 **Fitness Proportionate Selection** 
 
 Bei der Fitness Proportionate Selection hat jedes Individuum die Chance ausgewählt zu werden. Die Chance ausgewählt zu werden ist abhängig von der FItness des Individuums. Besonders gute Lösungen haben also hohe Chance ausgewählt zu werden, schlechtere Lösungen können dennoch ausgewählt werden um so die vielfallt der Population zu gewährleisten. 
 
-Eine gängige Art der Umsetzung dieses Verfahren ist die **Roulett Wheel Selection**. Angelehnt an Glücksräder, wird ein ein Rad in n Teile zerteilt, wobei n die Summe der Fitness der Population entspricht. Jedes Individuum der Population enthält entsprechend seiner Fitness Anteile am Rad. Am Rad wird ein Fix Punkt angesetzt, das Rad wird rotiert und das Individuum ausgewählt auf dessen Anteil der Fix Punkt stehenbleibt.
+Eine gängige Art der Umsetzung dieses Verfahren ist die **Roulett Wheel Selection**. Angelehnt an Glücksräder, wird ein Rad in $n$ Teile zerteilt, wobei
+
+ ```
+n=\Sum{ j }{  }{ F(g_{j}) }
+ ```
+
+gilt. Jedes Individuum der Population enthält entsprechend seiner Fitness Anteile am Rad. Am Rad wird ein Fix Punkt angesetzt, das Rad wird rotiert und das Individuum ausgewählt auf dessen Anteil der Fix Punkt stehenbleibt.
 
 ![Bildliche Darstellung der RWS [@tutorialspoint]](figs/roulette_wheel_selection.png){width=100%}
+
+Die Wahrscheinlichkeit $p_{sel}$ eines Individuum $g_{k}$ mit der Fitness $F(g_{k})$ ausgewählt zu werden lässt sich wie folgt berechnen
+
+```
+p_{ sel }(g_{ k })=\frac{F(g_{ k }) }{\Sum{ j }{ }{F(g_{ j })  }  }$$
+```
 
 Das **Stochastic Universal Sampling** erweitert die Roulett Wheel Selection um einen zweiten Fixpunkt. So können zeitgleich zwei Individuen ausgewählt werden. 
 
@@ -355,9 +362,9 @@ Bei der zufälligen Selektion werden zufällig Individuen aus der Population aus
 
 ##### Rekombination
 
-Bei der Rekombination werden zwei Selektierte Lösungen neu zusammengesetzt. Die beiden Ursprünglichen Lösungen bezeichnet man als Eltern, die neu erzeugten Lösungen als Kinder. 
+Bei der Rekombination werden zwei Individuen aus dem mating pool neu zusammengesetzt. Die beiden Ursprünglichen Individuen bezeichnet man als Eltern, die neu erzeugten Individuen als Kinder. 
 
-Ob zwei Eltern miteinander Rekombiniert werden, ist Abhängig von der festgelegten Crossoverchance. In GAs liegt diese für gewöhnlich bei $\approx$ 60%. Die Rekombination vermischt den Genpool der Eltern und soll so für eine möglichst diverse Population sorgen.
+Ob zwei Eltern miteinander Rekombiniert werden, ist Abhängig von der festgelegten Crossoverchance. In GAs liegt diese für gewöhnlich bei $\approx$ 60%. Die Rekombination vermischt den Genpool der Eltern und soll so für eine möglichst diverse Population sorgen. Kommt es zur Rekombination werden die Kinder in die neue Population gelegt, kommt es zu keiner Rekombination werden die Eltern in die neue Population kopiert. 
 
 Es folgt eine Erläuterung einiger verbreitetet Crossoververfahren. Je nach Problemstellung kann auch ein Individuelles verfahren Zielführend sein. 
 
@@ -376,9 +383,9 @@ Beim Unform Crossover wird jedes Gen eines Elternteils betrachtet, es gibt eine 
 
 Die Mutation ist eine Zufällige Veränderung der Gene um eine neue Lösung zu erhalten. Genau wie die Rekombination wird sie genutzt um eine möglichst große Diversität der Population zu erzeugen. Durch Crossover erzeugte Kinder liegen im Suchbaum in der nähe der Eltern, durch die Mutation werden die Kinder von den Eltern weiter entfernt. 
 
-Die Mutationschance pmut ist gering anzusetzen, da eine zu hohe Mutationschance den GA zu auf eine zufällige Suche reduzieren würde. 
+Die Mutationschance$p_{mut}$ ist gering anzusetzen, da eine zu hohe Mutationschance den GA zu auf eine zufällige Suche reduzieren würde. 
 
-Es folgt eine Auflistung und Beschreibung bekannter Mutationsverfahren. Je nach Problemstellung kann auch eine Spezifische Mutationsmethode Zielführend sein. Je nach Kontext kann ein einzelnes Gen oder eine Sequenz an Genen mutiert werden. Für die folgenden Verfahren muss man dann beachten, das eine Sequenz auch als Gen bezeichnet wird. Je nach Bedarf kann nur eine Mutation pro Lösung durchgeführt werden oder es kann jedes Gen mit einer Chance von pmut mutiert werden. 
+Es folgt eine Auflistung und Beschreibung bekannter Mutationsverfahren. Je nach Problemstellung kann auch eine Spezifische Mutationsmethode Zielführend sein. Je nach Kontext kann ein einzelnes Gen oder eine Sequenz an Genen mutiert werden. Für die folgenden Verfahren muss man dann beachten, das eine Sequenz auch als Gen bezeichnet wird. Je nach Bedarf kann nur eine Mutation pro Lösung durchgeführt werden oder es kann jedes Gen mit einer Chance von $p_{mut}$ mutiert werden. 
 
 **Bit Flip Mutation** 
 
@@ -410,9 +417,28 @@ Die Abbruchbedingung ist für gewöhnlich dann erreicht, wenn eine gültige Lös
 | Liefert eine Menge an guten Lösungen, nicht nur eine Lösung |                                                              |
 | Verläuft sich nicht in lokalen Hochpunkten                  |                                                              |
 
+### Variationen
 
+Die mit GA vergleichbarste EA Variante sind die ES. ES folgen einer ähnlichen Struktur wie GA. Die Verfahren unterscheiden sich aber an zwei punkten drastisch voneinander. 
 
+ES werden reellwertig Kodiert. Die reellwertige Kodierung funktioniert ähnlich zu der Binären Kodierung, nur wird hier jeden Gen ein reellwertig Wert zugewiesen. Eine Dekodierung ist nicht nötig. 
 
+$$ g=(g_{ 0  }....g_{ m }) \in \left\{ R \right\}^{ m } $$  
 
+Durch diese Art der Kodierung sind einige, aus GA bekannten, Verfahren zur Mutation nicht verwendbar (Bsp. Bit-Flip-Mutation). 
 
+Der zweite große Unterschied liegt in der Auswahl der Eltern für die nächste Population. Noch bevor es zur Bewertung der Individuen kommt, werden $\lambda$ Individuen zufällig aus den $$\mu$$ großen Ausgangspopulation ausgewählt, sie bilden den mating pool, wobei $\lambda\leq\mu$ gilt. Einige Individuen müssen daher öfters in den mating pool vorkommen. Jetzt findet ähnlich zu GA die Rekombination und Mutation des mating pool statt. Die Individuen des mempoolmating pool werden jetzt mithilfe der Fitnessfunktion bewertet und mithilfe eines Selektionsverfahren werden $\mu$ Kinder für die nächste Generation ausgewählt. Die Populationsgröße bleibt also zwischen den Generationen konstant. 
 
+Welches Verfahren geeigneter ist, hängt stark mit der eigentlichen Problemstellung zusammen. Mittlerweile sind auch viele Mischformen zwischen ES und GA verbreitet. 
+
+"Beide Verfahren beginnen mit einer breiten Verteilung der Individuen im Suchraum.
+Abgeschlossen wird sowohl bei den ES als auch bei den GA mit der Konzentration der
+Individuen auf einen minimalen Ausschnitt des Lösungsraums. In den ES wie auch in
+den GA wurde eine noch immer wachsende Anzahl von Varianten entwickelt. Durch
+diese nicht mehr überschaubare Varianten verschwimmen die Grenzen zwischen den
+Verfahren. Es kommt sogar vor, dass bei Genetischen Algorithmen anstelle der üblichen
+binären Vektoren, für bestimmte Problemstellungen reelle Vektoren eingesetzt werden.
+Welcher Algorithmus bei welcher Problemstellung besser ist, kann nicht eindeutig
+entschieden werden."[@Lienemann2004]
+
+Bei der Genetischen Programmierung geht es darum, mithilfe von Bäumen Probleme der symbolischen Regression zu lösen. Evolutionäre Programmierung nimmt sich ähnlicher Problematiken an, verwendet aber endliche Automaten zur Lösung der Probleme. 
