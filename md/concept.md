@@ -32,7 +32,7 @@ Die erzeugten Level werden im Abschluss anhand der in Abschnitt ... aufgestellte
 
 ## Konzept zur prozeduralen Level Generierung basierend auf einen GA
 
-Der Generator wird aus zwei Teilen zusammensetzt. Der erste Teil ist der GA selbst, er generiert Level die aus Wänden, Böden einen Start und einen Ziel bestehen. Der zweite Teil ist ein Parser, der für die Integration der erzeugten Level in die Spiellogik zuständig ist. Der Parser ist auch dafür verantwortlich, das Monster und Items im Level platziert werden, er  soll die Möglichkeit bieten, einzelne Wände und Böden gegen andere Oberflächen auszutauschen. Er ist für die Generierung der Levelgrafik verantwortlich. 
+Der Generator wird aus zwei Teilen zusammengesetzt. Der erste Teil ist der GA selbst, er generiert Level die aus Wänden, Böden einen Start und einen Ziel bestehen. Der zweite Teil ist ein Parser, der für die Integration der erzeugten Level in die Spiellogik zuständig ist. Der Parser ist auch dafür verantwortlich, das Monster und Items im Level platziert werden, er  soll die Möglichkeit bieten, einzelne Wände und Böden gegen andere Oberflächen auszutauschen. Er ist für die Generierung der Levelgrafik verantwortlich. 
 
 ### GA
 
@@ -61,7 +61,7 @@ F=Boden		X=Ende
 
 #### CodedLevel
 
-Eine Instanz der Klasse CodedLevel ist ein Chromosom, also eine mögliche Lösung bzw. ein Level. Neben den Char Array welches den Levelaufbau entspricht und Informationen über die Größe des Levels, besitzen CodedLevel eine Fitness welche die Güte der Lösung angibt sowie Informationen über den Standort der Start- bzw. Endpunktes.  
+Eine Instanz der Klasse CodedLevel ist ein Chromosom, also eine mögliche Lösung bzw. ein Level. Neben den Char Array welches den Levelaufbau entspricht und Informationen über die Größe des Levels, besitzen CodedLevel eine Fitness welche die Güte der Lösung angibt sowie Informationen über den Standort des Start- bzw. Endpunktes.  
 
 ![UML CodedLevel. Eigene Grafik](figs/codedLevel.PNG){width=80%}
 
@@ -69,7 +69,7 @@ Neben Getter und Setter verfügt die Klasse über die changeField Methode. Diese
 
 #### LevelGenerator
 
-Die Klasse Level Generator beinhaltet die Implementation des GA. Sie beinhaltet die Implementationen aller Subroutinen. Sie verfügt über die Methode generateLevel, welche als Einstiegspunkt in den GA gesehen werden kann. Ihr werden die gewünschte Level Größe übergeben und dann kümmert Sie sich um die Durchführung des GA Ablaufes. 
+Die Klasse Level Generator beinhaltet die Implementation des GA. Sie beinhaltet die Implementationen aller Subroutinen. Sie verfügt über die Methode generateLevel, welche als Einstiegspunkt in den GA gesehen werden kann. Ihr wird die gewünschte Level Größe übergeben und dann kümmert sie sich um die Durchführung des GA Ablaufes. 
 
 ##### Erzeugen der Startpopulation
 
@@ -77,7 +77,7 @@ Um die Startpopulation zu erzeugen werden die Level zufällig mit Oberflächen g
 
 ##### Fitnessfunktion 
 
-Die Fitnessfunktion bewertet die Level. Die Bewertungskriterien sollen dabei helfen, dass das Level in größere Bodenflächen, den Räumen verbunden durch Wandketten, den Fluren. 
+Die Fitnessfunktion bewertet die Level. Die Bewertungskriterien sollen dabei helfen, dass das Level aus größere Bodenflächen, den Räumen verbunden durch Wandketten, den Fluren besteht. 
 
 Jedes Bewertungskriterium hat dabei eine andere Wertigkeit. Die Bewertungskriterien sind
 
@@ -91,8 +91,6 @@ Die Lösbarkeit ist eines Levels ist Kernvoraussetzung um als gültige Lösung z
 
 Das dritte Kriterium soll vor allem einzeln im Level platzierte Wände vermeiden, da diese in der Logik des Spiels keinen Sinn erfüllen und daher vom Spieler als störend empfunden werden und die Immersion mindern. Für jede Wand die direkt oder indirekt über Nachbarn mit der außen Wand verbunden sind gibt es Fitnesspunkte. Dadurch sollen Wandketten gefördert werden. Die Verbindung mit den Außenwänden ist vom klassischen Hausaufbau inspiriert, da dort in der Regel auch jede Wand in irgendeiner Form mit der Außenwand verbunden ist. Da die hier generierten Level auch größere Dungeon darstellen sollen, könnten auch Säulenartige Strukturen oder Stützwände wünschenswert sein. Daher gibt es für Wände, die zwar keine Anbindung an den Levelrand haben, jedoch mit anderen Wänden verbunden sind, Teilpunkte. 
 
-- Kriterien die nach und nach auch noch integriert werden könnten 
-
 ##### Selektion und Rekombination
 
 Als Selektionsverfahren wird das im Abschnitt .... beschreibende Roulette Wheel Selection Verfahren genutzt. Da keine negative Fitness erreicht werden kann als auch von einer großen Spannbreite an Bewertungen ausgegangen werden kann, bietet sich ein Rank Selection Verfahren nicht an. Alternativ wäre auch die Verwendung der Tournament Selektion denkbar. 
@@ -101,13 +99,9 @@ Sollte die es zu einen Crossover, abhängig von der CHANCE_FOR_CROSSOVER, kommen
 
 Das Uniform Crossover Verfahren würde wieder eine komplett Zufällige Anordnung von Böden und Wänden zu folge ziehen und ist daher für die Generierung von Leveln nicht geeignet. 
 
-- zweites Selektionsverfahren beschreiben
-
 ##### Mutation 
 
 Zur Levelgenerierung bieten sich fast alle bekannten Mutationsverfahren an. In dieser Implementierung wird eine angepasste Version der Bit-Flip Mutation verwendet. Ignorieren wir bei der Mutation Start und Ausgangspunkt, bleiben noch Felder die entweder Böden oder Wände sind. Es wird für jedes Gen überprüft ob es zur Mutation kommt, und wenn ja, wird der Allel des Gen geändert. Wände werden zu Böden und Böden zu Wände. 
-
-- Mutationsverfahren 2 und drei beschreiben
 
 #### Abbruchkriterium
 
@@ -138,7 +132,7 @@ Die Funktion generateTextureMap itteriert über das zwei Dimensionale ISurface A
 
 ### Locks and Keys
 
-Um ein sinnvolles Konzept zur Platzierung von Türen und Schlüsseln zu entwickeln, muss erst ein Eindruck erlangt werden, wie die generierten Level aufgebaut sind. Grundsätzlich müssen Raumähnliche Strukturen erkannt werden, welche sich dadurch auszeichnen, das sie vom Start Punkt aus nur über ein Feld erreichbar sind, der Tür. Auf diesen Feld kann die Tür platziert werden, der Key wird zwischen Start und Level verteilt. 
+Um ein sinnvolles Konzept zur Platzierung von Türen und Schlüsseln zu entwickeln, muss erst ein Eindruck erlangt werden, wie die generierten Level aufgebaut sind. Grundsätzlich müssen Raumähnliche Strukturen erkannt werden, welche sich dadurch auszeichnen, das sie vom Start Punkt aus nur über ein Feld erreichbar sind, der Tür. Auf diesen Feld kann die Tür platziert werden, der Key wird zwischen Start und Tür verteilt. 
 
 
 
@@ -148,7 +142,7 @@ Das Klassendiagramm für den kompletten Generator ist in Abbildung ... zu sehen.
 
 
 
-### Methoden zur Auswertung und optimierung
+### Methoden zur Auswertung und Optimierung
 
 Um den Einfluss der verschiedenen Parameter nachvollziehen zu können, wird ein Logger in den GA implementiert. Es werden alle relevanten Parameter sowie Ausgabe Daten geloggt. Dazu zählen: 
 
@@ -159,9 +153,11 @@ Um den Einfluss der verschiedenen Parameter nachvollziehen zu können, wird ein 
 - Durchschnittlich erreichte Fitness der Lösung
 - Durchschnittlich gebrauchte Generationen für die beste Lösung 
 
-Bevor der Fitnessschwellwert implementiert wird, wird die Abbruchbedingung so bestimmt, das eine feste Anzahl an Generationen durchlaufen werden, die zurück gelieferte Lösung entspricht der Lösung mit der höchsten Fitness über den gesamten Generierungsprozess. Ohne Schwellwert wird sichergestellt das der Generator nicht frühzeitig abbricht. Mithilfe der so erlangten Daten lassen sich mangelhafte Mutations und Rekombinations Methoden erkennen. 
+Bevor der Fitnessschwellwert implementiert wird, wird die Abbruchbedingung so bestimmt, das eine feste Anzahl an Generationen durchlaufen werden, die zurück gelieferte Lösung entspricht der Lösung mit der höchsten Fitness über den gesamten Generierungsprozess. Ohne Schwellwert wird sichergestellt das der Generator nicht frühzeitig abbricht. Mithilfe der so erlangten Daten lassen sich mangelhafte Mutations und Rekombinations Methoden erkennen. Die Daten helfen dabei, die optimalen Parametereinstellungen zu identifizieren.
 
+## Unterschied zu bekannten Verfahren
 
+In Abschnitt ... wurden verschiedene Verfahren zur prozeduralen Levelgenerierung vorgestellt. Das hier vorgestellte Konzept grenzt sich von diesen vor allem dadurch ab, dass neben der gewünschten Levelgröße keinerlei Informationen vom User notwendig sind, um Level zu generieren. Das in Abschnitt .... verwendete Graphbased Verfahren benötigt neben den planaren Graphen auch vorgefertigten Räumen zur Generierung der Level. Für den in Abschnitt .. beschriebenen Algorithmus aus dem Spiel Spelunky, werden neben Raumlayouts auch die 5x3 großen Chunks benötigt. Zusätzlich erzeugt das Spelunky-Verfahren eine wieder erkennbares Gittermuster. 
 
-## Unterschied zu bekannten Methoden der prozeduralen Levelgenerierung
+Das in Abschnitt .. beschriebene Randomwalk-Verfahren erzeugt zwar jedes mal unterschiedliche Level, diese sind aber fast vollständig Zufallsgeneriert. Ihre Lösbarkeit kann zwar garantiert werden, aber es kann kein Einfluss auf die Struktur der Level genommen werden. Das forcieren von Wand und Raum Strukturen ist nicht möglich. Durch die Fitnessfunktion wird das hier präsentierte Konzept dazu gedrängt, Räume und Flure zu erzeugen. 
 
