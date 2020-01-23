@@ -1,29 +1,42 @@
 # Eigene Ideen
 
-Im folgenden wird das erste Konzept zur Erstellung eines Level Generators basierend auf GAs. erläutert. Zuerst werden die Anforderungen an das Projekt definiert und die Zielsetzung spezifiziert. Danach folgt die Erklärung des Konzeptes. Am ende des Abschnittes wird das erstellte Konzept mit den aus Abschnitt 3 bekannten Verfahren verglichen. 
+Im folgenden wird das ein Konzept zur Erstellung eines Level Generators basierend auf GA erläutert. Zuerst werden die Anforderungen an das Projekt definiert und die Zielsetzung spezifiziert. Danach folgt die Ausarbeitung des Konzeptes. Am ende des Abschnittes wird das erstellte Konzept mit den aus Abschnitt 3 bekannten Verfahren verglichen. 
 
 ## Anforderungen an das Projekt
 
-Der Level Generator muss in der Programmiersprache Java geschrieben sein, da diese die durch die Prüfungsordnung festgelegte Modul Sprache ist. Der Levelgenerator muss lösbare 2D Level generieren. Level bestehen aus unterschiedlichen Räumen die mit Fluren verbunden sind. Als Lösbar gilt ein Level dann, wenn vom Startpunkt der Endpunkt aus erreicht werden kann. Die Größe des Levels soll durch den User aus wählbar sein. Um das Level grafisch darstellen zu können, muss eine Levelgrafik erzeugt werden. Im Level müssen Monster und Items von den Usern platziert werden können. Im Level sollen Türen und dazugehörige Schlüssel so platziert werden, das kein Softlock entsteht. Der Level Generator soll den Teilnehmer möglichst viel Freiheit in der Umsetzung der Spielinhalte, abseits der Level, gewähren. Die Teilnehmer sollen in der Lage sein, neben den in den Aufgaben vordefinierten Elemente, eigen konzeptionierte Elemente in die Level zu integrieren. Grundlegende Level müssen erzeugt werden können, ohne Informationen über Layout oder Inhalt zu bekommen. Die Teilnehmer müssen in der Lage sein, die erzeugten Level in ihre Implementation der Spiellogik zu verwenden. 
+Der Generator muss in der Programmiersprache Java implementiert werden, da diese die durch die Prüfungsordnung festgelegte Programmiersprache ist. Der Generator muss 2D-Level, bestehend aus Wänden und Böden generieren. Die generierten Level müssen als lösbar eingestuft werden können. Als lösbar gilt ein Level dann, wenn der Levelausgang vom Levelstart aus erreichbar ist. Die Teilnehmer müssen die Möglichkeit haben Items und Monster im generierten Level zu platzieren. Es muss eine Leveltextur erstellt werden, welche den Aufbau des Levels grafisch darstellt. Generierte Level müssen in das, von den Teilnehmer erstellten Spiel, Integrierbar sein. 
 
-Den Generator sollen möglichst wenig Informationen über die Regeln guten Leveldesigns gegeben werden, damit in der abschließenden Evaluierung geschaut werden kann, wie viele Regeln passiv beachtet wurden.  
+Des weiteren sollen Türen und dazugehörige Schlüssel so im Level platziert werden, das keine Softlocks entstehen. Die Größe der Level soll zum Start von den Teilnehmern bestimmbar sein. Die Teilnehmer sollen in der Lage sein, neben den in den Aufgaben vordefinierten Elemente, eigen konzeptionierte Elemente in die Level zu integrieren. Der Level Generator soll den Teilnehmer möglichst viel Freiheit in der Umsetzung der Spielinhalte, abseits der Level, gewähren. 
 
-Der Generator muss nicht in der Lage sein, neue Spielregeln, wie das Sprengen von Wänden durch Bomben, in den Generierungsprozess zu beachten. Der Generator muss Texturen nicht selbständig erzeugen oder  die Größenverhältnisse übergebener Texturen anpassen. Der Generator muss keine Quests oder Boss Gegner erzeugen. Der Generator muss keine Level in Echtzeit erzeugen können. Es wird kein Fokus auf die Optimierung der Laufzeit gelegt. 
+Dem Algorithmus sollen möglichst wenig Informationen über die Problemdömäne, daher Konzepte und Regeln guten Leveldesigns, vermittelt werden. Ziel ist es, in der abschließenden Evaluierung zu Prüfen, wie viele Konzepte passiv beachtet werden. 
+
+Der Generator muss nicht in der Lage sein, neue Spielregeln, wie das sprengen von Wänden, in den Generierungsprozess zu integrieren. Der Generator muss Texturen nicht selbständig erzeugen oder  die Größenverhältnisse übergebener Texturen anpassen. Der Generator muss keine Quests oder Boss Gegner erzeugen. Der Generator muss keine Level in Echtzeit erzeugen können. Es wird kein Fokus auf die Optimierung der Laufzeit gelegt. 
 
 ## Bewertungskriterien
 
-- was bedeutet lösbar?
-- was bedeutet schön?
+Die erzeugten Level werden im Abschluss anhand der in Abschnitt ... aufgestellten Regeln für gutes Leveldesign bewertet. Insbesondere werden folgende Faktoren untersucht: 
+
+- Lösbarkeit
+
+- Risk and Reward
+
+- Immersion (optik)
+
+- Pacing
+
+  Ein Beispiel für ein gutes Level ist in Abbildung .. zu sehen. Das Level kann als gut angesehen werden, da es Lösbar ist .... (beschreiben WARUM das level gut ist) 
+
+  
+
+  
 
 ## Konzept zur prozeduralen Level Generierung basierend auf einen GA
 
 Der Generator wird aus zwei Teilen zusammensetzt. Der erste Teil ist der GA selbst, er generiert Level die aus Wänden, Böden einen Start und einen Ziel bestehen. Der zweite Teil ist ein Parser, der für die Integration der erzeugten Level in die Spiellogik zuständig ist. Der Parser ist auch dafür verantwortlich, das Monster und Items im Level platziert werden, er  soll die Möglichkeit bieten, einzelne Wände und Böden gegen andere Oberflächen auszutauschen. Er ist für die Generierung der Levelgrafik verantwortlich. 
 
-Alle Konstanten werden von der Klasse Constants als statische Variablen zur Verfügung gestellt. Um Konstanten in der weiteren Beschreibung des Konzeptes darzustellen, werden alle verwendeten Konstanten in Großbuchstaben geschrieben. Die Werte der Konstanten werden erst durch praktische Tests festgelegt werden können. 
-
 ### GA
 
-- erklären welche Mischform von GA EA verwendet wird und warum. 
+In Abschnitt .. wurden die Unterschiede zwischen GA und ES erläutert. In dieser Arbeit wird eine Mischform aus beiden Implementiert. Es wird die reellwertige Kodierung der ES mit den Selektionsverfahren von GA kombiniert. Im Folgenden wird der Algorithmus weiterhin als GA bezeichnet. 
 
 #### Kodierung	
 
