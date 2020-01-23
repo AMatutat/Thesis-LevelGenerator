@@ -22,5 +22,5 @@ Zusätzlich beschäftigt sich die Arbeit mit der Frage, wie GAs Aspekte guten Le
 
 Der so erstellte Algorithmus soll den Teilnehmern zur Verfügung gestellt werden, damit diese ihn in ihre Implementation integrieren können. Der hier entwickelte Algorithmus, wird aufgrund der Natur von GAs, nicht in der Lage sein, Level in Echtzeit zu generieren. Die Konzeptionierung und Implementation der Spiellogik ist nicht Bestandteil dieser Arbeit. 
 
-
+- Angaben zur Struktur der Arbeit, sobald Final 
 
