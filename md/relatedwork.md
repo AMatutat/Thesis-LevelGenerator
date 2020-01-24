@@ -4,7 +4,7 @@
 
 ## Shattered Pixel Dungeon
 
-Um ein Verständnis dafür zu bekommen, welche Art von Spiel in den vom Generator erzeugten Level gespielt wird, werden in diesen Abschnitt die Grundkonzepte von Computer Rollenspiele insbesondere des Subgenres Rouge-Like beschrieben. Danach wird das Spiel: Shattered Pixel Dungeon noch einmal genauer beleuchtet, da dieses Inspiration für das neue Praktikums Konzept ist. 
+Um ein Verständnis dafür zu bekommen, welche Art von Spiel in den vom Generator erzeugten Level gespielt wird, werden in diesen Abschnitt die Grundkonzepte von Computer Rollenspiele insbesondere des Subgenres Rogue-Like beschrieben. Danach wird das Spiel: Shattered Pixel Dungeon noch einmal genauer beleuchtet, da dieses Inspiration für das neue Praktikums Konzept ist. 
 
 ### Rollenspiele
 
@@ -14,26 +14,26 @@ Viele Rollenspiele ermöglichen es den Spieler  direkten Einfluss auf den verlau
 
 In der Entwicklungszeit der Rollenspiele haben sich vor allem zwei unterschiedliche Kampfsysteme hervorgetan. Rundenbasierte Systeme übernehmen das aus den Pen and Paper bekannte Runden System, in dem sich Spieler und Gegner jeweils Abwechselnd eine Kampaction ausführen, bis einer von beiden besiegt wurde. Actionbasierte Systeme laufen vor allem in Echtzeit ab, hier stehen vor allem schnelle Reaktionen und gute Reflexe im Vordergrund. Echtzeitbasierte Rollenspiele werden oft auch als Action-Rollenspiel oder Action-Adventure bezeichnet, um sie von klassischen Rollenspielen abzugrenzen. [@Wikipedia2019]
 
-### Rouge
+### Rogue
 
-Das Videospiel Rouge: Exploring the Dungoens of Doom, ist ein, in den 1980er entwickeltes, Dungeoncrawler. Der Spieler bewegt sich Rundenbasiert durch ein aus ASCI-Zeichen bestehenden Levelsystem (vgl. Abbidlung ..) , um am ende das Magische Amulett von Yendor zu erlangen. Auf den Weg dorthin gilt es die feindlichen Monster zu besiegen. [@Barton2009] ![Ein typisches Level aus den Spiel Rouge [@Barton2009]](figs/rogue.jpg){width=80%}
+Das Videospiel Rogue: Exploring the Dungoens of Doom, ist ein, in den 1980er entwickeltes, Dungeoncrawler. Der Spieler bewegt sich Rundenbasiert durch ein aus ASCI-Zeichen bestehenden Levelsystem (vgl. Abbidlung ..) , um am ende das Magische Amulett von Yendor zu erlangen. Auf den Weg dorthin gilt es die feindlichen Monster zu besiegen. [@Barton2009] ![Ein typisches Level aus den Spiel Rogue [@Barton2009]](figs/rogue.jpg){width=80%}
 
-Glenn R. Wichman, einer der Entwickler von Rouge, schrieb in einen offenen Brief
+Glenn R. Wichman, einer der Entwickler von Rogue, schrieb in einen offenen Brief
 
 „But I think Rogue’s biggest contribution, and one that still stands out
 to this day, is that the computer itself generated the adventure in Rogue.
 Every time you played, you got a new adventure. That’s really what made
 it so popular for all those years in the early eighties.“[@Wichman1997]
 
-Die Level von Rouge werden bei jeden Spielstart neu generiert, man spielt also niemals zweimal das exakt selbe Spiel. In Verbindung mit Permadeath wurde so ein Abwechslungsreiches Spiel mit hohem Wiederspielwert erschaffen. Permadeath beschreibt ein Spielprinzip bei dem der Spielertot zum permanenten Verlust des Fortschritts führt und das Spiel von vorne gestartet werden muss.
+Die Level von Rogue werden bei jeden Spielstart neu generiert, man spielt also niemals zweimal das exakt selbe Spiel. In Verbindung mit Permadeath wurde so ein Abwechslungsreiches Spiel mit hohem Wiederspielwert erschaffen. Permadeath beschreibt ein Spielprinzip bei dem der Spielertot zum permanenten Verlust des Fortschritts führt und das Spiel von vorne gestartet werden muss.
 
-### Rougelikes
+### Roguelikes
 
-Da Rouge eines der ersten Spiele war die auf PCG setzten, waren sowohl Spieler als auch Entwickler von diesen Konzept begeistert. Viele Entwickler fühlten sich durch Rouge Inspiriert und entwickelten ihre eigenen Spiele mit PCG.[@Barton2009] Es entwickelte sich das Genre der Rouglikes. 
+Da Rogue eines der ersten Spiele war die auf PCG setzten, waren sowohl Spieler als auch Entwickler von diesen Konzept begeistert. Viele Entwickler fühlten sich durch Rogue Inspiriert und entwickelten ihre eigenen Spiele mit PCG.[@Barton2009] Es entwickelte sich das Genre der Rouglikes. 
 
-„[...] Roguelikes are called Rouglikes, because the games are literally like Rouge [...]“ [@Brown2017]
+„[...] Roguelikes are called Rouglikes, because the games are literally like Rogue [...]“ [@Brown2017]
 
-2008 wurde auf der Internationale Rouglike Entwickler Konferenz eine Liste verschiedener Faktoren erstellt, welche dabei helfen sollen das Rouglike Genre genauer zu beschreiben und zu definieren wann ein Spiel *like rouge* ist. Diese List wurde später unter den Namen *Berliner Interpretation* bekannt. Folgende Faktoren wurden dabei herausgearbeitet: [@Conference2008]
+2008 wurde auf der Internationale Rouglike Entwickler Konferenz eine Liste verschiedener Faktoren erstellt, welche dabei helfen sollen das Rouglike Genre genauer zu beschreiben und zu definieren wann ein Spiel *like Rogue* ist. Diese List wurde später unter den Namen *Berliner Interpretation* bekannt. Folgende Faktoren wurden dabei herausgearbeitet: [@Conference2008]
 
 | High value factors            | Erläuterung                                                  |
 | ----------------------------- | ------------------------------------------------------------ |
@@ -58,12 +58,12 @@ Da Rouge eines der ersten Spiele war die auf PCG setzten, waren sowohl Spieler a
 
 Die Berliner Interpretation wurde über die Jahre immer wieder kritisiert. Darren Grey kritisierte in seinen Blog Beitrag *Screw the Berliner Interpretation!* den "downright nonsense"[@Grey2013] der meisten Faktoren und ist der Auffassung die Berliner Interpretation schadete der kreativen Weiterentwicklung des Genres.[@Grey2013]
 
-Im laufe der Zeit hat die Berliner Interpretation immer mehr an Bedeutung verloren. Heute versteht man unter den Genre der Rougelikes Spiele die zufällig generierte Level mit Permadeath kombinieren. [@Brown2019] Dazu gehören unter anderen Spiele wie der Plattformer *Spelunky*, das Survival Spiel *Dont´t Starve* oder das Action-Adventure *The Binding of Isaac*.[@Wikipedia2020]
+Im laufe der Zeit hat die Berliner Interpretation immer mehr an Bedeutung verloren. Heute versteht man unter den Genre der Roguelikes Spiele die zufällig generierte Level mit Permadeath kombinieren. [@Brown2019] Dazu gehören unter anderen Spiele wie der Plattformer *Spelunky*, das Survival Spiel *Dont‘t Starve* oder das Action-Adventure *The Binding of Isaac*.[@Wikipedia2020]
 
 
 ### Shattered Pixel Dungeon
 
-Shattered Pixel Dungeon wäre laut der Berliner Interpretation ein echtes Rougelike. Es erfüllt alle Bedingungen, bis auf die ASCII Darstellung, der Definition. 
+Shattered Pixel Dungeon wäre laut der Berliner Interpretation ein echtes Roguelike. Es erfüllt alle Bedingungen, bis auf die ASCII Darstellung, der Definition. 
 
 Zu beginn des Spiels wählt der Spieler eine der vier Charakterklassen aus. Zur Auswahl stehen:
 
@@ -114,13 +114,13 @@ Prozedurale Levelgenerierung (PLG) ist ein Teilgebiet der Prozeduralen Contentge
 
 ### Vor und Nachteile von PLG
 
-PLG wird vor allem genutzt um kosten bei der Entwicklung zu sparen.[@Remo2008] Ein guter Algorithmus kann auf Knopfdruck hunderte unterschiedliche Level generieren, für dessen Erstellung sonst mehrere Monate gebraucht werden würde.[@IntroversionSoftware2007] Der zweiter große Faktor ist die, aus der theoretisch unendlichen Anzahl an unterschiedlichen Level, resultierende erhöhte Wiederspielbarkeit.[@Beca2017] Besonders das Rougelike Genre (vgl. Abs. ) setzt auf PLG. Rougelikes verwenden PLG zusätzlich als Gameplay Feature. Durch sich stetig verändernden Leveln, kann der Spieler das Spiel nicht durch schieres Auswendiglernen der Levelstruktur gewinnen, er muss die Gameplay Mechaniken verstehen und meistern.[@Brown2019]
+PLG wird vor allem genutzt um kosten bei der Entwicklung zu sparen.[@Remo2008] Ein guter Algorithmus kann auf Knopfdruck hunderte unterschiedliche Level generieren, für dessen Erstellung sonst mehrere Monate gebraucht werden würde.[@IntroversionSoftware2007] Der zweiter große Faktor ist die, aus der theoretisch unendlichen Anzahl an unterschiedlichen Level, resultierende erhöhte Wiederspielbarkeit.[@Beca2017] Besonders das Roguelike Genre (vgl. Abs. ) setzt auf PLG. Roguelikes verwenden PLG zusätzlich als Gameplay Feature. Durch sich stetig verändernden Leveln, kann der Spieler das Spiel nicht durch schieres Auswendiglernen der Levelstruktur gewinnen, er muss die Gameplay Mechaniken verstehen und meistern.[@Brown2019]
 
 Die Implementation eines PLG ist allerdings nicht trivial. Die theoretisch endlose Anzahl an Leveln erschwert das Testen und beheben von Bugs. Evtl. wurde ein Fehler nur in den getesteten Leveln behoben, kommt aber in anderen Leveln wieder vor.[@Remo2008] 
 
 Die Einhaltung der in Abschnitt ... vorgestellten Regeln für gutes Leveldesign ist bei PLG teilweise komplexer im vergleich zu handgebauten Leveln. 
 
-Die Lösbarkeit der Level zu gewährleisten ist bei handgebauten Level schnell und verlässlich möglich. Der Generator im Gegenzug muss darauf Programmiert sein, keine unpassierbaren Hindernisse auf den Kritischen pfaden zu platzieren oder benötigte Puzzleteile wie Türschlüssel so zu positionieren, dass sie erreicht werden können ohne dass zuvor das Puzzle gelöst werden muss. Die Kontrolle des Pacings und Ausbalancierung des Schwierigkeitsgrades sind selbst für Designer eine schwere Aufgabe, die viel Zeit zur Optimierung benötigen[@DevPlay2019], für einen Level Generator ist diese eine komplexe und fast unlösbare Aufgabe. Die Schwierigkeit eines Levels zu bestimmen ist, je nach Genre, sehr schwer und wird noch zusätzlich dadurch erschwert, dass die Generierten Level jederzeit im Spiel auftauchen können. Level sollten aber zu beginn des Spieles einfacher sein, da der Spieler die Mechaniken erst kennenlerne muss und gegen Ende schwerer werden um weiterhin eine Herausforderung zu bieten.  Prozedural generierte Level können aufgrund der verwendeten Muster, schnell repetitiv wirken. Das Spiel *No Man´s Sky* wurde unter anderen deswegen von Spielern und Fachpresse scharf kritisiert.[Reinartz2016] Den Algorithmus muss genug Flexibilität gegeben werden um Strukturen zu Mutieren (s.a. abs Spelunky). 
+Die Lösbarkeit der Level zu gewährleisten ist bei handgebauten Level schnell und verlässlich möglich. Der Generator im Gegenzug muss darauf Programmiert sein, keine unpassierbaren Hindernisse auf den Kritischen pfaden zu platzieren oder benötigte Puzzleteile wie Türschlüssel so zu positionieren, dass sie erreicht werden können ohne dass zuvor das Puzzle gelöst werden muss. Die Kontrolle des Pacings und Ausbalancierung des Schwierigkeitsgrades sind selbst für Designer eine schwere Aufgabe, die viel Zeit zur Optimierung benötigen[@DevPlay2019], für einen Level Generator ist diese eine komplexe und fast unlösbare Aufgabe. Die Schwierigkeit eines Levels zu bestimmen ist, je nach Genre, sehr schwer und wird noch zusätzlich dadurch erschwert, dass die Generierten Level jederzeit im Spiel auftauchen können. Level sollten aber zu beginn des Spieles einfacher sein, da der Spieler die Mechaniken erst kennenlerne muss und gegen Ende schwerer werden um weiterhin eine Herausforderung zu bieten.  Prozedural generierte Level können aufgrund der verwendeten Muster, schnell repetitiv wirken. Das Spiel *No Man‘s Sky* wurde unter anderen deswegen von Spielern und Fachpresse scharf kritisiert.[Reinartz2016] Den Algorithmus muss genug Flexibilität gegeben werden um Strukturen zu Mutieren (s.a. abs Spelunky). 
 
 Zusammengefasst lässt sich sagen, dass PLG besonders gut dafür geeignet sind um kostengünstig eine Vielzahl an abwechslungsreichen, aber nicht einzigartigen, Leveln zu erschaffen, die es schaffen Spieler dazu zu motivieren, Spiele immer wieder zu spielen. Die Umsetzung guter PLGs ist nicht trivial und erfordert komplexe Regeln und Strukturen. Einige Faktoren lassen sich mithilfe eines PLGs nur schwer oder gar nicht umsetzten. So muss das Pacing beispielsweise nicht über das Leveldesign sondern über Gamedesign Elemente gesteuert werden (vlg. abs. Spelunky). 
 
@@ -131,7 +131,7 @@ Mittlerweile existieren eine Vielzahl an unterschiedlichen Algorithmen und Verfa
 
 #### Random Walk
 
-Der Random Walk Algorithmus, auch als *Drunkard´s Walk* bekannt, wird eigentlich zur Generierung von nicht deterministischen Zeitreihen genutzt, um beispielsweise Aktienkurze in der Finanzmathematik zu modellieren. Er kann aber auch zur Erstellung Höhlenartiger Level genutzt werden. Beim Random Walk bewegt sich ein im leeren Dungeon gesetzter Akteur solange zufällig durch das Dungeon bis er die gewünschte Anzahl an unterschiedlichen Felder passiert hat. Passierte Felder werden als begehbaren Boden interpretiert, unpassierte Feld als unbegehbare Wände.[@Wikipedia2019a]
+Der Random Walk Algorithmus, auch als *Drunkard‘s Walk* bekannt, wird eigentlich zur Generierung von nicht deterministischen Zeitreihen genutzt, um beispielsweise Aktienkurze in der Finanzmathematik zu modellieren. Er kann aber auch zur Erstellung Höhlenartiger Level genutzt werden. Beim Random Walk bewegt sich ein im leeren Dungeon gesetzter Akteur solange zufällig durch das Dungeon bis er die gewünschte Anzahl an unterschiedlichen Felder passiert hat. Passierte Felder werden als begehbaren Boden interpretiert, unpassierte Feld als unbegehbare Wände.[@Wikipedia2019a]
 
 Der Folgende Pseudocode zeigt, wie ein einfaches 2D-Level mithilfe des Random Walk Algorithmuses erzeugt werden kann.[@Read2014]
 
@@ -155,7 +155,7 @@ Der Algorithmus erzeugt vollständig verbundenen Level, mit unterschiedlich gro�
 
 #### Spelunky
 
-Spelunky ist ein 2D-Rougelike-Plattformer, es verbindet Elemente klassischer Jump and Runs mit den prozedural Generierten Leveln und Permadeath des Rougelike Genres. 2016 veröffentlichte der Spelunky Entwickler Derek Yu das gleichnamige Buch *Spelunky* in dem er auf die Entwicklungsgeschichte eingeht und unteranderem den Algorithmus zur prozeduralen Level Generierung erläutert. [@Yu2016]
+Spelunky ist ein 2D-Roguelike-Plattformer, es verbindet Elemente klassischer Jump and Runs mit den prozedural Generierten Leveln und Permadeath des Roguelike Genres. 2016 veröffentlichte der Spelunky Entwickler Derek Yu das gleichnamige Buch *Spelunky* in dem er auf die Entwicklungsgeschichte eingeht und unteranderem den Algorithmus zur prozeduralen Level Generierung erläutert. [@Yu2016]
 
 Jedes Level startet mit einen 4x4 Gitter aus jeweils 10x8 Felder großen leeren Räumen. Als erster Schritt der Generierung wird der kritische Pfad im Level generiert. Der kritische Pfad verbindet den Anfang des Levels mit dem Ende des Levels und repräsentiert so den Lösungsweg. 
 
@@ -209,7 +209,7 @@ Um optische Abwechslung zu bieten werden die Level mit unterschiedlichen Visuell
 
 In seinen Buch schrieb Yu: 
 
-"This system doesn´t create the most natural-looking caves ever, and players will quickly begin to recognize certain repeating landmarks and perhaps even sense that the levels are generated on a grid. But with enough templates and random mutations, there´s still plenty of variability. More importantly, it creates fun and engaging levels that the player can´t easily get stuck in, something much more valuable than realism when it comes to making an immersive experience"[@Yu2016]
+"This system doesn‘t create the most natural-looking caves ever, and players will quickly begin to recognize certain repeating landmarks and perhaps even sense that the levels are generated on a grid. But with enough templates and random mutations, there‘s still plenty of variability. More importantly, it creates fun and engaging levels that the player can‘t easily get stuck in, something much more valuable than realism when it comes to making an immersive experience"[@Yu2016]
 
 #### Graph Based
 
