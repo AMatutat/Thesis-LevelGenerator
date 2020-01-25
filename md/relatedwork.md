@@ -101,14 +101,61 @@ Auch sollten Level immer so Fehlerfrei wie möglich sein. Das betrifft sowohl gr
 
 #### Gameplay First
 
+- Hitman
+- Interaktionsvermögen
+
 #### Immersion
-#### Interaktionsvermögen
+
+"Immersion trägt maßgeblich dazu bei, dass Spieler ihre Zweifel beiseitelegen und gänzlich in die Spielwelt eintauchen"[@Hagen2019] 
+
+Immersion beschreibt die Glaubwürdigkeit der Spielwelt. Dabei kommt es nicht darauf an, wie realistisch ein Spiel ist und wie gut die reale Welt abgebildet wird, sondern darum das ein Spiel und dessen Welt eine gewisse Kontinuität den selbst erstellten Regeln aufweist. 
+
+Das erschaffen eines Immersiven Spielwelt  ist nicht nur Aufgabe des Level Designers, es zieht sich durch sämtliche Bereiche der Entwicklung. 
+
+Im Gameplay kann Immersion durch Konsequenz erreicht werden. Einmal aufgestellte Regeln sollten immer gelten, kann zum Beispiel ein Licht im Spiel ausgeschossen werden sollten alle Lichter im Spiel ausgeschossen werden können. Gegenstände sollte immer den selben Nutzen haben, kann zum Beispiel eine Zange genutzt werden um Nägel aus Bretter zu ziehen, sollte der Spieler dies auch mit der nächsten Zange an einen anderen Brett tun können. Außerdem sollte der Spieler immer in der Lage sein, sein Wissen über die Regeln der Spielwelt nutzen zu können um Aufgaben so zu lösen wie er möchte. 
+
+Um im Leveldesign eine hohe Immersion zu erreichen, müssen vor allem die Platzierung von Gegenständen und die Auswahl des Optischenthemas sinnvoll sein. Jedes Gebäude, jeder Gegenstand und jeder Character sollte einen, in der Spielwelt nachvollziehbaren, Grund haben genau dort zu sein wo sie sind. Auch sollten vom Spieler erwartete Gegenstände und Orte Vorhände sein, so braucht ein Büro Schreibtische und Computer, eine Resteraunt Toiletten und einen Lagerraum für Lebensmittel. 
+
+Warren Spector, Entwickler des Spieles Deus Ex antwortete auf die Frage warum er nicht von Videospielen sondern von interaktiven Simulationen spricht wie folgt: 
+
+"Simulations allow players to explore not just a space but a 'possibility space'. They can make their own fun, tell their own stories, solve problems the way they want, and see the consequences of their choices. That's the thing that games can do that no other medium in human hisotry has been able to do."[@Spector2016]
+
+Deus Ex gilt heute als eines der Spiele, die das Genre der *Immersive Sims* mit zu verantworten hat. Immersive Sims zeichnen sich dadurch aus, das sie besonders hohe Priorität auf Immersion im Spiel legen.[@Brown2016]
+
 #### Pacing
+
+#### Storytelling und Emotionen
+
+- Fort Frolic?
+
 #### Navigation
+
+- Light
+- Farben
+- Doted Lines
+- Nathan Drake dont need a compass
+
 #### Balancing
-	1. Tomb Raider hat für unterschiedliche Aspekte unterschiedliche Schwierigkeitsgrade
+- Level bedignt
+  - Mario Level
+  - Half Life verteilt mehr Leben wenn man Low ist
+- Gameplay bedingt
+  - RE4 
+  - Thief -> Höherer Schwierigkeitsgrad = mehr Quests
+  - Tomb Raider hat für unterschiedliche Aspekte unterschiedliche Schwierigkeitsgrade
+
 #### Risk and Reward
+
+Im laufe eines Spiels (und Levels), sollte es regelmäßig zu Risk and Reward Situationen kommen. Dies sind Situationen in denen der Spieler ein höheres Risiko eingehen muss als gewohnt, z.B ein besonders starker Gegner angreifen oder durch ein stark Bewachtes gebiet schleichen, um bei Erfolg eine Belohnung zu erhalten. Die Belohnung sollte abhängig von der höhe des Risikos der Herausforderung sein. Risk and Reward Situationen sollten stets optional sein und sind für besonders gute Spieler gedacht, um diese eine neue Herausforderung zu bieten und entsprechend zu belohnen. Die Art der Belohnung schwankt von Spiel zu Spiel und kann von Punkten für den Highscore, einer Abkürzung bis hin zu einer besonders starken Waffe oder einem optionalen Storystrang alles sein. Spieler werden durch Risk and Reward Momenten in spannende Entscheidungssituationen gebracht ob sie die Herausforderung annehmen und Gefahr Laufen zu versagen oder auf Nummer sicher gehen aber dafür die Belohnung verpassen. 
+
 #### Einzigartigkeit
+
+Die unterschiedlichen Level im Spiel sollten zwar alle dem selben Designkonzepten Folgen, sich jedoch merklich voneinander unterscheiden. Ähnelt sich die Levelstruktur der einzelnen Level zu stark oder werden die selben Grafikassets immer und immer wieder verwendet, trübt dieses die Spielerfahrung. 
+
+"[...] people don’t like playing the same level twice."[@Ryan1999]
+
+Um Level Einzigartiger zu gestalten, sollte eine große Variation an unterschiedlichen Settings, Gegner und Gameplay Herausforderungen geboten werden. 
+
 #### Effizienz
 Die Entwicklung von Spielen ist sehr teuer, Spiele kosten in der Regel mehrere Millionen Dollar, dennoch müssen Ressourcen effizient genutzt werden. [@DevPlay2017]
 Ein Leveldesigner baut daher nicht jedes Level von grundauf neu, vielmehr entwickelt er ein modulares Set aus verschiedenen Events im Spiel. Durch die kombination der einzelnen Teile dieses Sets, sowie leichten anpassungen für speziellere Situationen, können viele unterschiedliche Situationen erschaffen werden. 
@@ -116,7 +163,7 @@ Ein Leveldesigner baut daher nicht jedes Level von grundauf neu, vielmehr entwic
 
 ## Prozedurale Levelgenerierung
 
-Im folgenden Abschnitt wird das Prinzip der PCG, insbesondere der PLG beschrieben. Es werden die Vor- und Nachteiler der PLG erörtert und bekannte Verfahren präsentiert. Zuerst folgt eine Erklärung was PCG bzw. PLG bedeutet und wo sie angewendet wird. 
+Im folgenden Abschnitt wird das Prinzip der PCG, insbesondere der PLG beschrieben. Es werden die Vor- und Nachteiler der PLG erörtert und bekannte Verfahren präsentiert. Zuerst folgt eine Erklärung was PCG bzw. PLG bedeutet und wo es angewendet wird. 
 
 ### Begriffserläuterung
 
