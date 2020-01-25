@@ -93,16 +93,26 @@ Abbildung ... zeigt einen Ausschnitt eines Dungeons aus dem Spiel. Besonders gut
 
 ### Regeln für gutes Leveldesign
 
-1. Lösbarkeit
-2. Immersion
-3. Interaktionsvermögen
-4. Pacing
-5. Navigation
-6. Schwierigkeit
-1. Tomb Raider hat für unterschiedliche Aspekte unterschiedliche Schwierigkeitsgrade
-7. Risk and Reward
-8. Einzigartigkeit
-9. Unterstützt Gameplay
+
+#### Lösbarkeit und Fehlerfreiheit
+Ein level muss immer lösbar sein. Je nach Spiel und Genre bedeutet dies, das entweder das Ende des Levels erreichbar sein muss oder alle Missionen im Level absolvierbar sein müssen. Das selbe gilt für alle Nebenmissionen und sammelbare Objekte wie Münzen oder Items im Level. Ist ein Level durch schlechtes Design oder Bugs nicht lösbar, zerstört dies den Spielspaß des Spielers. 
+
+Auch sollten Level immer so Fehlerfrei wie möglich sein. Das betrifft sowohl grafische Fehler, wie falsch platzierte Texturen, als auch gameplay Fehler. Typische Beispiele für Gameplay Fehler wären z.B die, vom Designer ungewollte, Möglichkeit ein Hinderniss zu umlaufen, falsch platzierte Gegner oder andere, vom Level abhängigen, Designfehler. Einzelne Fehler werden von Spielern oftmals hingenommen, summiert sich die anzahl der Fehler aber auf, oder schränken diese den Spielgenuss ein, kann dies ähnliche Auswirkungen haben wie ein Unlösbares Level. 
+
+#### Gameplay First
+
+#### Immersion
+#### Interaktionsvermögen
+#### Pacing
+#### Navigation
+#### Balancing
+	1. Tomb Raider hat für unterschiedliche Aspekte unterschiedliche Schwierigkeitsgrade
+#### Risk and Reward
+#### Einzigartigkeit
+#### Effizienz
+Die Entwicklung von Spielen ist sehr teuer, Spiele kosten in der Regel mehrere Millionen Dollar, dennoch müssen Ressourcen effizient genutzt werden. [@DevPlay2017]
+Ein Leveldesigner baut daher nicht jedes Level von grundauf neu, vielmehr entwickelt er ein modulares Set aus verschiedenen Events im Spiel. Durch die kombination der einzelnen Teile dieses Sets, sowie leichten anpassungen für speziellere Situationen, können viele unterschiedliche Situationen erschaffen werden. 
+"Modular design is your friend – a smart designer won’t design a level, he/she will design a series of modular, mechanic-driven encounters, that can be strung together to create a level.  And another level.  And another level."[@Taylor2013]
 
 ## Prozedurale Levelgenerierung
 
