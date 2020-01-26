@@ -108,19 +108,15 @@ Auch sollten Level immer so Fehlerfrei wie möglich sein. Das betrifft sowohl gr
 
 "Immersion trägt maßgeblich dazu bei, dass Spieler ihre Zweifel beiseitelegen und gänzlich in die Spielwelt eintauchen"[@Hagen2019] 
 
-Immersion beschreibt die Glaubwürdigkeit der Spielwelt. Dabei kommt es nicht darauf an, wie realistisch ein Spiel ist und wie gut die reale Welt abgebildet wird, sondern darum das ein Spiel und dessen Welt eine gewisse Kontinuität den selbst erstellten Regeln aufweist. 
-
-Das erschaffen eines Immersiven Spielwelt  ist nicht nur Aufgabe des Level Designers, es zieht sich durch sämtliche Bereiche der Entwicklung. 
+Immersion beschreibt die Glaubwürdigkeit der Spielwelt. Dabei kommt es nicht darauf an, wie realistisch ein Spiel ist und wie gut die reale Welt abgebildet wird, sondern darum das ein Spiel und dessen Welt eine gewisse Kontinuität den selbst erstellten Regeln aufweist. Das erschaffen eines Immersiven Spielwelt  ist nicht nur Aufgabe des Level Designers, es zieht sich durch sämtliche Bereiche der Entwicklung. 
 
 Im Gameplay kann Immersion durch Konsequenz erreicht werden. Einmal aufgestellte Regeln sollten immer gelten, kann zum Beispiel ein Licht im Spiel ausgeschossen werden sollten alle Lichter im Spiel ausgeschossen werden können. Gegenstände sollte immer den selben Nutzen haben, kann zum Beispiel eine Zange genutzt werden um Nägel aus Bretter zu ziehen, sollte der Spieler dies auch mit der nächsten Zange an einen anderen Brett tun können. Außerdem sollte der Spieler immer in der Lage sein, sein Wissen über die Regeln der Spielwelt nutzen zu können um Aufgaben so zu lösen wie er möchte. 
 
-Um im Leveldesign eine hohe Immersion zu erreichen, müssen vor allem die Platzierung von Gegenständen und die Auswahl des Optischenthemas sinnvoll sein. Jedes Gebäude, jeder Gegenstand und jeder Character sollte einen, in der Spielwelt nachvollziehbaren, Grund haben genau dort zu sein wo sie sind. Auch sollten vom Spieler erwartete Gegenstände und Orte Vorhände sein, so braucht ein Büro Schreibtische und Computer, eine Resteraunt Toiletten und einen Lagerraum für Lebensmittel. 
+Um im Leveldesign eine hohe Immersion zu erreichen, müssen vor allem die Platzierung von Gegenständen und die Auswahl des Optischenthemas sinnvoll gewählt sein. Jedes Gebäude, jeder Gegenstand und jeder Character sollte einen, in der Spielwelt nachvollziehbaren, Grund haben genau dort zu sein wo er ist. Auch sollten vom Spieler erwartete Gegenstände und Orte Vorhände sein, so braucht ein Büro Schreibtische und Computer, eine Resteraunt Toiletten und einen Lagerraum für Lebensmittel. 
 
-Warren Spector, Entwickler des Spieles Deus Ex antwortete auf die Frage warum er nicht von Videospielen sondern von interaktiven Simulationen spricht wie folgt: 
+Das Spielegenre *Immersive Simulation* zeichnet sich dadurch aus, dass ein besonders hoher Fokus auf die Immersion gelegt wird. [@Brown2016] Warren Spector hält immersives Gameplay für den entscheidenden Faktor, der Videospiele von allen anderen Medien unterscheidet. 
 
 "Simulations allow players to explore not just a space but a 'possibility space'. They can make their own fun, tell their own stories, solve problems the way they want, and see the consequences of their choices. That's the thing that games can do that no other medium in human hisotry has been able to do."[@Spector2016]
-
-Deus Ex gilt heute als eines der Spiele, die das Genre der *Immersive Sims* mit zu verantworten hat. Immersive Sims zeichnen sich dadurch aus, das sie besonders hohe Priorität auf Immersion im Spiel legen.[@Brown2016]
 
 #### Pacing
 
