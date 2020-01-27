@@ -1,29 +1,18 @@
-# Realisierung, Evaluation
+# Realisierung und Bewertung 
 
-<!--
-*   Beschreibung der Umsetzung des Lösungskonzepts
-*   Darstellung der aufgetretenen Probleme sowie deren Lösung bzw. daraus resultierende Einschränkungen des Ergebnisses (falls keine Lösung)
-*   Auswertung und Interpretation der Ergebnisse
-*   Vergleich mit der ursprünglichen Zielsetzung (ausführlich): Was wurde erreicht, was nicht (und warum)? (inkl. Begründung/Nachweis)
+## Umsetzung #1
 
-Umfang: typisch ca. 30% ... 40% der Arbeit =18 Seiten
--->
+### Evaluierung #1
 
-## Umsetzung
+## Umsetzung #2
 
-- schrittweise
-  - Umsetzung
-  - Ergebnisse Präsentieren
-  - Auswerten
+### Evaluierung #2
+
+## Umsetzung #3
+
+### Evaluierung #3
+
+## Gesamtauswertung
 
 
 
-## Auswertung des gesamt Ergebnisses 
-
-- Bewerten ob Zielsetzung erreicht wurde
-
-- weiter bestehende Probleme ansprechen
-
-- Präsentation der Umfrageregebnisse
-
-  

@@ -1,6 +1,8 @@
-# Eigene Ideen
+# Konzept zur PLG mithilfe von GA
 
-Im folgenden wird ein Konzept zur Erstellung eines Level Generators basierend auf GA erläutert. Zuerst werden die Anforderungen an das Projekt definiert und die Zielsetzung spezifiziert. Danach folgt die Ausarbeitung des Konzeptes. Am ende des Abschnittes wird das erstellte Konzept mit den aus Abschnitt 3 bekannten Verfahren verglichen. 
+Im folgenden wird ein Konzept zur Erstellung eines Level Generators basierend auf GA erläutert. Zuerst werden die Anforderungen an das Projekt definiert und die Zielsetzung spezifiziert. Danach folgt die Ausarbeitung des Konzeptes.  Am ende des Abschnittes wird das erstellte Konzept mit den aus Kapitel 2 bekannten Verfahren verglichen. 
+
+*Anmerkung: Das Konzept hat im laufe der Entwicklung einige Anpassungen erfahren, um die Übersicht zu bewahren wird daher das Konzept in drei Teile präsentiert, welche jeweils als neue Iteration betrachtet werden können. Im Kapitel Realisierung wird das selbe Verfahren zur Unterteilung der einzelnen Iterationen angewendet. Es ist zu empfehlen, sich jeweils das Konzept und die Realisierung einer Iteration nach der anderen anzusehen um den Verlauf der Entwicklung nachzuempfinden. * 
 
 ## Anforderungen an das Projekt
 
@@ -16,21 +18,16 @@ Der Generator muss nicht in der Lage sein, neue Spielregeln, wie das sprengen vo
 
 Die erzeugten Level werden im Abschluss anhand der in Abschnitt ... aufgestellten Regeln für gutes Leveldesign bewertet. Insbesondere werden folgende Faktoren untersucht: 
 
-- Lösbarkeit
-
+- Lösbarkeit und Fehlerfreiheit
 - Risk and Reward
+- Immersion
+- Einzigartigkeit
 
-- Immersion (optik)
-
-- Pacing
-
-  Ein Beispiel für ein gutes Level ist in Abbildung .. zu sehen. Das Level kann als gut angesehen werden, da es Lösbar ist .... (beschreiben WARUM das level gut ist) 
+Das Kriterium Balancing wird nicht betrachtet, da dieses von den im Level platzierten Monstern abhängig ist und die Teilnehmer eigenständig Monster verteilen können. Dir Kriterien Environmental Storytelling, Gameplay First und Navigation werden nicht betrachtet, da sie für das von den Teilnehmer entwickelte Spiel keine Bedeutung haben. Die Kontrolle des Pacing ist eine sehr schwierige Aufgabe, und noch schwieriger zu automatisieren und würde den Rahmen dieser Arbeit überschreitet und ist daher kein Bewertungskriterium. Durch die Verwendung PLG kann das Kriterium Effizienz für den Gesamtem Algorithmus als erfolgreich beachtet angesehen werden.   
 
   
 
-  
-
-## Konzept zur prozeduralen Level Generierung basierend auf einen GA
+## Konzept #1
 
 Der Generator wird aus zwei Teilen zusammengesetzt. Der erste Teil ist der GA selbst, er generiert Level die aus Wänden, Böden einen Start und einen Ziel bestehen. Der zweite Teil ist ein Parser, der für die Integration der erzeugten Level in die Spiellogik zuständig ist. Der Parser ist auch dafür verantwortlich, das Monster und Items im Level platziert werden, er  soll die Möglichkeit bieten, einzelne Wände und Böden gegen andere Oberflächen auszutauschen. Er ist für die Generierung der Levelgrafik verantwortlich. 
 
@@ -91,14 +88,6 @@ Die Lösbarkeit ist eines Levels ist Kernvoraussetzung um als gültige Lösung z
 
 Das dritte Kriterium soll vor allem einzeln im Level platzierte Wände vermeiden, da diese in der Logik des Spiels keinen Sinn erfüllen und daher vom Spieler als störend empfunden werden und die Immersion mindern. Für jede Wand die direkt oder indirekt über Nachbarn mit der außen Wand verbunden sind gibt es Fitnesspunkte. Dadurch sollen Wandketten gefördert werden. Die Verbindung mit den Außenwänden ist vom klassischen Hausaufbau inspiriert, da dort in der Regel auch jede Wand in irgendeiner Form mit der Außenwand verbunden ist. Da die hier generierten Level auch größere Dungeon darstellen sollen, könnten auch Säulenartige Strukturen oder Stützwände wünschenswert sein. Daher gibt es für Wände, die zwar keine Anbindung an den Levelrand haben, jedoch mit anderen Wänden verbunden sind, Teilpunkte. 
 
-**Version 2**
-
-Es stellte sich heraus das einzelne Wandblöcke aus Wandketten (bild einfügen als beispiel), dieses Verhalten wird von der aktuellen Fitnessversion nicht bestraft, deswegen wurde die Fitnessfunktion um ein weiteres Kriterium erweitert. 
-
-- Für jeden nicht Wand Nachbar einer Wand, werden Punkte abgezogen.
-
-Durch dieses Kriterium ist eine negative Fitness erreichbar, daher wäre die Umsetzung eines neuen Selektionsverfahren notwendig. Da die Wahrscheinlichkeit einer negativen Fitness allerdings sehr gering ist, wurde eine minimal Fitness von 1 festgelegt, das erlaubt es das bereits Implementierte Selektionsverfahren zu behalten.
-
 ##### Selektion und Rekombination
 
 Als Selektionsverfahren wird das im Abschnitt .... beschreibende Roulette Wheel Selection Verfahren genutzt. Da keine negative Fitness erreicht werden kann als auch von einer großen Spannbreite an Bewertungen ausgegangen werden kann, bietet sich ein Rank Selection Verfahren nicht an. Alternativ wäre auch die Verwendung der Tournament Selektion denkbar. 
@@ -107,31 +96,9 @@ Sollte die es zu einen Crossover, abhängig von der CHANCE_FOR_CROSSOVER, kommen
 
 Das Uniform Crossover Verfahren würde wieder eine komplett Zufällige Anordnung von Böden und Wänden zu folge ziehen und ist daher für die Generierung von Leveln nicht geeignet. 
 
-**Version 2**
-
-Da die Mutation Version 2 dafür sorgt, das sich Wände links und recht der Mitte anordnen, und ein vertikaler Schnitt durch die Mitte daher wenig Einfluss auf die weiterentwicklung der Generation nimmt, wurde ein neues Rekombinationsverfahren implementiert. Es wird das Multi-Point-Crosso verfahren genutzt um hochizonal durch das Level zu schneiden. Dadurch sollen sich neue Anknüpfspunkte für die Wände während der Mutation Version 2 bilden.
-
 ##### Mutation 
 
 Zur Levelgenerierung bieten sich fast alle bekannten Mutationsverfahren an. In dieser Implementierung wird eine angepasste Version der Bit-Flip Mutation verwendet. Ignorieren wir bei der Mutation Start und Ausgangspunkt, bleiben noch Felder die entweder Böden oder Wände sind. Es wird für jedes Gen überprüft ob es zur Mutation kommt, und wenn ja, wird der Allel des Gen geändert. Wände werden zu Böden und Böden zu Wände. 
-
-**Version 2**
-
-Es stellte sich heraus, dass das zuerst präsentierte Mutationsverfahren den GA zu einer Zufallssuche degradiert. Um den engegenzu wirken wurde eine neue Mutation implementiert. Die Mutationsfunktion itteriert über jede Reihe eines Levels, kommt es zu Mutation werden alle Wände der Reihe, die sich auf der linken Seite befinden, solange nach links geschoben, bis sie mit der Ausenwand verbunden sind, das selbe passiert mit der rechten Seite, nur werden hier alle Wände nach rechts geschoben.
-
-Dieses Mutationsverfahren muss genauer betrachtet werden, da sie direkten, positiven, Einfluss auf die Fitness nimmt und das eigentliche Ziel einer Mutation damit verfehlen könnte. 
-
-**Version 3**
-
-Um eine Alternative zu der starken Mutation Version 2 zu bieten, wurde das Game of Life implementiert. Beim Game of Life werden Zellen abhängig von ihren Nachbarn entweder lebendig oder sterben. Die Regeln für das Orginale Game of Life lauten
-
-- 
-
-Da in dieser Implementierung nur Felder als Nachbarn bezeichnet werden, wenn sie entweder direkt über,unter,links oder recht vom Betrachteten Feld liegen, werden die Grenzwerte entsprechend angepasst. Daraus ergibt sich
-
-- 
-
-So sollen Wände erzeugt welche, ähnlich zu Bäumen oder anderen Pflanzen, in das Level wachsen. 
 
 #### Abbruchkriterium
 
@@ -162,9 +129,7 @@ Die Funktion generateTextureMap itteriert über das zwei Dimensionale ISurface A
 
 ### Locks and Keys
 
-Um ein sinnvolles Konzept zur Platzierung von Türen und Schlüsseln zu entwickeln, muss erst ein Eindruck erlangt werden, wie die generierten Level aufgebaut sind. Grundsätzlich müssen Raumähnliche Strukturen erkannt werden, welche sich dadurch auszeichnen, das sie vom Start Punkt aus nur über ein Feld erreichbar sind, der Tür. Auf diesen Feld kann die Tür platziert werden, der Key wird zwischen Start und Tür verteilt. 
-
-
+Um ein sinnvolles Konzept zur Platzierung von Türen und Schlüsseln zu entwickeln, muss erst ein Eindruck erlangt werden, wie die generierten Level aufgebaut sind. Grundsätzlich müssen Raumähnliche Strukturen erkannt werden, welche sich dadurch auszeichnen, das sie vom Start Punkt aus nur über ein Feld erreichbar sind, der Tür. Auf diesen Feld kann die Tür platziert werden, der Key wird zwischen Start und Tür verteilt.
 
 Das Klassendiagramm für den kompletten Generator ist in Abbildung ... zu sehen.
 . 
@@ -184,6 +149,48 @@ Um den Einfluss der verschiedenen Parameter nachvollziehen zu können, wird ein 
 - Durchschnittlich gebrauchte Generationen für die beste Lösung 
 
 Bevor der Fitnessschwellwert implementiert wird, wird die Abbruchbedingung so bestimmt, das eine feste Anzahl an Generationen durchlaufen werden, die zurück gelieferte Lösung entspricht der Lösung mit der höchsten Fitness über den gesamten Generierungsprozess. Ohne Schwellwert wird sichergestellt das der Generator nicht frühzeitig abbricht. Mithilfe der so erlangten Daten lassen sich mangelhafte Mutations und Rekombinations Methoden erkennen. Die Daten helfen dabei, die optimalen Parametereinstellungen zu identifizieren.
+
+## Konzept #2 
+
+### Anpassung der Fitnessfunktion
+
+****
+
+Es stellte sich heraus das einzelne Wandblöcke aus Wandketten (bild einfügen als beispiel), dieses Verhalten wird von der aktuellen Fitnessversion nicht bestraft, deswegen wurde die Fitnessfunktion um ein weiteres Kriterium erweitert. 
+
+- Für jeden nicht Wand Nachbar einer Wand, werden Punkte abgezogen.
+
+Durch dieses Kriterium ist eine negative Fitness erreichbar, daher wäre die Umsetzung eines neuen Selektionsverfahren notwendig. Da die Wahrscheinlichkeit einer negativen Fitness allerdings sehr gering ist, wurde eine minimal Fitness von 1 festgelegt, das erlaubt es das bereits Implementierte Selektionsverfahren zu behalten.
+
+### Neue Mutation
+
+Es stellte sich heraus, dass das zuerst präsentierte Mutationsverfahren den GA zu einer Zufallssuche degradiert. Um den engegenzu wirken wurde eine neue Mutation implementiert. Die Mutationsfunktion itteriert über jede Reihe eines Levels, kommt es zu Mutation werden alle Wände der Reihe, die sich auf der linken Seite befinden, solange nach links geschoben, bis sie mit der Ausenwand verbunden sind, das selbe passiert mit der rechten Seite, nur werden hier alle Wände nach rechts geschoben.
+
+Dieses Mutationsverfahren muss genauer betrachtet werden, da sie direkten, positiven, Einfluss auf die Fitness nimmt und das eigentliche Ziel einer Mutation damit verfehlen könnte. 
+
+### Neue Rekombination 
+
+Da die Mutation Version 2 dafür sorgt, das sich Wände links und recht der Mitte anordnen, und ein vertikaler Schnitt durch die Mitte daher wenig Einfluss auf die weiterentwicklung der Generation nimmt, wurde ein neues Rekombinationsverfahren implementiert. Es wird das Multi-Point-Crosso verfahren genutzt um hochizonal durch das Level zu schneiden. Dadurch sollen sich neue Anknüpfspunkte für die Wände während der Mutation Version 2 bilden.
+
+## Konzept #3
+
+### Mutation Game of Life
+
+Um eine Alternative zu der starken Mutation Version 2 zu bieten, wurde das Game of Life implementiert. Beim Game of Life werden Zellen abhängig von ihren Nachbarn entweder lebendig oder sterben. Die Regeln für das Orginale Game of Life lauten
+
+- 
+
+Da in dieser Implementierung nur Felder als Nachbarn bezeichnet werden, wenn sie entweder direkt über,unter,links oder recht vom Betrachteten Feld liegen, werden die Grenzwerte entsprechend angepasst. Daraus ergibt sich
+
+- 
+
+So sollen Wände erzeugt welche, ähnlich zu Bäumen oder anderen Pflanzen, in das Level wachsen. 
+
+### Neue Abbruchbedingung
+
+### Raum Verfahren
+
+
 
 ## Unterschied zu bekannten Verfahren
 
