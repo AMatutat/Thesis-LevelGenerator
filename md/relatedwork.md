@@ -183,7 +183,7 @@ Environmental Storytelling wird oft genutzt um die Spielwelt lebendiger zu gesta
 Abbildung .. zeigt eine Szene aus dem Spiel BioShock. Die Umgebung ist stark beschädigt. Das Schild Links im Bild verrät, das, was immer auch passiert ist, wohl in der Neujahresnacht 1959 passiert sein muss. Das Plakat in der Mitte und die Maske auf den Tresen verraten das hier ein Maskenball veranstaltet wurde. Geht der Spieler in die Küche des Levels, befinden sich dort zwei Maskierte Gegner, welche demnach wohl Gäste auf den Ball gewesen sind. 
 Dieses Beispiel zeigt, wie Environmental Storytelling genutzt werden kann, um ohne Worte eine Geschichte zu erzählen, welche sowohl der Spielwelt als auch den Gegnern tiefgang verpasst. 
 
-![Szene aus dem Spiel BioShock[@year-pictures.info2017]](figs/bioshock.jpg){width=40%}
+![Szene aus dem Spiel BioShock[@year-pictures.info2017]](figs/bioshock.jpg){width=100%}
 
 
 #### Navigation
@@ -193,19 +193,22 @@ Den Spieler durch das Level zu Navigieren ist eine wichtige Aufgabe, da schnell 
 
 Eine  Methode ist es den Spieler direkt zu sagen wo er lang muss. Das Spiel gibt den Spieler eine Art Kompass zur Hand, welche den Weg zum nächsten Ziel anzeigt. Je nach Spiel wird entweder nur die grobe Richtung angezeigt oder direkt der optimale Weg zum Ziel anahnd einer Linie auf der Karte oder in der Spielwelt. Diese Methode verringert einerseits den Entdeckerdrank der Spieler, da diese genau wissen wo sie lang müssen als auch die Immersion des Spiels, da fligende Pfeile oder blinkende Linien selten in die Spielwelt passen. [@Brown2015b]
 Viele Spiele versuchen daher, den Spieler indirekt den Weg zu weisen. Dabei werden unterschiedliche, psychologische, tricks verwendet.
-So werden Pfeile in der Spielwelt genutzt um den Blick des Spielers in eine bestimmte Richtung zu ziehen, Durchgang ähnliche Konstrukute konstruiert durch die der Spieler hindurchlaufen will oder Gegenstände so verteilt, dass der Spieler sie bereits vom Weiten sieht und dorthin laufen möchte. Auch wird Licht und Bewegung genutzt um die Aufmerkasmkeit des Spielers auf einen Gewissen Punkt zu ziehen.[@Graf2019]. 
 
-Im folgenden werden zwei Methoden anhand von Beispielen detailierter beschrieben.
+So werden Pfeile in der Spielwelt genutzt um den Blick des Spielers in eine bestimmte Richtung zu ziehen, Durchgang ähnliche Konstrukute konstruiert durch die der Spieler hindurchlaufen will oder Gegenstände so verteilt, dass der Spieler sie bereits vom Weiten sieht und dorthin laufen möchte. Auch wird Licht und Bewegung genutzt um die Aufmerkasmkeit des Spielers auf einen Gewissen Punkt zu ziehen.[@Graf2019] [@Brown2015c]
 
 Im Spiel *Mirrors Edge* steht der Parkourlauf im Fokus. Das bedeutet der Spieler soll sich schnell über die Dächer der Stadt Bewegen und Hindernisse bewältigen. Damit der Spieler nicht den korrekten Weg suchen muss, und so Gewschindigkeit verlieren würde, was den Flow des Spiels verschlechtern würde, wurde die *Runner Vision* implementiert. Die *Runner Vision* färbt alle Objekte die Genutzt werden können in Rot ein, und ermöglichen den Spieler das Intuitive navigieren durch die Welt. Abbildung... zeigt einen Ausschnitt aus Mirrors Edge mit aktiver Runner Vision. 
-![Szene aus Mirrors Edge [@Taylor2013]](figs/mirrors_edge.jpg){width=40%}
+![Szene aus Mirrors Edge [@Taylor2013]](figs/mirrors_edge.jpg){width=100%}
 
 Andere Spiele verwenden Farben diskreter um den Spieler durch die Welt zu Navigieren. In den neu Auflage der *Tomb Raider* Serie oder im Action Spiel *Uncharted* werden kletterbare Kanten durch Farbliche Anpassung hervorgehoben. [@Brown2015c]
 
 Oft werden auch sogeannten *Weenies* verwendet um den Spieler in eine Richtung zu führen. Diese Technik wurde von Walt Disney genutzt, der das Schloss in die Mitte von Disneyland platziert hat, um Besucher die den Park betreten direkt dorthin zu locken.[@Brown2015c] In Videospielen sind Weenies oft *Points of Interesst* wie besonders hohe Gebäude, Brücken oder Berge. [@Brown2015c]  Abbildung ... zeigt eine Szene aus dem Spiel Journey, der Berg links im Bild dient als Weenie und lockt den Spieler in diese Richtung. 
-![Szene aus Journey. Im Hintergrund ist ein Berg zu erkennen.[@Kleffmann2019]](figs/journey.jpg){width=40%}
 
-Navigation in Spielen ist ein komplexes Thema und wurde hier nur oberflächlich angerissen.
+![Szene aus Journey. Im Hintergrund ist ein Berg zu erkennen.[@Kleffmann2019]](figs/journey.jpg){width=100%}
+
+Auch in streng linearen Spielen kann gute Spieler Navigation hilfreich sein, da es das Pacing aufrechterhält und den Schein einer größeren Welt erzeugen kann.  
+
+"The game provides multiple paths for the player, and they feel like they have the freedom to explore whichever they choose. As they always seem to stumble upon new content - not entirely aware that they were subconsciously persuaded to take that path or enter that door - it stands to reason that all the other exits and doors lead to new play spaces too. It makes the worl feel bigger and less linear that it realy is. It also helps keep up the pace of the game."[Brown2015c]
+
 
 #### Risk and Reward
 
