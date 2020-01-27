@@ -1,3 +1,5 @@
+
+
 # Prozedurale Content Generierung
 
 
@@ -74,7 +76,7 @@ Zu beginn des Spiels wählt der Spieler eine der vier Charakterklassen aus. Zur 
 
 [@Pixeldungeon.fandom2019]
 
-Der Spieler startet auf der obersten ebene eines Dungeons. Ziel ist es, möglichst tief in das Dungeon einzudringen, je tiefer der Spieler gelant desto schwieriger wird das Spiel. In den einzelnen Ebenen begegnen den Spieler die unterschiedlichsten Monster, durch dessen Tötung der Spieler Erfahrung sammelt, wurde genug Erfahrung gesammelt, steigt der Spieler auf, dies ermöglicht ihn, seine Spielfigur mit neuen Fähigkeiten auszustatten. Ebenso lassen besiegte Gegner Ausrüstungsgegenstände wie Heiltränke oder Waffen fallen. Um Erfolg im Spiel zu haben, sollte man also nicht nur versuchen möglichst schnell möglichst tief in das Dungeon einzudringen, sondern auch viele Gegner zu besiegen um an Erfahrung und Items zu gelangen.
+Der Spieler startet auf der obersten ebene eines Dungeons. Ziel ist es, möglichst tief in das Dungeon einzudringen, je tiefer der Spieler gelangt desto schwieriger wird das Spiel. In den einzelnen Ebenen begegnen den Spieler die unterschiedlichsten Monster, durch dessen Tötung der Spieler Erfahrung sammelt, wurde genug Erfahrung gesammelt, steigt der Spieler auf, dies ermöglicht ihn, seine Spielfigur mit neuen Fähigkeiten auszustatten. Ebenso lassen besiegte Gegner Ausrüstungsgegenstände wie Heiltränke oder Waffen fallen. Um Erfolg im Spiel zu haben, sollte man also nicht nur versuchen möglichst schnell möglichst tief in das Dungeon einzudringen, sondern auch viele Gegner zu besiegen um an Erfahrung und Items zu gelangen.
 
 Darüber hinaus bietet Shattered Pixel Dungeon noch viele weiter Features wie Subklassen oder Verzauberungen, welche hier nicht weiter beschrieben werden, da diese für das Verständnis des Spielablaufes nicht nötig sind.
 
@@ -95,14 +97,23 @@ Abbildung ... zeigt einen Ausschnitt eines Dungeons aus dem Spiel. Besonders gut
 
 
 #### Lösbarkeit und Fehlerfreiheit
-Ein level muss immer lösbar sein. Je nach Spiel und Genre bedeutet dies, das entweder das Ende des Levels erreichbar sein muss oder alle Missionen im Level absolvierbar sein müssen. Das selbe gilt für alle Nebenmissionen und sammelbare Objekte wie Münzen oder Items im Level. Ist ein Level durch schlechtes Design oder Bugs nicht lösbar, zerstört dies den Spielspaß des Spielers. 
+Ein Level muss immer lösbar sein. Je nach Spiel und Genre bedeutet dies, das entweder das Ende des Levels erreichbar sein muss oder alle Missionen im Level absolvierbar sein müssen. Das selbe gilt für alle Nebenmissionen und sammelbare Objekte wie Münzen oder Items im Level. Ist ein Level durch schlechtes Design oder Bugs nicht lösbar, zerstört dies den Spielspaß des Spielers. 
 
-Auch sollten Level immer so Fehlerfrei wie möglich sein. Das betrifft sowohl grafische Fehler, wie falsch platzierte Texturen, als auch gameplay Fehler. Typische Beispiele für Gameplay Fehler wären z.B die, vom Designer ungewollte, Möglichkeit ein Hinderniss zu umlaufen, falsch platzierte Gegner oder andere, vom Level abhängigen, Designfehler. Einzelne Fehler werden von Spielern oftmals hingenommen, summiert sich die anzahl der Fehler aber auf, oder schränken diese den Spielgenuss ein, kann dies ähnliche Auswirkungen haben wie ein Unlösbares Level. 
+Auch sollten Level immer so Fehlerfrei wie möglich sein. Das betrifft sowohl grafische Fehler, wie falsch platzierte Texturen, als auch Gameplay Fehler. Typische Beispiele für Gameplay Fehler wären z.B die, vom Designer ungewollte, Möglichkeit ein Hindernis zu umlaufen, falsch platzierte Gegner oder andere, vom Level abhängigen, Designfehler. Einzelne Fehler werden von Spielern oftmals hingenommen, summiert sich die Anzahl der Fehler aber auf, oder schränken diese den Spielgenuss ein, kann dies ähnliche Auswirkungen haben wie ein Unlösbares Level. 
 
 #### Gameplay First
 
-- Hitman
-- Interaktionsvermögen
+"Above all else, great level design is driven by interaction - the game’s mechanics.  Game levels don’t just provide context for mechanics, they provide the very reality in which they exist."[@Taylor2013]
+
+Ein Level dient in aller erster Linie dazu, den Spieler eine Spielfläche für die Gameplay Mechaniken des Spiels zu bieten. Das bedeutet ein Level sollte viele Möglichkeiten geben um die Gameplay Mechaniken zu verwenden und muss immer so gebaut sein, das es mit den Gameplay Mechaniken spaßig ist zu spielen. 
+
+Daher braucht ein Shooter interessante Areale zum Kämpfen, Rennspiele spaßige Rennstrecken, Schleichspiele Plätze zum verstecken und Spiele die durch Spielerische Freiheit überzeugen wollen, viele Möglichkeiten Situationen zu lösen.
+
+Abbildung... zeigt die Karter der Mission *Bankraub* aus dem Spiel *Dishonored: Death of the Outsider*. In dieser Mission muss der Spieler in eine Bank einbrechen um eine Waffe zu klauen. Die Karte zeigt unterschiedliche Eingänge in die Bank und unterschiedliche Taktiken die Mission zu absolvieren. So kann der Spieler ein Schlafpulver in das Belüftungssystem der Bank verteilen, um alle Personen in der Bank schlafen zu lassen. Das Pulver kann entweder gekauft werden oder auf einer Aktion gestohlen werden. Alternativ kann der Spieler sich auch durch die Kanalisation in die Bank schleichen und dort versuchen alle Gegner zu umgehen oder alle Wachen im Kampf töten. 
+
+![Levelkarte aus dem Spiel Dishonored: Death of the Outsider. Grafik aus dem Spiel](figs/bankJob.png)
+
+"Always remember that interactivity is what makes videogames different from any other form of entertainment: books have stories, movies have visuals, games have interaction.  If your level design isn’t showcasing your game mechanics, your players might as well be watching a movie or reading a book."[@Taylor2013]
 
 #### Immersion
 
@@ -118,7 +129,50 @@ Das Spielegenre *Immersive Simulation* zeichnet sich dadurch aus, dass ein beson
 
 "Simulations allow players to explore not just a space but a 'possibility space'. They can make their own fun, tell their own stories, solve problems the way they want, and see the consequences of their choices. That's the thing that games can do that no other medium in human hisotry has been able to do."[@Spector2016]
 
+#### Balancing
+
+"The trick to good level design is to present challenges that are difficult enough to merit the players’ attention and make their heart or mind race, but not so difficult as to always leave them failing and disappointed."[@Ryan1999]
+
+Das Balancing in Spielen ist entscheidend darüber ob die Herausforderungen im Spiel als langweilig, spaßig oder frustrierend Wahrgenommen werden. Da die Erfahrung mit Spielen von Spieler zu Spieler stark schwanken kann, und so eine Situation von einer Gruppe an Spieler als zu leicht und einer anderen Gruppe an Spielern als zu schwer empfunden werden kann, ist ein fester Schwierigkeitsgrad oft nicht Zielführend. Viele Spiele sind daher dazu übergegangen, den Spieler zu beginn aus einen von mehreren Schwierigkeitsgraden auswählen zu lassen und so den Spieler selbst bestimmen zu lassen wie Schwer er seine Herausforderungen haben möchte. 
+
+Je nach Spiel hat die Auswahl des Schwierigkeitsgrades verschiedenen Auswirkungen. Für gewöhnlich verursachen Gegner je nach Schwierigkeitsgrad mehr oder weniger Schaden und sind leichter oder schwerer zu besiegen oder es werden mehr Gegner platziert sollte auf einen hohen Schwierigkeitsgrad gespielt werden. Einige Spiele verändern auch die Aufgaben des Spielers abhängig vom Schwierigkeitsgrad. Im Spiel *Thief* (1998) müssen Spieler auf den höchsten Schwierigkeitsgrad nicht nur mit aufmerksameren Wachen klar kommen sondern  auch zusätzliche Gegenstände stehlen. Im *Spiel Shadow of the Tom Raider* kann der Spieler den Schwierigkeitsgrad für Kampf, Rätsel und Erkundung separat einstellen, das ermöglicht eine genauere Konfiguration als nur eine Einstellung.[@DevPlay2019a]
+
+Mark Brown betrachtet die Auswahl eines Schwierigkeitsgrades Kritsch und sagte:
+
+"[...] they (player) might pick the easier option even though they could handle more challenge, and rob themselves of the best, and designer-intendet experience"[@Brown2016a]
+
+Viele Spieler möchten das Spiel in der vom Entwickler vorgesehenen Art und Weise spielen und wählen deshalb den mittleren Schwierigkeitsgrad aus, und passen ihn nicht an ihre Bedürfnisse an.[@DevPlay2019a]
+
+Daher haben einige Spiele damit begonnen, den Schwierigkeitsgrad dynamisch anzupassen. So werden Spiel *Resident Evil 4*, mehr Gegner platziert wenn der Spiele besonders gut spielt, wenn er hingegen oft stirbt oder eine schlechte Trefferrate werden weniger Gegner platziert um das Spiel einfacher zu machen.[@Brown2015] Im Spiel Half Life werden mehr Medikits platziert wenn der Spieler grade besonders wenig Lebenspunkte besitzt.[@Brown2016b]
+
+Nicht jedes Spiel eignet sich für unterschiedliche Schwierigkeitsgrade. Der Schwierigkeitsgrad von *Jump and Runs* wie *Super Mario* ist eng mit den Leveldesign und der Platzierung von Hindernissen verbunden. 
+
+Level in Mario Spielen basieren oft auf eine, in diesen Level eingeführte, Mechanik wie schwebende oder rotierenden Plattformen. Zu beginn des Levels wird den Spieler die neue Mechanik in einen sichereren Umgebung präsentiert. Hier kann der Spieler die Mechanik erforschen ohne die Gefahr zu sterben. Im Laufe des Levels wird diese Mechanik immer weiter verändert, zum Beispiel indem Plattformen nach einer Zeit runterfallen oder Gegner auf diesen laufen, dadurch bleibt die Mechanik spannend und Zeitgleich erhöht sich der Schwierigkeitsgrad über den verlauf des Levels. [@Brown2015a] 
+
+Durch Risk and Reward Situationen lassen sich besonders schwierige Momente als optional im Level platzieren (vlg Abschnitt Risk and Reward).
+
+Grundsätzlich gilt zu beachten, dass Spieler mit voranschreiten im Spiel immer besser werden, daher sollten frühe Level deutlich einfacher sein als Level gegen Ende des Spiels. Dabei muss die Schwierigkeit der Level nicht linear steigen, es bietet sich an nach einen besonders schweren Level ein einfacheres Level einzubauen um den Spieler Zeit zum aufatmen zu lassen. 
+
 #### Pacing
+
+Pacing ist ein begriff aus dem Film und beschreibt die Spannungskurve des Films. Abbildung ... zeigt die Pacing-Kurve von Star Wars: A new Hope. Gut zu erkennen sind die verschiedenen Spannungspeaks welche nach kurzer Zeit wieder abflachen und so ein Konstrukt aus Spannenden und Ruhigeren Szenen bilden. Zu Beginn steigt die Spannungskurve bereits stark an, um direktes Interesse beim Zuschauer zu wecken. Kurz vorm Ende kommt es zum Spannungshochpunkt bevor das Ende sämtliche Spannung entlädt. 
+![Pacing.Kurve von Star Wars: A new Hope [@Wesolowski2009]](figs/newHope.gif)
+
+Aus diesen Beispiel lassen sich drei Regeln für gutes Pacing ableiten:
+1. Pacing verläuft nicht linear, nach Hochpunkten sollte ein Tiefpunkt folgen
+2. Zu Beginn sollte viel Spannung erzeugt werden, um den Zuschauer bei stange zu halten
+3. Kurz vor Ende sollte der spannenste Moment sein, der sich am Ende entlädt 
+
+Auch in Videospielen ist die richtige Kontrollierung des Pacings entscheidend. Dies gilt sowohl für die Geschichte des Spiels als auch für jedes Level im Spiel. Die Kontrolle des Pacings zu behalten ist, je nach Genre, allerdings keine leichte Aufgabe, da die Kontrolle über Spielfigur und Kamera immer beim Spieler liegen. Ein gängiger Weg dies zu umgehen ist es, eine Filmartige Sequenz abzuspielen  und den Spieler kurzzeitig sämtliche Kontrolle zu entziehen. So kann der Blick des Spielers gezielt auf eine bestimmte stelle gerichtet werden oder die Spielfigur kann besonders geschickt die Gegner ausschalten. So kann zwar das Pacing kurzzeitig kontrolliert werden, es findet aber ein Bruch der Immersion statt, da das Handeln der Spielfigur vom Spieler getrennt wird. 
+
+Einige Spiele nutzen die Interaktivität des Mediums, um den Spieler seine eigene Spannungskurve aufbauen zu lassen. Abbildung ... zeigt die Möglichen Spannungsverläufe einer Begegnung im Schleichspiel Thief. Je nachdem wie der Spieler handelt entwickelt sich die Situation anders. So wird die Immersion des Spiels weiter verstärkt, jedoch wird die Kontrolle über das Pacing dem Spieler überlassen. 
+
+![Beispiel Pacing im Schleichspiel Thief. [@Wesolowski2009]](figs/pacingThief.gif)
+
+Beide Verfahren haben ihre Vor und Nachteile, und auch das vermischen beider Verfahren ist denkbar, im jeden Fall hängt die Pacingkurve stark mit der Levelstruktur zusammen. Durch das platzieren leichterer und schwerere Aufgaben, Aktion Passagen und Erkundung Passagen, kann das Pacing in beiden Fällen beeinflusst werden. 
+
+Denn auch in Spielen die den Spieler volle Kontrolle überlassen, kann zum Beispiel durch die Anzahl der Platzierten Gegner Spannung erzeugt werden. So könnte am Beispiel Thief, zu beginn des Levels zwei Wachen platziert werden, welche umschlichen werden müssen, im Haus bekommt es der Spieler dann mit wenigen Wachen zu tun welche gut ausmanövriert werden können bevor es am Ende durch ein schwer Bewachtes gebiet mit weniger Versteckmöglichkeiten geht. 
+
 
 #### Storytelling und Emotionen
 
@@ -130,15 +184,6 @@ Das Spielegenre *Immersive Simulation* zeichnet sich dadurch aus, dass ein beson
 - Farben
 - Doted Lines
 - Nathan Drake dont need a compass
-
-#### Balancing
-- Level bedignt
-  - Mario Level
-  - Half Life verteilt mehr Leben wenn man Low ist
-- Gameplay bedingt
-  - RE4 
-  - Thief -> Höherer Schwierigkeitsgrad = mehr Quests
-  - Tomb Raider hat für unterschiedliche Aspekte unterschiedliche Schwierigkeitsgrade
 
 #### Risk and Reward
 
@@ -154,7 +199,7 @@ Um Level Einzigartiger zu gestalten, sollte eine große Variation an unterschied
 
 #### Effizienz
 Die Entwicklung von Spielen ist sehr teuer, Spiele kosten in der Regel mehrere Millionen Dollar, dennoch müssen Ressourcen effizient genutzt werden. [@DevPlay2017]
-Ein Leveldesigner baut daher nicht jedes Level von grundauf neu, vielmehr entwickelt er ein modulares Set aus verschiedenen Events im Spiel. Durch die kombination der einzelnen Teile dieses Sets, sowie leichten anpassungen für speziellere Situationen, können viele unterschiedliche Situationen erschaffen werden. 
+Ein Leveldesigner baut daher nicht jedes Level von Grund auf neu, vielmehr entwickelt er ein modulares Set aus verschiedenen Events im Spiel. Durch die Kombination der einzelnen Teile dieses Sets, sowie leichten Anpassungen für speziellere Situationen, können viele unterschiedliche Situationen erschaffen werden. 
 "Modular design is your friend – a smart designer won’t design a level, he/she will design a series of modular, mechanic-driven encounters, that can be strung together to create a level.  And another level.  And another level."[@Taylor2013]
 
 ## Prozedurale Levelgenerierung

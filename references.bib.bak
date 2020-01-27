@@ -221,7 +221,7 @@
 
 @Misc{Nepozitek2018,
   author  = {Ondřej Nepožitek},
-  title   = {ungeon Generator – Graph-Based Approach},
+  title   = {Dungeon Generator – Graph-Based Approach},
   year    = {2018},
   url     = {https://ondra.nepozitek.cz/blog/42/dungeon-generator-part-1-node-based-approach/},
   urldate = {2020-01-19},
@@ -263,7 +263,7 @@
   author  = {Warren Spector},
   title   = {Hi, I am Warren Spector, a game developer from Origin, Ion Storm and Junction Point. I worked on Deus Ex and Disney Epic Mickey and a lot of other games. AMA!},
   year    = {2016},
-  url     = {https://www.reddit.com/r/IAmA/comments/34fdjb/hi_i_am_warren_spector_a_game_developer_from/},
+  url     = {S},
   urldate = {2020-01-25},
 }
 
@@ -272,6 +272,65 @@
   title  = {Synthese generierter und handgebauter Welten mittels WaveFunctionCollapse},
   school = {Hochschule für Angewandte Wissenschaften Hamburg Fakultät Design, Medien und Information Department Medientechnik},
   year   = {2019},
+}
+
+@Misc{Brown2016,
+  author  = {Mark Brown},
+  title   = {Die Rückkehr der Immersive Sims | Game Maker's Toolkit},
+  year    = {2016},
+  url     = {https://www.youtube.com/watch?v=kbyTOAlhRHk},
+  urldate = {2020-01-25},
+}
+
+@Misc{Wesolowski2009,
+  author  = {Jacek Wesołowski},
+  title   = {Beyond Pacing: Games Aren't Hollywood},
+  year    = {2009},
+  url     = {https://www.gamasutra.com/view/feature/132423/beyond_pacing_games_arent_.php},
+  urldate = {2020-01-27},
+}
+
+@Misc{Brown2016a,
+  author  = {Mark Brown},
+  title   = {Sollte Dark Souls einen leichten Modus haben? | Game Maker's Toolkit},
+  year    = {2016},
+  url     = {https://www.youtube.com/watch?v=K5tPJDZv_VE},
+  urldate = {2020-01-27},
+}
+
+@Misc{DevPlay2019a,
+  author  = {DevPlay},
+  title   = {DevPlay - Die Balancing-Tricks der Entwickler},
+  year    = {2019},
+  url     = {https://www.youtube.com/watch?v=1zhr7UKEflc&t},
+  urldate = {2020-01-27},
+}
+
+@Misc{,
+}
+
+@Misc{Brown2015,
+  author  = {Mark Brown},
+  title   = {What Capcom Didn't Tell You About Resident Evil 4 | Game Maker's Toolkit},
+  year    = {2015},
+  url     = {https://www.youtube.com/watch?v=zFv6KAdQ5SE},
+  urldate = {2020-01-27},
+}
+
+@Misc{Brown2016b,
+  author  = {Mark Brown},
+  title   = {How Games Do Health | Game Maker's Toolkit},
+  year    = {2016},
+  url     = {https://www.youtube.com/watch?v=4AEKbBF3URE},
+  urldate = {2020-01-27},
+}
+
+@Misc{Brown2015a,
+  author  = {Mark Brown},
+  title   = {Analysing Mario to Master Super Mario Maker | Game Maker's Toolkit},
+  year    = {2015},
+  url     = {https://www.youtube.com/watch?v=e0c5Le1vGp4},
+  urldate = {2020-01-27},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
