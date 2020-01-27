@@ -2,7 +2,9 @@
 
 # Prozedurale Content Generierung
 
+In diesen Kapitel werden alle wichtigen Informationen vermittelt die nötig sind um die technischen Hintergründe der Arbeit zu verstehen und um das Resultat der Arbeit bewerten zu können. Im ersten Abschnitt wird das Genre der *Rogue-Like* Spiele beschrieben um ein Verständnis dafür zu vermitteln welche Art von Spiel von den Modul Teilnehmern programmiert wird. In Abschnitt zwei werden Prinzipien für Gutes Level Design vermittelt. Der dritte Abschnitt beschäftigt sich mit Prozeduraler Level Generierung, es werden bekannte Verfahren präsentiert um Level automatisch Generieren zu lassen. Der letzte Abschnitt vermittelt das nötige Grundwissen für Genetische Algorithmen um das, im nächsten Kapitel folgende, Konzept verstehen zu können. 
 
+Dieses Kapteil ist sowohl Strukturelle als auch Inhaltliche durch Kevin Hagens Thesis *Synthese generierter und handgebauter Welten mittels WaveFunctionCollapse* [@Hagen2019] inspiriert, führt dennoch neue Aspekte auf oder betrachtet einige Aspekte anders. 
 
 ## Shattered Pixel Dungeon
 
@@ -84,17 +86,14 @@ Darüber hinaus bietet Shattered Pixel Dungeon noch viele weiter Features wie Su
 
 Abbildung ... zeigt einen Ausschnitt eines Dungeons aus dem Spiel. Besonders gut zu erkennen sind die Zufällig Verteilten Räume verbunden durch Flure sowie der *Fog of War* welcher die Monster außerhalb der Reichweite der Spielfigur unsichtbar macht. 
 
-## Grundlagen Leveldesign
+## Regeln für gutes Leveldesign
 
-### Was ist Leveldesign
+"In den meisten Computerspielen steht das Design der Level im Mittelpunkt. Ob
+Puzzle-, Adventure-, oder Rollenspiel, Level gehören zum Kernpunkt der Interaktion. Sie vereinen die verschiedenen Elemente des Spiels zum großen Ganzen: Dem
+Spiel selbst. Rückt der Leveldesigner nicht all diese Elemente in ein gutes Licht, so
+geht der Spielspaß verloren."[@Hagen2019]
 
-- Definintion
-
-- unterschied zu level art
-
-
-### Regeln für gutes Leveldesign
-
+Im laufe der Zeit haben viele Personen versucht eine Liste wichtiger Regeln für Gutes Leveldesign aufzustellen. Durch die großen Unterschiede der Anforderungen der einzelnen Spielwelte, sollten diese Regeln nur als Leitfaden betrachtet werden. Auch haben unterschiedliche Entwickler unterschiedliche Meinungen darüber, welche Faktoren wichtig sind und wie sie umzusetzten sind. Im Folgenden wird versucht eine Liste oft genannter Faktoren für gutes Leveldesign auzustellen. Die Wichtigsten Informationen stammen dabei aus Dan Taylors *Ten Principles of Good Level Design* [Taylor2013] sowie seinen dazugehörigen GDC Talk [@Taylor2018] und Tim Ryans *Beginning Levle Design* [@Ryan1999] 
 
 #### Lösbarkeit und Fehlerfreiheit
 Ein Level muss immer lösbar sein. Je nach Spiel und Genre bedeutet dies, das entweder das Ende des Levels erreichbar sein muss oder alle Missionen im Level absolvierbar sein müssen. Das selbe gilt für alle Nebenmissionen und sammelbare Objekte wie Münzen oder Items im Level. Ist ein Level durch schlechtes Design oder Bugs nicht lösbar, zerstört dies den Spielspaß des Spielers. 
@@ -156,7 +155,7 @@ Grundsätzlich gilt zu beachten, dass Spieler mit voranschreiten im Spiel immer 
 #### Pacing
 
 Pacing ist ein begriff aus dem Film und beschreibt die Spannungskurve des Films. Abbildung ... zeigt die Pacing-Kurve von Star Wars: A new Hope. Gut zu erkennen sind die verschiedenen Spannungspeaks welche nach kurzer Zeit wieder abflachen und so ein Konstrukt aus Spannenden und Ruhigeren Szenen bilden. Zu Beginn steigt die Spannungskurve bereits stark an, um direktes Interesse beim Zuschauer zu wecken. Kurz vorm Ende kommt es zum Spannungshochpunkt bevor das Ende sämtliche Spannung entlädt. 
-![Pacing.Kurve von Star Wars: A new Hope [@Wesolowski2009]](figs/newHope.gif)
+![Pacing.Kurve von Star Wars: A new Hope [@Wesolowski2009]](figs/newHope.gif){width=70%}
 
 Aus diesen Beispiel lassen sich drei Regeln für gutes Pacing ableiten:
 1. Pacing verläuft nicht linear, nach Hochpunkten sollte ein Tiefpunkt folgen
@@ -167,23 +166,46 @@ Auch in Videospielen ist die richtige Kontrollierung des Pacings entscheidend. D
 
 Einige Spiele nutzen die Interaktivität des Mediums, um den Spieler seine eigene Spannungskurve aufbauen zu lassen. Abbildung ... zeigt die Möglichen Spannungsverläufe einer Begegnung im Schleichspiel Thief. Je nachdem wie der Spieler handelt entwickelt sich die Situation anders. So wird die Immersion des Spiels weiter verstärkt, jedoch wird die Kontrolle über das Pacing dem Spieler überlassen. 
 
-![Beispiel Pacing im Schleichspiel Thief. [@Wesolowski2009]](figs/pacingThief.gif)
+![Beispiel Pacing im Schleichspiel Thief. [@Wesolowski2009]](figs/pacingThief.gif){width=70%}
 
 Beide Verfahren haben ihre Vor und Nachteile, und auch das vermischen beider Verfahren ist denkbar, im jeden Fall hängt die Pacingkurve stark mit der Levelstruktur zusammen. Durch das platzieren leichterer und schwerere Aufgaben, Aktion Passagen und Erkundung Passagen, kann das Pacing in beiden Fällen beeinflusst werden. 
 
 Denn auch in Spielen die den Spieler volle Kontrolle überlassen, kann zum Beispiel durch die Anzahl der Platzierten Gegner Spannung erzeugt werden. So könnte am Beispiel Thief, zu beginn des Levels zwei Wachen platziert werden, welche umschlichen werden müssen, im Haus bekommt es der Spieler dann mit wenigen Wachen zu tun welche gut ausmanövriert werden können bevor es am Ende durch ein schwer Bewachtes gebiet mit weniger Versteckmöglichkeiten geht. 
 
+#### Environmental Storytelling 
 
-#### Storytelling und Emotionen
+Neben der eigentlichen Geschichte, welche durch Dialoge, Texte oder Zwischensequenzen erzählt wird, erzählen viele Spiele weitere, oft kleine, Geschichten durch die Gestaltung ihrer Level. 
 
-- Fort Frolic?
+"Environmental storytelling is the art of arranging a careful selection of the objects available in a game world so that they suggest a story to the player who sees them."[@Stewart2015]
+
+Environmental Storytelling wird oft genutzt um die Spielwelt lebendiger zu gestalten, das es sowohl der Spielwelt als auch den Charakteren in dieser Spielwelt eine Geschichte verpasst, welche nicht unbedingt mit der eigentliche Hauptgeschichte zusammenhängen muss.
+
+Abbildung .. zeigt eine Szene aus dem Spiel BioShock. Die Umgebung ist stark beschädigt. Das Schild Links im Bild verrät, das, was immer auch passiert ist, wohl in der Neujahresnacht 1959 passiert sein muss. Das Plakat in der Mitte und die Maske auf den Tresen verraten das hier ein Maskenball veranstaltet wurde. Geht der Spieler in die Küche des Levels, befinden sich dort zwei Maskierte Gegner, welche demnach wohl Gäste auf den Ball gewesen sind. 
+Dieses Beispiel zeigt, wie Environmental Storytelling genutzt werden kann, um ohne Worte eine Geschichte zu erzählen, welche sowohl der Spielwelt als auch den Gegnern tiefgang verpasst. 
+
+![Szene aus dem Spiel BioShock[@year-pictures.info2017]](figs/bioshock.jpg){width=40%}
+
 
 #### Navigation
+"Good level design is fun to navigate"[@Taylor2013]
 
-- Light
-- Farben
-- Doted Lines
-- Nathan Drake dont need a compass
+Den Spieler durch das Level zu Navigieren ist eine wichtige Aufgabe, da schnell frust aufkommen kann wenn der Spieler den richtigen Weg nicht findet. Es gibt eine vielzahl an unterschiedlichen Möglichkeiten den Spieler durch das Level zu navigieren.
+
+Eine  Methode ist es den Spieler direkt zu sagen wo er lang muss. Das Spiel gibt den Spieler eine Art Kompass zur Hand, welche den Weg zum nächsten Ziel anzeigt. Je nach Spiel wird entweder nur die grobe Richtung angezeigt oder direkt der optimale Weg zum Ziel anahnd einer Linie auf der Karte oder in der Spielwelt. Diese Methode verringert einerseits den Entdeckerdrank der Spieler, da diese genau wissen wo sie lang müssen als auch die Immersion des Spiels, da fligende Pfeile oder blinkende Linien selten in die Spielwelt passen. [@Brown2015b]
+Viele Spiele versuchen daher, den Spieler indirekt den Weg zu weisen. Dabei werden unterschiedliche, psychologische, tricks verwendet.
+So werden Pfeile in der Spielwelt genutzt um den Blick des Spielers in eine bestimmte Richtung zu ziehen, Durchgang ähnliche Konstrukute konstruiert durch die der Spieler hindurchlaufen will oder Gegenstände so verteilt, dass der Spieler sie bereits vom Weiten sieht und dorthin laufen möchte. Auch wird Licht und Bewegung genutzt um die Aufmerkasmkeit des Spielers auf einen Gewissen Punkt zu ziehen.[@Graf2019]. 
+
+Im folgenden werden zwei Methoden anhand von Beispielen detailierter beschrieben.
+
+Im Spiel *Mirrors Edge* steht der Parkourlauf im Fokus. Das bedeutet der Spieler soll sich schnell über die Dächer der Stadt Bewegen und Hindernisse bewältigen. Damit der Spieler nicht den korrekten Weg suchen muss, und so Gewschindigkeit verlieren würde, was den Flow des Spiels verschlechtern würde, wurde die *Runner Vision* implementiert. Die *Runner Vision* färbt alle Objekte die Genutzt werden können in Rot ein, und ermöglichen den Spieler das Intuitive navigieren durch die Welt. Abbildung... zeigt einen Ausschnitt aus Mirrors Edge mit aktiver Runner Vision. 
+![Szene aus Mirrors Edge [@Taylor2013]](figs/mirrors_edge.jpg){width=40%}
+
+Andere Spiele verwenden Farben diskreter um den Spieler durch die Welt zu Navigieren. In den neu Auflage der *Tomb Raider* Serie oder im Action Spiel *Uncharted* werden kletterbare Kanten durch Farbliche Anpassung hervorgehoben. [@Brown2015c]
+
+Oft werden auch sogeannten *Weenies* verwendet um den Spieler in eine Richtung zu führen. Diese Technik wurde von Walt Disney genutzt, der das Schloss in die Mitte von Disneyland platziert hat, um Besucher die den Park betreten direkt dorthin zu locken.[@Brown2015c] In Videospielen sind Weenies oft *Points of Interesst* wie besonders hohe Gebäude, Brücken oder Berge. [@Brown2015c]  Abbildung ... zeigt eine Szene aus dem Spiel Journey, der Berg links im Bild dient als Weenie und lockt den Spieler in diese Richtung. 
+![Szene aus Journey. Im Hintergrund ist ein Berg zu erkennen.[@Kleffmann2019]](figs/journey.jpg){width=40%}
+
+Navigation in Spielen ist ein komplexes Thema und wurde hier nur oberflächlich angerissen.
 
 #### Risk and Reward
 
@@ -193,7 +215,7 @@ Im laufe eines Spiels (und Levels), sollte es regelmäßig zu Risk and Reward Si
 
 Die unterschiedlichen Level im Spiel sollten zwar alle dem selben Designkonzepten Folgen, sich jedoch merklich voneinander unterscheiden. Ähnelt sich die Levelstruktur der einzelnen Level zu stark oder werden die selben Grafikassets immer und immer wieder verwendet, trübt dieses die Spielerfahrung. 
 
-"[...] people don’t like playing the same level twice."[@Ryan1999]
+"[...] people don't like playing the same level twice."[@Ryan1999]
 
 Um Level Einzigartiger zu gestalten, sollte eine große Variation an unterschiedlichen Settings, Gegner und Gameplay Herausforderungen geboten werden. 
 
