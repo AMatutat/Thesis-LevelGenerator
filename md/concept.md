@@ -152,14 +152,6 @@ Bevor der Fitnessschwellwert implementiert wird, wird die Abbruchbedingung so be
 
 ## Konzept #2 
 
-### Anpassung der Fitnessfunktion
-
-Um die einzelne Wandblöcke aus Wandketten zu entfernen muss die Fitnessfunktion erweitert werden, da dieses Verhalten von der aktuellen Fitnessversion nicht bestraft wird. Die Fitnessfunktion wurde um ein weiteres Kriterium erweitert.  
-
-- Für jeden nicht Wand Nachbar einer Wand, werden Punkte abgezogen.
-
-Durch dieses Kriterium ist eine negative Fitness erreichbar, daher wäre die Umsetzung eines neuen Selektionsverfahren notwendig. Da die Wahrscheinlichkeit einer negativen Fitness allerdings sehr gering ist, wurde eine minimal Fitness von *1* festgelegt, das erlaubt es das bereits Implementierte Selektionsverfahren zu behalten.
-
 ### Neue Mutation
 
 Da die erste Mutationsversion den GA in eine Zufallssuche verwandelt, wird ein neues Verfahren zur Mutation entwickelt.
@@ -199,6 +191,14 @@ Daraus ergeben sich folgende Regeln:
 - Lebende Zellen mit mehr als zwei lebenden Nachbarn sterben in der Folgegeneration an Überbevölkerung.
 
 So sollen Wände erzeugt welche, ähnlich zu Bäumen oder anderen Pflanzen, in das Level wachsen. 
+
+### Anpassung der Fitnessfunktion
+
+Um die einzelne Wandblöcke aus Wandketten zu entfernen muss die Fitnessfunktion erweitert werden, da dieses Verhalten von der aktuellen Fitnessversion nicht bestraft wird. Die Fitnessfunktion wurde um ein weiteres Kriterium erweitert.  
+
+- Für jeden nicht Wand Nachbar einer Wand, werden Punkte abgezogen.
+
+Durch dieses Kriterium ist eine negative Fitness erreichbar, daher wäre die Umsetzung eines neuen Selektionsverfahren notwendig. Da die Wahrscheinlichkeit einer negativen Fitness allerdings sehr gering ist, wurde eine minimal Fitness von *1* festgelegt, das erlaubt es das bereits Implementierte Selektionsverfahren zu behalten.
 
 ### Raum Verfahren
 
