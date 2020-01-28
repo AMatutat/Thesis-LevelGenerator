@@ -2,7 +2,7 @@
 
 Im folgenden wird ein Konzept zur Erstellung eines Level Generators basierend auf GA erläutert. Zuerst werden die Anforderungen an das Projekt definiert und die Zielsetzung spezifiziert. Danach folgt die Ausarbeitung des Konzeptes.  Am ende des Abschnittes wird das erstellte Konzept mit den aus Kapitel 2 bekannten Verfahren verglichen. 
 
-*Anmerkung: Das Konzept hat im laufe der Entwicklung einige Anpassungen erfahren, um die Übersicht zu bewahren wird daher das Konzept in drei Teile präsentiert, welche jeweils als neue Iteration betrachtet werden können. Im Kapitel Realisierung wird das selbe Verfahren zur Unterteilung der einzelnen Iterationen angewendet. Es ist zu empfehlen, sich jeweils das Konzept und die Realisierung einer Iteration nach der anderen anzusehen um den Verlauf der Entwicklung nachzuempfinden. * 
+*Anmerkung: Das Konzept hat im laufe der Entwicklung einige Anpassungen erfahren, um die Übersicht zu bewahren wird daher das Konzept in drei Teile präsentiert, welche jeweils als neue Iteration betrachtet werden können. Im Kapitel Realisierung wird das selbe Verfahren zur Unterteilung der einzelnen Iterationen angewendet. Es ist zu empfehlen, sich jeweils das Konzept und die Realisierung einer Iteration nach der anderen anzusehen um den Verlauf der Entwicklung nachzuempfinden.* 
 
 ## Anforderungen an das Projekt
 
@@ -132,7 +132,7 @@ Die Funktion generateTextureMap itteriert über das zwei Dimensionale ISurface A
 Um ein sinnvolles Konzept zur Platzierung von Türen und Schlüsseln zu entwickeln, muss erst ein Eindruck erlangt werden, wie die generierten Level aufgebaut sind. Grundsätzlich müssen Raumähnliche Strukturen erkannt werden, welche sich dadurch auszeichnen, das sie vom Start Punkt aus nur über ein Feld erreichbar sind, der Tür. Auf diesen Feld kann die Tür platziert werden, der Key wird zwischen Start und Tür verteilt.
 
 Das Klassendiagramm für den kompletten Generator ist in Abbildung ... zu sehen.
-. 
+
 ![Komplettes UML Klassendiagramm. Eigene Grafik](figs/classUML.png){width=100%}
 
 
@@ -154,42 +154,65 @@ Bevor der Fitnessschwellwert implementiert wird, wird die Abbruchbedingung so be
 
 ### Anpassung der Fitnessfunktion
 
-****
-
-Es stellte sich heraus das einzelne Wandblöcke aus Wandketten (bild einfügen als beispiel), dieses Verhalten wird von der aktuellen Fitnessversion nicht bestraft, deswegen wurde die Fitnessfunktion um ein weiteres Kriterium erweitert. 
+Um die einzelne Wandblöcke aus Wandketten zu entfernen muss die Fitnessfunktion erweitert werden, da dieses Verhalten von der aktuellen Fitnessversion nicht bestraft wird. Die Fitnessfunktion wurde um ein weiteres Kriterium erweitert.  
 
 - Für jeden nicht Wand Nachbar einer Wand, werden Punkte abgezogen.
 
-Durch dieses Kriterium ist eine negative Fitness erreichbar, daher wäre die Umsetzung eines neuen Selektionsverfahren notwendig. Da die Wahrscheinlichkeit einer negativen Fitness allerdings sehr gering ist, wurde eine minimal Fitness von 1 festgelegt, das erlaubt es das bereits Implementierte Selektionsverfahren zu behalten.
+Durch dieses Kriterium ist eine negative Fitness erreichbar, daher wäre die Umsetzung eines neuen Selektionsverfahren notwendig. Da die Wahrscheinlichkeit einer negativen Fitness allerdings sehr gering ist, wurde eine minimal Fitness von *1* festgelegt, das erlaubt es das bereits Implementierte Selektionsverfahren zu behalten.
 
 ### Neue Mutation
 
-Es stellte sich heraus, dass das zuerst präsentierte Mutationsverfahren den GA zu einer Zufallssuche degradiert. Um den engegenzu wirken wurde eine neue Mutation implementiert. Die Mutationsfunktion itteriert über jede Reihe eines Levels, kommt es zu Mutation werden alle Wände der Reihe, die sich auf der linken Seite befinden, solange nach links geschoben, bis sie mit der Ausenwand verbunden sind, das selbe passiert mit der rechten Seite, nur werden hier alle Wände nach rechts geschoben.
+Da die erste Mutationsversion den GA in eine Zufallssuche verwandelt, wird ein neues Verfahren zur Mutation entwickelt.
+
+Die neue Mutationsfunktion iteriert über jede Reihe eines Levels, kommt es zu Mutation werden alle Wände der Reihe, die sich auf der linken Seite befinden, solange nach links verschoben, bis sie mit der Außenwand verbunden sind, das selbe passiert mit der rechten Seite, nur werden hier alle Wände nach rechts geschoben.
 
 Dieses Mutationsverfahren muss genauer betrachtet werden, da sie direkten, positiven, Einfluss auf die Fitness nimmt und das eigentliche Ziel einer Mutation damit verfehlen könnte. 
 
 ### Neue Rekombination 
 
-Da die Mutation Version 2 dafür sorgt, das sich Wände links und recht der Mitte anordnen, und ein vertikaler Schnitt durch die Mitte daher wenig Einfluss auf die weiterentwicklung der Generation nimmt, wurde ein neues Rekombinationsverfahren implementiert. Es wird das Multi-Point-Crosso verfahren genutzt um hochizonal durch das Level zu schneiden. Dadurch sollen sich neue Anknüpfspunkte für die Wände während der Mutation Version 2 bilden.
+Da die Mutation Version 2 dafür sorgt, das sich Wände links und recht der Mitte anordnen, und ein vertikaler Schnitt durch die Mitte daher wenig Einfluss auf die Weiterentwicklung der Generation nimmt, wurde ein neues Rekombinationsverfahren implementiert. Es wird das Multi-Point-Crossover verfahren genutzt um horizontal durch das Level zu schneiden. Dadurch sollen neue Anknüpfspunke für die Wände während der Mutation entstehen. 
+
+### Neue Abbruchbedingung
+
+Da die Ursprünglich vorgesehene Abbruchbedingung nicht verwendet werden kann, wird die aus den Abschnitt *Methoden zur Auswertung und Optimierung bekannte Abbruchbedingung übernommen. Da die optimale Anzahl an Generationen von der Größe des Levels abhängig ist, wird die Anzahl als Parameter übergebbar sein. Den Teilnehmern wird eine Tabelle mit Beispielwerten zur Orientierung zur Verfügung gestellt. Diese Abbruchbedingung hat den Vorteil, das die Teilnehmer zu einen gewissen maßen selbst die Güte des Levels bestimmen können. Sollte zum Beispiel nur eine kleinere Änderung am Spiel getestet werden wollen, reicht unter umständen ein Zufällig zusammengesetztes Level aus.
 
 ## Konzept #3
 
 ### Mutation Game of Life
 
-Um eine Alternative zu der starken Mutation Version 2 zu bieten, wurde das Game of Life implementiert. Beim Game of Life werden Zellen abhängig von ihren Nachbarn entweder lebendig oder sterben. Die Regeln für das Orginale Game of Life lauten
+Um eine Alternative zu der starken Mutation Version 2 zu bieten, wurde eine dritte Mutationsversion implementiert, inspiriert durch *Conways Game of Life*. [@Wikipedia2019b] Im *Game of Life* ist der Zustand einer Zelle von den Zuständen der Nachbarzellen abhängig. 
 
-- 
+Die Regeln lauten:
 
-Da in dieser Implementierung nur Felder als Nachbarn bezeichnet werden, wenn sie entweder direkt über,unter,links oder recht vom Betrachteten Feld liegen, werden die Grenzwerte entsprechend angepasst. Daraus ergibt sich
+- Eine tote Zelle mit genau drei lebenden Nachbarn wird in der Folgegeneration neu geboren.
+- Lebende Zellen mit weniger als zwei lebenden Nachbarn sterben in der Folgegeneration an Einsamkeit.
+- Eine lebende Zelle mit zwei oder drei lebenden Nachbarn bleibt in der Folgegeneration am Leben.
+- Lebende Zellen mit mehr als drei lebenden Nachbarn sterben in der Folgegeneration an Überbevölkerung.
 
-- 
+Im organalen *Game of Life* werden alle Nachbarn betrachtet, daher auch Zellen die Quer zu der betrachteten Zelle platziert sind. Da in dieser Implementierung nur Felder als Nachbarn bezeichnet werden, wenn sie entweder direkt über, unter, links oder recht vom betrachteten Feld liegen, werden die Grenzwerte entsprechend angepasst. Wände werden als lebendige Zellen angesehen, Böden als tote Zellen. 
+
+Daraus ergeben sich folgende Regeln:
+
+- Eine tote Zelle mit genau drei lebenden Nachbarn wird in der Folgegeneration neu geboren.
+- Lebende Zellen mit weniger als ein lebenden Nachbar sterben in der Folgegeneration an Einsamkeit.
+- Eine lebende Zelle mit ein oder zwei lebenden Nachbarn bleibt in der Folgegeneration am Leben.
+- Lebende Zellen mit mehr als zwei lebenden Nachbarn sterben in der Folgegeneration an Überbevölkerung.
 
 So sollen Wände erzeugt welche, ähnlich zu Bäumen oder anderen Pflanzen, in das Level wachsen. 
 
-### Neue Abbruchbedingung
-
 ### Raum Verfahren
 
+Da der GA keine zufriedenstellenden Raum und Flur ähnlichen Strukturen erzeugt, werden hier zwei Methoden präsentiert, welche die durch den GA erzeugten Level als Räume nutzen und eigenständig Verbindungen zwischen diesen Herstellen. 
+
+#### Spelunky Style
+
+In Abschnitt ... wurde beschrieben wie das Spiel *Spelunky* eine Gitteranordnung nutzt Level zu generieren. Der hier beschriebene Algorithmus, wandelt das Spelunky-Verfahren so um, das es für das Roguelike Spiel verwendet werden kann. 
+
+Genau wie bei Spelunky wird ein 4x4 Gitter, mit jeweils 10x9 großen Räumen erzeugt. Die Räume werden vom GA erzeugt und sind daher immer unterschiedlich, die aus Spelunky bekannten Layouts und Mutation sind daher nicht notwendig. Die Räume werden im Gitter verteilt und es wird, genau wie bei Spelunky, ein zufälliger Raum aus der ersten Reihe als Startpunkt ausgewählt. Der kritische Pfad wird mithilfe von Zufallsschritten erzeugt. Anders als bei Spelunky werden die Räume nicht, abhängig vom Pfad verlauf, nummeriert, stattdessen wird jeder Raum beim eintritt und Verlassen so verändert, dass ein Durchgang entsteht. Sind alle Räume des kritischen Pfades verbunden, werden alle anderen Räume zufällig an den Kritischen Pfad angeschlossen, Durchgänge werden entsprechend erzeugt. 
+
+#### Reise zum Mittelpunkt
+
+Diese Methode platziert Räume zufällig im Level und verbindet diese durch einen Tunnel. Jeder Raum wird mit dem ihn nähst gelegenen unverbunden Raum verbunden, dabei wird der Abstand zwischen den beiden Raummittelpunkten gemessen. Im Gegensatz zum GA gibt die als Parameter übergebene Levelgröße nicht die wirkliche Levelgröße an, sondern die gesamt Größe der Räume. Die wirkliche Levelgröße wird deutlich größer sein, um Gewährleisten zu können, das alle zufällig erzeugten Räume im Level platziert werden können. 
 
 
 ## Unterschied zu bekannten Verfahren
@@ -197,4 +220,6 @@ So sollen Wände erzeugt welche, ähnlich zu Bäumen oder anderen Pflanzen, in d
 In Abschnitt ... wurden verschiedene Verfahren zur prozeduralen Levelgenerierung vorgestellt. Das hier vorgestellte Konzept grenzt sich von diesen vor allem dadurch ab, dass neben der gewünschten Levelgröße keinerlei Informationen vom User notwendig sind, um Level zu generieren. Das in Abschnitt .... verwendete Graphbased Verfahren benötigt neben den planaren Graphen auch vorgefertigten Räumen zur Generierung der Level. Für den in Abschnitt .. beschriebenen Algorithmus aus dem Spiel Spelunky, werden neben Raumlayouts auch die 5x3 großen Chunks benötigt. Zusätzlich erzeugt das Spelunky-Verfahren eine wieder erkennbares Gittermuster. 
 
 Das in Abschnitt .. beschriebene Randomwalk-Verfahren erzeugt zwar jedes mal unterschiedliche Level, diese sind aber fast vollständig Zufallsgeneriert. Ihre Lösbarkeit kann zwar garantiert werden, aber es kann kein Einfluss auf die Struktur der Level genommen werden. Das forcieren von Wand und Raum Strukturen ist nicht möglich. Durch die Fitnessfunktion wird das hier präsentierte Konzept dazu gedrängt, Räume und Flure zu erzeugen. 
+
+
 
