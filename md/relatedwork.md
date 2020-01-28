@@ -2,7 +2,7 @@
 
 # Prozedurale Content Generierung
 
-In diesen Kapitel werden alle wichtigen Informationen vermittelt die nötig sind um die technischen Hintergründe der Arbeit zu verstehen und um das Resultat der Arbeit bewerten zu können. Im ersten Abschnitt wird das Genre der *Rogue-Like* Spiele beschrieben um ein Verständnis dafür zu vermitteln welche Art von Spiel von den Modul Teilnehmern programmiert wird. In Abschnitt zwei werden Prinzipien für Gutes Level Design vermittelt. Der dritte Abschnitt beschäftigt sich mit Prozeduraler Level Generierung, es werden bekannte Verfahren präsentiert um Level automatisch Generieren zu lassen. Der letzte Abschnitt vermittelt das nötige Grundwissen für Genetische Algorithmen um das, im nächsten Kapitel folgende, Konzept verstehen zu können. 
+In diesen Kapitel werden alle wichtigen Informationen vermittelt die nötig sind um die technischen Hintergründe der Arbeit zu verstehen und um das Resultat der Arbeit bewerten zu können. Im ersten Abschnitt wird das Genre der *Rogue-Like* Spiele beschrieben um ein Verständnis dafür zu vermitteln welche Art von Spiel von den Studenten programmiert wird. In Abschnitt zwei werden Prinzipien für Gutes Level Design vermittelt. Der dritte Abschnitt beschäftigt sich mit Prozeduraler Level Generierung, es werden bekannte Verfahren präsentiert um Level automatisch Generieren zu lassen. Der letzte Abschnitt vermittelt das nötige Grundwissen für Genetische Algorithmen um das, im nächsten Kapitel folgende, Konzept verstehen zu können. 
 
 Dieses Kapteil ist sowohl Strukturelle als auch Inhaltliche durch Kevin Hagens Thesis *Synthese generierter und handgebauter Welten mittels WaveFunctionCollapse* [@Hagen2019] inspiriert, führt dennoch neue Aspekte auf oder betrachtet einige Aspekte anders. 
 
@@ -82,7 +82,7 @@ Der Spieler startet auf der obersten ebene eines Dungeons. Ziel ist es, möglich
 
 Darüber hinaus bietet Shattered Pixel Dungeon noch viele weiter Features wie Subklassen oder Verzauberungen, welche hier nicht weiter beschrieben werden, da diese für das Verständnis des Spielablaufes nicht nötig sind.
 
-![Beispielausschnitt für das Leveldesign in Shattered Pixel Dungeon [@Meldrian2015]](figs/spdss.png){width=50%}
+![Beispielausschnitt für das Leveldesign in Shattered Pixel Dungeon [@Meldrian2015]](figs/spdss.png){width=100%}
 
 Abbildung ... zeigt einen Ausschnitt eines Dungeons aus dem Spiel. Besonders gut zu erkennen sind die Zufällig Verteilten Räume verbunden durch Flure sowie der *Fog of War* welcher die Monster außerhalb der Reichweite der Spielfigur unsichtbar macht. 
 
@@ -340,11 +340,11 @@ In den Paper *Game Level Layout from Design Specification* präsentierten unter 
 
 Abbildung ... zeigt einen, zur Generierung verwendbaren, planaren Graphen gibt das Levellayout vor. Die Knoten repräsentieren Räume, die Kanten stellen Verbindungen zwischen den Räumen da. Abbildung ... zeigt eine Auswahl an unterschiedlichen Räumen. Abbildung ... zeigt den daraus erzeugten Level.  
 
-![Graph zeigt das Levellayout[@Ma2014]](figs/inputGraph.PNG){width=50%}
+![Graph zeigt das Levellayout[@Ma2014]](figs/inputGraph.PNG){width=40%}
 
-![Formen aus den das Level gebaut wird[@Ma2014]](figs/buildingBlocks.PNG){width=50%}
+![Formen aus den das Level gebaut wird[@Ma2014]](figs/buildingBlocks.PNG){width=30%}
 
-![Erzeugtes Level [@Ma2014]](figs/outputlevel.PNG){width=50%}
+![Erzeugtes Level [@Ma2014]](figs/outputlevel.PNG){width=100%}
 
 Ziel des Algorithmus ist es, jeden Knoten eine Form und eine Position zuzuteilen, so das die durch den Graphen vorgegeben Levelstruktur erreicht wird. Dabei dürfen sich Räume nicht überlappen und Verbindungen müssen mithilfe von Türen möglich sein. Zwar könnte man einfach jede Möglichkeit durchspielen, dies wäre aber höchst Ineffizient. Stattdessen wird der Graph zuerst in Subgraphen zerlegt um die Komplexität des Problemes aufzuteilen, diese Subgrafen werden von Ma als "Chains" bezeichnet. In Chains, haben Knoten maximal zwei Nachbarn. Gültige Layouts für Chains zu finden ist deutlich einfacher als direkt den ganzen Graphen zu lösen. Zuerst wird eine Chain gelöst indem immer zwei Räume genommen werden, wobei die Position der ersten Raumes fest ist, der zweite Raum kann bewegt und rotiert werden. Dieses verfahren wird wiederholt, bis ein gültiges Layout für die komplette Chain gefunden wurde. Dann wird eine weitere Kette den Layout hinzugefügt, solange bis das gesamte Level erzeugt wurde. Da für jede Chain mehrere mögliche Layouts existieren, wird im Falle das kein gültiges Layout für das kombinieren zweier Chains gefunden werden kann, solange Backtracking betrieben bis der Level gelöst ist. [@Ma2014]
 

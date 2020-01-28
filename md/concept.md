@@ -6,9 +6,9 @@ Im folgenden wird ein Konzept zur Erstellung eines Level Generators basierend au
 
 ## Anforderungen an das Projekt
 
-Der Generator muss in der Programmiersprache Java implementiert werden, da diese die durch die Prüfungsordnung festgelegte Programmiersprache ist. Der Generator muss 2D-Level, bestehend aus Wänden und Böden generieren. Die generierten Level müssen als lösbar eingestuft werden können. Als lösbar gilt ein Level dann, wenn der Levelausgang vom Levelstart aus erreichbar ist. Die Teilnehmer müssen die Möglichkeit haben Items und Monster im generierten Level zu platzieren. Es muss eine Leveltextur erstellt werden, welche den Aufbau des Levels grafisch darstellt. Generierte Level müssen in das, von den Teilnehmer erstellten Spiel, Integrierbar sein. 
+Der Generator muss in der Programmiersprache Java implementiert werden, da diese die durch die Prüfungsordnung festgelegte Programmiersprache ist. Der Generator muss 2D-Level, bestehend aus Wänden und Böden generieren. Die generierten Level müssen als lösbar eingestuft werden können. Als lösbar gilt ein Level dann, wenn der Levelausgang vom Levelstart aus erreichbar ist. Die Studenten müssen die Möglichkeit haben Items und Monster im generierten Level zu platzieren. Es muss eine Leveltextur erstellt werden, welche den Aufbau des Levels grafisch darstellt. Generierte Level müssen in das PM-Dungeon Integrierbar sein. 
 
-Des weiteren sollen Türen und dazugehörige Schlüssel so im Level platziert werden, das keine Softlocks entstehen. Die Größe der Level soll zum Start von den Teilnehmern bestimmbar sein. Die Teilnehmer sollen in der Lage sein, neben den in den Aufgaben vordefinierten Elemente, eigen konzeptionierte Elemente in die Level zu integrieren. Der Level Generator soll den Teilnehmer möglichst viel Freiheit in der Umsetzung der Spielinhalte, abseits der Level, gewähren. 
+Des weiteren sollen Türen und dazugehörige Schlüssel so im Level platziert werden, das keine Softlocks entstehen. Die Größe der Level soll zum Start von den Studenten bestimmbar sein. Die Studenten sollen in der Lage sein, neben den in den Aufgaben vordefinierten Elemente, eigen konzeptionierte Elemente in die Level zu integrieren. Der Level Generator soll den Studenten möglichst viel Freiheit in der Umsetzung der Spielinhalte, abseits der Level, gewähren. 
 
 Dem Algorithmus sollen möglichst wenig Informationen über die Problemdömäne, daher Konzepte und Regeln guten Leveldesigns, vermittelt werden. Ziel ist es, in der abschließenden Evaluierung zu Prüfen, wie viele Konzepte passiv beachtet werden. 
 
@@ -23,7 +23,7 @@ Die erzeugten Level werden im Abschluss anhand der in Abschnitt ... aufgestellte
 - Immersion
 - Einzigartigkeit
 
-Das Kriterium Balancing wird nicht betrachtet, da dieses von den im Level platzierten Monstern abhängig ist und die Teilnehmer eigenständig Monster verteilen können. Dir Kriterien Environmental Storytelling, Gameplay First und Navigation werden nicht betrachtet, da sie für das von den Teilnehmer entwickelte Spiel keine Bedeutung haben. Die Kontrolle des Pacing ist eine sehr schwierige Aufgabe, und noch schwieriger zu automatisieren und würde den Rahmen dieser Arbeit überschreitet und ist daher kein Bewertungskriterium. Durch die Verwendung PLG kann das Kriterium Effizienz für den Gesamtem Algorithmus als erfolgreich beachtet angesehen werden.   
+Das Kriterium Balancing wird nicht betrachtet, da dieses von den im Level platzierten Monstern abhängig ist und die Studenten eigenständig Monster verteilen können. Dir Kriterien Environmental Storytelling, Gameplay First und Navigation werden nicht betrachtet, da sie für das von den Studenten entwickelte Spiel keine Bedeutung haben. Die Kontrolle des Pacing ist eine sehr schwierige Aufgabe, und noch schwieriger zu automatisieren und würde den Rahmen dieser Arbeit überschreitet und ist daher kein Bewertungskriterium. Durch die Verwendung PLG kann das Kriterium Effizienz für den Gesamtem Algorithmus als erfolgreich beachtet angesehen werden.   
 
   
 
@@ -115,7 +115,7 @@ Um Zufallswerte auszugleichen, wird der Schwellwert unter den berechneten Wert a
 
 ### LevelParser
 
-Die Klasse LevelParser stellt alle Methoden zur Verfügung die benötigt werden um von einen generierten CodedLevel zu einen richtigen Level mit Monstern und Items zu gelangen. Um den Parser so zu gestalten, das er für möglichst alle Implementierungen der Teilnehmer funktionsfähig ist, werden eine Reihe an Interfaces vorgegeben welche von den Teilnehmer in ihre Implementation integriert werden müssen. 
+Die Klasse LevelParser stellt alle Methoden zur Verfügung die benötigt werden um von einen generierten CodedLevel zu einen richtigen Level mit Monstern und Items zu gelangen. Um den Parser so zu gestalten, das er für möglichst alle Implementierungen der Studenten funktionsfähig ist, werden eine Reihe an Interfaces vorgegeben welche von den Studenten in ihre Implementation integriert werden müssen. 
 
 Mithilfe des Interfaces ILevel wird sichergestellt, das die Klasse Level die Methoden getXSize und getYSize, welche die Maße der Level zurückgeben sowie die Methode getLevel welches ein zwei Dimensionales ISurface Array zurückliefert, welches Analog zu den aus CodedLevel bekannten Array den Levelaufbau darstellt. Das Interface ISurface muss von jeder Oberfläche implementiert werden, es versichert Methoden zur Platzierung von Monstern und Items. Ebenso muss die Methode getTexture implementiert werden, welche den Pfad zu einer Grafik liefert, die auf der Levelgrafik die jeweilige Oberfläche darstellen soll. 
 
@@ -123,7 +123,7 @@ Die parseLevel Methode verwandelt ein CodedLevel in ein richtiges Level um. Die 
 
 Der Parser nutzt die von ISurface bereitgestellte Methoden um übergebene Monster oder Items auf zufällige Felder zu verteilen. Sollen neben Wänden oder Böden auch andere Oberflächen integriert werden, bietet der Parser eine Funktion zum austauschen einer Zufällig gewählten Instanz des Oberflächentypes A um eine Instanz des Oberflächentypes B zu platzieren. 
 
-Die Funktion generateTextureMap itteriert über das zwei Dimensionale ISurface Array und holt sich mithilfe der getTexture Methode die Texturen der einzelnen Oberflächen und fügt diese nacheinander zusammen und speichert das erzeugte Bild ab. Dadurch das die Textur nicht Typ weise sondern Instanz weise ausgelesen wird, wird es den Teilnehmern ermöglicht, Wände mit unterschiedlichen Texturen zu verwenden. 
+Die Funktion generateTextureMap itteriert über das zwei Dimensionale ISurface Array und holt sich mithilfe der getTexture Methode die Texturen der einzelnen Oberflächen und fügt diese nacheinander zusammen und speichert das erzeugte Bild ab. Dadurch das die Textur nicht Typ weise sondern Instanz weise ausgelesen wird, wird es den Studenten ermöglicht, Wände mit unterschiedlichen Texturen zu verwenden. 
 
 ![UML LevelParser und Interfaces. Eigene Grafik](figs/parser.PNG){width=100%}
 
@@ -174,7 +174,7 @@ Da die Mutation Version 2 dafür sorgt, das sich Wände links und recht der Mitt
 
 ### Neue Abbruchbedingung
 
-Da die Ursprünglich vorgesehene Abbruchbedingung nicht verwendet werden kann, wird die aus den Abschnitt *Methoden zur Auswertung und Optimierung bekannte Abbruchbedingung übernommen. Da die optimale Anzahl an Generationen von der Größe des Levels abhängig ist, wird die Anzahl als Parameter übergebbar sein. Den Teilnehmern wird eine Tabelle mit Beispielwerten zur Orientierung zur Verfügung gestellt. Diese Abbruchbedingung hat den Vorteil, das die Teilnehmer zu einen gewissen maßen selbst die Güte des Levels bestimmen können. Sollte zum Beispiel nur eine kleinere Änderung am Spiel getestet werden wollen, reicht unter umständen ein Zufällig zusammengesetztes Level aus.
+Da die Ursprünglich vorgesehene Abbruchbedingung nicht verwendet werden kann, wird die aus den Abschnitt *Methoden zur Auswertung und Optimierung bekannte Abbruchbedingung übernommen. Da die optimale Anzahl an Generationen von der Größe des Levels abhängig ist, wird die Anzahl als Parameter übergebbar sein. Den Teilnehmern wird eine Tabelle mit Beispielwerten zur Orientierung zur Verfügung gestellt. Diese Abbruchbedingung hat den Vorteil, das die Studenten zu einen gewissen maßen selbst die Güte des Levels bestimmen können. Sollte zum Beispiel nur eine kleinere Änderung am Spiel getestet werden wollen, reicht unter umständen ein Zufällig zusammengesetztes Level aus.
 
 ## Konzept #3
 

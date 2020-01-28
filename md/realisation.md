@@ -1,3 +1,5 @@
+
+
 # Realisierung
 
 Im diesen Kapitel wird die Umsetzung der im vorherigen Kapitel vorgestellten Konzepte präsentiert. Dabei werden einzelne Methoden genauer betrachtet. Nach der Beschreibung der Umsetzung eines Konzeptes werden die Ergebnisse ausgewertet und Probleme hervorgehoben. Ansätze zur Lösung der Probleme werden im Kapitel 3 in der jeweils nächsten Konzept Iteration beschrieben. Abschließend folgt eine Gesamtauswertung aller Resultate anhand der in Abschnitt .. vorgestellten Bewertungskriterien. 
@@ -98,7 +100,7 @@ Dieses Verfahren benötigt, je nach Level Größe, eine große menge an Arbeitss
 
 ### Evaluierung 
 
-
+![F1M1C1](figs/level/F1M1C1.png){width=50%}
 
 ## Umsetzung #2
 
@@ -106,7 +108,13 @@ Alle Anpassungen und Neuerungen wurden nach dem Konzept #2 implementiert.  Das P
 
 ### Evaluierung 
 
+![F2M2C2LOWPMUT](figs/level/F2M2C2LOWPMUT.png){width=50%}
 
+![F2M2C2HIGHPMUT](figs/level/F2M2C2HIGHPMUT.png){width=50%}
+
+![F2M2C2LOWPMUT40PFLOOR](figs/level/F2M2C2LOWPMUT40PFLOOR.png){width=50%}
+
+![F2M1C1](figs/level/F2M1C1.png){width=50%}
 
 ## Umsetzung #3
 
@@ -115,6 +123,14 @@ Die neue Mutationsfunktion wurde wie im Konzept #3 beschrieben implementiert. Di
 
 
 ### Evaluierung 
+
+![F2M3C2HIGHPMUT](figs/level/F2M3C2HIGHPMUT.png){width=50%}
+
+![F2M3C2LOWPMUT](figs/level/F2M3C2LOWPMUT.png){width=50%}
+
+![Spelunky](figs/level/Spelunky.png){width=50%}
+
+![test_0](figs/level/test_0.png){width=50%}
 
 ## Gesamtauswertung
 

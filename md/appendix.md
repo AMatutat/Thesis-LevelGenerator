@@ -1,22 +1,22 @@
 # Appendix 1: Some extra stuff
 
-<!--
-Platz für *wichtige* Materialien, die zu umfangreich für den eigentlichen Textteil sind.
+# Glossar
 
-Der Anhang gehört *nicht* zum Textteil (wird nicht zum Seitenumfang hinzugerechnet).
-Der Umfang des Anhangs sollte möglichst klein sein!
--->
+**PM** Module Programmier Methoden der FH Bielefeld 
 
-## Bilder
+**Studenten** Teilnehmer am Praktikum von PM 
 
-wuppie!
+**PM-Dungeon** Von den Studenten zu erstellendes Roguelike Spiel.
 
-## Code
+**PCG** prozedurale Contentgenerierung
 
-fluppie?
+**PLG** prozedurale Levelgenerierung
 
-## Tabellen
+**EA** Evolutionäre Algorithmen
 
-foo! bar!
+**GA** Genetischer Algorithmus
 
-# Wuppie
+**ES** Evolutions Strategie
+
+**GDC** Game Developer conference 
+
