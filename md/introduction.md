@@ -22,5 +22,9 @@ Zusätzlich beschäftigt sich die Arbeit mit der Frage, wie GAs Aspekte guten Le
 
 Der so erstellte Algorithmus soll den Teilnehmern zur Verfügung gestellt werden, damit diese ihn in ihre Implementation integrieren können. Der hier entwickelte Algorithmus, wird aufgrund der Natur von GAs, nicht in der Lage sein, Level in Echtzeit zu generieren. Die Konzeptionierung und Implementation der Spiellogik ist nicht Bestandteil dieser Arbeit. 
 
-- Angaben zur Struktur der Arbeit, sobald Final 
+Die Arbeit ist in fünf Kapitel Unterteilt. 
+
+In Kapitel 2 werden alle nötigen Informationen vermittelt, die gebraucht werden um das Konzept des entwickelten Algorithmus nachvollziehen und bewerten zu können. Es beginnt mit einer Erklärung des Roguelike Genres und des Spieles Shattered Pixel Dungeon um besser Nachvollziehen zu können welche Art von Spiel von den Modul Teilnehmern entwickelt wird. Es folgt eine Ausarbeitung an Regeln für gutes Leveldesign. Abschnitt 2.3 erklärt den Begriff der Prozeduralen Content Generierung und gibt anhand Bekannter Verfahren und Spiele einen Einblick in Prozedurale Level Generierung. Das Kapitel endet mit einer einer Einführung in die Thematik der Evolutionären Algorithmen. Es werden die wichtigsten Fachbegriffe erläutert, der Ablauf von Genetischen Algorithmen sowie verbreitete Verfahren zur Implementierung der Subroutinen präsentiert.
+
+In Kapitel 3 wird das Konzept des, in dieser Arbeit entwickelten, Levelgenerators basierend auf Genetischen Algorithmen erstellt. Dazu gehört die Ausarbeitung der Anforderungen und Bewertungskriterien sowie die Erstellung eines Lösungskonzeptes. In Kapitel 4 wird das Konzept Umgesetzt, es werden vereinzelnde Funktionen genauer betrachtet sowie Probleme aufgezeigt. Es folgt eine regelmäßige Auswertung der Zwischenergebnisse bevor das Kapitel dann am Ende mit einer detaillierten Analyse der Ergebnisse unter Berücksichtigung der in Kapitel 2 aufgestellten Regeln für gutes Leveldesign abschließt. Kapitel 5 fasst noch einmal die wichtigsten Erkenntnisse der Arbeit zusammen, und präsentiert ein Konzept für einen Levelgenerator mit einen Graphen basierten Ansatz und Genetischen Algorithmen. 
 

@@ -102,11 +102,17 @@ Dieses Verfahren benötigt, je nach Level Größe, eine große menge an Arbeitss
 
 ## Umsetzung #2
 
+Alle Anpassungen und Neuerungen wurden nach dem Konzept #2 implementiert.  Das Programm wurde für die neue Abbruchbedingung angepasst. 
+
 ### Evaluierung 
 
 
 
 ## Umsetzung #3
+
+Die neue Mutationsfunktion wurde wie im Konzept #3 beschrieben implementiert. Die beiden Verfahren zur Platzierung von Räumen wurden nach den Konzept Implementiert. Das Spelunky-Style verfahren wurde zusätzlich um die Platzierung von Türen in optionalen Räumen und der Platzierung von Schlüsseln auf den kritischen Pfad erweitert. 
+
+
 
 ### Evaluierung 
 
