@@ -24,11 +24,11 @@ reviewer2:  "Frau. Birgit Christina George, FH Bielefeld"
 abstract-de: |
  Das Ziel dieser Arbeit ist die Erstellung eines 2D-Level Generator basierend auf Genetischen Algorithmen.  
  Dem Generator sollen wenige Informationen zu Grunde gelegt werden, um zu überprüfen ob bereits einige wenige Parameter reichen, 
- um gute Level zu erzeugen. Um diese Aufgabe zu lösen, wurden Bewertungskriterien für gutes Leveldesign ausgearbeitet, 
+ um gute Level zu erzeugen. Um diese Aufgabe zu lösen, werden Bewertungskriterien für gutes Leveldesign ausgearbeitet, 
  bekannte Verfahren angeschaut und ein Konzept zur Umsetzung eines Generators erstellt. 
- Der in dieser Arbeit erstellte Generator ist zwar in der Lage lösbare Level zu generieren, 
- diese scheitern allerdings an der Umsetzung grundlegendes Design regeln. 
- Es wurden Verfahren und Konzepte zur Verbesserung und Erweiterung erläutert.
+ Der in dieser Arbeit erstellte Generator ist in der Lage, mit wenig Informationen, lösbare Level zu generieren, welche zusätzlich
+ grundlegene Leveldesign Regeln beachten.
+ Es werden Verfahren und Konzepte zur Verbesserung und Erweiterung erläutert.
 
 ## optional
 acknowledgements: |

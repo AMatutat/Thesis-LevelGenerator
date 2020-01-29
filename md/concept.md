@@ -219,7 +219,7 @@ Genau wie bei Spelunky wird ein 4x4 Gitter, mit jeweils 10x9 großen Räumen erz
 
 #### Reise zum Mittelpunkt
 
-Diese Methode platziert Räume zufällig im Level und verbindet diese durch einen Tunnel. Jeder Raum wird mit dem ihn nähst gelegenen unverbunden Raum verbunden, dabei wird der Abstand zwischen den beiden Raummittelpunkten gemessen. Im Gegensatz zum GA gibt die als Parameter übergebene Levelgröße nicht die wirkliche Levelgröße an, sondern die gesamt Größe der Räume. Die wirkliche Levelgröße wird deutlich größer sein, um Gewährleisten zu können, das alle zufällig erzeugten Räume im Level platziert werden können. 
+Diese Methode platziert Räume zufällig im Level und verbindet diese durch einen Tunnel. Jeder Raum wird mit dem ihn nähst gelegenen unverbunden Raum verbunden, dabei wird der Abstand zwischen den beiden Raummittelpunkten gemessen. Im Gegensatz zum GA gibt die als Parameter übergebene Levelgröße nicht die wirkliche Levelgröße an, sondern die gesamt Größe der Räume. Dazu werden solange zufällig große Räume erzeugt, bis die gewünschte Größe erreicht ist. Die wirkliche Levelgröße wird deutlich größer sein, um Gewährleisten zu können, das alle zufällig erzeugten Räume im Level platziert werden können. 
 
 
 ## Unterschied zu bekannten Verfahren

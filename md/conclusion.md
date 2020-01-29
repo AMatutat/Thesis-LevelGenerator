@@ -4,13 +4,17 @@
 
 ## Fazit
 
-In dieser Arbeit wurde ein Konzept für einen Levelgenerator basierend auf einen Genetischen Algorithmus vorgestellt und umgesetzt. Der Generator ist in der Lage lösbare Level zu erzeugen, welche mithilfe des Implementierten Parsers in das PM-Dungeon der Studenten integriert werden kann. Der Generator ist eigenständig nicht dazu in der Lage, optisch ansprechende und abwechslungsreiche Level zu erzeugen. Er liefert keine Kontrolle über das Pacing oder über den Schwierigkeitsgrad des Levels. Spannenden Risk and Reward Situationen treten höchstens Zufällig ein und können nicht zuverlässig erzeugt werden. Mithilfe des Parsers kann die Texturenkarte für das Level generiert werden, obwohl das angewendete Verfahren eine menge an RAM benötigt. 
+In dieser Arbeit wurde ein Konzept für einen Levelgenerator basierend auf einen Genetischen Algorithmus vorgestellt und umgesetzt. Der Generator ist in der Lage lösbare Level zu erzeugen, welche mithilfe des Implementierten Parsers in das PM-Dungeon der Studenten integriert werden kann. Der Generator ist eigenständig dazu in der Lage, optisch ansprechende und abwechslungsreiche Level zu erzeugen. Der Schwierigkeitsgrad des Level kann durch die zufällig Platzierten Monster kontrolliert werden. Die Level enthalten neben den kritischen Pfad, optionale Wege welche zu spannenden Risk and Reward Situationen führen können. Items und Monster können nicht gezielt in optionalen Räumen platziert werden. 
 
-Es wurde eine Möglichkeit präsentiert, den Levelgenerator zur Generierung von Räumen zu nutzen. Es wurden verschiedene Verfahren gezeigt um Räume so zusammenzusetzten das sie interessante und abwechslungsreiche Level erzeugen. Die Verfahren sind noch nicht ausgereift und liefern jede glich einen Ausblick auf mögliche Ergebnisse. 
+Mithilfe des Parsers kann die Texturenkarte für das Level generiert werden, obwohl das angewendete Verfahren eine menge an RAM benötigt. Die Studenten können eigens programmierte Monster, Items und Spezialfelder zufällig im Level verteilen.
 
-Mithilfe des Generators können die Studenten unterschiedliche Level in ihr Spiel integrieren und damit spielen. 
+ Es wurde eine Möglichkeit präsentiert, den Levelgenerator zur Generierung von Räumen zu nutzen. Es wurden verschiedene Verfahren gezeigt um Räume so zusammenzusetzten das sie interessante und abwechslungsreiche Level erzeugen. Die Verfahren sind noch nicht ausgereift und liefern jede glich einen Ausblick auf mögliche Ergebnisse. 
 
-Diese Arbeit zeigt, das ein einfacher GA mit wenig Informationen nicht in der Lage ist schöne Level zu generieren die gängige Leveldesign Regeln beachten. Diese Arbeit zeigt dennoch, das es prinzipiell sehr wohl möglich ist Level mithilfe von GAs zu erzeugen. Diese Arbeit zeigt auch, das ein GA dazu benutzt werden kann, Inputdaten zu generieren, welche von anderen Algorithmen zur Generierung von Leveln genutzt werden können. 
+Nur das Spelunky-Style Verfahren ist dazu in der Lage Türen und Schlüssel im Level zu platzieren, für die andern Verfahren fehlt die Möglichkeit gezielt Raumstrukturen zu erkennen um Türen sinnvoll zu platzieren. 
+
+Diese Arbeit zeigt, das bereits eine einfacher GA mit wenigen Informationen dazu in der Lage ist, optisch ansprechenden und abwechslungsreiche Level zu erzeugen. Der entwickelte GA löst alle an das Projekt gestellte Anforderungen, mit Ausnahme der Platzierung von Türen und Schlüssel, und erfüllt zusätzlich viele der präsentierten Regeln für gutes Leveldesign. 
+
+Mithilfe des Generators können die Studenten unterschiedliche Level in ihr Spiel integrieren um damit ihr PM-Dungeon zu testen und zu spielen. 
 
 ## Ausblick
 

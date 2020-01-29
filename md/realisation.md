@@ -108,6 +108,8 @@ Abbildung ... zeigt den Einfluss der Mutationschane auf die Fitness. Es ist deut
 
 ![Beispiellevel. MV=1, MC=1%, RV=1, RC=60%, eigene Grafik](figs/level/F1M1C1.png){width=50%}
 
+![Einfluss der Mutationschance auf die Fitness, eigene Grafik](figs/Graph/g1.png)![Einfluss der Mutationschance auf die Generation der besten Lösung, eigene Grafik](figs/Graph/g2.png)
+
 ## Umsetzung #2
 
 Alle Anpassungen und Neuerungen wurden nach dem Konzept #2 implementiert.  Das Programm wurde für die neue Abbruchbedingung angepasst. 
@@ -117,6 +119,8 @@ Abbildung .. zeigt ein Level mit der ersten Mutations- und Rekombinationsversion
 ![Beispiellevel. MV=1, MC=1%, RV=1; RC=60%, eigene Grafik](figs/level/F2M1C1.png){width=50%}
 
 Abbildung .. zeigt den Einfluss der Mutationschance bei der Verwendung der neuen Mutationsfuktion, der neuen Rekombinationsfunktion sowie angepasster Fitnessfunktion. Die höchste Fitness wird bei einer hohen Mutationschance von 40% erreicht, ähnlich hohe Werte erzielen ähnliche Fittnesswerte. Es ist davon auszugehen das bei einer so hohen Mutationschance im laufe der Zeit alle Gene Mutiert werden. Der zusammenhang zwischen hoher Fitnesswerten und hoher Mutationschance bestärkt die Annahme das die Mutationsfunktion zu *stark* ist. Allerdings liefert auch ein geringe Mutationschance von 5% ähnlich gute Ergebnisse. 
+
+![Einfluss der Mutationschance auf die Fitness, eigene Grafik](figs/Graph/g3.png)
 
 Abbildung .. zeigt ein Level mit einer Mutationschance von 5%. Abbildung .. zeigt ein Level mit einer Mutationschance von 40%. Im direkten vergleich fällt auf, das die hohe Mutationsrate dazu geführt hat, das alle Wände Verbunden sind, die niedrigere Mutationschance hat noch einige einzelne Wände übrig gelassen. Beide Varianten bieten wenige bis gar keine Raumähnliche Strukturen sondern sehen ehr wie ein großer Raum aus. Abbildung .. zeigt ein Level mit niedriger Mutationschance und verringerter Bodenfelder Anzahl. Hier lassen sich Raumähnliche Strukturen verbunden mit Fluren erkennen. Der untere Bereich muss zur Absolvierung des Level nicht betreten werden und bietet Freiraum zum erkunden. 
 
@@ -134,6 +138,8 @@ Die neue Mutationsfunktion wurde wie im Konzept #3 beschrieben implementiert. Di
 
 Abbildung .. zeigt den Einfluss der Mutationschance bei der Verwendung der Game of Life Mutationsfunktion. Ähnlich zur vorherigen Mutationsfunktion liefert eine hohe Mutationschance von 40% den höchsten Fitnesswert , eine geringere Chance von 3% liefert ähnlich gute Ergebnisse. 
 
+![Einfluss der Mutationschance auf die Fitness, eigene Grafik](figs/Graph/g4.png)
+
 Abbildung .. zeigt ein Level mit hoher Mutationschance von 40%. Zum vergleich zeit Abbildung .. ein Level mit einer Mutationschance von 3%. Beide Varianten erzeugen Level mit einer Vielzahl einzeln Platzierter Wände. Diese Mutationsfunktion kann als Rückschritt im Vergleich zur vorherigen Version betrachtet werden. 
 
 ![Beispiellevel. MV=3, MC=40%, RV=2, RC=60%, eigene Grafik](figs/level/F2M3C2HIGHPMUT.png){width=50%}
@@ -150,17 +156,35 @@ Abbildung .. zeigt ein Level welches durch die zufällige Platzierung von Räume
 
 ## Gesamtauswertung
 
-- einfügen des Finalen UMLs 
+In diesen Abschnitt folgt eine genaue Analyse der erstellten Lösungen. Der Algorithmus bietet viele Einstellung Möglichkeiten, es würde daher den Rahmen der Arbeit sprengen, alle Möglichkeiten genauer zu betrachten. Aus der Realisierungsphase haben sich drei Verfahren herauskristallisiert, welche nun genauer betrachtet werden. Um ein Gefühl der Vielfältigkeit der einzelnen Verfahren zu bekommen, stehen im Anhang .. weitere Beispiellevel zur Verfügung.   
 
-In diesen Abschnitt folgt eine genauere Analyse der erstellten Lösungen. Der Algorithmus bietet viele Einstellungs möglichkeiten, es würde daher den Rahmen der Arbeit sprengen, alle Möglichkeiten genauer zu betrachten. Aus der Realisierungsphase haben sich drei Verfahren herauskristalisiert, welche nun genauer betrachtet werden. Um ein Gefühl der Vielfälltigkeit der einzelnen Verfahren zu bekommen, stehen im Anhang .. weitere Beispiellevel zur Verfügung.  
-
-### Mutation 2 mit geringere Bodenfläche
+Alle Verfahren erfüllen die in Abschnitt .. aufgestellten Grundanforderungen an das Projekt. Jedes Verfahren erstellt Lösbare 2D-Level. Der Parser ermöglicht es den Studenten die generierten Level in ihr PM-Dungeon zu integrieren. Monster, Items und Spezialfelder können zufällig im Level zu verteilet werden. Die vorgegebenen Interfaces helfen dabei, auch selbst konzeptionierte Objekte im Level zu verteilen, dadurch liefert der Generator die Freiheit auch abseits der Aufgabenstellung aktiv und kreativ zu werden. Da Objekte zufällig platziert werden, kann der Schwierigkeitsgrad des Levels nur bedingt kontrolliert werden, da zwar die stärke der Monster kontrolliert werden kann aber nicht sichergestellt werden kann das starke Monster nur auf optionalen Routen platziert werden. Der Parser ist in der Lage die Leveltextur zu erstellen, damit diese von den Studenten verwendet werden kann. 
 
 ### Spelunky-Style
 
+Das Spelunky-Style Verfahren erstellt Level, die neben den kritschen Pfad eine Vielzahl an optionalen Räumen bietet. Die Räume bieten Freiraum um spannenden Risk and Reward Situationen zu erzeugen. Zwar kann nicht kontrolliert werden, welche Monster und Items in die optionalen gebiete Platziert werden, das muss aber nicht unbedingt schlecht sein. Es sollte regelmäßig dazu kommen, das gute Items in optionalen Gebieten platziert werden. Die Ungewissheit ob es sich wirklich lohnt einen optionalen Pfad zu erkunden, führt zu noch spannenderen Entscheidungen und Risk and Reward Momenten. 
+
+Das Spelunky-Style Verfahren ist als einziges Verfahren in der Lage, Türen und Schlüssel zu platzieren. Türen verschließen nur optionale Gebiete und der Schlüssel wird auf den kritischen Pfad platziert. Dadurch kann die Lösbarkeit des Level sichergestellt werden als auch garantiert werden, das der Schlüssel immer erreichbar ist ohne die Tür vorher öffnen zu müssen.
+
+Sowohl die Immersion als auch die Einzigartigkeit der Level sind Schwachpunkte des Spelunky-Style Verfahrens. Das verwendete Gittermuster ist unübersehbar und obwohl die Räume alle zufällig Generiert werden, ähneln sie sich dennoch sehr stark voneinander. Die einzelnen Level bietet kaum alleinstellungsmerkmale, lediglich die unterschiedlichen Routen zum Ziel bieten Abwechslung. 
+
+Auch wenn dieses Verfahren sich sehr gut dazu eignet interessante Risk and Reward Situationen zu erzeugen, verhindert die starke Ähnlichkeit der Level und das erkennbare Gittermuster das eintauchen in der Spielwelt. Das Verfahren eignet sich in der aktuellen Form nicht um spaßige Level für das PM-Dungeon zu erzeugen.
+
 ### Reise zum Mittelpunkt
 
+Dieses Verfahren erstellt Level die zufällig entweder nur einen Pfad oder zusätzliche optionale Routen bieten. Durch die unterschiedlich großen Räume entsteht innerhalb des Levels Abwechslung. Die Zufällige Platzierung der Räume sorgt dafür, dass jedes Level deutlich anders aussieht als andere. Risk und Reward momenten können Zufällig enstehen, es kann nicht sichergestellt werden das jedes Level optionale Routen hat. Die teils langen Laufwege zwischen den Räumen können den Spielspaß trüben. Die Level bestehen aus einen großen Teil Wandblöcke, je nachdem wie die Kameraperspektive von den Studenten implementiert wird, ist dies entweder nicht zu sehen oder wird als Immersionsbrechend war genommen. 
 
+Das Verfahren ist nicht in der Lage Türen und Schlüssel zu platzieren, da es kein Verweis darauf gibt, ob ein Raum optional oder zum kritischen Lösungspfad gehört. 
+
+Die Struktur der Level ist stärker als bei den anderen Verfahren von Zufall abhängig. Das Verfahren ist in der Lage gute Level mit unterschiedlichen Pfaden und abwechslungsreichen Level zu erzeugen. Es eignet sich daher zur nutzung im PM-Dungeon. 
+
+### Mutation 2 mit geringere Bodenfläche
+
+Dieses Verfahren verwendet nur den GA und benötigt keinen weiteren Algorithmus. Es erzeugt Level mit raumähnlichen Strukturen und optionalen Routen. In den Level sind wenige bis keine einzelne Wandfelder zu erkennen, die einzelenen Wandketten bilden optisch ansprechende Trennwände und man kann sich gut Vorstellen das diese in einen Dungeon so verbaut werden. 
+
+Da Raumähnliche Strukturen zwar erzeugt, jedoch nicht erkannt werden können, ist die sinnvolle Platzierung von Türen und Schlüsseln nicht möglich. 
+
+Dieses Verfahren erzeugt Abwechslungsreiche Level mit optionalen Routen für spannende Risk and Reward Situationen. Von den hier präsentierten Verfahren erzeugt es die optisch  ansprechendsten Level und ist daher am besten zur Verwendung geeignet. 
 
 
 
