@@ -14,7 +14,7 @@ keywords: []
 headeralternative: true
 
 studentnumber: "1119367"
-date: "05. März 2020"
+date: "31. Januar 2020"
 
 reviewer1:  "Prof. Dr. Carsten Gips, FH Bielefeld"
 reviewer2:  "Frau. Birgit Christina George, FH Bielefeld"
@@ -22,14 +22,11 @@ reviewer2:  "Frau. Birgit Christina George, FH Bielefeld"
 
 ## optional (mandatory, if english abstract enabled)
 abstract-de: |
- Das Ziel dieser Arbeit ist die Erstellung eines 2D-Level Generator basierend auf Genetischen Algorithmen.  
- Dem Generator sollen wenige Informationen zu Grunde gelegt werden, um zu überprüfen ob bereits einige wenige Parameter reichen, 
- um gute Level zu erzeugen. Um diese Aufgabe zu lösen, werden Bewertungskriterien für gutes Leveldesign ausgearbeitet, 
- bekannte Verfahren angeschaut und ein Konzept zur Umsetzung eines Generators erstellt. 
- Der in dieser Arbeit erstellte Generator ist in der Lage, mit wenig Informationen, lösbare Level zu generieren, welche zusätzlich
- grundlegene Leveldesign Regeln beachten.
- Es werden Verfahren und Konzepte zur Verbesserung und Erweiterung erläutert.
-
+Das Ziel dieser Arbeit ist die Erstellung eines 2D-Level Generator basierend auf Genetischen Algorithmen.   
+Dem Generator sollen wenige Informationen zu Grunde gelegt werden, um zu überprüfen ob bereits einige wenige Parameter reichen, um gute Level zu erzeugen. 
+Um diese Aufgabe zu lösen, werden Bewertungskriterien für gutes Leveldesign ausgearbeitet, bekannte Verfahren angeschaut und ein Konzept zur Umsetzung eines Generators erstellt.  
+Der in dieser Arbeit erstellte Generator ist in der Lage, mit wenig Informationen, lösbare Level zu generieren, welche zusätzlich grundlegende Leveldesign Regeln beachten. 
+Es werden Verfahren und Konzepte zur Verbesserung und Erweiterung erläutert.
 ## optional
 acknowledgements: |
   Hier kommt die Danksagung hin.
