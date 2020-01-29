@@ -1,6 +1,8 @@
-# Appendix 1: Some extra stuff
+# Anhang
 
-# Glossar
+## Beispiel Level
+
+## Glossar
 
 **PM** Module Programmier Methoden der FH Bielefeld 
 
@@ -19,4 +21,12 @@
 **ES** Evolutions Strategie
 
 **GDC** Game Developer conference 
+
+**MV** Mutationsversion
+
+**MC** Mutationschance
+
+**RV** Rekombinationsversion
+
+**RC** Rekombinationschance
 
