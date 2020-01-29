@@ -19,8 +19,15 @@ Der Generator muss nicht in der Lage sein, neue Spielregeln, wie das sprengen vo
 Die erzeugten Level werden im Abschluss anhand der in Abschnitt ... aufgestellten Regeln für gutes Leveldesign bewertet. Insbesondere werden folgende Faktoren untersucht: 
 
 - Lösbarkeit und Fehlerfreiheit
+
 - Risk and Reward
+
+  Level sollten sowohl verschiedenen Wege zum Ziel als auch optionale Gebiete bieten. Optionale gebiete erhöhen der Erkundungsdrang der Spieler. 
+
 - Immersion
+
+  Da das PM-Dungeon aus Räumen und Fluren bestehen soll, sollte das aussehen der Level auch dieses wiedergeben. Wände sollten sinnvoll im Level platziert sein und miteinander Verbunden sein. Einzelne Wandstücke erfüllen keinen logischen Sinn und werden daher als störend war genommen. Räume sollten nicht zu klein aber auch nicht zu groß ausfallen. 
+
 - Einzigartigkeit
 
 Das Kriterium Balancing wird nicht betrachtet, da dieses von den im Level platzierten Monstern abhängig ist und die Studenten eigenständig Monster verteilen können. Dir Kriterien Environmental Storytelling, Gameplay First und Navigation werden nicht betrachtet, da sie für das von den Studenten entwickelte Spiel keine Bedeutung haben. Die Kontrolle des Pacing ist eine sehr schwierige Aufgabe, und noch schwieriger zu automatisieren und würde den Rahmen dieser Arbeit überschreitet und ist daher kein Bewertungskriterium. Durch die Verwendung PLG kann das Kriterium Effizienz für den Gesamtem Algorithmus als erfolgreich beachtet angesehen werden.   

@@ -98,41 +98,69 @@ In Zeile *1* wird die Textur des oberen linken Feldes ausgelesen. Danach wird Re
 
 Dieses Verfahren benötigt, je nach Level Größe, eine große menge an Arbeitsspeicher. In Tests haben 200x200 große Level ausgereicht um den RAM der JVM bei Standarteinstellungen auszureizen. Eine manuelle Erhöhung des JVM RAMs ist daher empfehlenswert. 
 
-### Evaluierung 
+### Ergebniss
 
-![F1M1C1](figs/level/F1M1C1.png){width=50%}
+Um die optimalen Parameter Einstellungen zu erhalten, wurde die Fitness verschiedener Einstellung für ein 20x20 Level miteinander verglichen. 
+
+Abbildung .. zeigt ein Generiertes Level mit den optimalen Einstellungen. Die Rekombinationschance beträgt 60% und die Mutationschance 1%. Rot eingekreist lassen sich bereits Raumähnliche Strukturen erkennen. In Blau sind einzelne, aus der Außenwand herausguckende Wände zu erkenne, der GA sollte so angepasst werden, dass dieses Verhalten nicht mehr vorkommt. In der Mitte lassen sich noch einzelne Wände bzw. kruze Wandketten erkenne. Da sie sehr Zufällig platziert wirken, stören sie die Optik bzw. die Immersion des Levels. Die schwarze Treppe stellt den Startpunkt dar, die weiße Leiter den Ausgang, das Level kann gelöst werden. 
+
+Abbildung ... zeigt den Einfluss der Mutationschane auf die Fitness. Es ist deutlich zu erkennen, das eine Erhöhung der Mutationschance zu einer schlechteren Fitness führt. Die Fitness der  optimal Einstellung von 1% liegt sehr nah an den der Fitness bei einer 0% Mutationschance. Abbildung ... zeigt den Einfluss der Mutationschance auf die Generation der besten Lösung. Es ist zu erkenne das bereits ab einer Mutationschance von 3% die Lösung aus einer sehr frühen Generation stammt, und daher ehr Zufällig gefunden wurde anstatt sich mit der Zeit entwickelt zu haben. Daraus geht hervor das die Mutationsfunktion nicht dabei hilft, mit jeder Generation bessere Lösungen zu erzeugen sondern den GA in eine Zufallssuche verwandelt. 
+
+![Beispiellevel. MV=1, MC=1%, RV=1, RC=60%, eigene Grafik](figs/level/F1M1C1.png){width=50%}
 
 ## Umsetzung #2
 
 Alle Anpassungen und Neuerungen wurden nach dem Konzept #2 implementiert.  Das Programm wurde für die neue Abbruchbedingung angepasst. 
 
-### Evaluierung 
+Abbildung .. zeigt ein Level mit der ersten Mutations- und Rekombinationsversion sowie der neu angepassten Fitness. Durch die angepasste Fitnessfunktion sind im vergleich zu Abbildung .. weniger einzelne Wandstücke welche aus der Außenwand herausgucken zu erkennen. 
 
-![F2M2C2LOWPMUT](figs/level/F2M2C2LOWPMUT.png){width=50%}
+![Beispiellevel. MV=1, MC=1%, RV=1; RC=60%, eigene Grafik](figs/level/F2M1C1.png){width=50%}
 
-![F2M2C2HIGHPMUT](figs/level/F2M2C2HIGHPMUT.png){width=50%}
+Abbildung .. zeigt den Einfluss der Mutationschance bei der Verwendung der neuen Mutationsfuktion, der neuen Rekombinationsfunktion sowie angepasster Fitnessfunktion. Die höchste Fitness wird bei einer hohen Mutationschance von 40% erreicht, ähnlich hohe Werte erzielen ähnliche Fittnesswerte. Es ist davon auszugehen das bei einer so hohen Mutationschance im laufe der Zeit alle Gene Mutiert werden. Der zusammenhang zwischen hoher Fitnesswerten und hoher Mutationschance bestärkt die Annahme das die Mutationsfunktion zu *stark* ist. Allerdings liefert auch ein geringe Mutationschance von 5% ähnlich gute Ergebnisse. 
 
-![F2M2C2LOWPMUT40PFLOOR](figs/level/F2M2C2LOWPMUT40PFLOOR.png){width=50%}
+Abbildung .. zeigt ein Level mit einer Mutationschance von 5%. Abbildung .. zeigt ein Level mit einer Mutationschance von 40%. Im direkten vergleich fällt auf, das die hohe Mutationsrate dazu geführt hat, das alle Wände Verbunden sind, die niedrigere Mutationschance hat noch einige einzelne Wände übrig gelassen. Beide Varianten bieten wenige bis gar keine Raumähnliche Strukturen sondern sehen ehr wie ein großer Raum aus. Abbildung .. zeigt ein Level mit niedriger Mutationschance und verringerter Bodenfelder Anzahl. Hier lassen sich Raumähnliche Strukturen verbunden mit Fluren erkennen. Der untere Bereich muss zur Absolvierung des Level nicht betreten werden und bietet Freiraum zum erkunden. 
 
-![F2M1C1](figs/level/F2M1C1.png){width=50%}
+![Beispiellevel. MV=2, MC=5%, RV=2, RC=80% , eigene Grafik](figs/level/F2M2C2LOWPMUT.png){width=50%}
+
+![Beispiellevle. MV=2; MC=40%, RV=2, RC=80% , eigene Grafik](figs/level/F2M2C2HIGHPMUT.png){width=50%}
+
+![Beispiellevel mit verringerter Bodenfläche. MV=2; MC=40%, RV=2; RC=80%, eigene Grafik](figs/level/F2M2C2LOWPMUT40PFLOOR.png){width=50%}
+
+
 
 ## Umsetzung #3
 
-Die neue Mutationsfunktion wurde wie im Konzept #3 beschrieben implementiert. Die beiden Verfahren zur Platzierung von Räumen wurden nach den Konzept Implementiert. Das Spelunky-Style verfahren wurde zusätzlich um die Platzierung von Türen in optionalen Räumen und der Platzierung von Schlüsseln auf den kritischen Pfad erweitert. 
+Die neue Mutationsfunktion wurde wie im Konzept #3 beschrieben implementiert. Die beiden Verfahren zur Platzierung von Räumen wurden nach den Konzept Implementiert. Das Spelunky-Style verfahren wurde zusätzlich um die Platzierung von Türen in optionalen Räumen und der Platzierung von Schlüsseln auf den kritischen Pfad erweitert. Um den Reise zum Mittelpunkt Algorithmus umzusetzen wurden die Klasse *CodedRoom* erzeugt welche von der Klasse *CodedLevel* erbt und zusätzlich Angaben über die Koordinaten des Mittel- und der Eckpunkte bereithält. 
 
+Abbildung .. zeigt den Einfluss der Mutationschance bei der Verwendung der Game of Life Mutationsfunktion. Ähnlich zur vorherigen Mutationsfunktion liefert eine hohe Mutationschance von 40% den höchsten Fitnesswert , eine geringere Chance von 3% liefert ähnlich gute Ergebnisse. 
 
+Abbildung .. zeigt ein Level mit hoher Mutationschance von 40%. Zum vergleich zeit Abbildung .. ein Level mit einer Mutationschance von 3%. Beide Varianten erzeugen Level mit einer Vielzahl einzeln Platzierter Wände. Diese Mutationsfunktion kann als Rückschritt im Vergleich zur vorherigen Version betrachtet werden. 
 
-### Evaluierung 
+![Beispiellevel. MV=3, MC=40%, RV=2, RC=60%, eigene Grafik](figs/level/F2M3C2HIGHPMUT.png){width=50%}
 
-![F2M3C2HIGHPMUT](figs/level/F2M3C2HIGHPMUT.png){width=50%}
+![Beispiellevel. MV=3, MC=3%, RV=2, RC=60%, eigene Grafik](figs/level/F2M3C2LOWPMUT.png){width=50%}
 
-![F2M3C2LOWPMUT](figs/level/F2M3C2LOWPMUT.png){width=50%}
+Abbildung .. zeigt ein Level welches mithilfe des Spelunky-Style Algorithmuses erzeugt wurde. Die Räume wurden dabei mit der Mutationsversion 2 und einer Mutationschance von 5% erzeugt. Es fällt direkt negativ auf, dass sich alle Räume sehr ähnlich sehen und dass das Gittermuster sofort zu erkenne ist. Dafür liefert diese Variante neben den Kritischen Lösungspfad eine reihe an optionalen Räumen. Der obere Rechte Raum ist mithilfe einer Tür verschlossen und kann erst mit den Schlüssel aus dem Raum in der zweiten Reihe geöffnet werden. 
 
-![Spelunky](figs/level/Spelunky.png){width=50%}
+![Beispiellevel erzeugt mit den Spelunky-Style Algorithmus, eigen Grafik](figs/level/Spelunky.png){width=50%}
 
-![test_0](figs/level/test_0.png){width=50%}
+Abbildung .. zeigt ein Level welches durch die zufällige Platzierung von Räumen erzeugt wurde. Die Räume wurden mit den bereits beschriebenen Paramtereinstellungen erzeugt. in der Mitte des Levels sind die langen Verbindungstunel zu erkennen, auch sind mehrere optionale Räume im Level zu finden. Negativ fällt die große Wandfläche sowie die langen Wege zwischen den Räumen auf.
+
+![Beispiellevel erzeugt mit den Reise zum Mittelpunkt Algorithmus, eigene Grafik](figs/level/test_0.png){width=70%}
 
 ## Gesamtauswertung
+
+- einfügen des Finalen UMLs 
+
+In diesen Abschnitt folgt eine genauere Analyse der erstellten Lösungen. Der Algorithmus bietet viele Einstellungs möglichkeiten, es würde daher den Rahmen der Arbeit sprengen, alle Möglichkeiten genauer zu betrachten. Aus der Realisierungsphase haben sich drei Verfahren herauskristalisiert, welche nun genauer betrachtet werden. Um ein Gefühl der Vielfälltigkeit der einzelnen Verfahren zu bekommen, stehen im Anhang .. weitere Beispiellevel zur Verfügung.  
+
+### Mutation 2 mit geringere Bodenfläche
+
+### Spelunky-Style
+
+### Reise zum Mittelpunkt
+
+
 
 
 
