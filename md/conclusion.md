@@ -1,7 +1,5 @@
 # Zusammenfassung
 
-
-
 ## Fazit
 
 In dieser Arbeit wurde ein Konzept für einen Levelgenerator basierend auf einen Genetischen Algorithmus vorgestellt und umgesetzt. Der Generator ist in der Lage lösbare Level zu erzeugen, welche mithilfe des Implementierten Parsers in das PM-Dungeon der Studenten integriert werden kann. Der Generator ist eigenständig dazu in der Lage, optisch ansprechende und abwechslungsreiche Level zu erzeugen. Der Schwierigkeitsgrad des Levels kann durch die zufällig platzierten Monster kontrolliert werden. Die Level enthalten neben den kritischen Pfad, optionale Wege welche zu spannenden Risk and Reward Situationen führen können. Items und Monster können nicht gezielt in optionalen Räumen platziert werden.  
@@ -30,7 +28,7 @@ Das Verfahren zur Platzierung von Räumen und Fluren kann so optimiert werden, d
 
 Alternativ wäre auch eine andere Kodierungsform denkbar. 
 
-In Abschnitt ... wurde ein Verfahren präsentiert, das mithilfe von planaren Graphen und ein Set aus vorgegeben Raumformen, Level generieren kann. Ein neuer GA könnte, anstelle der direkten Generierung der Level, einen planaren Graphen erzeugen. 
+In Abschnitt 2.3.3.3 wurde ein Verfahren präsentiert, das mithilfe von planaren Graphen und ein Set aus vorgegeben Raumformen, Level generieren kann. Ein neuer GA könnte, anstelle der direkten Generierung der Level, einen planaren Graphen erzeugen. 
 
 Die Kodierung als Graph ermöglichtes, eine Vielzahl an Bewertungskriterien in den Generierungsprozess zu integrieren. 
 
@@ -40,14 +38,14 @@ Die schnellste Route von Start und Ziel wird, ähnlich zur Spelunky Methode, als
 
 Türen und Schlüsseln können einfacher platziert werden. Um Türen zu platzieren, werden Kanten im Graphen markiert, eine markierte Kante bedeutet: diese Verbindung ist durch eine Tür verschlossen. Um zu prüfen ob der Schlüssel erreicht werden kann ohne durch die Tür zu müssen, kann einfach der Knoten entfernt werden, der von der Tür verschlossen wird und dann wird geprüft ob der Schlüssel trotzdem erreichbar ist. 
 
-Abbildung ... zeigt den Aufbau der Spielwelt von *Dark Souls* als einen Graph. Jeder Knoten stellt dabei eine Region im Spiel da, Kanten stellen Verbindungen der einzelnen Regionen untereinander da. Jede Region könnte wiederum auch als ein Graph dargestellt werden. M eines GraphBased Level Generator könnten daher nicht nur einzelne Level sondern durch das zusammensetzen mehrere Graphen, ganze Spielwelten, mit unterschiedlichen optischen Themen, verschiedenen Monstern und Boss Gegner in jeder Region erzeugt werden.
+Abbildung 5.1 zeigt den Aufbau der Spielwelt von *Dark Souls* als einen Graph. Jeder Knoten stellt dabei eine Region im Spiel da, Kanten stellen Verbindungen der einzelnen Regionen untereinander da. Jede Region könnte wiederum auch als ein Graph dargestellt werden. Mit einen GraphBased Level Generator könnten daher nicht nur einzelne Level sondern, durch das zusammensetzen mehrere Graphen, ganze Spielwelten, mit unterschiedlichen optischen Themen, verschiedenen Monstern und Boss Gegner in jeder Region, erzeugt werden.
 
-![Die Spielwelt von Dark Souls als Graph.[@Brown]](figs/worldOfDarkSouls.PNG){width=100%}
+![Die Spielwelt von Dark Souls als Graph.[@Brown2018]](figs/worldOfDarkSouls.PNG){width=100%}
 
 Um einen GraphBased Ansatz als GA umzusetzen, bieten sich unterschiedliche Rekombination- und Mutationsverfahren an. So könnte zum Beispiel die Rekombination so aussehen, dass aus beide Graphen, mithilfe des Multi-Point-Crossover Verfahren, Knoten herausgenommen werden und im anderen Graphen neu platziert werden. Neu eingefügte Knoten müssen wiederum so mit den bestehenden Graphen verbunden werden, das die planare Eigenschaft des Graphen bestehen bleibt. Bei der Mutation könnten neue Kanten zwischen Knoten hinzugefügt oder entfernt werden. Das Hinzufügen von Kanten wäre auch möglich. Als Bewertungskriterien könnte das Verhältnis zwischen optionalen und kritischen Knoten, die Anzahl der Kanten oder die Anzahl unterschiedlicher Routen verwendet werden. 
 
-Der so erzeuget Graph würde dann als Inputgraph für den in Abschnitt ... beschriebenen Algorithmus dienen. Die Raumformen können entweder manuell erstellt werden oder aus Räumen bestehen, die von den in dieser Arbeit präsentierten Generator erstellt wurden. 
+Der so erzeuget Graph würde dann als Inputgraph für den in Abschnitt 2.3.3.3 beschriebenen Algorithmus dienen. Die Raumformen können entweder manuell erstellt werden oder aus Räumen bestehen, die von den in dieser Arbeit präsentierten Generator erstellt wurden. 
 
-Die Kombination aus dem Graphen basierten Ansatz und einen GA würde den in Abschnitt .. beschrieben Nachteil, dass dieses Verfahren eine Menge an Informationen benötigt, deutlich abmildern. Es bleiben die beschriebenen Vorteile bestehen.
+Die Kombination aus dem Graphen basierten Ansatz und einen GA würde den in Abschnitt 2.3.3.3 beschrieben Nachteil, dass dieses Verfahren eine Menge an Informationen benötigt, deutlich abmildern. Es bleiben die beschriebenen Vorteile bestehen.
 
 

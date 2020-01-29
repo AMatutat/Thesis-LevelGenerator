@@ -16,7 +16,7 @@ Der Generator muss nicht in der Lage sein, neue Spielregeln, wie das sprengen vo
 
 ## Bewertungskriterien
 
-Die erzeugten Level werden im Abschluss anhand der in Abschnitt ... aufgestellten Regeln für gutes Leveldesign bewertet. Insbesondere werden folgende Faktoren untersucht: 
+Die erzeugten Level werden im Abschluss anhand der in Abschnitt 2.2 aufgestellten Regeln für gutes Leveldesign bewertet. Insbesondere werden folgende Faktoren untersucht: 
 
 - Lösbarkeit und Fehlerfreiheit
 
@@ -38,7 +38,7 @@ Der Generator wird aus zwei Teilen zusammengesetzt. Der erste Teil ist der GA se
 
 ### GA
 
-In Abschnitt .. wurden die Unterschiede zwischen GA und ES erläutert. In dieser Arbeit wird eine Mischform aus beiden Implementiert. Es wird die reellwertige Kodierung der ES mit den Selektionsverfahren von GA kombiniert. Im Folgenden wird der Algorithmus weiterhin als GA bezeichnet. 
+In Abschnitt 2.4.2 wurden die Unterschiede zwischen GA und ES erläutert. In dieser Arbeit wird eine Mischform aus beiden Implementiert. Es wird die reellwertige Kodierung der ES mit den Selektionsverfahren von GA kombiniert. Im Folgenden wird der Algorithmus weiterhin als GA bezeichnet. 
 
 #### Kodierung	
 
@@ -65,7 +65,7 @@ F=Boden		X=Ende
 
 Eine Instanz der Klasse *CodedLevel* ist ein Chromosom, also eine mögliche Lösung bzw. ein Level. Neben den Char Array, welches den Levelaufbau entspricht und Informationen über die Größe des Levels, besitzen *CodedLevel* eine Fitness, welche die Güte der Lösung angibt sowie Informationen über den Standort des Start- bzw. Endpunktes.
 
-![UML CodedLevel. Eigene Grafik](figs/codedLevel.PNG){width=80%}
+![UML CodedLevel. eigene Grafik](figs/codedLevel.PNG){width=50%}
 
 Neben Getter und Setter verfügt die Klasse über die *changeField* Methode. Diese verändert das Allel eines Gens auf den übergebenen Wert. Zwar könnte diese Änderung auch direkt am Array vorgenommen werden, dann würden
 allerdings Änderungen an der Position der Start und Ausgänge evtl. verloren gehen. Sollte ein Start bzw. Ausgang gesetzt werden, obwohl schon einer vorhanden ist, wird stattdessen ein Boden gesetzt, ist keiner vorhanden werden die
@@ -99,7 +99,7 @@ Das dritte Kriterium soll vor allem einzeln im Level platzierte Wände vermeiden
 
 ##### Selektion und Rekombination
 
-Als Selektionsverfahren wird das im Abschnitt .... beschreibende Roulette Wheel Selection Verfahren genutzt. Da keine negative Fitness erreicht werden kann als auch von einer großen Spannbreite an Bewertungen ausgegangen werden kann, bietet sich ein Rank Selection Verfahren nicht an. Alternativ wäre auch die Verwendung der Tournament Selektion denkbar. 
+Als Selektionsverfahren wird das im Abschnitt 2.14 beschreibende Roulette Wheel Selection Verfahren genutzt. Da keine negative Fitness erreicht werden kann als auch von einer großen Spannbreite an Bewertungen ausgegangen werden kann, bietet sich ein Rank Selection Verfahren nicht an. Alternativ wäre auch die Verwendung der Tournament Selektion denkbar. 
 Sollte die es zu einem Crossover, abhängig von der **CHANCE_FOR_CROSSOVER**, kommen, werden beide Eltern mithilfe des One-Point-Crossover rekombiniert. Dieses Verfahren hat eine geringe Chance, gute Level Strukturen zu zerstören, da nur ein großer und nicht viele kleine Eingriffe am Level durchgeführt werden. 
 Das Uniform Crossover Verfahren würde wieder eine komplett Zufällige Anordnung von Böden und Wänden zu folge ziehen und ist daher für die Generierung von Leveln nicht geeignet.
 
@@ -132,17 +132,13 @@ Der Parser nutzt die von *ISurface* bereitgestellte Methoden um übergebene Mons
 
 Die Funktion *generateTextureMap* iteriert über das zwei Dimensionale *ISurface* Array und holt sich mithilfe der *getTexture* Methode die Texturen der einzelnen Oberflächen und fügt diese nacheinander zusammen und speichert das erzeugte Bild ab. Dadurch das die Textur nicht Typ weise sondern Instanz weise ausgelesen wird, wird es den Studenten ermöglicht, Wände mit unterschiedlichen Texturen zu verwenden.
 
-![UML LevelParser und Interfaces. Eigene Grafik](figs/parser.PNG){width=100%}
+![UML LevelParser und Interfaces. eigene Grafik](figs/parser.PNG){width=100%}
 
 ### Locks and Keys
 
 Um ein sinnvolles Konzept zur Platzierung von Türen und Schlüsseln zu entwickeln, muss erst ein Eindruck erlangt werden, wie die generierten Level aufgebaut sind. Grundsätzlich müssen Raumähnliche Strukturen erkannt werden, welche sich dadurch auszeichnen, dass sie vom Start Punkt aus nur über ein Feld erreichbar sind, der Tür. Auf diesem Feld kann die Tür platziert werden, der Key wird zwischen Start und Tür verteilt. 
 
-Das Klassendiagramm für den kompletten Generator ist in Abbildung ... zu sehen.
-
-![Komplettes UML Klassendiagramm. Eigene Grafik](figs/classUML.png){width=100%}
-
-
+Das Klassendiagramm für den kompletten Generator ist im Anhang A.1 zu sehen. Das finale UML, nach allen Überarbeitungen ist im Anhang A.2 einzusehen. 
 
 ### Methoden zur Auswertung und Optimierung
 
@@ -215,7 +211,7 @@ diesem Herstellen.
 
 #### Spelunky Style
 
-In Abschnitt ... wurde beschrieben wie das Spiel *Spelunky* eine Gitteranordnung nutzt um Level zu generieren. Der hier beschriebene Algorithmus, wandelt das Spelunky-Verfahren so um, das es für das PM-Dungeon verwendet werden kann. 
+In Abschnitt 2.3.3.2 wurde beschrieben wie das Spiel *Spelunky* eine Gitteranordnung nutzt um Level zu generieren. Der hier beschriebene Algorithmus, wandelt das Spelunky-Verfahren so um, das es für das PM-Dungeon verwendet werden kann. 
 
 Genau wie bei Spelunky wird ein 4x4 Gitter, mit jeweils 10x9 großen Räumen erzeugt. Die Räume werden vom GA erzeugt und sind daher immer unterschiedlich, die aus Spelunky bekannten Layouts und Mutation sind nicht notwendig. Die Räume werden im Gitter verteilt und es wird, genau wie bei Spelunky, ein zufälliger Raum aus der ersten Reihe als Startpunkt ausgewählt. Der kritische Pfad wird mithilfe von Zufallsschritten erzeugt. Anders als bei Spelunky werden die Räume nicht, abhängig vom Pfad verlauf, nummeriert, stattdessen wird jeder Raum beim eintritt und Verlassen so verändert, dass ein Durchgang entsteht. Sind alle Räume des kritischen Pfades verbunden, werden alle anderen Räume zufällig an den Kritischen Pfad angeschlossen, Durchgänge werden entsprechend erzeugt.  
 
@@ -225,10 +221,6 @@ Diese Methode platziert Räume zufällig im Level und verbindet diese durch eine
 
 ## Unterschied zu bekannten Verfahren
 
-In Abschnitt ... wurden verschiedene Verfahren zur prozeduralen Levelgenerierung vorgestellt. Das hier vorgestellte Konzept grenzt sich von diesen vor allem dadurch ab, dass neben der gewünschten Levelgröße keinerlei Informationen vom User notwendig sind, um Level zu generieren. Das in Abschnitt .... verwendete Graphbased Verfahren benötigt neben den planaren Graphen auch vorgefertigten Räumen zur Generierung der Level. Für den in Abschnitt .. beschriebenen Algorithmus aus dem Spiel Spelunky, werden neben Raumlayouts auch die 5x3 großen Chunks benötigt. Zusätzlich erzeugt das Spelunky-Verfahren eine wiedererkennbares Gittermuster. 
+In Abschnitt 2.3.3 wurden verschiedene Verfahren zur prozeduralen Levelgenerierung vorgestellt. Das hier vorgestellte Konzept grenzt sich von diesen vor allem dadurch ab, dass neben der gewünschten Levelgröße keinerlei Informationen vom User notwendig sind, um Level zu generieren. Das in Abschnitt 2.3.3.3 verwendete Graphbased Verfahren benötigt neben den planaren Graphen auch vorgefertigten Räumen zur Generierung der Level. Für den in Abschnitt 2.3.3.2 beschriebenen Algorithmus aus dem Spiel Spelunky, werden neben Raumlayouts auch die 5x3 großen Chunks benötigt. Zusätzlich erzeugt das Spelunky-Verfahren eine wiedererkennbares Gittermuster. 
 
-Das in Abschnitt .. beschriebene Randomwalk-Verfahren erzeugt zwar jedes Mal unterschiedliche Level, diese sind aber fast vollständig Zufallsgeneriert. Ihre Lösbarkeit kann zwar garantiert werden, aber es kann kein Einfluss auf die Struktur der Level genommen werden. Das forcieren von Wand und Raum Strukturen ist nicht möglich. Durch die Fitnessfunktion wird das hier präsentierte Konzept dazu gedrängt, Räume und Flure zu erzeugen.
-
-
-
-
+Das in Abschnitt 2.3.3.1 beschriebene Randomwalk-Verfahren erzeugt zwar jedes Mal unterschiedliche Level, diese sind aber fast vollständig Zufallsgeneriert. Ihre Lösbarkeit kann zwar garantiert werden, aber es kann kein Einfluss auf die Struktur der Level genommen werden. Das forcieren von Wand und Raum Strukturen ist nicht möglich. Durch die Fitnessfunktion wird das hier präsentierte Konzept dazu gedrängt, Räume und Flure zu erzeugen.

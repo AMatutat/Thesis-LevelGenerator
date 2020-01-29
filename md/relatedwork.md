@@ -20,7 +20,9 @@ In der Entwicklungszeit der Rollenspiele haben sich vor allem zwei unterschiedli
 
 ### Rogue
 
-Das Videospiel *Rogue: Exploring the Dungoens of Doom*, ist ein, in den 1980er entwickeltes, Dungeoncrawler. Der Spieler bewegt sich Rundenbasiert durch ein aus ASCI-Zeichen bestehenden Levelsystem (vgl. Abbildung ..) , um am Ende das Magische Amulett von Yendor zu erlangen. Auf den Weg dorthin gilt es die feindlichen Monster zu besiegen. [@Barton2009] ![Ein typisches Level aus den Spiel Rogue [@Barton2009]](figs/rogue.jpg){width=80%}
+Das Videospiel *Rogue: Exploring the Dungoens of Doom*, ist ein, in den 1980er entwickeltes, Dungeoncrawler. Der Spieler bewegt sich Rundenbasiert durch ein aus ASCII-Zeichen bestehenden Levelsystem (vgl. Abbildung 2.1) , um am Ende das Magische Amulett von Yendor zu erlangen. Auf den Weg dorthin gilt es die feindlichen Monster zu besiegen. [@Barton2009] 
+
+![Ein typisches Level aus den Spiel Rogue [@Barton2009]](figs/rogue.jpg){width=100%}
 
 Glenn R. Wichman, einer der Entwickler von Rogue, schrieb in einen offenen Brief:
 
@@ -85,7 +87,7 @@ Der Spieler startet auf der obersten Ebene eines Dungeons. Ziel ist es, möglich
 
 Darüber hinaus bietet Shattered Pixel Dungeon noch viele weiter Features wie Subklassen oder Verzauberungen, welche hier nicht weiter beschrieben werden, da diese für das Verständnis des Spielablaufes nicht nötig sind.
 
-Abbildung ... zeigt einen Ausschnitt eines Dungeons aus dem Spiel. Besonders gut zu erkennen sind die Zufällig Verteilten Räume verbunden durch Flure sowie der *Fog of War* welcher die Monster außerhalb der Reichweite der Spielfigur unsichtbar macht.
+Abbildung 2.2 zeigt einen Ausschnitt eines Dungeons aus dem Spiel. Besonders gut zu erkennen sind die Zufällig Verteilten Räume verbunden durch Flure sowie der *Fog of War* welcher die Monster außerhalb der Reichweite der Spielfigur unsichtbar macht.
 
 ## Regeln für gutes Leveldesign
 
@@ -110,7 +112,7 @@ Ein Level dient in aller erster Linie dazu, den Spieler eine Spielfläche für d
 
 Daher braucht ein Shooter interessante Areale zum Kämpfen, Rennspiele spaßige Rennstrecken, Schleichspiele Plätze zum verstecken und Spiele, die durch Spielerische Freiheit überzeugen wollen, viele Möglichkeiten Situationen zu lösen.
 
-Abbildung... zeigt die Karte der Mission *Bankraub* aus dem Spiel *Dishonored: Death of the Outsider*. In dieser Mission muss der Spieler in eine Bank einbrechen um eine Waffe zu klauen. Die Karte zeigt unterschiedliche Eingänge in die Bank und unterschiedliche Taktiken die Mission zu absolvieren. So kann der Spieler ein Schlafpulver in das Belüftungssystem der Bank verteilen, um alle Personen in der Bank schlafen zu lassen. Das Pulver kann entweder gekauft werden oder auf einer Aktion gestohlen werden. Alternativ kann der Spieler sich auch durch die Kanalisation in die Bank schleichen und dort versuchen alle Gegner zu umgehen oder alle Wachen im Kampf töten.
+Abbildung 2.3 zeigt die Karte der Mission *Bankraub* aus dem Spiel *Dishonored: Death of the Outsider*. In dieser Mission muss der Spieler in eine Bank einbrechen um eine Waffe zu klauen. Die Karte zeigt unterschiedliche Eingänge in die Bank und unterschiedliche Taktiken die Mission zu absolvieren. So kann der Spieler ein Schlafpulver in das Belüftungssystem der Bank verteilen, um alle Personen in der Bank schlafen zu lassen. Das Pulver kann entweder gekauft werden oder auf einer Aktion gestohlen werden. Alternativ kann der Spieler sich auch durch die Kanalisation in die Bank schleichen und dort versuchen alle Gegner zu umgehen oder alle Wachen im Kampf töten.
 
 ![Levelkarte aus dem Spiel Dishonored: Death of the Outsider. Grafik aus dem Spiel](figs/bankJob.png)
 
@@ -154,9 +156,10 @@ Grundsätzlich gilt zu beachten, dass Spieler mit voranschreiten im Spiel immer 
 
 #### Pacing
 
-Pacing ist ein Begriff aus dem Film und beschreibt die Spannungskurve des Films. Abbildung ... zeigt die Pacing-Kurve von *Star Wars: A new Hope*. Gut zu erkennen sind die verschiedenen Spannungspeaks, welche nach
+Pacing ist ein Begriff aus dem Film und beschreibt die Spannungskurve des Films. Abbildung 2.4 zeigt die Pacing-Kurve von *Star Wars: A new Hope*. Gut zu erkennen sind die verschiedenen Spannungspeaks, welche nach
 kurzer Zeit wieder abflachen und so ein Konstrukt aus Spannenden und Ruhigeren Szenen bilden. Zu Beginn steigt die Spannungskurve bereits stark an, um direktes Interesse beim Zuschauer zu wecken. Kurz vorm Ende kommt es zum
 Spannungshochpunkt bevor das Ende sämtliche Spannung entlädt.
+
 ![Pacing.Kurve von Star Wars: A new Hope [@Wesolowski2009]](figs/newHope.gif){width=70%}
 
 Aus diesem Beispiel lassen sich drei Regeln für gutes Pacing ableiten
@@ -167,9 +170,9 @@ Aus diesem Beispiel lassen sich drei Regeln für gutes Pacing ableiten
 
 Auch in Videospielen ist die richtige Kontrollierung des Pacings entscheidend. Dies gilt sowohl für die Geschichte des Spiels als auch für jedes Level im Spiel. Die Kontrolle des Pacings zu behalten ist, je nach Genre, allerdings keine leichte Aufgabe, da die Kontrolle über Spielfigur und Kamera immer beim Spieler liegen. Ein gängiger Weg dies zu umgehen ist es, eine Filmartige Sequenz abzuspielen und den Spieler kurzzeitig sämtliche Kontrolle zu entziehen. So kann der Blick des Spielers gezielt auf eine bestimmte stelle gerichtet werden oder die Spielfigur kann besonders geschickt die Gegner ausschalten. So kann zwar das Pacing kurzzeitig kontrolliert werden, es findet aber ein Bruch der Immersion statt, da das Handeln der Spielfigur vom Spieler getrennt wird. 
 
-Einige Spiele nutzen die Interaktivität des Mediums, um den Spieler seine eigene Spannungskurve aufbauen zu lassen. Abbildung ... zeigt die Möglichen Spannungsverläufe einer Begegnung im Schleichspiel *Thief*. Je nachdem wie der Spieler handelt entwickelt sich die Situation anders. So wird die Immersion des Spiels weiter verstärkt, jedoch wird die Kontrolle über das Pacing dem Spieler überlassen.
+Einige Spiele nutzen die Interaktivität des Mediums, um den Spieler seine eigene Spannungskurve aufbauen zu lassen. Abbildung 2.5 zeigt die Möglichen Spannungsverläufe einer Begegnung im Schleichspiel *Thief*. Je nachdem wie der Spieler handelt entwickelt sich die Situation anders. So wird die Immersion des Spiels weiter verstärkt, jedoch wird die Kontrolle über das Pacing dem Spieler überlassen.
 
-![Beispiel Pacing im Schleichspiel Thief. [@Wesolowski2009]](figs/pacingThief.gif){width=70%}
+![Beispiel Pacing im Schleichspiel Thief. [@Wesolowski2009]](figs/pacingThief.gif){width=80%}
 
 Beide Verfahren haben ihr Vor- und Nachteile, und auch das vermischen beider Verfahren ist denkbar, in jedem Fall hängt die Pacingkurve stark mit der Levelstruktur zusammen. Durch das platzieren leichterer und schwerere Aufgaben, Aktion Passagen und Erkundung Passagen, kann das Pacing in beiden Fällen beeinflusst werden. 
 
@@ -183,7 +186,7 @@ Neben der eigentlichen Geschichte, welche durch Dialoge, Texte oder Zwischensequ
 
 Environmental Storytelling wird oft genutzt um die Spielwelt lebendiger zu gestalten, dass es sowohl der Spielwelt als auch den Charakteren in dieser Spielwelt eine Geschichte verpasst, welche nicht unbedingt mit der eigentliche Hauptgeschichte zusammenhängen muss.
 
-Abbildung .. zeigt eine Szene aus dem Spiel BioShock. Die Umgebung ist stark beschädigt. Das Schild links im Bild verrät, das, was immer auch passiert ist, wohl in der Neujahresnacht 1959 passiert sein muss. Das Plakat in der Mitte und die Maske auf den Tresen verraten das hier ein Maskenball veranstaltet wurde. Geht der Spieler in die Küche des Levels, befinden sich dort zwei Maskierte Gegner, welche demnach wohl Gäste auf den Ball gewesen sind. 
+Abbildung 2.6 zeigt eine Szene aus dem Spiel BioShock. Die Umgebung ist stark beschädigt. Das Schild links im Bild verrät, das, was immer auch passiert ist, wohl in der Neujahresnacht 1959 passiert sein muss. Das Plakat in der Mitte und die Maske auf den Tresen verraten das hier ein Maskenball veranstaltet wurde. Geht der Spieler in die Küche des Levels, befinden sich dort zwei Maskierte Gegner, welche demnach wohl Gäste auf den Ball gewesen sind. 
 
 Dieses Beispiel zeigt, wie Environmental Storytelling genutzt werden kann, um ohne Worte eine Geschichte zu erzählen, welche sowohl der Spielwelt als auch den Gegnern Tiefgang verpasst.
 
@@ -201,13 +204,13 @@ Viele Spiele versuchen daher, den Spieler indirekt den Weg zu weisen. Dabei werd
 
 So werden Pfeile in der Spielwelt genutzt um den Blick des Spielers in eine bestimmte Richtung zu ziehen, Durchgang ähnliche Konstrukte konstruiert, durch die der Spieler hindurchlaufen will oder Gegenstände so verteilt, dass der Spieler sie bereits vom Weiten sieht und dorthin laufen möchte. Auch wird Licht und Bewegung genutzt um die Aufmerksamkeit des Spielers auf einen gewissen Punkt zu ziehen. [@Graf2019] [@Brown2015c]
 
-Im Spiel *Mirrors Edge* steht der Parkour lauf im Fokus. Das bedeutet der Spieler soll sich schnell über die Dächer der Stadt Bewegen und Hindernisse bewältigen. Damit der Spieler nicht den korrekten Weg suchen muss, und so Geschwindigkeit verlieren würde, was den Flow des Spiels verschlechtern würde, wurde die *Runner Vision* implementiert. Die *Runner Vision* färbt alle Objekte die Genutzt werden können in Rot ein, und ermöglichen den Spieler das Intuitive navigieren durch die Welt. Abbildung... zeigt einen Ausschnitt aus *Mirrors Edge* mit aktiver Runner Vision. 
+Im Spiel *Mirrors Edge* steht der Parkour lauf im Fokus. Das bedeutet der Spieler soll sich schnell über die Dächer der Stadt Bewegen und Hindernisse bewältigen. Damit der Spieler nicht den korrekten Weg suchen muss, und so Geschwindigkeit verlieren würde, was den Flow des Spiels verschlechtern würde, wurde die *Runner Vision* implementiert. Die *Runner Vision* färbt alle Objekte die Genutzt werden können in Rot ein, und ermöglichen den Spieler das Intuitive navigieren durch die Welt. Abbildung 2.7 zeigt einen Ausschnitt aus *Mirrors Edge* mit aktiver Runner Vision. 
 
 ![Szene aus Mirrors Edge [@Taylor2013]](figs/mirrors_edge.jpg){width=100%}
 
 Andere Spiele verwenden Farben diskreter um den Spieler durch die Welt zu Navigieren. In der neuen Auflage der *Tomb Raider* Serie oder im Action Spiel *Uncharted* werden kletterbare Kanten durch Farbliche Anpassung hervorgehoben. [@Brown2015c]
 
-Oft werden auch sogenannten *Weenies* verwendet um den Spieler in eine Richtung zu führen. Diese Technik wurde von Walt Disney genutzt, der das Schloss in die Mitte von Disneyland platziert hat, um Besucher, die den Park betreten direkt dorthin zu locken. [@Brown2015c] In Videospielen sind Weenies oft *Points of Interesst* wie besonders hohe Gebäude, Brücken oder Berge. [@Brown2015c] Abbildung ... zeigt eine Szene aus dem Spiel Journey, der Berg links im Bild dient als Weenie und lockt den Spieler in diese Richtung. 
+Oft werden auch sogenannten *Weenies* verwendet um den Spieler in eine Richtung zu führen. Diese Technik wurde von Walt Disney genutzt, der das Schloss in die Mitte von Disneyland platziert hat, um Besucher, die den Park betreten direkt dorthin zu locken. [@Brown2015c] In Videospielen sind Weenies oft *Points of Interesst* wie besonders hohe Gebäude, Brücken oder Berge. [@Brown2015c] Abbildung 2.8 zeigt eine Szene aus dem Spiel *Journey*, der Berg links im Bild dient als Weenie und lockt den Spieler in diese Richtung. 
 
 ![Szene aus Journey. Im Hintergrund ist ein Berg zu erkennen. [@Kleffmann2019]](figs/journey.jpg){width=100%}
 
@@ -248,9 +251,9 @@ PLG wird vor allem genutzt um kosten bei der Entwicklung zu sparen.[@Remo2008] E
 
 Die Implementation eines PLG ist allerdings nicht trivial. Die theoretisch endlose Anzahl an Leveln erschwert das Testen und beheben von Bugs. Evtl. wurde ein Fehler nur in den getesteten Leveln behoben, kommt aber in anderen Leveln wieder vor. [@Remo2008] 
 
-Die Einhaltung der in Abschnitt ... vorgestellten Regeln für gutes Leveldesign ist bei PLG teilweise komplexer im Vergleich zu handgebauten Leveln. 
+Die Einhaltung der in Abschnitt 2.2 vorgestellten Regeln für gutes Leveldesign ist bei PLG teilweise komplexer im Vergleich zu handgebauten Leveln. 
 
-Die Lösbarkeit der Level zu gewährleisten ist bei handgebautem Level schnell und verlässlich möglich. Der Generator im Gegenzug muss darauf programmiert sein, keine unpassierbaren Hindernisse auf den Kritischen pfaden zu platzieren oder benötigte Puzzleteile wie Türschlüssel so zu positionieren, dass sie erreicht werden können ohne, dass zuvor das Puzzle gelöst werden muss. Die Kontrolle des Pacings und Ausbalancierung des Schwierigkeitsgrades sind selbst für Designer eine schwere Aufgabe, die viel Zeit zur Optimierung benötigen[@DevPlay2019], für einen Level Generator ist diese eine komplexe und fast unlösbare Aufgabe. Die Schwierigkeit eines Levels zu bestimmen ist, je nach Genre, sehr schwer und wird noch zusätzlich dadurch erschwert, dass die Generierten Level jederzeit im Spiel auftauchen können. Level sollten aber zu Beginn des Spieles einfacher sein, da der Spieler die Mechaniken erst kennenlerne muss und gegen Ende schwerer werden um weiterhin eine Herausforderung zu bieten.  Prozedural generierte Level können aufgrund der verwendeten Muster, schnell repetitiv wirken. Das Spiel *No Man‘s Sky* wurde unter anderen deswegen von Spielern und Fachpresse scharf kritisiert. [Reinartz2016] Den Algorithmus muss genug Flexibilität gegeben werden um Strukturen zu mutieren (s.a. Abs. Spelunky). 
+Die Lösbarkeit der Level zu gewährleisten ist bei handgebautem Level schnell und verlässlich möglich. Der Generator im Gegenzug muss darauf programmiert sein, keine unpassierbaren Hindernisse auf den Kritischen pfaden zu platzieren oder benötigte Puzzleteile wie Türschlüssel so zu positionieren, dass sie erreicht werden können ohne, dass zuvor das Puzzle gelöst werden muss. Die Kontrolle des Pacings und Ausbalancierung des Schwierigkeitsgrades sind selbst für Designer eine schwere Aufgabe, die viel Zeit zur Optimierung benötigen[@DevPlay2019], für einen Level Generator ist diese eine komplexe und fast unlösbare Aufgabe. Die Schwierigkeit eines Levels zu bestimmen ist, je nach Genre, sehr schwer und wird noch zusätzlich dadurch erschwert, dass die Generierten Level jederzeit im Spiel auftauchen können. Level sollten aber zu Beginn des Spieles einfacher sein, da der Spieler die Mechaniken erst kennenlerne muss und gegen Ende schwerer werden um weiterhin eine Herausforderung zu bieten.  Prozedural generierte Level können aufgrund der verwendeten Muster, schnell repetitiv wirken. Das Spiel *No Man‘s Sky* wurde unter anderen deswegen von Spielern und Fachpresse scharf kritisiert. [Reinartz2016] Den Algorithmus muss genug Flexibilität gegeben werden um Strukturen zu mutieren (s.a. Abs. 2.3.3.2). 
 
 Zusammengefasst lässt sich sagen, dass PLG besonders gut dafür geeignet sind um kostengünstig eine Vielzahl an abwechslungsreichen, aber nicht einzigartigen, Leveln zu erschaffen, die es schaffen Spieler dazu zu motivieren, Spiele immer wieder zu spielen. Die Umsetzung guter PLGs ist nicht trivial und erfordert komplexe Regeln und Strukturen. Einige Faktoren lassen sich mithilfe eines PLGs nur schwer oder gar nicht umsetzten. So muss das Pacing beispielsweise nicht über das Leveldesign, sondern über Gamedesign Elemente gesteuert werden (vgl. Abs. Spelunky).
 
@@ -279,13 +282,15 @@ while noch nicht genug Boden im Level
 
 Der Algorithmus bietet viele Parameter zum Verändern, so kann die Levelgröße, die gewünschte Bodenfläche und die Wahrscheinlichkeit in die jeweiligen Himmelsrichtungen zu gehen bestimmt werden. 
 
-Abbildung ... zeigt ein, mit den Random Walk erstellts, 50x50 großes Level mit 1200 Bodenfelder. Die Wahrscheinlichkeit in eine Richtung zu gehen lag bei jeweils 25%. Um das so erstellte Level tatsächlich bespielen zu können, müssen noch Start und Endpunkt auf Bodenflächen gesetzt werden. Das Verteilen von Monstern und Items auf Bodenflächen wäre auch möglich. 
+Abbildung 2.9 zeigt ein, mit den Random Walk erstellts, 50x50 großes Level mit 1200 Bodenfelder. Die Wahrscheinlichkeit in eine Richtung zu gehen lag bei jeweils 25%. Um das so erstellte Level tatsächlich bespielen zu können, müssen noch Start und Endpunkt auf Bodenflächen gesetzt werden. Das Verteilen von Monstern und Items auf Bodenflächen wäre auch möglich. 
 
 Der Algorithmus erzeugt vollständig verbundenen Level, mit unterschiedlich großen Räumen und Pfaden. [@Read2014] Die Lösbarkeit der Level kann so garantiert werden. Mit entsprechenden Skripts können Items abseits des Weges platziert werden und durch starke Monster geschützt werden, das kann zu guten Risk-Reward Momenten führen.
 
 #### Spelunky
 
 Spelunky ist ein 2D-Roguelike-Plattformer, es verbindet Elemente klassischer Jump and Runs mit den prozedural Generierten Leveln und Permadeath des Roguelike Genres. 2016 veröffentlichte der Spelunky Entwickler Derek Yu das gleichnamige Buch *Spelunky* in dem er auf die Entwicklungsgeschichte eingeht und unteranderem den Algorithmus zur prozeduralen Level Generierung erläutert. [@Yu2016]
+
+![Ein Beispiel Level aus Spelunky, in Rot der kritische Pfad.[@Kazemi]](figs/spelunky.PNG){width=70%}
 
 Jedes Level startet mit einen 4x4 Gitter aus jeweils 10x8 Felder großen leeren Räumen. Als erster Schritt der Generierung wird der kritische Pfad im Level generiert. Der kritische Pfad verbindet den Anfang des Levels mit dem Ende des Levels und repräsentiert so den Lösungsweg. 
 
@@ -315,13 +320,11 @@ Jedes Level startet mit einen 4x4 Gitter aus jeweils 10x8 Felder großen leeren 
 
    3. Raum braucht einen Ausgang links, rechts und nach oben.  
 
-Die Markierung erfolgt entsprechend der Richtung, durch die der Raum betreten bzw. verlassen wird. Die Raumanordnung kann durch eine 4x4 Matrix dargestellt werden. So ist garantiert, das entlang des kritischen Pfades eine lösbare Raumabfolge generiert wird. Das Problem der Level Lösbarkeit (vgl. regeln Level) wird dadurch gelöst. 
+Die Markierung erfolgt entsprechend der Richtung, durch die der Raum betreten bzw. verlassen wird. Die Raumanordnung kann durch eine 4x4 Matrix dargestellt werden. So ist garantiert, das entlang des kritischen Pfades eine lösbare Raumabfolge generiert wird. Das Problem der Level Lösbarkeit (vgl. Abs. 2.2) wird dadurch gelöst. 
 
 Den Räumen abseits des Kritischen Pfades werden zufällig eine der Nummern zugewiesen. Dementsprechend werden sie entweder an den Pfad angeschlossen oder sind von ihn abgeschottet. Spelunky bietet den Spieler die Möglichkeit Wände mit Bomben zu sprengen oder mithilfe von verschließbaren Kletterseilen steil nach oben zu klettern. So können selbst vermeidlich unerreichbare Räume betreten werden, vorausgesetzt der Spieler hat die nötigen Items dafür gefunden. 
 
-Abbildung ... zeigt eine generiertes Spelunky Level. Die rote Linie entspricht dem kritischen Pfad, die Zahlen in den Raumecken die entsprechende Nummerierung. Die dunkel roten Blöcke zeigen noch einmal die Bedeutung der Nummerierung, und sind im eigentlichen Level nicht zu sehen. 
-
-![Ein Beispiel Level aus Spelunky, in Rot der kritische Pfad.[@Kazemi]](figs/spelunky.PNG){width=50%}
+Abbildung 2.10 zeigt eine generiertes Spelunky Level. Die rote Linie entspricht dem kritischen Pfad, die Zahlen in den Raumecken die entsprechende Nummerierung. Die dunkel roten Blöcke zeigen noch einmal die Bedeutung der Nummerierung, und sind im eigentlichen Level nicht zu sehen. 
 
 Um die Räume mit Inhalt zu füllen wird, abhängig von der Nummerierung des Raumes, eines von mehreren unterschiedlichen Templates verwendet. Die Templates geben an an welcher Stelle welche Art von Block platziert wird. Um die Variation trotz geringer Template Anzahl zu erhöhen, werden einige Bereiche der Templates mutiert. 
 
@@ -349,7 +352,7 @@ In seinem Buche schrieb Yu:
 
 In dem Paper *Game Level Layout from Design Specification* präsentierten unter anderen Chongyang Ma, einen Algorithmus, der dazu in der Lage ist Level aus planaren Graphen zu generieren. Der Generator kann mithilfe weniger vorgegebener unterschiedlich geformter Räume aus einem Graphen gleich mehrere unterschiedliche Level Generieren. [@Ma2014]
 
-Abbildung ... zeigt einen, zur Generierung verwendbaren, planaren Graphen gibt das Levellayout vor. Die Knoten repräsentieren Räume, die Kanten stellen Verbindungen zwischen den Räumen da. Abbildung ... zeigt eine Auswahl an unterschiedlichen Räumen. Abbildung ... zeigt den daraus erzeugten Level.  
+Abbildung 2.11 zeigt einen, zur Generierung verwendbaren, planaren Graphen gibt das Levellayout vor. Die Knoten repräsentieren Räume, die Kanten stellen Verbindungen zwischen den Räumen da. Abbildung 2.12 zeigt eine Auswahl an unterschiedlichen Räumen. Abbildung 2.13 zeigt den daraus erzeugten Level.  
 
 ![Graph zeigt das Levellayout[@Ma2014]](figs/inputGraph.PNG){width=40%}
 
@@ -412,9 +415,9 @@ Einer Menge gleichartiger Individuen wird als Population bezeichnet. Die Anzahl 
 
 GAs folgen einer Reihe an Subrutinen, die sich solange Wiederholen bis eine Abbruchbedingung erreicht ist. 
 
-![Ablauf eines generischen GAs. Eigene Grafik](figs/gaAblauf.png){width=100%}
+![Ablauf eines generischen GAs. eigene Grafik](figs/gaAblauf.png){width=80%}
 
-Abbildung ... zeigt den zugrunde legenden Ablauf von GAs. 
+Abbildung 2.14 zeigt den zugrunde legenden Ablauf von GAs. 
 
 1. Kodierte Startpopulation wird erzeugt
 
@@ -495,6 +498,7 @@ Fitness Proportionate Selektionsverfahren funktionieren nicht in Fällen, in dem
 
 Bei der Tournament Selektion werden zufällig k Individuen aus der Ursprungspopulation ausgewählt, das Individuum mit der höchsten Fitness wird in die nächste Generation aufgenommen. Dieses Verfahren ermöglicht zwar auch schlechteren Lösungen ausgewählt zu werden, versichert aber das die schlechtesten k-1 Lösungen nicht ausgewählt werden können und die beste Lösung auf jeden Fall ausgewählt wird. Tournament Selektion funktioniert auch bei
 negativen Fitnesswerten.
+
 ![Bildliche Darstellung der TS [@tutorialspoint]](figs/tournament_selection.png){width=100%}
 
 **Rank Selektion**
@@ -572,7 +576,7 @@ $$ g=(g_{ 0  }....g_{ m }) \in \left\{ R \right\}^{ m } $$
 
 Durch diese Art der Kodierung sind einige, aus GA bekannten, Verfahren zur Mutation nicht verwendbar (Bsp. Bit-Flip-Mutation). 
 
-Der zweite große Unterschied liegt in der Auswahl der Eltern für die nächste Population. Noch bevor es zur Bewertung der Individuen kommt, werden $\lambda$ Individuen zufällig aus den $$\mu$$ großen Ausgangspopulation ausgewählt, sie bilden den mating pool, wobei $\lambda\leq\mu$ gilt. Einige Individuen müssen daher öfters in den mating pool vorkommen. Jetzt findet ähnlich zu GA die Rekombination und Mutation des mating pool statt. Die Individuen des mating pool werden jetzt mithilfe der Fitnessfunktion bewertet und mithilfe eines Selektionsverfahren werden $\mu$ Kinder für die nächste Generation ausgewählt. Die Populationsgröße bleibt also zwischen den Generationen konstant. 
+Der zweite große Unterschied liegt in der Auswahl der Eltern für die nächste Population. Noch bevor es zur Bewertung der Individuen kommt, werden $\lambda$ Individuen zufällig aus den $\mu$ großen Ausgangspopulation ausgewählt, sie bilden den mating pool, wobei $\lambda\leq\mu$ gilt. Einige Individuen müssen daher öfters in den mating pool vorkommen. Jetzt findet ähnlich zu GA die Rekombination und Mutation des mating pool statt. Die Individuen des mating pool werden jetzt mithilfe der Fitnessfunktion bewertet und mithilfe eines Selektionsverfahren werden $\mu$ Kinder für die nächste Generation ausgewählt. Die Populationsgröße bleibt also zwischen den Generationen konstant. 
 
 Welches Verfahren geeigneter ist, hängt stark mit der eigentlichen Problemstellung zusammen. Mittlerweile sind auch viele Mischformen zwischen ES und GA verbreitet. 
 
