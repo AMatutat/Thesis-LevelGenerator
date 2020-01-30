@@ -4,69 +4,67 @@ In diesem Kapitel wird die Umsetzung der im vorherigen Kapitel vorgestellten Kon
 die Ergebnisse ausgewertet und Probleme hervorgehoben. Ansätze zur Lösung der Probleme werden im Kapitel 3 in der jeweils nächsten Konzept Iteration beschrieben. Abschließend folgt eine Gesamtauswertung aller Resultate anhand
 der in Abschnitt 3.1 und 3.2 vorgestellten Bewertungskriterien.
 
-## Umsetzung #1
+## Umsetzung des Konzeptes 
 
 Alle wichtigen Konstanten wurden der Übersichtshalber in extra dafür vorgesehene Klassen ausgelagert. Die Klasse *Reference* enthält eine Reihe an Chars, welche im kodierten Level genutzt werden. Die Klasse *Parameter*
 enthält alle Einstellungsvariablen wie Rekombinationschance oder Populationsgröße.
 
-### GA
+### Genetischer Algorithmus
 
 Der GA konnte größtenteils wie im Konzept beschrieben umgesetzt werden. Um ausreichend Raum zur Platzierung von Start und Endpunkt zu gewährleisten, wurde eine Level Mindestgröße von 4x4 implementiert. Die Funktionsweise des Selektionsverfahren, Rekombinationsverfahren und Mutationsverfahren wurde in Abschnitt 2.4 ausführlich beschrieben, eine Erläuterung der genauen Implementierung findet daher nicht statt.
 
 Im Folgenden werden die Methoden zur Prüfung Verbundener Wände sowie erreichbarer Böden erläutert. Beide Verfahren werden von der Fitnessfunktion genutzt und haben daher großen Einfluss auf die Performance des GA. 
 
-Ausschnitt aus der Methode *isConnected* : 
 
-```
-private boolean isConnected(final CodedLevel level, final int x, final int y) {
-	if (x == level.getXSize() - 1 || x == 0 || y == level.getYSize() - 1 || y == 0)
-		return true;
+\begin{lstlisting}[language=java, caption=Ausschnitt der Methode isConnected]	
+private boolean isConnected(CodedLevel lvl,int x,int y) {
+	if (x==lvl.getXSize()- 1||x==0||y==lvl.getYSize()-1||y==0)
+	return true;
 	
-    level.getCheckedWalls().add(x + "" + y);
-	if (level.getLevel()[x - 1][y] == Reference.REFERENCE_WALL
-				&& !level.getCheckedWalls().contains((x - 1) + "" + y))
-			if (isConnected(level, x - 1, y))
-				connected = true;
-	...
-	return connected; 
-```
+   	lvl.getCheckedWalls().add(x+""+y);
+   	if (lvl.getLevel()[x - 1][y]==Reference.REFERENCE_WALL
+   		&& !lvl.getCheckedWalls().contains((x-1)+""+y))
+   			if (isConnected(level,x-1,y))
+   				connected = true;
+   	...
 
-Die Methode *isConnected* prüft ob das übergebene Wand Feld mit der Außenwand verbunden ist. Eine Wand gilt auch als Verbunden, wenn eine Nachbarwand als Verbunden gilt. In Zeile *2* wird geprüft ob die zu prüfende
+   	return connected; 
+\end{lstlisting}
+
+Listing 4.1 zeigt einen Ausschnitt der Methode *isConnected*. Die Methode *isConnected* prüft ob das übergebene Wand Feld mit der Außenwand verbunden ist. Eine Wand gilt auch als Verbunden, wenn eine Nachbarwand als Verbunden gilt. In Zeile *2* wird geprüft ob die zu prüfende
 Wand eine Außenwand ist, ist dies der Fall gilt sie als Verbunden. In Zeile *5* wird die Wand der Hilfsliste *checkedWalls* der Klasse *CodedLevel* hinzugefügt, um in den kommenden rekursiven Aufrufen keine Endlosschleife zu
 erzeugen. In Zeile *6* wird geprüft, ob das Feld zur linken des zu prüfenden Feldes eine Wand ist und ob dieses noch nicht in der Liste der geprüften Wände ist. Sind die Bedingungen erfüllt wird die Methode *isConnected* rekursiv für
 die Nachbarwand aufgerufen (Zeile *8*). Gilt diese als Verbunden, gilt auch die betrachtete Wand als Verbunden (Zeile *9* und *11*). Zeile *6* bis *9* werden für alle Nachbarfelder ausgeführt.
 
 Die Hilfsliste muss vor jeder Prüfung geleert werden. Gilt eine Wand als nicht verbunden, kann mithilfe der Länge der Liste nachvollzogen werden, aus wie vielen Wänden die Kette besteht und der Fitnesswert entsprechend angepasst werden.
 
-Ausschnitt aus der Methode *isReachable* :
 
-```
-private boolean isReachable(final CodedLevel level, final int x, final int y) {
-	if (level.getReachableFloors().size() <= 0)
-			createReachableList(level, level.getStart().x, level.getStart().y);
+\begin{lstlisting}[language=java, caption=Ausschnitt der Methode isReachable]	
+private boolean isReachable(CodedLevel lvl,int x,int y) {
+	if (lvl.getReachableFloors().size()<=0)
+	  createReachableList(lvl,lvl.getStart().x,lvl.getStart().y);
+	return lvl.getReachableFloors().contains(x + "_" + y);
+\end{lstlisting}
 
-		return level.getReachableFloors().contains(x + "_" + y);
-	}
-```
 
-Die Methode *isReachable* schaut in der Hilfsliste *reachableFloors* der Klasse *CodedLevel* ob das zu prüfende Bodenfeld in der Liste steht (Zeile *5*). Ist die Liste Leer, wird zuerst die Methode *createReachableList* mit den Koordinaten des Startpunktes aufgerufen (Zeile *4*). 
+Listing 4.2 zeigt einen Ausschnitt der Methode *isReachable*. Die Methode *isReachable* schaut in der Hilfsliste *reachableFloors* der Klasse *CodedLevel* ob das zu prüfende Bodenfeld in der Liste steht (Zeile *5*). Ist die Liste Leer, wird zuerst die Methode *createReachableList* mit den Koordinaten des Startpunktes aufgerufen (Zeile *4*). 
 
-Ausschnitt aus der Methode *createRachableList* :
 
-```
-private void createReachableList(final CodedLevel level, final int x, final int y) {
-	level.getReachableFloors().add(x + "_" + y);
+
+\begin{lstlisting}[language=java, caption=Ausschnitt der Methode createRachableList]	
+private void createReachableList(CodedLevel lvl, int x, int y) {
+	lvl.getReachableFloors().add(x+"_"+y);
 	
-	if ((level.getLevel()[x - 1][y] == Reference.REFERENCE_FLOOR
-		|| level.getLevel()[x - 1][y] == Reference.REFEERNCE_EXIT
-		|| level.getLevel()[x - 1][y] == Reference.REFERENCE_START)
-		&& !level.getReachableFloors().contains((x - 1) + "_" + y))
-			createReachableList(level, x - 1, y);
+	if ((lvl.getLevel()[x-1][y] == Reference.REFERENCE_FLOOR
+		|| lvl.getLevel()[x-1][y] == Reference.REFEERNCE_EXIT
+		|| lvl.getLevel()[x-1][y] == Reference.REFERENCE_START)
+		&& !level.getReachableFloors().contains((x-1)+ "_"+y))
+			createReachableList(lvl,x-1,y);
 	...
 }
-```
+\end{lstlisting}
 
-Die Methode *createRachableList* füllt die Liste *reachableFloors* mit allen Felder, die von den übergebenen Koordinaten erreicht werden können. Dafür wird, in Zeile *4* -*8* am Beispiel des linken Nachbars zu sehen, jedes Nachbarfeld des zu prüfenden Feldes betrachtet und geschaut ob dieses als begehbar eingestuft werden kann (also Boden, Start oder Ausgang) und ob das Nachbarfeld noch nicht in der Liste gespeichert ist. Sind die Bedingungen erfüllt wird die Methode *createReachableList* rekursiv für den Nachbar aufgerufen. Am Ende stehen alle erreichbaren Felder in der Liste *reachableFloors*. 
+Listing 4.3 zeigt einen Ausschnitt der Methode *createReachableList*. Die Methode *createRachableList* füllt die Liste *reachableFloors* mit allen Felder, die von den übergebenen Koordinaten erreicht werden können. Dafür wird, in Zeile *4* -*8* am Beispiel des linken Nachbars zu sehen, jedes Nachbarfeld des zu prüfenden Feldes betrachtet und geschaut ob dieses als begehbar eingestuft werden kann (also Boden, Start oder Ausgang) und ob das Nachbarfeld noch nicht in der Liste gespeichert ist. Sind die Bedingungen erfüllt wird die Methode *createReachableList* rekursiv für den Nachbar aufgerufen. Am Ende stehen alle erreichbaren Felder in der Liste *reachableFloors*. 
 
 Kommt es zur Veränderung im Level, z.B. durch Rekombination oder Mutation muss die Hilfsliste geleert werden, da nicht sichergestellt werden kann, dass die Daten noch korrekt sind. Das bedeutet, in jeder Generation wird für jedes Level der Population die Liste neu erstellt. 
 
@@ -78,27 +76,25 @@ Der GA wurde zusätzlich um die Methode *removeUnreachableFloors* erweitert, wel
 
 Der *LevelParser* konnte, wie im Konzept beschrieben, umgesetzt werden. Im Folgenden wird die Methode zur Generierung der Leveltextur genauer beschrieben.
 
-Ausschnitt aus der Methode *generateTextureMap* : 
-
-```
+\begin{lstlisting}[language=java, caption=Ausschnitt der Methode generateTextureMap]	
 img1 = ImageIO.read(new File(lvl.getLevel()[0][0].getTexture()));
-	for (int y = 0; y < lvl.getYSize(); y++) {
-		for (int x = 1; x < lvl.getXSize(); x++) {
-			BufferedImage img2 = ImageIO.read(new File(lvl.getLevel()[x][y].getTexture()));
-			joinedImgLine = JoinImage.joinBufferedImageSide(img1, img2);
-			img1 = joinedImgLine;
-			}
-			if (y == 0)
-				joinedImgComplete = joinedImgLine;
-			else
-				joinedImgComplete = JoinImage.joinBufferedImageDown(
-				joinedImgComplete, joinedImgLine);
-				img1 = ImageIO.read(new File(lvl.getLevel()[0][y].getTexture()));
-			}
-		}	
-```
+for (int y = 0; y < lvl.getYSize(); y++) {
+	for (int x = 1; x < lvl.getXSize(); x++) {
+		BufferedImage img2 = ImageIO.read(new File(lvl.getLevel()[x][y].getTexture()));
+		joinedImgLine = JoinImage.joinBufferedImageSide(img1, img2);
+		img1 = joinedImgLine;
+		}
+	if (y == 0)
+		joinedImgComplete = joinedImgLine;
+	else
+		joinedImgComplete = JoinImage.joinBufferedImageDown(
+		joinedImgComplete, joinedImgLine);
+		img1 = ImageIO.read(new File(lvl.getLevel()[0][y].getTexture()));
+	}
+}	
+\end{lstlisting}
 
-In Zeile *1* wird die Textur des oberen linken Feldes ausgelesen. Danach wird reihenweise über das gesamte Level iteriert (Zeile *2* und *3*). In Zeile *5* werden zwei Texturen durch die Hilfsfunktion *joinBufferedImageSide* so miteinander verbunden, dass die zweite Textur rechts an die erste Textur angefügt wird. Im nächsten Schleifendurchgang ist die erste Textur, die Zusammengesetzte Textur der vorherigen Schleifendurchläufe (Zeile *6*). Nachdem über eine komplette Reihe iteriert wurde, befindet sich in der Variablen *joinedImgLine* die Textur der ganzen Reihe. In Zeile *11* wird diese Textur durch die Hilfsfunktion *joinedBufferedImageDown* unter die Textur der vorherigen Schleifendurchläufe angefügt. Am Ende aller Schleifendurchläufe befindet sich die komplette Level Textur in der Variablen *joinedImageComplete* und wird an den vom User bestimmten Pfad abgespeichert.
+Listing 4.4 zeigt einen Ausschnitt der Methode *generateTExtureMap*. In Zeile *1* wird die Textur des oberen linken Feldes ausgelesen. Danach wird reihenweise über das gesamte Level iteriert (Zeile *2* und *3*). In Zeile *5* werden zwei Texturen durch die Hilfsfunktion *joinBufferedImageSide* so miteinander verbunden, dass die zweite Textur rechts an die erste Textur angefügt wird. Im nächsten Schleifendurchgang ist die erste Textur, die Zusammengesetzte Textur der vorherigen Schleifendurchläufe (Zeile *6*). Nachdem über eine komplette Reihe iteriert wurde, befindet sich in der Variablen *joinedImgLine* die Textur der ganzen Reihe. In Zeile *11* wird diese Textur durch die Hilfsfunktion *joinedBufferedImageDown* unter die Textur der vorherigen Schleifendurchläufe angefügt. Am Ende aller Schleifendurchläufe befindet sich die komplette Level Textur in der Variablen *joinedImageComplete* und wird an den vom User bestimmten Pfad abgespeichert.
 
 Dieses Verfahren benötigt, je nach Level Größe, eine große Menge an Arbeitsspeicher. In Tests haben 200x200 große Level ausgereicht um den RAM der JVM bei Standarteinstellungen auszureizen. Eine manuelle Erhöhung des JVM RAMs ist daher empfehlenswert.
 
@@ -110,21 +106,21 @@ Abbildung 4.1 zeigt ein Generiertes Level mit den optimalen Einstellungen. Die R
 
 Abbildung 4.2 zeigt den Einfluss der Mutationschane auf die Fitness. Es ist deutlich zu erkennen, dass eine Erhöhung der Mutationschance zu einer schlechteren Fitness führt. Die Fitness der optimalen Einstellung von 1% liegt sehr nah an den der Fitness bei einer 0% Mutationschance. Abbildung 4.3 zeigt den Einfluss der Mutationschance auf die Generation der besten Lösung. Es ist zu erkenne das bereits ab einer Mutationschance von 3% die Lösung aus einer sehr frühen Generation stammt, und daher ehr zufällig gefunden wurde anstatt sich mit der Zeit entwickelt zu haben. Daraus geht hervor das die Mutationsfunktion nicht dabei hilft, mit jeder Generation bessere Lösungen zu erzeugen, sondern den GA in eine Zufallssuche verwandelt.
 
-![Beispiellevel. MV=1, MC=1%, RV=1, RC=60%, eigene Grafik](figs/level/F1M1C1.png){width=70%}
+![Beispiellevel. MV=1, MC=1%, RV=1, RC=60%](figs/level/F1M1C1.png){width=70%}
 
-![Einfluss der Mutationschance auf die Fitness, eigene Grafik](figs/Graph/g1.png){width=70%}
+![Einfluss der Mutationschance auf die Fitness](figs/Graph/g1.png){width=70%}
 
-![Einfluss der Mutationschance auf die Generation der besten Lösung, eigene Grafik](figs/Graph/g2.png){width=70%}
+![Einfluss der Mutationschance auf die Generation der besten Lösung](figs/Graph/g2.png){width=70%}
 
-## Umsetzung #2
+## Optimierung des Algorithmus
 
 Alle Anpassungen und Neuerungen wurden nach dem Konzept #2 implementiert.  Das Programm wurde für die neue Abbruchbedingung angepasst. 
 
 Abbildung 4.4 zeigt ein Level mit der ersten Mutations- und Rekombinationsversion sowie der neu angepassten Fitness. Durch die angepasste Fitnessfunktion sind im Vergleich zu Abbildung .. weniger einzelne Wandstücke, welche aus der Außenwand herausgucken zu erkennen. 
 
-![Beispiellevel. MV=1, MC=1%, RV=1; RC=60%, eigene Grafik](figs/level/F2M1C1.png){width=50%}
+![Beispiellevel. MV=1, MC=1%, RV=1; RC=60%](figs/level/F2M1C1.png){width=50%}
 
-![Einfluss der Mutationschance auf die Fitness, eigene Grafik](figs/Graph/g3.png){width=70%}
+![Einfluss der Mutationschance auf die Fitness](figs/Graph/g3.png){width=70%}
 
 Abbildung 4.5 zeigt den Einfluss der Mutationschance bei der Verwendung der neuen Mutationsfunktion, der neuen Rekombinationsfunktion sowie angepasster Fitnessfunktion. Die höchste Fitness wird bei einer hohen
 Mutationschance von 40% erreicht, ähnlich hohe Werte erzielen ähnliche Fittnesswerte. Es ist davon auszugehen das bei einer so hohen Mutationschance im Laufe der Zeit alle Gene mutiert werden. Der Zusammenhang zwischen hoher
@@ -132,13 +128,13 @@ Fitnesswerten und hoher Mutationschance bestärkt die Annahme das die Mutationsf
 
 Abbildung 4.6 zeigt ein Level mit einer Mutationschance von 5%. Abbildung 4.7 zeigt ein Level mit einer Mutationschance von 40%. Im direkten Vergleich fällt auf, dass die hohe Mutationsrate dazu geführt hat, dass alle Wände verbunden sind, die niedrigere Mutationschance hat noch einige einzelne Wände übriggelassen. Beide Varianten bieten wenige bis gar keine Raumähnliche Strukturen, sondern sehen ehr wie ein großer Raum aus. Abbildung 4.8 zeigt ein Level mit niedriger Mutationschance und verringerter Bodenfelder Anzahl. Hier lassen sich Raumähnliche Strukturen verbunden mit Fluren erkennen. Der untere Bereich muss zur Absolvierung des Levels nicht betreten werden und bietet Freiraum zum Erkunden.
 
-![Beispiellevel. MV=2, MC=5%, RV=2, RC=80% , eigene Grafik](figs/level/F2M2C2LOWPMUT.png){width=50%} 
+![Beispiellevel. MV=2, MC=5%, RV=2, RC=80%](figs/level/F2M2C2LOWPMUT.png){width=50%} 
 
-![Beispiellevle. MV=2; MC=40%, RV=2, RC=80% , eigene Grafik](figs/level/F2M2C2HIGHPMUT.png){width=50%}
+![Beispiellevle. MV=2; MC=40%, RV=2, RC=80%](figs/level/F2M2C2HIGHPMUT.png){width=50%}
 
-![Beispiellevel mit verringerter Bodenfläche. MV=2; MC=40%, RV=2; RC=80%, eigene Grafik](figs/level/F2M2C2LOWPMUT40PFLOOR.png){width=50%}
+![Beispiellevel mit verringerter Bodenfläche. MV=2; MC=40%, RV=2; RC=80%](figs/level/F2M2C2LOWPMUT40PFLOOR.png){width=50%}
 
-## Umsetzung #3
+## Ansätze zur Erweiterung des Algorithmus
 
 Die neue Mutationsfunktion wurde wie im Konzept #3 beschrieben implementiert. Die beiden Verfahren zur Platzierung von Räumen wurden nach dem Konzept implementiert. Das *Spelunky-Style* Verfahren wurde zusätzlich um die Platzierung von Türen in optionalen Räumen und der Platzierung von Schlüsseln auf den kritischen Pfad erweitert. 
 
@@ -146,20 +142,20 @@ Um den *Reise zum Mittelpunkt* Algorithmus umzusetzen wurden die Klasse *CodedRo
 
 Abbildung 4.9 zeigt den Einfluss der Mutationschance bei der Verwendung der *Game of Life* Mutationsfunktion. Ähnlich zur vorherigen Mutationsfunktion liefert eine hohe Mutationschance von 40% den höchsten Fitnesswert, eine geringere Chance von 3% liefert ähnlich gute Ergebnisse.
 
-![Einfluss der Mutationschance auf die Fitness, eigene Grafik](figs/Graph/g4.png){width=70%}
+![Einfluss der Mutationschance auf die Fitness](figs/Graph/g4.png){width=70%}
 
 Abbildung 4.10 zeigt ein Level mit hoher Mutationschance von 40%. Zum Vergleich zeigt Abbildung 4.11 ein Level mit einer Mutationschance von 3%. Beide Varianten erzeugen Level mit einer Vielzahl einzeln Platzierter Wände. Diese
 Mutationsfunktion kann als Rückschritt im Vergleich zur vorherigen Version betrachtet werden.
 
-![Beispiellevel. MV=3, MC=40%, RV=2, RC=60%, eigene Grafik](figs/level/F2M3C2HIGHPMUT.png){width=50%} 
+![Beispiellevel. MV=3, MC=40%, RV=2, RC=60%](figs/level/F2M3C2HIGHPMUT.png){width=50%} 
 
-![Beispiellevel. MV=3, MC=3%, RV=2, RC=60%, eigene Grafik](figs/level/F2M3C2LOWPMUT.png){width=50%}
+![Beispiellevel. MV=3, MC=3%, RV=2, RC=60%](figs/level/F2M3C2LOWPMUT.png){width=50%}
 
 Abbildung 4.12 zeigt ein Level welches mithilfe des *Spelunky-Style* Algorithmus erzeugt wurde. Die Räume wurden dabei mit der Mutationsversion 2 und einer Mutationschance von 5% erzeugt. Es fällt direkt negativ auf, dass sich alle Räume sehr ähnlichsehen und dass das Gittermuster sofort zu erkenne ist. Dafür liefert diese Variante neben den Kritischen Lösungspfad eine Reihe an optionalen Räumen. Der obere Rechte Raum ist mithilfe einer Tür verschlossen und kann erst mit dem Schlüssel aus dem Raum in der zweiten Reihe geöffnet werden.
 
-![Beispiellevel erzeugt mit den Spelunky-Style Algorithmus, eigen Grafik](figs/level/Spelunky.png){width=50%} 
+![Beispiellevel erzeugt mit den Spelunky-Style Algorithmus](figs/level/Spelunky.png){width=50%} 
 
-![Beispiellevel erzeugt mit den Reise zum Mittelpunkt Algorithmus, eigene Grafik](figs/level/test_0.png){width=50%}
+![Beispiellevel erzeugt mit den Reise zum Mittelpunkt Algorithmus](figs/level/test_0.png){width=50%}
 
 Abbildung 4.13 zeigt ein Level, welches durch die zufällige Platzierung von Räumen erzeugt wurde. Die Räume wurden mit den bereits beschriebenen Parametereinstellungen erzeugt. in der Mitte des Levels sind die langen Verbindungstunnel zu erkennen, auch sind mehrere optionale Räume im Level zu finden. Negativ fällt die große Wandfläche sowie die langen Wege zwischen den Räumen auf.
 

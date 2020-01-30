@@ -1,6 +1,6 @@
 
 
-# Prozedurale Content Generierung
+# Grundlagen
 
 In diesem Kapitel werden alle wichtigen Informationen vermittelt, die nötig sind um die technischen Hintergründe der Arbeit zu verstehen und um das Resultat der Arbeit bewerten zu können. Im ersten Abschnitt wird das Genre der Roguelike Spiele beschrieben, um ein Verständnis dafür zu vermitteln, welche Art von Spiel von den Studenten programmiert wird. In Abschnitt zwei werden Prinzipien für Gutes Level Design vermittelt. Der dritte Abschnitt beschäftigt sich mit Prozeduraler Level Generierung, es werden bekannte Verfahren präsentiert um Level automatisch Generieren zu lassen. Der letzte Abschnitt vermittelt das nötige Grundwissen für Genetische Algorithmen, um das, im nächsten Kapitel folgende, Konzept verstehen zu können.
 
@@ -26,8 +26,8 @@ Das Videospiel *Rogue: Exploring the Dungoens of Doom*, ist ein, in den 1980er e
 
 Glenn R. Wichman, einer der Entwickler von Rogue, schrieb in einen offenen Brief:
 
-„But I think Rogue’s biggest contribution, and one that still stands out to this day, is that the computer itself generated the adventure in Rogue. Every time you played, you got a new adventure. That’s really what made
-it so popular for all those years in the early eighties.“[@Wichman1997]
+>„But I think Rogue’s biggest contribution, and one that still stands out to this day, is that the >computer itself generated the adventure in Rogue. Every time you played, you got a new >adventure. That’s really what made
+>it so popular for all those years in the early eighties.“[@Wichman1997]
 
 Die Level von Rogue werden bei jeden Spielstart neu generiert, man spielt also niemals zweimal das exakt selbe Level. In Verbindung mit Permadeath wurde so ein Abwechslungsreiches Spiel mit hohem Wiederspielwert erschaffen. Permadeath beschreibt ein Spielprinzip, bei dem der Spielertot zum permanenten Verlust des Fortschritts führt und das Spiel von vorne begonnen werden muss.
 
@@ -35,7 +35,7 @@ Die Level von Rogue werden bei jeden Spielstart neu generiert, man spielt also n
 
 Da Rogue eines der ersten Spiele war, die auf PCG setzten, waren sowohl Spieler als auch Entwickler von diesem Konzept begeistert. Viele Entwickler fühlten sich durch Rogue Inspiriert und entwickelten ihre eigenen Spiele mit PCG.[@Barton2009] Es entwickelte sich das Genre der Roguelike.
 
-„[...] Roguelikes are called Roguelikes, because the games are literally like Rogue [...]“ [@Brown2017]
+>„[...] Roguelikes are called Roguelikes, because the games are literally like Rogue [...]“ >[@Brown2017]
 
 2008 wurde auf der Internationale Roguelike Entwickler Konferenz eine Liste verschiedener Faktoren erstellt, welche dabei helfen sollen das Roguelike Genre genauer zu beschreiben und zu definieren wann ein Spiel *like Rogue* ist. Diese List wurde später unter den Namen *Berliner Interpretation* bekannt. Folgende Faktoren wurden dabei herausgearbeitet: [@Conference2008]
 
@@ -51,6 +51,9 @@ Da Rogue eines der ersten Spiele war, die auf PCG setzten, waren sowohl Spieler 
 | Hack'n'slash                  | Even though there can be much more to the game, killing lots of monsters is a very important part of a roguelike. The game is player-vs-world: there are no monster/monster relations (like enmities, or diplomacy). |
 | Exploration and discovery     | The game requires careful exploration of the dungeon levels and discovery of the usage of unidentified items. This has to be done anew every time the player starts a new game. |
 
+Table: Berliner Interpretation: High value factors [@Conference2008]
+
+
 | Low value factors               | Erläuterung                                                  |
 | ------------------------------- | ------------------------------------------------------------ |
 | Single player character         | The player controls a single character. The game is player-centric, the world is viewed through that one character and that character's death is the end of the game. |
@@ -59,6 +62,9 @@ Da Rogue eines der ersten Spiele war, die auf PCG setzten, waren sowohl Spieler 
 | ASCII display                   | The traditional display for roguelikes is to represent the tiled world by ASCII characters. |
 | Dungeons                        | Roguelikes contain dungeons, such as levels composed of rooms and corridors. |
 | Numbers                         | The numbers used to describe the character (hit points, attributes etc.) are deliberately shown. |
+
+Table: Berliner Interpretation: Low value factors [@Conference2008]
+
 
 Die Berliner Interpretation wurde über die Jahre immer wieder kritisiert. Darren Grey kritisierte in seinen Blog Beitrag *Screw the Berliner Interpretation!* den "downright nonsense"[@Grey2013] der meisten Faktoren und ist der Auffassung die Berliner Interpretation schadete der kreativen Weiterentwicklung des Genres.[@Grey2013]
 
@@ -91,22 +97,22 @@ Abbildung 2.2 zeigt einen Ausschnitt eines Dungeons aus dem Spiel. Besonders gut
 
 ## Regeln für gutes Leveldesign
 
-"In den meisten Computerspielen steht das Design der Level im Mittelpunkt. Ob
-Puzzle-, Adventure-, oder Rollenspiel, Level gehören zum Kernpunkt der Interaktion. Sie vereinen die verschiedenen Elemente des Spiels zum großen Ganzen: Dem
-Spiel selbst. Rückt der Leveldesigner nicht all diese Elemente in ein gutes Licht, so
-geht der Spielspaß verloren."[@Hagen2019]
+>"In den meisten Computerspielen steht das Design der Level im Mittelpunkt. Ob
+>Puzzle-, Adventure-, oder Rollenspiel, Level gehören zum Kernpunkt der Interaktion. Sie vereinen >die verschiedenen Elemente des Spiels zum großen Ganzen: Dem
+>Spiel selbst. Rückt der Leveldesigner nicht all diese Elemente in ein gutes Licht, so
+>geht der Spielspaß verloren."[@Hagen2019]
 
 Im Laufe der Zeit haben viele Personen versucht eine Liste wichtiger Regeln für Gutes Leveldesign aufzustellen. Durch die großen Unterschiede der Anforderungen der einzelnen Spielwelten, sollten diese Regeln nur als Leitfaden betrachtet werden. Auch haben unterschiedliche Entwickler unterschiedliche Meinungen darüber, welche Faktoren wichtig sind und wie sie umzusetzen sind. Im Folgenden wird versucht eine Liste oft genannter Faktoren für gutes Leveldesign aufzustellen. Die Wichtigsten Informationen stammen dabei aus Dan Taylors *Ten Principles of Good Level Design* [Taylor2013] sowie seinen dazugehörigen GDC Talk [@Taylor2018] und Tim Ryans *Beginning Levle Design*
 [@Ryan1999]
 
-#### Lösbarkeit und Fehlerfreiheit
+### Lösbarkeit und Fehlerfreiheit
 Ein Level muss immer lösbar sein. Je nach Spiel und Genre bedeutet dies, das entweder das Ende des Levels erreichbar sein muss oder alle Missionen im Level absolvier bar sein müssen. Dasselbe gilt für alle Nebenmissionen und sammelbare Objekte wie Münzen oder Items im Level. Ist ein Level durch schlechtes Design oder Bugs nicht lösbar, zerstört dies den Spielspaß des Spielers. 
 
 Auch sollten Level immer so fehlerfrei wie möglich sein. Das betrifft sowohl grafische Fehler, wie falsch platzierte Texturen, als auch Gameplay Fehler. Typische Beispiele für Gameplay Fehler wären z.B die, vom Designer ungewollte, Möglichkeit ein Hindernis zu umlaufen, falsch platzierte Gegner oder andere, vom Level abhängigen, Designfehler. Einzelne Fehler werden von Spielern oftmals hingenommen, summiert sich die Anzahl der Fehler aber auf, oder schränken diese den Spielgenuss ein, kann dies ähnliche Auswirkungen haben wie ein unlösbares Level.
 
-#### Gameplay First
+### Gameplay First
 
-"Above all else, great level design is driven by interaction - the game’s mechanics.  Game levels don’t just provide context for mechanics, they provide the very reality in which they exist."[@Taylor2013]
+>"Above all else, great level design is driven by interaction - the game’s mechanics.  Game levels >don’t just provide context for mechanics, they provide the very reality in which they exist." >[@Taylor2013]
 
 Ein Level dient in aller erster Linie dazu, den Spieler eine Spielfläche für die Gameplay Mechaniken des Spiels zu bieten. Das bedeutet ein Level sollte viele Möglichkeiten geben um die Gameplay Mechaniken zu verwenden und muss immer so gebaut sein, dass es mit den Gameplay Mechaniken spaßig ist zu spielen. 
 
@@ -116,11 +122,11 @@ Abbildung 2.3 zeigt die Karte der Mission *Bankraub* aus dem Spiel *Dishonored: 
 
 ![Levelkarte aus dem Spiel Dishonored: Death of the Outsider. Grafik aus dem Spiel](figs/bankJob.png)
 
-"Always remember that interactivity is what makes videogames different from any other form of entertainment: books have stories, movies have visuals, games have interaction.  If your level design isn’t showcasing your game mechanics, your players might as well be watching a movie or reading a book."[@Taylor2013]
+>"Always remember that interactivity is what makes videogames different from any other form of >entertainment: books have stories, movies have visuals, games have interaction.  If your level >design isn’t showcasing your game mechanics, your players might as well be watching a movie or >reading a book."[@Taylor2013]
 
-#### Immersion
+### Immersion
 
-"Immersion trägt maßgeblich dazu bei, dass Spieler ihre Zweifel beiseitelegen und gänzlich in die Spielwelt eintauchen"[@Hagen2019] 
+>"Immersion trägt maßgeblich dazu bei, dass Spieler ihre Zweifel beiseitelegen und gänzlich in die Spielwelt eintauchen"[@Hagen2019] 
 
 Immersion beschreibt die Glaubwürdigkeit der Spielwelt. Dabei kommt es nicht darauf an, wie realistisch ein Spiel ist und wie gut die reale Welt abgebildet wird, sondern darum das ein Spiel und dessen Welt eine gewisse Kontinuität den selbst erstellten Regeln aufweist. Das erschaffen eines Immersiven Spielwelt ist nicht nur Aufgabe des Level Designers, es zieht sich durch sämtliche Bereiche der Entwicklung. 
 
@@ -130,11 +136,11 @@ Um im Leveldesign eine hohe Immersion zu erreichen, müssen vor allem die Platzi
 
 Das Spielegenre *Immersive Simulation* zeichnet sich dadurch aus, dass ein besonders hoher Fokus auf die Immersion gelegt wird. [@Brown2016] Warren Spector hält immersives Gameplay für den entscheidenden Faktor, der Videospiele von allen anderen Medien unterscheidet.
 
-"Simulations allow players to explore not just a space but a 'possibility space'. They can make their own fun, tell their own stories, solve problems the way they want, and see the consequences of their choices. That's the thing that games can do that no other medium in human hisotry has been able to do."[@Spector2016]
+>"Simulations allow players to explore not just a space but a 'possibility space'. They can make >their own fun, tell their own stories, solve problems the way they want, and see the consequences >of their choices. That's the thing that games can do that no other medium in human hisotry has >been able to do."[@Spector2016]
 
-#### Balancing
+### Balancing
 
-"The trick to good level design is to present challenges that are difficult enough to merit the players’ attention and make their heart or mind race, but not so difficult as to always leave them failing and disappointed."[@Ryan1999]
+>"The trick to good level design is to present challenges that are difficult enough to merit the >players’ attention and make their heart or mind race, but not so difficult as to always leave them >failing and disappointed."[@Ryan1999]
 
 Das Balancing in Spielen ist entscheidend darüber ob die Herausforderungen im Spiel als langweilig, spaßig oder frustrierend wahrgenommen werden. Da die Erfahrung mit Spielen von Spieler zu Spieler stark schwanken kann, und so eine Situation von einer Gruppe an Spieler als zu leicht und einer anderen Gruppe an Spielern als zu schwer empfunden werden kann, ist ein fester Schwierigkeitsgrad oft nicht Zielführend. Viele Spiele sind daher dazu übergegangen, den Spieler zu Beginn aus einen von mehreren Schwierigkeitsgraden auswählen zu lassen und so den Spieler selbst bestimmen zu lassen wie schwer er seine Herausforderungen haben möchte. 
 
@@ -142,7 +148,7 @@ Je nach Spiel hat die Auswahl des Schwierigkeitsgrades verschiedenen Auswirkunge
 
 Mark Brown betrachtet die Auswahl eines Schwierigkeitsgrades Kritsch und sagte:
 
-"[...] they (player) might pick the easier option even though they could handle more challenge, and rob themselves of the best, and designer-intended experience"[@Brown2016a]
+>"[...] they (player) might pick the easier option even though they could handle more challenge, and >rob themselves of the best, and designer-intended experience"[@Brown2016a]
 
 Viele Spieler möchten das Spiel in der vom Entwickler vorgesehenen Art und Weise spielen und wählen deshalb den mittleren Schwierigkeitsgrad aus, und passen ihn nicht an ihre Bedürfnisse an. [@DevPlay2019a]
 
@@ -154,7 +160,7 @@ Durch Risk and Reward Situationen lassen sich besonders schwierige Momente als o
 
 Grundsätzlich gilt zu beachten, dass Spieler mit voranschreiten im Spiel immer besser werden, daher sollten frühe Level deutlich einfacher sein als Level gegen Ende des Spiels. Dabei muss die Schwierigkeit der Level nicht linear steigen, es bietet sich an nach einem besonders schweren Level ein einfacheres Level einzubauen um den Spieler Zeit zum Aufatmen zu lassen.
 
-#### Pacing
+### Pacing
 
 Pacing ist ein Begriff aus dem Film und beschreibt die Spannungskurve des Films. Abbildung 2.4 zeigt die Pacing-Kurve von *Star Wars: A new Hope*. Gut zu erkennen sind die verschiedenen Spannungspeaks, welche nach
 kurzer Zeit wieder abflachen und so ein Konstrukt aus Spannenden und Ruhigeren Szenen bilden. Zu Beginn steigt die Spannungskurve bereits stark an, um direktes Interesse beim Zuschauer zu wecken. Kurz vorm Ende kommt es zum
@@ -178,11 +184,11 @@ Beide Verfahren haben ihr Vor- und Nachteile, und auch das vermischen beider Ver
 
 Denn auch in Spielen, die den Spieler volle Kontrolle überlassen, kann zum Beispiel durch die Anzahl der Platzierten Gegner Spannung erzeugt werden. So könnte am Beispiel *Thief*, zu Beginn des Levels zwei Wachen platziert werden, welche umschlichen werden müssen, im Haus bekommt es der Spieler dann mit wenigen Wachen zu tun welche gut ausmanövriert werden können bevor es am Ende durch ein schwer Bewachtes Gebiet mit weniger Versteckmöglichkeiten geht.
 
-#### Environmental Storytelling 
+### Environmental Storytelling 
 
 Neben der eigentlichen Geschichte, welche durch Dialoge, Texte oder Zwischensequenzen erzählt wird, erzählen viele Spiele weitere, oft kleine, Geschichten durch die Gestaltung ihrer Level. 
 
-"Environmental storytelling is the art of arranging a careful selection of the objects available in a game world so that they suggest a story to the player who sees them."[@Stewart2015]
+>"Environmental storytelling is the art of arranging a careful selection of the objects available in a >game world so that they suggest a story to the player who sees them."[@Stewart2015]
 
 Environmental Storytelling wird oft genutzt um die Spielwelt lebendiger zu gestalten, dass es sowohl der Spielwelt als auch den Charakteren in dieser Spielwelt eine Geschichte verpasst, welche nicht unbedingt mit der eigentliche Hauptgeschichte zusammenhängen muss.
 
@@ -193,8 +199,8 @@ Dieses Beispiel zeigt, wie Environmental Storytelling genutzt werden kann, um oh
 ![Szene aus dem Spiel BioShock[@year-pictures.info2017]](figs/bioshock.jpg){width=100%}
 
 
-#### Navigation
-"Good level design is fun to navigate"[@Taylor2013]
+### Navigation
+>"Good level design is fun to navigate"[@Taylor2013]
 
 Den Spieler durch das Level zu Navigieren ist eine wichtige Aufgabe, da schnell Frust aufkommen kann, wenn der Spieler den richtigen Weg nicht findet. Es gibt eine Vielzahl an unterschiedlichen Möglichkeiten den Spieler durch das Level zu navigieren.
 
@@ -216,26 +222,26 @@ Oft werden auch sogenannten *Weenies* verwendet um den Spieler in eine Richtung 
 
 Auch in streng linearen Spielen kann gute Spieler Navigation hilfreich sein, da es das Pacing aufrechterhält und den Schein einer größeren Welt erzeugen kann
 
-"The game provides multiple paths for the player, and they feel like they have the freedom to explore whichever they choose. As they always seem to stumble upon new content - not entirely aware that they were subconsciously persuaded to take that path or enter that door - it stands to reason that all the other exits and doors lead to new play spaces too. It makes the world feel bigger and less linear that it really is. It also helps keep up the pace of the game.."[Brown2015c]
+>"The game provides multiple paths for the player, and they feel like they have the freedom to >explore whichever they choose. As they always seem to stumble upon new content - not entirely >aware that they were subconsciously persuaded to take that path or enter that door - it stands to >reason that all the other exits and doors lead to new play spaces too. It makes the world feel >bigger and less linear that it really is. It also helps keep up the pace of the game.."[Brown2015c]
 
 
-#### Risk and Reward
+### Risk and Reward
 
 Im Laufe eines Spiels (und Levels), sollte es regelmäßig zu Risk and Reward Situationen kommen. Dies sind Situationen, in denen der Spieler ein höheres Risiko eingehen muss als gewohnt, z.B ein besonders starker Gegner
 angreifen oder durch ein starkes Bewachtes gebiet schleichen, um bei Erfolg eine Belohnung zu erhalten. Die Belohnung sollte abhängig von der Höhe des Risikos der Herausforderung sein. Risk and Reward Situationen sollten stets optional sein und sind für besonders gute Spieler gedacht, um diese eine neue Herausforderung zu bieten und entsprechend zu belohnen. Die Art der Belohnung schwankt von Spiel zu Spiel und kann von Punkten für den Highscore, einer Abkürzung bis hin zu einer besonders starken Waffe oder einem optionalen Storystrang alles sein. Spieler werden durch Risk and Reward Momenten in spannende Entscheidungssituationen gebracht ob sie die Herausforderung annehmen und Gefahr Laufen zu versagen oder auf Nummer sicher gehen aber dafür die Belohnung verpassen.
 
-#### Einzigartigkeit
+### Einzigartigkeit
 
 Die unterschiedlichen Level im Spiel sollten zwar alle demselben Designkonzepten Folgen, sich jedoch merklich voneinander unterscheiden. Ähnelt sich die Levelstruktur der einzelnen Level zu stark oder werden dieselben Grafik Assets immer und immer wieder verwendet, trübt dieses die Spielerfahrung. 
 
-"[...] people don't like playing the same level twice."[@Ryan1999]
+>"[...] people don't like playing the same level twice."[@Ryan1999]
 
 Um Level Einzigartiger zu gestalten, sollte eine große Variation an unterschiedlichen Settings, Gegner und Gameplay Herausforderungen geboten werden.
 
-#### Effizienz
+### Effizienz
 Die Entwicklung von Spielen ist sehr teuer, Spiele kosten in der Regel mehrere Millionen Dollar, dennoch müssen Ressourcen effizient genutzt werden. [@DevPlay2017]
 Ein Leveldesigner baut daher nicht jedes Level von Grund auf neu, vielmehr entwickelt er ein modulares Set aus verschiedenen Events im Spiel. Durch die Kombination der einzelnen Teile dieses Sets, sowie leichten Anpassungen für speziellere Situationen, können viele unterschiedliche Situationen erschaffen werden. 
-"Modular design is your friend – a smart designer won’t design a level, he/she will design a series of modular, mechanic-driven encounters, that can be strung together to create a level.  And another level.  And another level."[@Taylor2013]
+>"Modular design is your friend – a smart designer won’t design a level, he/she will design a series >of modular, mechanic-driven encounters, that can be strung together to create a level.  And >another level.  And another level."[@Taylor2013]
 
 ## Prozedurale Levelgenerierung
 
@@ -245,7 +251,7 @@ Im folgenden Abschnitt wird das Prinzip der PCG, insbesondere der PLG beschriebe
 
 Prozedurale Levelgenerierung (PLG) ist ein Teilgebiet der Prozeduralen Content Generierung (PCG). PCG im Allgemeinen beschreibt das automatische Erstellen von Inhalten. Im Kontext Videospiele sind diese unter anderen Texturen, Items, Musik und Soundeffekte, 3D-Modelle und auch Spielwelten. Dabei werden Inhalte nicht vollständig zufällig generiert, vielmehr werden handgebaute Inhalte verändert oder neu zusammengesetzt. Dabei bestimmen zufällig erzeugte Parameterwerte die genaue Art und Weise der Veränderung. [@Beca2017]
 
-### Vor und Nachteile von PLG
+### Vor und Nachteile
 
 PLG wird vor allem genutzt um kosten bei der Entwicklung zu sparen.[@Remo2008] Ein guter Algorithmus kann auf Knopfdruck hunderte unterschiedliche Level generieren, für dessen Erstellung sonst mehrere Monate gebraucht werden würde.[@IntroversionSoftware2007] Der zweiter große Faktor ist die, aus der theoretisch unendlichen Anzahl an unterschiedlichen Level, resultierende erhöhte Wiederspielbarkeit.[@Beca2017] Besonders das Roguelike Genre (vgl. Abs. ) setzt auf PLG. Roguelike verwenden PLG zusätzlich als Gameplay Feature. Durch sich stetig verändernden Leveln, kann der Spieler das Spiel nicht durch schieres Auswendiglernen der Levelstruktur gewinnen, er muss die Gameplay Mechaniken verstehen und meistern. [@Brown2019]
 
@@ -258,7 +264,7 @@ Die Lösbarkeit der Level zu gewährleisten ist bei handgebautem Level schnell u
 Zusammengefasst lässt sich sagen, dass PLG besonders gut dafür geeignet sind um kostengünstig eine Vielzahl an abwechslungsreichen, aber nicht einzigartigen, Leveln zu erschaffen, die es schaffen Spieler dazu zu motivieren, Spiele immer wieder zu spielen. Die Umsetzung guter PLGs ist nicht trivial und erfordert komplexe Regeln und Strukturen. Einige Faktoren lassen sich mithilfe eines PLGs nur schwer oder gar nicht umsetzten. So muss das Pacing beispielsweise nicht über das Leveldesign, sondern über Gamedesign Elemente gesteuert werden (vgl. Abs. Spelunky).
 
 
-### PLG in der Praxis
+### Prozedurale Level Generierung in der Praxis
 
 Mittlerweile existieren eine Vielzahl an unterschiedlichen Algorithmen und Verfahren zur PLG. Im Folgenden wird eine Auswahl von ihnen Vorgestellt.
 
@@ -266,19 +272,20 @@ Mittlerweile existieren eine Vielzahl an unterschiedlichen Algorithmen und Verfa
 
 Der Random Walk Algorithmus, auch als *Drunkard‘s Walk* bekannt, wird eigentlich zur Generierung von nicht deterministischen Zeitreihen genutzt, um beispielsweise Aktienkurze in der Finanzmathematik zu modellieren. Er kann aber auch zur Erstellung Höhlenartiger Level genutzt werden. Beim Random Walk bewegt sich ein im leeren Dungeon gesetzter Akteur solange zufällig durch das Dungeon bis er die gewünschte Anzahl an unterschiedlichen Felder passiert hat. Passierte Felder werden als begehbaren Boden interpretiert, unpassierte Feld als unbegehbare Wände.[@Wikipedia2019a]
 
-Der Folgende Pseudocode zeigt, wie ein einfaches 2D-Level mithilfe des Random Walk Algorithmus erzeugt werden kann. [@Read2014]
+Listing 2.1 zeigt wie ein einfaches 2D-Level mithilfe des Random Walk Algorithmus erzeugt werden kann. [@Read2014]
 
-```
-erstelle ein Level in dem alle Felder Wände sind
-wähle ein Feld als Startpunkt aus
-vewandel das gewählte Feld in einen Boden
-while noch nicht genug Boden im Level
+\begin{lstlisting}[language=python, caption=Pseudocode des Spelunky Algorithmus]
+	erstelle ein Level in dem alle Felder Wände sind
+	wähle ein Feld als Startpunkt aus
+	vewandel das gewählte Feld in einen Boden
+	while noch nicht genug Boden im Level
 	mache einen Schritt in eine Zufällige Richtung
 	if neues Feld ist Wand
 		vewandel das neue Feld in einen Boden
-```
+\end{lstlisting}
 
-![Durch Random Walk erstelltes Beispiel Level. eigene Grafik](figs/randomWalk.png){width=50%}
+
+![Durch Random Walk erstelltes Beispiel Level.](figs/randomWalk.png){width=50%}
 
 Der Algorithmus bietet viele Parameter zum Verändern, so kann die Levelgröße, die gewünschte Bodenfläche und die Wahrscheinlichkeit in die jeweiligen Himmelsrichtungen zu gehen bestimmt werden. 
 
@@ -339,6 +346,7 @@ Jedes Template wird durch einen String dargestellt und kann als 10x8 Matrix vers
 | 6        | 5x3 Chunk                               |
 | L        | Leiterteil                              |
 | P        | Leiterteil mit Fläche zum Stehen        |
+Table: Referenz Tabelle für die Generierung von Spelunky Level [@Yu2016]
 
 Um Monster und Items zu verteilen, wird zum Schluss für jedes als **1** gekennzeichnetes Feld entschieden, ob zum Beispiel ein Monster darauf oder darunter platziert wird. Bei der Platzierung nehmen auch umliegende Felder Einfluss, so werden beispielsweise Truhen bevorzugt in Nischen platziert. So werden Spieler, die auch abseits des kritischen Pfades suchen, mit Items oder Schätzen belohnt. 
 
@@ -346,7 +354,7 @@ Um optische Abwechslung zu bieten werden die Level mit unterschiedlichen Visuell
 
 In seinem Buche schrieb Yu:
 
-"This system doesn‘t create the most natural-looking caves ever, and players will quickly begin to recognize certain repeating landmarks and perhaps even sense that the levels are generated on a grid. But with enough templates and random mutations, there‘s still plenty of variability. More importantly, it creates fun and engaging levels that the player can‘t easily get stuck in, something much more valuable than realism when it comes to making an immersive experience"[@Yu2016]
+>"This system doesn‘t create the most natural-looking caves ever, and players will quickly begin to >recognize certain repeating landmarks and perhaps even sense that the levels are generated on >a grid. But with enough templates and random mutations, there‘s still plenty of variability. More >importantly, it creates fun and engaging levels that the player can‘t easily get stuck in, something >much more valuable than realism when it comes to making an immersive experience"[@Yu2016]
 
 #### Graph Based
 
@@ -374,9 +382,9 @@ Ondřej Nepožitek optimierte und erweiterte den Algorithmus noch um mehrere Fea
 Da der für diese Arbeit entwickelte Level Generator auf Genetischen Algorithmen basiert, werden in diesen Abschnitt alle, zu dem Verständnis dieser Arbeit, relevanten Grundlagen erklärt. Es existiert eine Vielzahl an Literatur über Genetische Algorithmen, die hier präsentierten Informationen basieren auf Russell und Norvigs „Artificial Intelligence: A
 Modern Approach“(Kapitel 4.1.4)[@RussellundNorvig2014]  und Volker Nissens „Einführung in Evolutionäre Algorithmen“[@Nissen2013]
 
-#### Definition
+### Definition
 
-"Evolutionäre Algorithmen (EA) sind Optimierungsverfahren, die sich am Vorbild der biologischen Evolution orientieren." [@Selzam2006]
+>"Evolutionäre Algorithmen (EA) sind Optimierungsverfahren, die sich am Vorbild der biologischen >Evolution orientieren." [@Selzam2006]
 
 Vereinfacht ausgedrückt: Evolutionäre Algorithmen sind ein Verfahren zur kontrollierten und gesteuerten Zufalls suche. 
 
@@ -389,15 +397,15 @@ Es gibt vier, aus der Historie entstandenen unterscheidungsformen:
 
 Diese Variationen ähneln sich von Aufbau und Struktur sehr. Im Folgenden werden GA betrachtet, zum Abschluss werden die wichtigsten Unterschiede der anderen Variationen erläutert.  
 
-#### Grundbegriffe aus der Genetik
+### Grundbegriffe aus der Genetik
 
 Da EA sich an der Evolution orientieren, haben viele Fachbegriffe der Genetik ihren Weg in die Informatik gefunden. Im Folgenden werden die, für Genetische Algorithmen und diese Arbeit, relevanten Begriffe in ihrer Bedeutung innerhalb der Informatik, erläutert. 
 
 **Individuum / Chromosom** 
 
-"Ein Individuum im biologischen Sinne ist ein lebender Organismus, dessen
-Erbinformationen in einer Menge von Chromosomen gespeichert ist. Im Zusammenhang mit genetischen Algorithmen werden die Begriffe Individuum und
-Chromosom jedoch meistens gleichgesetzt." [@Selzam2006]
+>"Ein Individuum im biologischen Sinne ist ein lebender Organismus, dessen
+>Erbinformationen in einer Menge von Chromosomen gespeichert ist. Im Zusammenhang mit >genetischen Algorithmen werden die Begriffe Individuum und
+>Chromosom jedoch meistens gleichgesetzt." [@Selzam2006]
 
 **Gen**
 
@@ -411,11 +419,11 @@ Allel beschreibt den exakten Wert eines Gens.
 
 Einer Menge gleichartiger Individuen wird als Population bezeichnet. Die Anzahl der Individuen gibt die Populationsgröße an. Sterben Individuen oder werden neune geboren, verändert sich die Größe der Population. Betrachtet man eine Population über mehrere Zeitpunkte, spricht man von Generationen. 
 
-#### Ablauf
+### Ablauf
 
 GAs folgen einer Reihe an Subrutinen, die sich solange Wiederholen bis eine Abbruchbedingung erreicht ist. 
 
-![Ablauf eines generischen GAs. eigene Grafik](figs/gaAblauf.png){width=80%}
+![Ablauf eines generischen GAs.](figs/gaAblauf.png){width=80%}
 
 Abbildung 2.14 zeigt den zugrunde legenden Ablauf von GAs. 
 
@@ -441,7 +449,7 @@ Abbildung 2.14 zeigt den zugrunde legenden Ablauf von GAs.
 
 Im Folgenden werden die einzelnen Subroutinen genauer beschrieben, sowie gängige Implementationen gezeigt. 
 
-##### Kodierung
+### Kodierung
 
 Zu Beginn muss das betrachtete Problem kodiert werden. Das bedeutet das alle relevanten Aspekte auf ein Chromosom abgebildet werden müssen. 
 
@@ -456,13 +464,13 @@ $$ T: \left\{ 0,1 \right\}^{ m } \to R^{ n } $$
 
 Die Allel der Gene der Startpopulation werden zufällig bestimmt. 
 
-##### Bewertung
+### Bewertung
 
 Die Bewertung erfolgt mithilfe der sogenannten Fitnessfunktion. Die Fitnessfunktion $F$ bewertet die gute eines Individuums, also wie nahe es schon an einer möglichen Lösung ist. Dabei weißt die Fitnessfunktion das Individuum eine reelle Zahl zu, die die Fitness darstellt. Im Regelfall ist eine höhere Fitness besser als eine geringer. 
 
 Die Implementation der Fitnessfunktion ist stark mit der eigentlichen Problemstellung verwoben. Da die Fitnessfunktion großen Einfluss darauf hat, in welche Richtung sich die Population entwickelt, sind die Bewertungskriterien so zu wählen, dass sie zur Erreichung der Lösung beitragen. Da die Fitnessfunktion während der Laufzeit jedes einzelne Individuum jeder Population jeder Generation betrachtet, sollte bei der Implementierung auf Laufzeit Optimierung geachtet werden, eine komplexe Fitnessfunktion kann den gesamten GA verlangsamen.
 
-##### Selektion
+### Selektion
 
 Bei der Selektion werden Individuen der Ausgangspopulation ausgewählt und in den "mating pool" kopiert, der die Grundlage für die später folgenden Mutation und Rekombination ist. Zu beachten ist, das ausgewählte Individuen nicht aus der Ausgangspopulation entfernt werden, sie können also mehrfach ausgewählt werden. Bei den gängigsten Selektionsverfahren spielt der Fitnesswert der einzelnen Individuen eine große Rolle, da er bestimmt wie hoch die Wahrscheinlichkeit ist, in den mating pool aufgenommen zu werden. Jedoch sollte man nicht nur die besten Individuen der Population auswählen, da nicht nachvollzogen werden kann, ob sich das Individuum in der Nähe des globalen Hochpunkts befindet oder sich lediglich einen lokalen Hochpunkt nährt. Würde man nur die besten Individuen erlauben sich zu vermehren, würde sich die Population in eine Richtung festfahren. Die Selektion baut einen Fitnessdruck auf, da das Überleben eins Individuums stark von seiner Fitness abhängt. Der Fitnessdruck entspricht daher den *Survival of the fittest* Gedanken der Evolutionstheorie.
 
@@ -476,9 +484,9 @@ Bei der Fitness Proportionate Selection hat jedes Individuum die Chance ausgewä
 
 Eine gängige Art der Umsetzung dieses Verfahren ist die **Roulett Wheel Selection**. Angelehnt an Glücksräder, wird ein Rad in $n$ Teile zerteilt, wobei
 
- ```
+```
 n=\Sum{ j }{  }{ F(g_{j}) }
- ```
+```
 
 gilt. Jedes Individuum der Population enthält entsprechend seiner Fitness Anteile am Rad. Am Rad wird ein Fix Punkt angesetzt, das Rad wird rotiert und das Individuum ausgewählt auf dessen Anteil der Fix Punkt stehenbleibt.
 
@@ -528,7 +536,7 @@ Beim Unform Crossover wird jedes Gen eines Elternteils betrachtet, es gibt eine 
 
 ![Bildliche Darstellung des Uniform Crossoververfahren [@tutorialspoint]](figs/uniform_crossover.png){width=100%}
 
-##### Mutation
+### Mutation
 
 Die Mutation ist eine Zufällige Veränderung der Gene um eine neue Lösung zu erhalten. Genau wie die Rekombination wird sie genutzt um eine möglichst große Diversität der Population zu erzeugen. Durch Crossover erzeugte Kinder liegen im Suchbaum in der Nähe der Eltern, durch die Mutation werden die Kinder von den Eltern weiter entfernt. 
 
@@ -552,11 +560,11 @@ Bei der Scramble Mutation wird eine Auswahl an zusammenhängenden Genen vermisch
 
 Bei der Inversion Mutation wird die Reihenfolge einer Auswahl an zusammenhängenden Genen umgedreht. Das erste Gen in der Sequenz wird zum letzten und umgedreht. 
 
-##### Abbruchbedingung
+### Abbruchbedingung
 
 Die Abbruchbedingung ist für gewöhnlich dann erreicht, wenn eine gültige Lösung gefunden wurde. Je nach Problemstellung kann es auch das überschreiten eines gewissen Fitnessschwellwertes sein oder der durchlauf einer bestimmten Generationenanazahl. Es bietet sich an einen Neustart des GAs vorzunehmen, sollte nach einer gewissen Generationsanzahl keine Lösung gefunden worden sein. Der entsprechende Schwellwert sollte so gewählt werden, dass Erfahrungsgemäß keine Steigerung der Fitness zu erwarten ist und ist dementsprechend für jede Implementierung unterschiedlich. 
 
-#### Vor und Nachteile
+### Vor und Nachteile
 
 | Pro                                                         | Contra                                                       |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
@@ -564,7 +572,8 @@ Die Abbruchbedingung ist für gewöhnlich dann erreicht, wenn eine gültige Lös
 | Benötigt keine abgeleiteten Informationen des Problems      | Laufzeit stark von der Komplexität der Fitnessfunktion abhängig |
 | Lässt sich gut parallelisieren                              | Lösungen werden Zufällig gefunden, es gibt keine Garantie die beste Lösung zu finden. |
 | Liefert eine Menge an guten Lösungen, nicht nur eine Lösung |                                                              |
-| Verläuft sich nicht in lokalen Hochpunkten                  |                                                              |
+| Verläuft sich nicht in lokalen Hochpunkten                  |                                                           |
+Table: Vor- und Nachteile Evolutionärer Algorithmen
 
 ### Variationen
 

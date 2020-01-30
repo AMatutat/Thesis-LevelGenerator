@@ -16,6 +16,8 @@ Mithilfe des Generators können die Studenten unterschiedliche Level in ihr Spie
 
 ## Ausblick
 
+### Verbesserung des Aktuellen Ansatz
+
 Der erstellte Algorithmus bietet viele Möglichkeiten der Weiterentwicklung und Erweiterung. Im Folgenden werden einige Ansatzpunkte kurz beschrieben. 
 
 Die Fitnessfunktion liefert viel Spielraum für Anpassungen. Es wäre denkbar Level nach Raum ähnlichen oder Tunnel ähnlichen Strukturen zu durchsuchen und diese positiv zu bewerten. 

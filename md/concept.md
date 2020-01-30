@@ -1,4 +1,4 @@
-# Konzept zur PLG mithilfe von GA
+#  Level Generierung mit Genetischen Algorithmen 
 
 Im Folgenden wird ein Konzept zur Erstellung eines Level Generators basierend auf GA erläutert. Zuerst werden die Anforderungen an das Projekt definiert und die Zielsetzung spezifiziert. Danach folgt die Ausarbeitung des Konzeptes.  Am Ende des Abschnittes wird das erstellte Konzept mit den aus Kapitel 2 bekannten Verfahren verglichen. 
 
@@ -32,11 +32,11 @@ Da das PM-Dungeon aus Räumen und Fluren bestehen soll, sollte das Aussehen der 
 
 Das Kriterium Balancing wird nicht betrachtet, da dieses von den im Level platzierten Monstern abhängig ist und die Studenten eigenständig Monster verteilen können. Dir Kriterien Environmental Storytelling, Gameplay First und Navigation werden nicht betrachtet, da sie für das von den Studenten entwickelte Spiel keine Bedeutung haben. Die Kontrolle des Pacing ist eine sehr schwierige Aufgabe, und noch schwieriger zu automatisieren und würde den Rahmen dieser Arbeit überschreitet und ist daher kein Bewertungskriterium. Durch die Verwendung PLG kann das Kriterium Effizienz für den Gesamtem Algorithmus als erfolgreich beachtet angesehen werden.     
 
-## Konzept #1
+## Startkonzept
 
 Der Generator wird aus zwei Teilen zusammengesetzt. Der erste Teil ist der GA selbst, er generiert Level die aus Wänden, Böden einen Start und ein Ziel bestehen. Der zweite Teil ist ein Parser, der für die Integration der erzeugten Level in die Spiellogik zuständig ist. Der Parser ist auch dafür verantwortlich, das Monster und Items im Level platziert werden, er soll die Möglichkeit bieten, einzelne Wände und Böden gegen andere Oberflächen auszutauschen. Er ist für die Generierung der Levelgrafik verantwortlich.
 
-### GA
+### Genetischer Algorithmus
 
 In Abschnitt 2.4.2 wurden die Unterschiede zwischen GA und ES erläutert. In dieser Arbeit wird eine Mischform aus beiden Implementiert. Es wird die reellwertige Kodierung der ES mit den Selektionsverfahren von GA kombiniert. Im Folgenden wird der Algorithmus weiterhin als GA bezeichnet. 
 
@@ -65,7 +65,7 @@ F=Boden		X=Ende
 
 Eine Instanz der Klasse *CodedLevel* ist ein Chromosom, also eine mögliche Lösung bzw. ein Level. Neben den Char Array, welches den Levelaufbau entspricht und Informationen über die Größe des Levels, besitzen *CodedLevel* eine Fitness, welche die Güte der Lösung angibt sowie Informationen über den Standort des Start- bzw. Endpunktes.
 
-![UML CodedLevel. eigene Grafik](figs/codedLevel.PNG){width=50%}
+![UML CodedLevel.](figs/codedLevel.PNG){width=50%}
 
 Neben Getter und Setter verfügt die Klasse über die *changeField* Methode. Diese verändert das Allel eines Gens auf den übergebenen Wert. Zwar könnte diese Änderung auch direkt am Array vorgenommen werden, dann würden
 allerdings Änderungen an der Position der Start und Ausgänge evtl. verloren gehen. Sollte ein Start bzw. Ausgang gesetzt werden, obwohl schon einer vorhanden ist, wird stattdessen ein Boden gesetzt, ist keiner vorhanden werden die
@@ -118,7 +118,7 @@ MaxFitness\approx \text{PUNKTE_FUER_ERREICHBARKEIT} * \text{ AnzahlBoeden } + \t
 ```
 Um Zufallswerte auszugleichen, wird der Schwellwert unter den berechneten Wert angesiedelt. 
 
-![UML LevelGenerator. eigene Grafik](figs/levelGen.png){width=80%}
+![UML LevelGenerator.](figs/levelGen.png){width=80%}
 
 ### LevelParser
 
@@ -132,7 +132,7 @@ Der Parser nutzt die von *ISurface* bereitgestellte Methoden um übergebene Mons
 
 Die Funktion *generateTextureMap* iteriert über das zwei Dimensionale *ISurface* Array und holt sich mithilfe der *getTexture* Methode die Texturen der einzelnen Oberflächen und fügt diese nacheinander zusammen und speichert das erzeugte Bild ab. Dadurch das die Textur nicht Typ weise sondern Instanz weise ausgelesen wird, wird es den Studenten ermöglicht, Wände mit unterschiedlichen Texturen zu verwenden.
 
-![UML LevelParser und Interfaces. eigene Grafik](figs/parser.PNG){width=100%}
+![UML LevelParser und Interfaces.](figs/parser.PNG){width=100%}
 
 ### Locks and Keys
 
@@ -154,7 +154,7 @@ Um den Einfluss der verschiedenen Parameter nachvollziehen zu können, wird ein 
 Bevor der Fitnessschwellwert implementiert wird, wird die Abbruchbedingung so bestimmt, dass eine feste Anzahl an Generationen durchlaufen werden, die zurück gelieferte Lösung entspricht der Lösung mit der höchsten Fitness über den gesamten Generierungsprozess. Ohne Schwellwert wird sichergestellt das der
 Generator nicht frühzeitig abbricht. Mithilfe der so erlangten Daten lassen sich mangelhafte Mutation und Rekombination Methoden erkennen. Die Daten helfen dabei, die optimalen Parametereinstellungen zu identifizieren
 
-## Konzept #2 
+## Optimierung des Algorithmus 
 
 ### Anpassung der Fitnessfunktion
 
@@ -180,7 +180,7 @@ Da die Mutation Version 2 dafür sorgt, dass sich Wände links und rechts der Mi
 
 Da die ursprünglich vorgesehene Abbruchbedingung nicht verwendet werden kann, wird die aus dem Abschnitt.. bekannte Methoden zur Auswertung und Optimierung bekannte Abbruchbedingung übernommen. Da die optimale Anzahl an Generationen von der Größe des Levels abhängig ist, wird die Anzahl als Parameter übergehbbar sein. Den Studenten wird eine Tabelle mit Beispielwerten zur Orientierung zur Verfügung gestellt. Diese Abbruchbedingung hat den Vorteil, dass die Studenten zu einen gewissen maßen selbst die Güte des Levels bestimmen können. Sollte zum Beispiel nur eine kleinere Änderung am Spiel getestet werden wollen, reicht unter Umständen ein zufällig zusammengesetztes Level aus.
 
-## Konzept #3
+## Ansätze zur Erweiterung des Algorithmus 
 
 ### Mutation Game of Life
 
