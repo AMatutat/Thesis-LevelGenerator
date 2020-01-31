@@ -22,14 +22,15 @@ reviewer2:  "Dipl.-Inform. Birgit Christina George, FH Bielefeld"
 
 ## optional (mandatory, if english abstract enabled)
 abstract-de: |
-  Das Ziel dieser Arbeit ist die Erstellung eines 2D-Level Generator basierend auf Genetischen Algorithmen. 
-  Dem Generator sollen wenige Informationen zu Grunde gelegt werden, um zu überprüfen 
-  ob bereits einige wenige Parameter reichen, um gute Level zu erzeugen. 
-  Um diese Aufgabe zu lösen, werden Bewertungskriterien für gutes Leveldesign ausgearbeitet, 
-  bekannte Verfahren angeschaut und ein Konzept zur Umsetzung eines Generators erstellt. 
-  Der in dieser Arbeit erstellte Generator ist in der Lage, mit wenig Informationen, 
-  lösbare Level zu generieren, welche zusätzlich grundlegende Leveldesign Regeln beachten. 
-  Es werden Verfahren und Konzepte zur Verbesserung und Erweiterung erläutert.
+  Das Ziel dieser Arbeit war es, einen Genetischen Algorithmus zur prozeduralen Generierung von 2D-Level zu entwickeln.
+  Ziel war es dabei, dem Generator nur grundlegende Information der Problemdomäne zu übergeben, um zu überprüfen,
+  wie spaßig und abwechslungsreich die Level, auch mit wenigen Informationen, sind. Daher wurden in dem Generator nur Regeln, zur besseren Platzierung von Wänden und Böden, implementiert.
+  Um die erzeugten Level Analysieren zu können, wurden zuvor zehn Regeln für gutes Level Design erarbeitet.
+  Es hat sich gezeigt, dass der Algorithmus, auch ohne genauere Kenntnisse der Level Design Regeln, dazu in der Lage ist, abwechslungsreiche und spaßige Level zu erzeugen, welche eine Vielzahl der Regeln einhalten.
+  Es wurden Möglichkeiten zur Weiterentwicklung und Umkonzeptionierung des Algorithmus vorgestellt.
+  Der entwickelte Algorithmus trägt zur Verbesserung des Lernerfolges im Modul Programmiermethoden bei.
+  Die generierten Level können von Studenten der FH-Bielefeld im Praktikum des Moduls Programmiermethoden verwendet werden, um ihren Fokus auf die Umsetzung der Programmieraufgaben setzten zu können. 
+
 abstract-en: |
 acknowledgements: |
   Hier kommt die Danksagung hin.
