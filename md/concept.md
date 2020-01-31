@@ -111,11 +111,14 @@ Zur Levelgenerierung bieten sich fast alle bekannten Mutationsverfahren an. In d
 
 Die GA wird dann beendet, wenn ein lösbares Level den Fitnessschwellwert überschreitet. Der Fitnessschwellwert ergibt sich aus der maximal Erreichbaren Fitness. Da die maximal erreichbare Fitness aufgrund von Zufallsfaktoren nicht exakt bestimmt werden kann, wird sich ihr angenähert:
 
-```latex
-AnzahlBoeden \approx \text{ CHANCE_TO_BE_FLOOR } * \Sum{  }{  }{  }Felder \linebreak
-AnzahlWaende \approx \text{ 1-CHANCE_TO_BE_FLOOR } * \Sum{  }{  }{  }Felder \linebreak
-MaxFitness\approx \text{PUNKTE_FUER_ERREICHBARKEIT} * \text{ AnzahlBoeden } + \text{PUNKTE_FUER_VERBUNDEN} * \text{ AnzahlWaende } + \text{ PUNKTE_FUER_LOESBAR }
-```
+
+\begin{eqnarray}
+AnzahlBoeden \approx ChanceToBeFloor * \sum_{  }^{  }{ Felder}  \notag \\
+AnzahlWaende \approx 1-ChanceToBeFloor * \sum_{  }^{  }{Felder  } \notag \\ 
+MaxFitness\approx PunkteFuerErreichbarkeit * AnzahlBoeden + \notag \\  PunkteFuerVerbunden * AnzahlWaende\notag \\ + PunkteFuerLoesbar \notag
+\end{eqnarray}
+
+
 Um Zufallswerte auszugleichen, wird der Schwellwert unter den berechneten Wert angesiedelt. 
 
 ![UML LevelGenerator.](figs/levelGen.png){width=80%}

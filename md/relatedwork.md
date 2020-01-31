@@ -2,7 +2,7 @@
 
 # Grundlagen
 
-In diesem Kapitel werden alle wichtigen Informationen vermittelt, die nötig sind um die technischen Hintergründe der Arbeit zu verstehen und um das Resultat der Arbeit bewerten zu können. Im ersten Abschnitt wird das Genre der Roguelike Spiele beschrieben, um ein Verständnis dafür zu vermitteln, welche Art von Spiel von den Studenten programmiert wird. In Abschnitt zwei werden Prinzipien für Gutes Level Design vermittelt. Der dritte Abschnitt beschäftigt sich mit Prozeduraler Level Generierung, es werden bekannte Verfahren präsentiert um Level automatisch Generieren zu lassen. Der letzte Abschnitt vermittelt das nötige Grundwissen für Genetische Algorithmen, um das, im nächsten Kapitel folgende, Konzept verstehen zu können.
+In diesem Kapitel werden alle wichtigen Informationen vermittelt, die nötig sind um die technischen Hintergründe der Arbeit zu verstehen und um das Resultat der Arbeit bewerten zu können. Im ersten Abschnitt wird das Genre der Roguelike-Spiele beschrieben, um ein Verständnis dafür zu vermitteln, welche Art von Spiel von den Studenten programmiert wird. In Abschnitt zwei werden Prinzipien für gutes Leveldesign vermittelt. Der dritte Abschnitt beschäftigt sich mit Prozeduraler Level Generierung, es werden bekannte Verfahren präsentiert um Level automatisch Generieren zu lassen. Der letzte Abschnitt vermittelt das nötige Grundwissen für Genetische Algorithmen, um das, im nächsten Kapitel folgende, Konzept verstehen zu können.
 
 Dieses Kapitel ist sowohl Strukturelle als auch Inhaltliche durch Kevin Hagens Thesis *Synthese generierter und handgebauter Welten mittels WaveFunctionCollapse* [@Hagen2019] inspiriert, führt dennoch neue Aspekte auf oder betrachtet einige Aspekte anders.
 
@@ -12,7 +12,7 @@ Um ein Verständnis dafür zu bekommen, welche Art von Spiel in den vom Generato
 
 ### Rollenspiele
 
-Das Genre der Computer Rollenspiele entstand aus den klassischen Pen and Paper Rollenspiel. Der Spieler schlüpft in die Rolle einer oder mehrere Spielfiguren mit unterschiedlichsten Fähigkeiten. Im Fokus des Spielerlebnisses steht die Erzählung einer Geschichte und das Eintauchen in die Spielwelt. Aber auch die Verbesserung der Spielfigur und ihrer Ausrüstung nehmen einen großen Bestandteil der Spielerfahrung ein. Viele Spiele lassen den Spieler bereits zu Beginn eine von mehreren Charakterklassen wählen. Die Klasse der Figur bestimmt, welche Ausrüstung sie benutzen kann und welche Fähigkeiten erlernt werden können. So werden unterschiedliche Spielstiele erschaffen, ein Zauberer spielt sich spürbar anders als ein Krieger. Im Vordergrund des Gameplay stehen das Lösen von Rätseln, führen von Dialogen und bekämpfen von Feinden. [@Wikipedia2019] [@Wikipedia2018]
+Das Genre der Computer-Rollenspiele entstand aus den klassischen Pen-and-Paper Rollenspiel. Der Spieler schlüpft in die Rolle einer oder mehrere Spielfiguren mit unterschiedlichsten Fähigkeiten. Im Fokus des Spielerlebnisses steht die Erzählung einer Geschichte und das Eintauchen in die Spielwelt. Aber auch die Verbesserung der Spielfigur und ihrer Ausrüstung nehmen einen großen Bestandteil der Spielerfahrung ein. Viele Spiele lassen den Spieler bereits zu Beginn eine von mehreren Charakterklassen wählen. Die Klasse der Figur bestimmt, welche Ausrüstung sie benutzen kann und welche Fähigkeiten erlernt werden können. So werden unterschiedliche Spielstiele erschaffen, ein Zauberer spielt sich spürbar anders als ein Krieger. Im Vordergrund des Gameplay stehen das Lösen von Rätseln, führen von Dialogen und bekämpfen von Feinden. [@Wikipedia2019] [@Wikipedia2018]
 
 Viele Rollenspiele ermöglichen es den Spieler direkten Einfluss auf den Verlauf der Geschichte zu nehmen. So muss sich der Spieler in *The Witcher 2: Assassins of Kings* im ersten von drei Akten, für eine von zwei Seiten entscheiden. Die Wahl nimmt Einfluss darauf, von welcher Seite der im Spiel gezeigte Konflikt betrachtet wird. [@Graf2011] Auch dürfen weniger wichtige Entscheidungen vom Spieler übernommen werden, die zwar weniger Einfluss auf das große Ganze nehmen, jedoch die Immersion steigern können.
 
@@ -26,7 +26,7 @@ Das Videospiel *Rogue: Exploring the Dungoens of Doom*, ist ein, in den 1980er e
 
 Glenn R. Wichman, einer der Entwickler von Rogue, schrieb in einen offenen Brief:
 
->„But I think Rogue’s biggest contribution, and one that still stands out to this day, is that the >computer itself generated the adventure in Rogue. Every time you played, you got a new >adventure. That’s really what made
+>„But I think Rogue’s biggest contribution, and one that still stands out to this day, is that the computer itself generated the adventure in Rogue. Every time you played, you got a new >adventure. That’s really what made
 >it so popular for all those years in the early eighties.“[@Wichman1997]
 
 Die Level von Rogue werden bei jeden Spielstart neu generiert, man spielt also niemals zweimal das exakt selbe Level. In Verbindung mit Permadeath wurde so ein Abwechslungsreiches Spiel mit hohem Wiederspielwert erschaffen. Permadeath beschreibt ein Spielprinzip, bei dem der Spielertot zum permanenten Verlust des Fortschritts führt und das Spiel von vorne begonnen werden muss.
@@ -35,7 +35,7 @@ Die Level von Rogue werden bei jeden Spielstart neu generiert, man spielt also n
 
 Da Rogue eines der ersten Spiele war, die auf PCG setzten, waren sowohl Spieler als auch Entwickler von diesem Konzept begeistert. Viele Entwickler fühlten sich durch Rogue Inspiriert und entwickelten ihre eigenen Spiele mit PCG.[@Barton2009] Es entwickelte sich das Genre der Roguelike.
 
->„[...] Roguelikes are called Roguelikes, because the games are literally like Rogue [...]“ >[@Brown2017]
+>„[...] Roguelikes are called Roguelikes, because the games are literally like Rogue [...]“ [@Brown2017]
 
 2008 wurde auf der Internationale Roguelike Entwickler Konferenz eine Liste verschiedener Faktoren erstellt, welche dabei helfen sollen das Roguelike Genre genauer zu beschreiben und zu definieren wann ein Spiel *like Rogue* ist. Diese List wurde später unter den Namen *Berliner Interpretation* bekannt. Folgende Faktoren wurden dabei herausgearbeitet: [@Conference2008]
 
@@ -112,7 +112,7 @@ Auch sollten Level immer so fehlerfrei wie möglich sein. Das betrifft sowohl gr
 
 ### Gameplay First
 
->"Above all else, great level design is driven by interaction - the game’s mechanics.  Game levels >don’t just provide context for mechanics, they provide the very reality in which they exist." >[@Taylor2013]
+>"Above all else, great level design is driven by interaction - the game’s mechanics.  Game levels >don’t just provide context for mechanics, they provide the very reality in which they exist." [@Taylor2013]
 
 Ein Level dient in aller erster Linie dazu, den Spieler eine Spielfläche für die Gameplay Mechaniken des Spiels zu bieten. Das bedeutet ein Level sollte viele Möglichkeiten geben um die Gameplay Mechaniken zu verwenden und muss immer so gebaut sein, dass es mit den Gameplay Mechaniken spaßig ist zu spielen. 
 
@@ -484,9 +484,7 @@ Bei der Fitness Proportionate Selection hat jedes Individuum die Chance ausgewä
 
 Eine gängige Art der Umsetzung dieses Verfahren ist die **Roulett Wheel Selection**. Angelehnt an Glücksräder, wird ein Rad in $n$ Teile zerteilt, wobei
 
-```
-n=\Sum{ j }{  }{ F(g_{j}) }
-```
+$$n=\sum_{j}^{}{ F(g_{j}) }$$
 
 gilt. Jedes Individuum der Population enthält entsprechend seiner Fitness Anteile am Rad. Am Rad wird ein Fix Punkt angesetzt, das Rad wird rotiert und das Individuum ausgewählt auf dessen Anteil der Fix Punkt stehenbleibt.
 
@@ -494,9 +492,7 @@ gilt. Jedes Individuum der Population enthält entsprechend seiner Fitness Antei
 
 Die Wahrscheinlichkeit $p_{sel}$ eines Individuum $g_{k}$ mit der Fitness $F(g_{k})$ ausgewählt zu werden lässt sich wie folgt berechnen
 
-```
-p_{ sel }(g_{ k })=\frac{F(g_{ k }) }{\Sum{ j }{ }{F(g_{ j })  }  }$$
-```
+$$p_{ sel }(g_{ k })=\frac{F(g_{ k })}{\sum_{ j }^{ }{F(g_{ j })  }}$$
 
 Das **Stochastic Universal Sampling** erweitert die Roulett Wheel Selection um einen zweiten Fixpunkt. So können zeitgleich zwei Individuen ausgewählt werden. 
 
@@ -589,14 +585,14 @@ Der zweite große Unterschied liegt in der Auswahl der Eltern für die nächste 
 
 Welches Verfahren geeigneter ist, hängt stark mit der eigentlichen Problemstellung zusammen. Mittlerweile sind auch viele Mischformen zwischen ES und GA verbreitet. 
 
-"Beide Verfahren beginnen mit einer breiten Verteilung der Individuen im Suchraum.
-Abgeschlossen wird sowohl bei den ES als auch bei den GA mit der Konzentration der
-Individuen auf einen minimalen Ausschnitt des Lösungsraums. In den ES wie auch in
-den GA wurde eine noch immer wachsende Anzahl von Varianten entwickelt. Durch
-diese nicht mehr überschaubare Varianten verschwimmen die Grenzen zwischen den
-Verfahren. Es kommt sogar vor, dass bei Genetischen Algorithmen anstelle der üblichen
-binären Vektoren, für bestimmte Problemstellungen reelle Vektoren eingesetzt werden.
-Welcher Algorithmus bei welcher Problemstellung besser ist, kann nicht eindeutig
-entschieden werden."[@Lienemann2004]
+>"Beide Verfahren beginnen mit einer breiten Verteilung der Individuen im Suchraum.
+>Abgeschlossen wird sowohl bei den ES als auch bei den GA mit der Konzentration der
+>Individuen auf einen minimalen Ausschnitt des Lösungsraums. In den ES wie auch in
+>den GA wurde eine noch immer wachsende Anzahl von Varianten entwickelt. Durch
+>diese nicht mehr überschaubare Varianten verschwimmen die Grenzen zwischen den
+>Verfahren. Es kommt sogar vor, dass bei Genetischen Algorithmen anstelle der üblichen
+>binären Vektoren, für bestimmte Problemstellungen reelle Vektoren eingesetzt werden.
+>Welcher Algorithmus bei welcher Problemstellung besser ist, kann nicht eindeutig
+>entschieden werden."[@Lienemann2004]
 
 Bei der Genetischen Programmierung geht es darum, mithilfe von Bäumen Probleme der symbolischen Regression zu lösen. Evolutionäre Programmierung nimmt sich ähnlicher Problematiken an, verwendet aber endliche Automaten zur Lösung der Probleme. 

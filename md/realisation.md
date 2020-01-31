@@ -100,39 +100,53 @@ Dieses Verfahren benötigt, je nach Level Größe, eine große Menge an Arbeitss
 
 ### Ergebnis
 
-Um die optimalen Parameter Einstellungen zu erhalten, wurde die Fitness verschiedener Einstellung für ein 20x20 Level miteinander verglichen. 
+Um die optimalen Parameter Einstellungen zu erhalten, wurde die Fitness verschiedener Einstellung für ein 20x20 Level miteinander verglichen. Alle in dieser Arbeit erstellenten Level, sofern nicht anders beschrieben, wurden mit den selben Grundeinstellungen generiert und unterscheiden sich nur in den verwendeten Subroutinen (was hier verglichen wird), der Mutationswahrscheinlichkeit und Rekombinationschance. 
 
-Abbildung 4.1 zeigt ein Generiertes Level mit den optimalen Einstellungen. Die Rekombinationschance beträgt 60% und die Mutationschance 1%. Rot eingekreist lassen sich bereits Raumähnliche Strukturen erkennen. In Blau sind einzelne, aus der Außenwand herausguckende Wände zu erkenne, der GA sollte so angepasst werden, dass dieses Verhalten nicht mehr vorkommt. In der Mitte lassen sich noch einzelne Wände bzw. kurze Wandketten erkenne. Da sie sehr zufällig platziert wirken, stören sie die Optik bzw. die Immersion des Levels. Die schwarze Treppe stellt den Startpunkt dar, die weiße Leiter den Ausgang, das Level kann gelöst werden. 
+| Parameter        | Wert |
+| ---------------- | ---- |
+| Populationsgröße | 500  |
+| Maximale Generation | 50 |
+| Punkte für Lösbarkeit des Levels | 25 |
+| Punkte für verbundene Wände | 2 |
+| Punkte für erreichbare Wände | 3 |
+| Boden zu Wand Verhältnis | 60/40 |
+Table: Übersicht der Grundeinstellung
 
-Abbildung 4.2 zeigt den Einfluss der Mutationschane auf die Fitness. Es ist deutlich zu erkennen, dass eine Erhöhung der Mutationschance zu einer schlechteren Fitness führt. Die Fitness der optimalen Einstellung von 1% liegt sehr nah an den der Fitness bei einer 0% Mutationschance. Abbildung 4.3 zeigt den Einfluss der Mutationschance auf die Generation der besten Lösung. Es ist zu erkenne das bereits ab einer Mutationschance von 3% die Lösung aus einer sehr frühen Generation stammt, und daher ehr zufällig gefunden wurde anstatt sich mit der Zeit entwickelt zu haben. Daraus geht hervor das die Mutationsfunktion nicht dabei hilft, mit jeder Generation bessere Lösungen zu erzeugen, sondern den GA in eine Zufallssuche verwandelt.
+Alle gezeigten Level, sofern nicht anders beschrieben, wurden mit den, für die verwendeten Subroutinen, optimalen Mutationswahrscheinlichkeit und Rekombinationschance generiert. Die optimalen Einstellungen wurden durch den Vergleich der durchschnittlichen Fitness, der besten Lösung aus 10 Durchläufe pro Einstellung, ermittelt. Die gezeigten Level stammen immer aus dem Ende eines Durchlaufes und repräsentieren die beste Lösung des Durchlaufes. Die präsentierten Grafen zeigen die durchschnittliche Fitness bzw. durchschnittliche Generation des besten Level eines Durchlaufes (ermittelt aus 10 Durchläufe) abhängig von der eingestellten Mutationswahrscheinlichkeit.
 
-![Beispiellevel. MV=1, MC=1%, RV=1, RC=60%](figs/level/F1M1C1.png){width=70%}
+![Beispiellevel. MV=1, MW=1%, RV=1, RC=60%](figs/level/F1M1C1.png){width=70%}
 
-![Einfluss der Mutationschance auf die Fitness](figs/Graph/g1.png){width=70%}
 
-![Einfluss der Mutationschance auf die Generation der besten Lösung](figs/Graph/g2.png){width=70%}
+
+Abbildung 4.1 zeigt ein Generiertes Level mit den optimalen Einstellungen. Die Rekombinationschance beträgt 60% und die Mutationswahrscheinlichkeit 1%. Rot eingekreist lassen sich bereits Raumähnliche Strukturen erkennen. In Blau sind einzelne, aus der Außenwand herausguckende Wände zu erkenne, der GA sollte so angepasst werden, dass dieses Verhalten nicht mehr vorkommt. In der Mitte lassen sich noch einzelne Wände bzw. kurze Wandketten erkenne. Da sie sehr zufällig platziert wirken, stören sie die Optik bzw. die Immersion des Levels. Die schwarze Treppe stellt den Startpunkt dar, die weiße Leiter den Ausgang, das Level kann gelöst werden. 
+
+![Einfluss der Mutationswahrscheinlichkeit auf die durchschnittliche Fitness der besten Lösung. RC=60%](figs/Graph/g1.png){width=70%}
+
+Abbildung 4.2 zeigt den Einfluss der Mutationschane auf die Fitness.Es ist deutlich zu erkennen, dass eine Erhöhung der Mutationswahrscheinlichkeit zu einer schlechteren Fitness führt. Die Fitness der optimalen Einstellung von 1% liegt sehr nah an den der Fitness bei einer 0% Mutationswahrscheinlichkeit.Abbildung 4.3 zeigt den Einfluss der Mutationswahrscheinlichkeit auf die Generation der besten Lösung. Es ist zu erkenne das bereits ab einer Mutationswahrscheinlichkeit von 3% die Lösung aus einer sehr frühen Generation stammt, und daher ehr zufällig gefunden wurde anstatt sich mit der Zeit entwickelt zu haben. Daraus geht hervor das die Mutationsfunktion nicht dabei hilft, mit jeder Generation bessere Lösungen zu erzeugen, sondern den GA in eine Zufallssuche verwandelt.
+
+![Einfluss der Mutationswahrscheinlichkeit auf die durchschnittliche Generation der besten Lösung. MW=1% RC=60%](figs/Graph/g2.png){width=70%}
 
 ## Optimierung des Algorithmus
 
 Alle Anpassungen und Neuerungen wurden nach dem Konzept #2 implementiert.  Das Programm wurde für die neue Abbruchbedingung angepasst. 
 
-Abbildung 4.4 zeigt ein Level mit der ersten Mutations- und Rekombinationsversion sowie der neu angepassten Fitness. Durch die angepasste Fitnessfunktion sind im Vergleich zu Abbildung .. weniger einzelne Wandstücke, welche aus der Außenwand herausgucken zu erkennen. 
+Abbildung 4.4 zeigt ein Level mit der ersten Mutations- und Rekombinationsversion sowie der neu angepassten Fitness. Durch die angepasste Fitnessfunktion sind im Vergleich zu Abbildung .. weniger einzelne Wandstücke,welche aus der Außenwand herausgucken zu erkennen. 
 
-![Beispiellevel. MV=1, MC=1%, RV=1; RC=60%](figs/level/F2M1C1.png){width=50%}
+![Beispiellevel. MV=1, MW=1%, RV=1; RC=60%](figs/level/F2M1C1.png){width=50%}
 
-![Einfluss der Mutationschance auf die Fitness](figs/Graph/g3.png){width=70%}
+Abbildung 4.5 zeigt den Einfluss der Mutationswahrscheinlichkeit bei der Verwendung der neuen Mutationsfunktion, der neuen Rekombinationsfunktion sowie angepasster Fitnessfunktion. Die höchste Fitness wird bei einer hohen
+Mutationswahrscheinlichkeit von 40% erreicht, ähnlich hohe Werte erzielen ähnliche Fittnesswerte. Es ist davon auszugehen das bei einer so hohen Mutationswahrscheinlichkeit im Laufe der Zeit alle Gene mutiert werden. Der Zusammenhang zwischen hoher
+Fitnesswerten und hoher Mutationswahrscheinlichkeit bestärkt die Annahme das die Mutationsfunktion zu *stark* ist. Allerdings liefert auch ein geringe Mutationswahrscheinlichkeit von 5% ähnlich gute Ergebnisse.
 
-Abbildung 4.5 zeigt den Einfluss der Mutationschance bei der Verwendung der neuen Mutationsfunktion, der neuen Rekombinationsfunktion sowie angepasster Fitnessfunktion. Die höchste Fitness wird bei einer hohen
-Mutationschance von 40% erreicht, ähnlich hohe Werte erzielen ähnliche Fittnesswerte. Es ist davon auszugehen das bei einer so hohen Mutationschance im Laufe der Zeit alle Gene mutiert werden. Der Zusammenhang zwischen hoher
-Fitnesswerten und hoher Mutationschance bestärkt die Annahme das die Mutationsfunktion zu *stark* ist. Allerdings liefert auch ein geringe Mutationschance von 5% ähnlich gute Ergebnisse.
+![Einfluss der Mutationswahrscheinlichkeit auf die durchschnittliche Fitness der besten Lösung. RC=60%](figs/Graph/g3.png){width=70%}
 
-Abbildung 4.6 zeigt ein Level mit einer Mutationschance von 5%. Abbildung 4.7 zeigt ein Level mit einer Mutationschance von 40%. Im direkten Vergleich fällt auf, dass die hohe Mutationsrate dazu geführt hat, dass alle Wände verbunden sind, die niedrigere Mutationschance hat noch einige einzelne Wände übriggelassen. Beide Varianten bieten wenige bis gar keine Raumähnliche Strukturen, sondern sehen ehr wie ein großer Raum aus. Abbildung 4.8 zeigt ein Level mit niedriger Mutationschance und verringerter Bodenfelder Anzahl. Hier lassen sich Raumähnliche Strukturen verbunden mit Fluren erkennen. Der untere Bereich muss zur Absolvierung des Levels nicht betreten werden und bietet Freiraum zum Erkunden.
+Abbildung 4.6 zeigt ein Level mit einer Mutationswahrscheinlichkeit von 5%. Abbildung 4.7 zeigt ein Level mit einer Mutationswahrscheinlichkeit von 40%. Im direkten Vergleich fällt auf, dass die hohe Mutationsrate dazu geführt hat, dass alle Wände verbunden sind, die niedrigere Mutationswahrscheinlichkeit hat noch einige einzelne Wände übriggelassen. Beide Varianten bieten wenige bis gar keine Raumähnliche Strukturen, sondern sehen ehr wie ein großer Raum aus. Abbildung 4.8 zeigt ein Level mit niedriger Mutationswahrscheinlichkeit und verringerter Bodenfelder Anzahl (40/60). Hier lassen sich Raumähnliche Strukturen verbunden mit Fluren erkennen. Der untere Bereich muss zur Absolvierung des Levels nicht betreten werden und bietet Freiraum zum Erkunden.
 
-![Beispiellevel. MV=2, MC=5%, RV=2, RC=80%](figs/level/F2M2C2LOWPMUT.png){width=50%} 
+![Beispiellevel. MV=2, MW=5%, RV=2, RC=80%](figs/level/F2M2C2LOWPMUT.png){width=50%} 
 
-![Beispiellevle. MV=2; MC=40%, RV=2, RC=80%](figs/level/F2M2C2HIGHPMUT.png){width=50%}
+![Beispiellevle. MV=2; MW=40%, RV=2, RC=80%](figs/level/F2M2C2HIGHPMUT.png){width=50%}
 
-![Beispiellevel mit verringerter Bodenfläche. MV=2; MC=40%, RV=2; RC=80%](figs/level/F2M2C2LOWPMUT40PFLOOR.png){width=50%}
+![Beispiellevel mit verringerter Bodenfläche. MV=2; MW=40%, RV=2; RC=80%](figs/level/F2M2C2LOWPMUT40PFLOOR.png){width=50%}
 
 ## Ansätze zur Erweiterung des Algorithmus
 
@@ -140,18 +154,18 @@ Die neue Mutationsfunktion wurde wie im Konzept #3 beschrieben implementiert. Di
 
 Um den *Reise zum Mittelpunkt* Algorithmus umzusetzen wurden die Klasse *CodedRoom* erzeugt welche von der Klasse *CodedLevel* erbt und zusätzlich Angaben über die Koordinaten des Mittel- und der Eckpunkte bereithält. 
 
-Abbildung 4.9 zeigt den Einfluss der Mutationschance bei der Verwendung der *Game of Life* Mutationsfunktion. Ähnlich zur vorherigen Mutationsfunktion liefert eine hohe Mutationschance von 40% den höchsten Fitnesswert, eine geringere Chance von 3% liefert ähnlich gute Ergebnisse.
+Abbildung 4.9 zeigt den Einfluss der Mutationswahrscheinlichkeit bei der Verwendung der *Game of Life* Mutationsfunktion. Ähnlich zur vorherigen Mutationsfunktion liefert eine hohe Mutationswahrscheinlichkeit von 40% den höchsten Fitnesswert, eine geringere Chance von 3% liefert ähnlich gute Ergebnisse.
 
-![Einfluss der Mutationschance auf die Fitness](figs/Graph/g4.png){width=70%}
+![Einfluss der Mutationswahrscheinlichkeit auf die durchschnittliche Fitness der besten Lösung. RC=60%](figs/Graph/g4.png){width=70%}
 
-Abbildung 4.10 zeigt ein Level mit hoher Mutationschance von 40%. Zum Vergleich zeigt Abbildung 4.11 ein Level mit einer Mutationschance von 3%. Beide Varianten erzeugen Level mit einer Vielzahl einzeln Platzierter Wände. Diese
+Abbildung 4.10 zeigt ein Level mit hoher Mutationswahrscheinlichkeit von 40%. Zum Vergleich zeigt Abbildung 4.11 ein Level mit einer Mutationswahrscheinlichkeit von 3%. Beide Varianten erzeugen Level mit einer Vielzahl einzeln Platzierter Wände. Diese
 Mutationsfunktion kann als Rückschritt im Vergleich zur vorherigen Version betrachtet werden.
 
-![Beispiellevel. MV=3, MC=40%, RV=2, RC=60%](figs/level/F2M3C2HIGHPMUT.png){width=50%} 
+![Beispiellevel. MV=3, MW=40%, RV=2, RC=60%](figs/level/F2M3C2HIGHPMUT.png){width=50%} 
 
-![Beispiellevel. MV=3, MC=3%, RV=2, RC=60%](figs/level/F2M3C2LOWPMUT.png){width=50%}
+![Beispiellevel. MV=3, MW=3%, RV=2, RC=60%](figs/level/F2M3C2LOWPMUT.png){width=50%}
 
-Abbildung 4.12 zeigt ein Level welches mithilfe des *Spelunky-Style* Algorithmus erzeugt wurde. Die Räume wurden dabei mit der Mutationsversion 2 und einer Mutationschance von 5% erzeugt. Es fällt direkt negativ auf, dass sich alle Räume sehr ähnlichsehen und dass das Gittermuster sofort zu erkenne ist. Dafür liefert diese Variante neben den Kritischen Lösungspfad eine Reihe an optionalen Räumen. Der obere Rechte Raum ist mithilfe einer Tür verschlossen und kann erst mit dem Schlüssel aus dem Raum in der zweiten Reihe geöffnet werden.
+Abbildung 4.12 zeigt ein Level welches mithilfe des *Spelunky-Style* Algorithmus erzeugt wurde. Die Räume wurden dabei mit der Mutationsversion 2 und einer Mutationswahrscheinlichkeit von 5% erzeugt. Es fällt direkt negativ auf, dass sich alle Räume sehr ähnlichsehen und dass das Gittermuster sofort zu erkenne ist. Dafür liefert diese Variante neben den Kritischen Lösungspfad eine Reihe an optionalen Räumen. Der obere Rechte Raum ist mithilfe einer Tür verschlossen und kann erst mit dem Schlüssel aus dem Raum in der zweiten Reihe geöffnet werden.
 
 ![Beispiellevel erzeugt mit den Spelunky-Style Algorithmus](figs/level/Spelunky.png){width=50%} 
 

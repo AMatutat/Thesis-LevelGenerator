@@ -3,7 +3,7 @@
 
 ![Komplettes UML Klassendiagramm nach Konzept #1.](figs/classUML.png){width=100%}
 
-![Platzhalter für fertiges UML.](figs/classUML.png){width=100%}
+![UML der Endlösung.](figs/classUMLComplete.png){width=100%}
 
 # Beispiel Level
 
@@ -12,7 +12,7 @@
 ![](figs/level/level04.png){width=50%}![](figs/level/level05.png){width=50%}
 
 ## Spelunky-Style
+![](figs/level/spelunky_1.png){width=50%}![](figs/level/spelunky_2.png){width=50%}
 
-## Reise zum Mittelpunkt Verfahren
-
-
+## Reise zum Mittelpunkt
+![](figs/level/test_1.png){width=50%}![](figs/level/test_2.png){width=50%}
