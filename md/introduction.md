@@ -12,9 +12,9 @@ Das als Vorbild dienende Shattered Pixel Dungeon gehört zu dem Genre der Roguel
 
 Prozedurale Content Generierung (PCG) beschreibt Verfahren zur gesteuerten Zufallsgenerierung von verschiedenen Inhalten in Videospielen.[@Beca2017] Durch PCG können zum Beispiel Items, Texturen, 3D-Modelle oder Level generiert werden.(vgl. Abs. 2.3)
 
-Die Konzeptionierung und Implementierung von PCG-Algorithmen ist nicht trivial. Da das Module PM im zweiten Fachsemester angeordnet ist, ist die Entwicklung eines PCG-Algorithmus nicht nur nicht zielführend, sondern würde viele Studenten auch fachlich überfordern, da diese noch ihre Grundkenntnisse festigen müssen.
-
 ## Ziel und Struktur der Arbeit
+
+Die Konzeptionierung und Implementierung von PCG-Algorithmen ist nicht trivial. Da das Module PM im zweiten Fachsemester angeordnet ist, ist die Entwicklung eines PCG-Algorithmus nicht nur nicht zielführend, sondern würde viele Studenten auch fachlich überfordern, da diese noch ihre Grundkenntnisse festigen müssen.
 
 Diese Arbeit präsentiert bekannte Verfahren zur Generierung von Leveln mithilfe von PCG.  Die Arbeit beschäftigt sich mit Aspekten des Level Designs, jedoch nicht mit Aspekten der Level Arts. Ziel dieser Arbeit ist die Konzeptionierung und Umsetzung eines, für das PM-Dungeon angepassten, Level Generator basierend auf Genetischen Algorithmen (GA).[@RussellundNorvig2014] GA sind eine Unterform der Evolutionären Algorithmen (EA) welche, angelehnt an der biologischen Evolutionen, sich mit der Zeit verbessernde Lösungen erschaffen.(vgl. Abs. 2.4)  
 

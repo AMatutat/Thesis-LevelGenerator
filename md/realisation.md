@@ -112,11 +112,9 @@ Um die optimalen Parameter Einstellungen zu erhalten, wurde die Fitness verschie
 | Boden zu Wand Verhältnis | 60/40 |
 Table: Übersicht der Grundeinstellung
 
-Alle gezeigten Level, sofern nicht anders beschrieben, wurden mit den, für die verwendeten Subroutinen, optimalen Mutationswahrscheinlichkeit und Rekombinationschance generiert. Die optimalen Einstellungen wurden durch den Vergleich der durchschnittlichen Fitness, der besten Lösung aus 10 Durchläufe pro Einstellung, ermittelt. Die gezeigten Level stammen immer aus dem Ende eines Durchlaufes und repräsentieren die beste Lösung des Durchlaufes. Die präsentierten Grafen zeigen die durchschnittliche Fitness bzw. durchschnittliche Generation des besten Level eines Durchlaufes (ermittelt aus 10 Durchläufe) abhängig von der eingestellten Mutationswahrscheinlichkeit.
+Alle gezeigten Level, sofern nicht anders beschrieben, wurden mit den, für die verwendeten Subroutinen, optimalen Mutationswahrscheinlichkeit und Rekombinationschance generiert. Die optimalen Einstellungen wurden durch den Vergleich der durchschnittlichen Fitness, der besten Lösung aus 10 Durchläufe pro Einstellung, ermittelt. Dabei wurden jeweils verschiedene Mutationswahrscheinlichkeiten mit verschiedenen Rekombinationschancen getestet. Die gezeigten Level stammen immer aus dem Ende eines Durchlaufes und repräsentieren die beste Lösung des Durchlaufes. Die präsentierten Grafen zeigen die durchschnittliche Fitness bzw. durchschnittliche Generation des besten Level eines Durchlaufes (ermittelt aus 10 Durchläufe) abhängig von der eingestellten Mutationswahrscheinlichkeit mit zugehöriger besten Rekombinationschance. Die genauen Messergebnisse, der hier präsentierten Ergebnisse, sind im Abschnitt Messdaten einzusehen. 
 
 ![Beispiellevel. MV=1, MW=1%, RV=1, RC=60%](figs/level/F1M1C1.png){width=70%}
-
-
 
 Abbildung 4.1 zeigt ein Generiertes Level mit den optimalen Einstellungen. Die Rekombinationschance beträgt 60% und die Mutationswahrscheinlichkeit 1%. Rot eingekreist lassen sich bereits Raumähnliche Strukturen erkennen. In Blau sind einzelne, aus der Außenwand herausguckende Wände zu erkenne, der GA sollte so angepasst werden, dass dieses Verhalten nicht mehr vorkommt. In der Mitte lassen sich noch einzelne Wände bzw. kurze Wandketten erkenne. Da sie sehr zufällig platziert wirken, stören sie die Optik bzw. die Immersion des Levels. Die schwarze Treppe stellt den Startpunkt dar, die weiße Leiter den Ausgang, das Level kann gelöst werden. 
 
