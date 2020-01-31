@@ -100,7 +100,7 @@ Dieses Verfahren benötigt, je nach Level Größe, eine große Menge an Arbeitss
 
 ### Ergebnis
 
-Um die optimalen Parameter Einstellungen zu erhalten, wurde die Fitness verschiedener Einstellung für ein 20x20 Level miteinander verglichen. Alle in dieser Arbeit erstellenten Level, sofern nicht anders beschrieben, wurden mit den selben Grundeinstellungen generiert und unterscheiden sich nur in den verwendeten Subroutinen (was hier verglichen wird), der Mutationswahrscheinlichkeit und Rekombinationschance. 
+Um die optimalen Parameter Einstellungen zu erhalten, wurde die Fitness verschiedener Einstellung für ein 20x20 Level miteinander verglichen. Alle in dieser Arbeit erstellenten Level, sofern nicht anders beschrieben, wurden mit den selben Grundeinstellungen generiert und unterscheiden sich nur in den verwendeten Subroutinen (was hier verglichen wird), der Mutationswahrscheinlichkeit (MW) und Rekombinationschance (RC). 
 
 | Parameter        | Wert |
 | ---------------- | ---- |
@@ -128,9 +128,9 @@ Abbildung 4.2 zeigt den Einfluss der Mutationschane auf die Fitness.Es ist deutl
 
 ## Optimierung des Algorithmus
 
-Alle Anpassungen und Neuerungen wurden nach dem Konzept #2 implementiert.  Das Programm wurde für die neue Abbruchbedingung angepasst. 
+Alle Anpassungen und Neuerungen wurden nach dem angepassten Konzept implementiert.  Das Programm wurde für die neue Abbruchbedingung angepasst. 
 
-Abbildung 4.4 zeigt ein Level mit der ersten Mutations- und Rekombinationsversion sowie der neu angepassten Fitness. Durch die angepasste Fitnessfunktion sind im Vergleich zu Abbildung .. weniger einzelne Wandstücke,welche aus der Außenwand herausgucken zu erkennen. 
+Abbildung 4.4 zeigt ein Level mit der ersten Mutations- (MV) und Rekombinationsversion (RV) sowie der neu angepassten Fitness. Durch die angepasste Fitnessfunktion sind im Vergleich zu Abbildung .. weniger einzelne Wandstücke,welche aus der Außenwand herausgucken zu erkennen. 
 
 ![Beispiellevel. MV=1, MW=1%, RV=1; RC=60%](figs/level/F2M1C1.png){width=50%}
 
@@ -150,7 +150,7 @@ Abbildung 4.6 zeigt ein Level mit einer Mutationswahrscheinlichkeit von 5%. Abbi
 
 ## Ansätze zur Erweiterung des Algorithmus
 
-Die neue Mutationsfunktion wurde wie im Konzept #3 beschrieben implementiert. Die beiden Verfahren zur Platzierung von Räumen wurden nach dem Konzept implementiert. Das *Spelunky-Style* Verfahren wurde zusätzlich um die Platzierung von Türen in optionalen Räumen und der Platzierung von Schlüsseln auf den kritischen Pfad erweitert. 
+Die neue Mutationsfunktion wurde, wie im veränderten Konzept beschrieben, implementiert. Die beiden Verfahren zur Platzierung von Räumen wurden nach dem Konzept implementiert. Das *Spelunky-Style* Verfahren wurde zusätzlich um die Platzierung von Türen in optionalen Räumen und der Platzierung von Schlüsseln auf den kritischen Pfad erweitert. 
 
 Um den *Reise zum Mittelpunkt* Algorithmus umzusetzen wurden die Klasse *CodedRoom* erzeugt welche von der Klasse *CodedLevel* erbt und zusätzlich Angaben über die Koordinaten des Mittel- und der Eckpunkte bereithält. 
 
