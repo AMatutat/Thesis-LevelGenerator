@@ -100,7 +100,7 @@ Dieses Verfahren benötigt, je nach Level Größe, eine große Menge an Arbeitss
 
 ### Ergebnis
 
-Um die optimalen Parameter Einstellungen zu erhalten, wurde die Fitness verschiedener Einstellung für ein 20x20 Level miteinander verglichen. Alle in dieser Arbeit erstellenten Level, sofern nicht anders beschrieben, wurden mit den selben Grundeinstellungen generiert und unterscheiden sich nur in den verwendeten Subroutinen (was hier verglichen wird), der Mutationswahrscheinlichkeit (MW) und Rekombinationschance (RC). 
+Um die optimalen Parameter Einstellungen zu erhalten, wurde die Fitness verschiedener Einstellung für ein 20x20 Level miteinander verglichen. Alle in dieser Arbeit erstellenten Level, sofern nicht anders beschrieben, wurden mit den selben, in Tabelle 4.1 zu sehenden, Grundeinstellungen generiert und unterscheiden sich nur in den verwendeten Subroutinen, der Mutationswahrscheinlichkeit (MW) und Rekombinationschance (RC). 
 
 | Parameter        | Wert |
 | ---------------- | ---- |
@@ -108,11 +108,15 @@ Um die optimalen Parameter Einstellungen zu erhalten, wurde die Fitness verschie
 | Maximale Generation | 50 |
 | Punkte für Lösbarkeit des Levels | 25 |
 | Punkte für verbundene Wände | 2 |
-| Punkte für erreichbare Wände | 3 |
+| Punkte für erreichbare Böden | 3 |
 | Boden zu Wand Verhältnis | 60/40 |
 Table: Übersicht der Grundeinstellung
 
-Alle gezeigten Level, sofern nicht anders beschrieben, wurden mit den, für die verwendeten Subroutinen, optimalen Mutationswahrscheinlichkeit und Rekombinationschance generiert. Die optimalen Einstellungen wurden durch den Vergleich der durchschnittlichen Fitness, der besten Lösung aus 10 Durchläufe pro Einstellung, ermittelt. Dabei wurden jeweils verschiedene Mutationswahrscheinlichkeiten mit verschiedenen Rekombinationschancen getestet. Die gezeigten Level stammen immer aus dem Ende eines Durchlaufes und repräsentieren die beste Lösung des Durchlaufes. Die präsentierten Grafen zeigen die durchschnittliche Fitness bzw. durchschnittliche Generation des besten Level eines Durchlaufes (ermittelt aus 10 Durchläufe) abhängig von der eingestellten Mutationswahrscheinlichkeit mit zugehöriger besten Rekombinationschance. Die genauen Messergebnisse, der hier präsentierten Ergebnisse, sind im Abschnitt Messdaten einzusehen. 
+Alle gezeigten Level, sofern nicht anders beschrieben, wurden mit den, für die verwendeten Subroutinen, optimalen Mutationswahrscheinlichkeit und Rekombinationschance generiert. Die optimalen Einstellungen wurden durch den Vergleich der durchschnittlichen Fitness, der besten Lösung aus 10 Durchläufe pro Einstellung, ermittelt. Dabei wurden jeweils verschiedene Mutationswahrscheinlichkeiten mit verschiedenen Rekombinationschancen getestet. Die gezeigten Level stammen immer aus dem Ende eines Durchlaufes und repräsentieren die beste Lösung des Durchlaufes.
+
+Die präsentierten Grafen zeigen die durchschnittliche Fitness bzw. durchschnittliche Generation des besten Level eines Durchlaufes (ermittelt aus 10 Durchläufe) abhängig von der eingestellten Mutationswahrscheinlichkeit mit zugehöriger besten Rekombinationschance. Insgesamt wurden 12 unterschiedliche Setups mit jeweils 51 unterschiedlichen Parametereinstellungen betrachtet. Im Folgenden werden die vier nennenswertesten Setups analysiert. Die genauen Messergebnisse sind im Abschnitt Messdaten einzusehen. 
+
+Es ist zu beachten, dass die ermittelten optimalen Einstellungen nur für 20x20 Level mit den in Tabelle 4.1 angegebenen Grundeinstellungen gültig sind. Eine genauere Untersuchung, ob und in wie fern diese Werte auch auf andere Einstellungen übernommen werden können, muss erst genauer untersucht werden. Diese genauere Untersuchung findet im Rahmen dieser Arbeit, aus zeitlichen Gründen, nicht statt. 
 
 ![Beispiellevel. MV=1, MW=1%, RV=1, RC=60%](figs/level/F1M1C1.png){width=70%}
 
