@@ -8,7 +8,7 @@ import ga.CodedLevel;
 import ga.LevelGenerator;
 import parser.LevelParser;
 
-public class ConnectedRoomGenerator {
+public class ReiseZumMittelpunkt {
 
 	public CodedLevel generateLevelWithRooms(final int xSize, final int ySize) {
 
@@ -199,11 +199,4 @@ public class ConnectedRoomGenerator {
 
 	}
 
-	public static void main(String[] args) {
-		ConnectedRoomGenerator cr = new ConnectedRoomGenerator();
-		LevelParser p = new LevelParser();
-		for (int i = 0; i < 10; i++)
-			p.generateTextureMap(p.parseLevel(cr.generateLevelWithRooms(50, 50)), "./results/img", "test_" + i);
-
-	}
 }

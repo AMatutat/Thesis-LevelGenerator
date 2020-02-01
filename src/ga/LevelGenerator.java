@@ -452,14 +452,4 @@ public class LevelGenerator {
 		}
 	}
 
-	public static void main(String[] args){
-
-		
-		LevelGenerator lg = new LevelGenerator();
-		LevelParser pa = new LevelParser();
-		while(true)
-		lg.generateLevel(20, 20, 10);
-
-
-	}
 }
