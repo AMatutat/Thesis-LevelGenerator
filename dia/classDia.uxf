@@ -1,70 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>7</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>910</x>
-      <y>266</y>
-      <w>231</w>
-      <h>147</h>
-    </coordinates>
-    <panel_attributes>CodedLevel
---
--level: char[][]
--xSize: int
--ySize: int
--fitness: float
--start: Point
--exit: Point
-
-
---
-+CodedLevel (level: char[][], xSize: int, ySize: int)
-+changeField (x: int, y: int, wert: char): void
-
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>791</x>
-      <y>532</y>
-      <w>357</w>
-      <h>147</h>
-    </coordinates>
-    <panel_attributes>LevelGenerator
-
---
-
---
-+generateLevel (xSize: int, ySize: int): CodedLevel
--generateRandomLevel (xSize: int, ySize: int): void
--calculateFitness (level: CodedLevel): float
--roulettWheelSelection (population: CodedLevel[]): CodedLevel
--onePointCrossover (parentA: CodedLevel, parentB: CodedLevel): CodedLevel[]
--bitFlipMutation (level: CodedLevel): void
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>406</x>
-      <y>266</y>
-      <w>413</w>
-      <h>133</h>
+      <x>162</x>
+      <y>342</y>
+      <w>531</w>
+      <h>171</h>
     </coordinates>
     <panel_attributes>LevelParser
 --
 
 --
 +parseLevel (level: CodedLevel): Level
-+placeMonster (level: Level, monster: Monster, surfaceToPutOn: ISurface): void
-+placeItem (level: Level, item: Item, surfaceToPutOn: ISurface): void
-+changeSurface (levle: Level, newSurface: ISurface, oldSurfaceType: ISurface): void
++placeMonster (level: Level, monster: Monster, surfaceToPutOn: String): boolean
++placeItem (level: Level, item: Item, surfaceToPutOn: String): boolean
++changeSurface (levle: Level, newSurface: ISurface, oldSurfaceType: String): boolean
 +generateTextureMap (level: Level, path: String, name: String): boolean
 </panel_attributes>
     <additional_attributes/>
@@ -72,10 +24,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>672</x>
-      <y>133</y>
-      <w>147</w>
-      <h>70</h>
+      <x>504</x>
+      <y>171</y>
+      <w>189</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 ILevel
@@ -84,16 +36,18 @@ ILevel
 +getXSize(): int
 +getYSize(): int
 +getLevel(): ISurface[][]
++getFreeFloors(): ISurface[]
++getFreeWalls(): ISurface[]
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>308</x>
-      <y>133</y>
-      <w>252</w>
-      <h>70</h>
+      <x>36</x>
+      <y>171</y>
+      <w>333</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 ISurface
@@ -101,62 +55,109 @@ ISurface
 --
 +getTexture(): String
 +setMonsterOnSurface (monster: Monster): boolean
-+setItemOnSurface (item: Item): boolean</panel_attributes>
++setItemOnSurface (item: Item): boolean
++getX();
++getY();
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>553</x>
-      <y>161</y>
-      <w>133</w>
-      <h>21</h>
+      <x>360</x>
+      <y>207</y>
+      <w>162</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>735</x>
-      <y>196</y>
-      <w>21</w>
-      <h>84</h>
+      <x>585</x>
+      <y>288</y>
+      <w>27</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
-    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>434</x>
-      <y>196</y>
-      <w>21</w>
-      <h>84</h>
+      <x>198</x>
+      <y>279</y>
+      <w>27</w>
+      <h>81</h>
     </coordinates>
     <panel_attributes>lt=-&gt;</panel_attributes>
-    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>801</x>
+      <y>351</y>
+      <w>288</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>CodedLevel
+--
+-level: char[][]
+-xSize: int
+-ySize: int
+-fitness: float
+-start: Point
+-exit:Point
+--
++CodedLevel (level: char[][], xSize: int, ySize: int)
++changeField(x: int, y: int, wert: char): void
+
+</panel_attributes>
+    <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>812</x>
-      <y>315</y>
-      <w>112</w>
-      <h>21</h>
+      <x>684</x>
+      <y>414</y>
+      <w>135</w>
+      <h>27</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>711</x>
+      <y>594</y>
+      <w>459</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>LevelGenerator
+--
+--
++generateLevel(xSize: int, ySize: int): CodedLevel
+-generateRadomLevel(xSize: int, ySize: int): CodedLevel
+-calculateFitness (level: CodedLevel): float
+-roulettWheelSelection (population: CodedLevel[]): CodedLevel
+-onePointCrossover (parentA: CodedLevel, parentB: CodedLevel): CodedLevel[]
+-bitFlipMutation (level: CodedLevel): void
+
+</panel_attributes>
+    <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>973</x>
-      <y>406</y>
-      <w>21</w>
-      <h>140</h>
+      <x>936</x>
+      <y>495</y>
+      <w>27</w>
+      <h>117</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
