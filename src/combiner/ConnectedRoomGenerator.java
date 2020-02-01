@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import constants.*;
 import constants.Parameter;
 import ga.CodedLevel;
-import ga.CodedRoom;
 import ga.LevelGenerator;
 import parser.LevelParser;
 
@@ -28,7 +27,7 @@ public class ConnectedRoomGenerator {
 				xp =  Parameter.MINIMAL_XSIZE;
 			if (yp <  Parameter.MINIMAL_YSIZE)
 				yp =  Parameter.MINIMAL_YSIZE;
-			CodedLevel rl = lg.generateLevel(xp, yp, 2, 1, 2, 2);
+			CodedLevel rl = lg.generateLevel(xp, yp, Parameter.MAXIMAL_GENERATION);
 			CodedRoom r = new CodedRoom(rl.getLevel(), rl.getXSize(), rl.getYSize());
 			r.changeField(rl.getStart().x, rl.getStart().y, Reference.REFERENCE_START);
 			r.changeField(rl.getExit().x, rl.getExit().y, Reference.REFEERNCE_EXIT);

@@ -21,4 +21,15 @@ public interface ILevel {
 	 */
 	public ISurface[][] getLevel();
 
+	/**
+	 * 
+	 * @return Liste mit allen, nicht belegten, Böden
+	 */
+	public ISurface[] getFreeFloors();
+	
+	/**
+	 * 
+	 * @return Liste mit allen, nicht belegten, Wänden
+	 */
+	public ISurface[] getFreeWalls();
 }

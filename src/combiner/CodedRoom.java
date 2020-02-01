@@ -1,4 +1,7 @@
-package ga;
+package combiner;
+
+import ga.CodedLevel;
+import ga.Point;
 
 public class CodedRoom extends CodedLevel {
 

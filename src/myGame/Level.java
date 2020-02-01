@@ -28,4 +28,16 @@ public class Level implements ILevel {
 	public ISurface[][] getLevel(){
 		return this.level;
 	}
+
+	@Override
+	public ISurface[] getFreeFloors() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ISurface[] getFreeWalls() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

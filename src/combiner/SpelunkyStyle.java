@@ -2,6 +2,7 @@ package combiner;
 
 import java.util.ArrayList;
 
+import constants.Parameter;
 import constants.Reference;
 import ga.CodedLevel;
 import ga.LevelGenerator;
@@ -31,7 +32,7 @@ public class SpelunkyStyle {
 
 		// gen rooms, remove starts
 		for (int i = 0; i < ROOMCOUNT; i++) {
-			rooms[i] = lg.generateLevel(ROOMXSIZE, ROOMYSize, 2, 1, 2, 2);
+			rooms[i] = lg.generateLevel(ROOMXSIZE, ROOMYSize, Parameter.MAXIMAL_GENERATION);
 			if (i != startFrame)
 				rooms[i].changeField(rooms[i].getStart().x, rooms[i].getStart().y, Reference.REFERENCE_FLOOR);
 		}
@@ -271,7 +272,7 @@ public class SpelunkyStyle {
 	}
 
 	public static void main(String[] args) {
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < 4; i++) {
 
 			CodedLevel level = new SpelunkyStyle().generateLevel();
 			new LevelParser().generateTextureMap(new LevelParser().parseLevel(level), "./results/img", "spelunky_" + i);

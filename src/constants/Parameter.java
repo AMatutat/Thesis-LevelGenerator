@@ -2,9 +2,9 @@ package constants;
 
 public class Parameter {
 
-	public static float CHANCE_TO_BE_FLOOR = 0.5f;
-	public static float CHANCE_FOR_MUTATION = 0.1f;		
-	public static float CHANCE_FOR_CROSSOVER = 0.6f;
+	public static float CHANCE_TO_BE_FLOOR = 0.6f;
+	public static float CHANCE_FOR_MUTATION = 0.05f;		
+	public static float CHANCE_FOR_CROSSOVER = 0.8f;
 	
 	
 	public static final int POPULATIONSIZE = 500;	

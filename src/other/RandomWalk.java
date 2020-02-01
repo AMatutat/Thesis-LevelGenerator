@@ -1,6 +1,5 @@
 package other;
 
-import combiner.SpelunkyStyle;
 import constants.Reference;
 import ga.CodedLevel;
 import ga.Point;
@@ -67,10 +66,10 @@ public class RandomWalk {
 		return new CodedLevel(lvl, xSize, ySize);
 
 	}
-	
-	public static void main (String[]args){
 
-		CodedLevel level = new RandomWalk().randomWalk(50, 50, 30*40);
+	public static void main(String[] args) {
+
+		CodedLevel level = new RandomWalk().randomWalk(150, 150, 70*70);
 		new LevelParser().generateTextureMap(new LevelParser().parseLevel(level), "./results/img", "randomWalk");
 	}
 

@@ -27,4 +27,25 @@ public class Floor extends Surface{
 		return true;
 	}
 
+
+	@Override
+	public boolean isFree() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public int getX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int getY() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

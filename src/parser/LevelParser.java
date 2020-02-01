@@ -28,10 +28,10 @@ public class LevelParser {
 					lvl[x][y] = new Exit();
 				else if (level.getLevel()[x][y] == Reference.REFERENCE_DOOR)
 					lvl[x][y] = new Door();
-				else if (level.getLevel()[x][y] == Reference.REFERENCE_FLOOR_WITH_KEY)
-					lvl[x][y] = new Key();
-				
-				
+				else if (level.getLevel()[x][y] == Reference.REFERENCE_FLOOR_WITH_KEY) {
+					lvl[x][y] = new Floor();
+					lvl[x][y].setItemOnSurface(new Key());
+				}
 
 			}
 		}
@@ -39,55 +39,62 @@ public class LevelParser {
 		return new Level(level.getXSize(), level.getYSize(), lvl);
 	}
 
-	public void placeMonster(final Level lvl, final Monster monster, final ISurface surfaceToPutOn) throws Exception {
-		ArrayList<ISurface> checkedSurfaces = new ArrayList<ISurface>();
-		while (checkedSurfaces.size() < lvl.getXSize() * lvl.getYSize()) {
-			int x = (int) Math.random() * lvl.getXSize();
-			int y = (int) Math.random() * lvl.getYSize();
-			if (!checkedSurfaces.contains(lvl.getLevel()[x][y])
-					&& lvl.getLevel()[x][y].getClass() == surfaceToPutOn.getClass()
-					&& lvl.getLevel()[x][y].setMonsterOnSurface(monster))
-				return;
-			else
-				checkedSurfaces.add(lvl.getLevel()[x][y]);
+	public boolean placeMonster(final Level lvl, final Monster monster, final String surfaceToPutOn) {
+		ISurface[] surfaces;
+		// bei mehr Surfaces entsprechend erweitern
+		if (surfaceToPutOn.equals("Floor"))
+			surfaces = lvl.getFreeFloors();
+		else
+			surfaces = lvl.getFreeWalls();
 
-		}
-		throw new Exception("Level voll");
+		if (surfaces.length == 0)
+			return false;
+
+		int field = (int) Math.random() * surfaces.length;
+		return surfaces[field].setMonsterOnSurface(monster);
+
 	}
 
-	public void placeItem(final Level lvl, final Item item, final ISurface surfaceToPutOn) throws Exception {
+	public boolean placeItem(final Level lvl, final Item item, final String surfaceToPutOn) {
+		ISurface[] surfaces;
+		// bei mehr Surfaces entsprechend erweitern
+		if (surfaceToPutOn.equals("Floor"))
+			surfaces = lvl.getFreeFloors();
+		else
+			surfaces = lvl.getFreeWalls();
 
-		ArrayList<ISurface> checkedSurfaces = new ArrayList<ISurface>();
-		while (checkedSurfaces.size() < lvl.getXSize() * lvl.getYSize()) {
-			int x = (int) Math.random() * lvl.getXSize();
-			int y = (int) Math.random() * lvl.getYSize();
-			if (!checkedSurfaces.contains(lvl.getLevel()[x][y]) && x != 0 && y != 0 && x != lvl.getXSize() - 1
-					&& y != lvl.getYSize() - 1 && lvl.getLevel()[x][y].getClass() == surfaceToPutOn.getClass()
-					&& lvl.getLevel()[x][y].setItemOnSurface(item))
-				return;
-			else
-				checkedSurfaces.add(lvl.getLevel()[x][y]);
-		}
-		throw new Exception("Level voll");
+		if (surfaces.length == 0)
+			return false;
+
+		int field = (int) Math.random() * surfaces.length;
+		return surfaces[field].setItemOnSurface(item);
 	}
 
-	public void changeSurface(final Level lvl, final ISurface newSurface, final ISurface oldSurfaceType)
-			throws Exception {
-		ArrayList<ISurface> checkedSurfaces = new ArrayList<ISurface>();
-		while (checkedSurfaces.size() < lvl.getXSize() * lvl.getYSize()) {
-			int x = (int) Math.random() * lvl.getXSize();
-			int y = (int) Math.random() * lvl.getYSize();
-			if (!checkedSurfaces.contains(lvl.getLevel()[x][y]) && x != 0 && y != 0 && x != lvl.getXSize() - 1
-					&& y != lvl.getYSize() - 1 && lvl.getLevel()[x][y].getClass() == oldSurfaceType.getClass()) {
-				lvl.getLevel()[x][y] = newSurface;
-				return;
-			} else
-				checkedSurfaces.add(lvl.getLevel()[x][y]);
-		}
-		throw new Exception("Level voll");
+	public boolean changeSurface(final Level lvl, final ISurface newSurface, final String oldSurface) {
+
+		ISurface[] surfaces;
+		/**
+		 * bei mehr Surfaces entsprechend erweitern Nur leere Surfaces werden ersetzt,
+		 * um Monster oder Item verlust zu verhindern
+		 */
+
+		if (oldSurface.equals("Floor"))
+			surfaces = lvl.getFreeFloors();
+		else
+			surfaces = lvl.getFreeWalls();
+		if (surfaces.length == 0)
+			return false;
+
+		int fieldIndex = (int) Math.random() * surfaces.length;
+	
+		ISurface field=surfaces[fieldIndex];
+		//Austauschen des alten Feldes mit dem neuen Feld 
+		lvl.getLevel()[field.getX()][field.getY()] = newSurface;
+		return true;
+
 	}
 
-	public boolean generateTextureMap(final Level lvl, final String path, final String name) {
+	public boolean generateTextureMap(final Level lvl, final String path, final String name) throws OutOfMemoryError {
 		try {
 			BufferedImage img1;
 			BufferedImage joinedImgLine = null;
