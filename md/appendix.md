@@ -21,8 +21,24 @@
 
 ![F1M1C1](figs/messungen/F1M1C1.PNG)
 
+![F1M1C2](figs/messungen/F1M1C2.PNG)
+
+![F1M2C1](figs/messungen/F1M2C1.PNG)
+
+![F1M2C2](figs/messungen/F1M2C2.PNG)
+
+![F1M3C1](figs/messungen/F1M3C1.PNG)
+
+![F1M3C2](figs/messungen/F1M3C2.PNG)
+
 ![F2M1C1](figs/messungen/F2M1C1.PNG)
 
+![F2M1C2](figs/messungen/F2M1C2.PNG)
+
+![F2M2C1](figs/messungen/F2M2C1.PNG)
+
 ![F2M2C2](figs/messungen/F2M2C2.PNG)
+
+![F2M3C1](figs/messungen/F2M3C1.PNG)
 
 ![F2M3C2](figs/messungen/F2M3C2.PNG)
