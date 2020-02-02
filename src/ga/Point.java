@@ -1,5 +1,9 @@
 package ga;
-
+/**
+ * Hilfsklasse zur abspeicherung von Koordinaten. 
+ * @author Andre Matutat
+ *
+ */
 public class Point {
 
 	public int x;

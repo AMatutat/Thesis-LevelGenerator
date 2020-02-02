@@ -34,7 +34,15 @@ public boolean setMonsterOnSurface(Monster monster);
  */
 public boolean setItemOnSurface(Item item);
 
+/**
+ * 
+ * @return X-Koordinate
+ */
 public int getX();
+/**
+ * 
+ * @return Y-Koordinate
+ */
 public int getY();
 
 }

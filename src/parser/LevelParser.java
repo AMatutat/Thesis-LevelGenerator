@@ -11,13 +11,29 @@ import constants.Reference;
 import ga.CodedLevel;
 import interfaces.*;
 import myGame.*;
-
+/**
+ * Parst CodedLevel in Level des PM-Dungeon. 
+ * Hilft bei der Platzierung von Monstern und Items im Level.
+ * Erschafft Leveltextur. 
+ * 
+ * Muss entsprechend der eigenen Implementation angepasst werden. 
+ * 
+ * @author Andre Matutat
+ *
+ */
 public class LevelParser {
 
+	/**
+	 * Parst CodedLevel in Level des PM-Dungeon. 
+	 * @param level vom Generator erschaffenes Level
+	 * @return Level des PM-Dungeon (Klasse Level muss selbst implementiert werden)
+	 */
 	public Level parseLevel(final CodedLevel level) {
 		ISurface[][] lvl = new ISurface[level.getXSize()][level.getYSize()];
 		for (int x = 0; x < level.getXSize(); x++) {
-			for (int y = 0; y < level.getYSize(); y++) {
+			for (int y = 0; y < level.getYSize(); y++) {		
+			
+				//Surface Implementationen müssen selbst erstellt werden. ggf. (noch) nicht Implementierte Surfaces auskommentieren
 				if (level.getLevel()[x][y] == Reference.REFERENCE_WALL)
 					lvl[x][y] = new Wall();
 				else if (level.getLevel()[x][y] == Reference.REFERENCE_FLOOR)
@@ -39,6 +55,13 @@ public class LevelParser {
 		return new Level(level.getXSize(), level.getYSize(), lvl);
 	}
 
+	/**
+	 * Platziert Monster auf einer zufälligen Oberfläche
+	 * @param lvl Level
+	 * @param monster zu platzierendes Monster
+	 * @param surfaceToPutOn Oberflächen Typ auf dem das Monster platziert werden soll
+	 * @return Ob Platzierung erfolgreich war
+	 */
 	public boolean placeMonster(final Level lvl, final Monster monster, final String surfaceToPutOn) {
 		ISurface[] surfaces;
 		// bei mehr Surfaces entsprechend erweitern
@@ -47,6 +70,8 @@ public class LevelParser {
 		else
 			surfaces = lvl.getFreeWalls();
 
+
+		//Wenn keine freien Felder mehr da sind
 		if (surfaces.length == 0)
 			return false;
 
@@ -54,7 +79,13 @@ public class LevelParser {
 		return surfaces[field].setMonsterOnSurface(monster);
 
 	}
-
+	/**
+	 * Platziert Item auf einer zufälligen Oberfläche
+	 * @param lvl Level
+	 * @param item zu platzierendes Item
+	 * @param surfaceToPutOn Oberflächen Typ auf dem das Item platziert werden soll
+	 * @return Ob Platzierung erfolgreich war
+	 */
 	public boolean placeItem(final Level lvl, final Item item, final String surfaceToPutOn) {
 		ISurface[] surfaces;
 		// bei mehr Surfaces entsprechend erweitern
@@ -63,6 +94,7 @@ public class LevelParser {
 		else
 			surfaces = lvl.getFreeWalls();
 
+		//Wenn keine freien Felder mehr da sind
 		if (surfaces.length == 0)
 			return false;
 
@@ -70,6 +102,13 @@ public class LevelParser {
 		return surfaces[field].setItemOnSurface(item);
 	}
 
+	/**
+	 * Tauscht eine zufällige Oberfläche durch eine andere aus
+	 * @param lvl Level
+	 * @param newSurface neue Oberfläche die platziert werden soll
+	 * @param oldSurface Oberflächen Typ der ausgetauscht werden soll
+	 * @return Ob Platzierung erfolgreich war
+	 */
 	public boolean changeSurface(final Level lvl, final ISurface newSurface, final String oldSurface) {
 
 		ISurface[] surfaces;
@@ -82,6 +121,8 @@ public class LevelParser {
 			surfaces = lvl.getFreeFloors();
 		else
 			surfaces = lvl.getFreeWalls();
+		
+		//Wenn keine freien Felder mehr da sind
 		if (surfaces.length == 0)
 			return false;
 
@@ -94,6 +135,14 @@ public class LevelParser {
 
 	}
 
+	/**
+	 * Generiert Textur des Levels
+	 * @param lvl Level
+	 * @param path Speicherort
+	 * @param name Name der Datei
+	 * @return Ob generierung erfolgreich war.
+	 * @throws OutOfMemoryError bei zu großen Level. RAM der JVM manuell erweitern 
+	 */
 	public boolean generateTextureMap(final Level lvl, final String path, final String name) throws OutOfMemoryError {
 		try {
 			BufferedImage img1;
@@ -113,7 +162,6 @@ public class LevelParser {
 				img1 = ImageIO.read(new File(lvl.getLevel()[0][y].getTexture()));
 			}
 			boolean success = ImageIO.write(joinedImgComplete, "png", new File(path + "\\" + name + ".png"));
-			System.out.println("saved success? " + success);
 			if (!success)
 				return false;
 

@@ -4,7 +4,11 @@ import constants.Reference;
 import ga.CodedLevel;
 import ga.Point;
 import parser.LevelParser;
-
+/**
+ * Implementatin des RandomWalk Algorithmus. 
+ * @author Andre
+ *
+ */
 public class RandomWalk {
 
 	public CodedLevel randomWalk(int xSize, int ySize, int wantedFloors) {

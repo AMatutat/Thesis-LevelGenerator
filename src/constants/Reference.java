@@ -1,13 +1,12 @@
 package constants;
 
 /**
- * Konstanten die vom Levelgenerator verwendet wird
- * 
- * @author André Matutat
+ * Enthält Konstante Referencen
+ * @author Andre Matutat
  *
  */
 public class Reference {
-
+	
 	public static final char REFERENCE_FLOOR = 'F';	
 	public static final char REFERENCE_WALL = 'W';
 	public static final char REFEERNCE_EXIT = 'X';

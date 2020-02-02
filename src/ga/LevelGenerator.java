@@ -4,8 +4,24 @@ import constants.Parameter;
 import constants.Reference;
 import parser.LevelParser;
 
+/**
+ * Verwendet einen GA zur generierung eines Levels
+ * 
+ * @author Andre Matutat
+ *
+ */
 public class LevelGenerator {
 
+	/**
+	 * Erstellt ein CodedLevel, welches zu einen Level geparsed werden kann
+	 * 
+	 * @param xSize       Breite des Levels
+	 * @param ySize       Höhe des Levels
+	 * @param generations Anzahl der Durchläufe. Mehr Durchläufe führen in der Regel
+	 *                    zu besseren Ergebnissen
+	 * @return generiretes Level
+	 * @throws IllegalArgumentException
+	 */
 	public CodedLevel generateLevel(final int xSize, final int ySize, final int generations)
 			throws IllegalArgumentException {
 		if (xSize < Parameter.MINIMAL_XSIZE || ySize < Parameter.MINIMAL_YSIZE)
@@ -84,11 +100,19 @@ public class LevelGenerator {
 		return bestLevel;
 	}
 
+	/**
+	 * Generiert zufälliges Level
+	 * 
+	 * @param xSize Breite
+	 * @param ySize Höhe
+	 * @return generietes Level
+	 */
 	private CodedLevel generateRandomLevel(final int xSize, final int ySize) {
 		char[][] level = new char[xSize][ySize];
 		for (int y = 0; y < ySize; y++) {
 			for (int x = 0; x < xSize; x++) {
 
+				// Außenwand
 				if (x == 0 || y == 0 || y == ySize - 1 || x == xSize - 1)
 					level[x][y] = Reference.REFERENCE_WALL;
 
@@ -103,6 +127,11 @@ public class LevelGenerator {
 		return new CodedLevel(level, xSize, ySize);
 	}
 
+	/**
+	 * Platziert Start und Endpunkt auf zufälligen Boden
+	 * 
+	 * @param lvl Level in dem platziert weden soll
+	 */
 	private void placeStartAndEnd(final CodedLevel lvl) {
 		boolean change = false;
 
@@ -131,6 +160,12 @@ public class LevelGenerator {
 		}
 	}
 
+	/**
+	 * Brechnet den Fitnesswert eines Levels. Version 1
+	 * 
+	 * @param level zu prüfendes Level
+	 * @return Fitnesswert
+	 */
 	private float fitness1(final CodedLevel level) {
 		float fitness = 0f;
 		level.resetList();
@@ -156,6 +191,12 @@ public class LevelGenerator {
 		return fitness;
 	}
 
+	/**
+	 * Brechnet den Fitnesswert eines Levels. Version 2
+	 * 
+	 * @param lvl zu prüfendes Level
+	 * @return Fitnesswert
+	 */
 	private float fitness2(final CodedLevel lvl) {
 		float fitness = 0;
 		lvl.resetList();
@@ -186,6 +227,14 @@ public class LevelGenerator {
 		return fitness;
 	}
 
+	/**
+	 * Prüft ob eine Wand mit der Außenwand Verbunden ist.
+	 * 
+	 * @param level Level
+	 * @param x     X-Koordinate der Wand
+	 * @param y     Y-Koordinate der Wand
+	 * @return Ergebniss
+	 */
 	private boolean isConnected(final CodedLevel level, final int x, final int y) {
 
 		if (level.getLevel()[x][y] != Reference.REFERENCE_WALL)
@@ -218,6 +267,14 @@ public class LevelGenerator {
 		return connected;
 	}
 
+	/**
+	 * Prüft ob ein Boden vom Startpunkt aus erreichbar ist
+	 * 
+	 * @param level
+	 * @param x     X-Koordinate des Bodens
+	 * @param y     Y-Koordinate des Bodens
+	 * @return Ergebniss
+	 */
 	private boolean isReachable(final CodedLevel level, final int x, final int y) {
 		if (level.getLevel()[x][y] != Reference.REFERENCE_FLOOR && level.getLevel()[x][y] != Reference.REFEERNCE_EXIT
 				&& level.getLevel()[x][y] != Reference.REFERENCE_START)
@@ -230,6 +287,13 @@ public class LevelGenerator {
 
 	}
 
+	/**
+	 * Erstellt eine Liste mit allen, vom Start aus, erreichbaren Böden
+	 * 
+	 * @param level
+	 * @param x     X-Koordinate Startpunkt
+	 * @param y     Y-Koordinate Startpunkt
+	 */
 	private void createReachableList(final CodedLevel level, final int x, final int y) {
 		if (level.getLevel()[x][y] != Reference.REFERENCE_FLOOR && level.getLevel()[x][y] != Reference.REFEERNCE_EXIT
 				&& level.getLevel()[x][y] != Reference.REFERENCE_START)
@@ -262,6 +326,12 @@ public class LevelGenerator {
 			createReachableList(level, x, y + 1);
 	}
 
+	/**
+	 * Wählt ein zufälligen Raum aus der Liste aus.
+	 * 
+	 * @param population Liste der Räume
+	 * @return Ausgewählter Raum
+	 */
 	private CodedLevel roulettWheelSelection(final CodedLevel[] population) {
 		int fitSum = 0;
 		for (CodedLevel lvl : population) {
@@ -280,6 +350,13 @@ public class LevelGenerator {
 		return null;
 	}
 
+	/**
+	 * Rekombiniert zweI Level
+	 * 
+	 * @param lvl1
+	 * @param lvl2
+	 * @return neue Level
+	 */
 	private CodedLevel[] onePointCrossover(final CodedLevel lvl1, final CodedLevel lvl2) {
 
 		CodedLevel newLevelA = new CodedLevel(new char[lvl1.getXSize()][lvl1.getYSize()], lvl1.getXSize(),
@@ -310,6 +387,13 @@ public class LevelGenerator {
 		return c;
 	}
 
+	/**
+	 * Rekombiniert zweI Level
+	 * 
+	 * @param lvl1
+	 * @param lvl2
+	 * @return neue Level
+	 */
 	private CodedLevel[] multipointCrossover(final CodedLevel lvl1, final CodedLevel lvl2) {
 		int cut1 = ((int) (Math.random() * lvl1.getYSize()));
 		int cut2 = ((int) (Math.random() * lvl1.getYSize()));
@@ -349,6 +433,11 @@ public class LevelGenerator {
 		return c;
 	}
 
+	/**
+	 * Zufälliges wechseln von Oberflächen. Mutationsversion 1
+	 * 
+	 * @param lvl
+	 */
 	private void bitFlipMutation(final CodedLevel lvl) {
 		for (int y = 1; y < lvl.getYSize() - 1; y++) {
 			for (int x = 1; x < lvl.getXSize() - 1; x++) {
@@ -362,6 +451,12 @@ public class LevelGenerator {
 		}
 	}
 
+	/**
+	 * Schiebt Wände einer Reihe nach links bzw rechts um sie mit der Außenwand zu
+	 * verbinden. Mutationsversion 2
+	 * 
+	 * @param lvl
+	 */
 	private void fixRowMutation(final CodedLevel lvl) {
 		for (int y = 2; y < lvl.getYSize() - 2; y++) {
 			if (Math.random() < Parameter.CHANCE_FOR_MUTATION) {
@@ -410,6 +505,12 @@ public class LevelGenerator {
 		}
 	}
 
+	/**
+	 * Mutation angelehnt an das Game of Life.
+	 * 
+	 * @param level
+	 * @return mutiertes Level
+	 */
 	private CodedLevel gameOfLifeMutation(CodedLevel level) {
 		CodedLevel tempLevel = level.copyLevel();
 		for (int x = 1; x < tempLevel.getXSize() - 1; x++) {
@@ -440,6 +541,11 @@ public class LevelGenerator {
 		return tempLevel;
 	}
 
+	/**
+	 * Verändert alle unerreichbaren Böden in Wände
+	 * 
+	 * @param lvl
+	 */
 	private void removeUnreachableFloors(final CodedLevel lvl) {
 		lvl.resetList();
 		for (int x = 0; x < lvl.getXSize(); x++) {

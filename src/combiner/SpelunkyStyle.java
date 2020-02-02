@@ -8,6 +8,12 @@ import ga.CodedLevel;
 import ga.LevelGenerator;
 import parser.LevelParser;
 
+/**
+ * Erstellt Level aus Räumen, angelehnt an das Vorgehen des Spiels Spelunky
+ * 
+ * @author Andre Matutat
+ *
+ */
 public class SpelunkyStyle {
 
 	private final int ROWCOUNT = 4;
@@ -21,22 +27,28 @@ public class SpelunkyStyle {
 	boolean KEY_PLACED = false;
 	boolean DOOR_PLACED = false;
 
+	/**
+	 * Generiert Spelunky-Style Level
+	 * 
+	 * @return generiertes Level
+	 */
 	public CodedLevel generateLevel() {
 
 		CodedLevel[] rooms = new CodedLevel[16];
 		LevelGenerator lg = new LevelGenerator();
 
-		// Bestimmen wo start und ende ist
+		// Bestimmen wo start ist
 		int startFrame = (int) (Math.random() * ROWCOUNT);
 		int endFrame;
 
-		// gen rooms, remove starts
+		// generate rooms, remove starts
 		for (int i = 0; i < ROOMCOUNT; i++) {
 			rooms[i] = lg.generateLevel(ROOMXSIZE, ROOMYSIZE, Parameter.MAXIMAL_GENERATION);
 			if (i != startFrame)
 				rooms[i].changeField(rooms[i].getStart().x, rooms[i].getStart().y, Reference.REFERENCE_FLOOR);
 		}
 
+		//Lege kritischen Pfad
 		ArrayList<Integer> criticalPath = new ArrayList<Integer>();
 		int aktuellerFrame = startFrame;
 		criticalPath.add(aktuellerFrame);
@@ -73,6 +85,7 @@ public class SpelunkyStyle {
 
 			}
 		}
+		//place exit
 		endFrame = criticalPath.get(criticalPath.size() - 1);
 
 		// remove exits
@@ -81,6 +94,7 @@ public class SpelunkyStyle {
 				rooms[i].changeField(rooms[i].getExit().x, rooms[i].getExit().y, Reference.REFERENCE_FLOOR);
 		}
 
+		//place key
 		while (!KEY_PLACED) {
 			CodedLevel room = rooms[criticalPath.get((int) (Math.random() * criticalPath.size()))];
 			int x = (int) (Math.random() * ROOMXSIZE);
@@ -95,9 +109,9 @@ public class SpelunkyStyle {
 
 		connectUnconnected(rooms, criticalPath);
 
+		//parsen zum CodedLevel
 		CodedLevel level = new CodedLevel(new char[ROWCOUNT * ROOMXSIZE][COLUMNCOUNT * ROOMYSIZE], ROWCOUNT * ROOMXSIZE,
 				COLUMNCOUNT * ROOMYSIZE);
-
 		int levelX = 0;
 		int levelY = 0;
 		int tempX = 0;
@@ -123,6 +137,13 @@ public class SpelunkyStyle {
 		return level;
 	}
 
+	/**
+	 * Bewegt den kritischen Pfad in eine zufällige Richtung
+	 * 
+	 * @param aktuellerFrame Aktueller Raum
+	 * @param rooms          Liste aller Räume
+	 * @return Index des betrotteten Raums
+	 */
 	private int move(int aktuellerFrame, CodedLevel[] rooms) {
 		int dice = (int) (Math.random() * 5);
 		switch (dice) {
@@ -157,73 +178,66 @@ public class SpelunkyStyle {
 	}
 
 	/**
-	 * Verbindet alle nicht verbundenen Rooms mit den kritischen Pfad 
-	 * @param rooms Array mit allen Rooms
+	 * Verbindet alle nicht verbundenen Rooms mit den kritischen Pfad
+	 * 
+	 * @param rooms     Array mit allen Rooms
 	 * @param connected Liste mit verbundenen Rooms
 	 */
 	private void connectUnconnected(CodedLevel[] rooms, ArrayList<Integer> connected) {
-		
-		System.out.println("Start");
-		
-		//Erstellen einer Lister, aller unberbundenen Rooms
+
+		// Erstellen einer Lister, aller unberbundenen Rooms
 		ArrayList<Integer> unconnectedRooms = new ArrayList<Integer>();
 		for (int room = 0; room < ROOMCOUNT; room++)
 			if (!connected.contains(room)) {
 				unconnectedRooms.add(room);
-				System.out.println(room+" uncoonected");
+				System.out.println(room + " uncoonected");
 			}
-				
 
-		
 		if (unconnectedRooms.size() > 0) {
-			
-			//Index des betrachteten Rooms
+
+			// Index des betrachteten Rooms
 			Integer room = unconnectedRooms.get(0);
-			
+
 			// Verbindungen zwischen unterverbundenen Rooms
 			ArrayList<Integer> tempConnected = new ArrayList<Integer>();
-			
-			
+
 			while (!connected.contains(room)) {
 				boolean change = false;
-				
+
 				// linker nachbar
-				if (room - 1 >= 0 && (room-1)/ROWCOUNT==room/ROWCOUNT ) {
+				if (room - 1 >= 0 && (room - 1) / ROWCOUNT == room / ROWCOUNT) {
 					if (Math.random() < CHANCE_FOR_CONNECTION) {
-						System.out.println(room+" connected mit "+(room-1));
-						
-						//Position des Durchgangs
+
+						// Position des Durchgangs
 						int field = (int) (Math.random() * ROOMYSIZE - 2) + 1;
 						removeWall(rooms[room - 1], Reference.REFERENCE_EAST, field);
 						removeWall(rooms[room], Reference.REFERENCE_WEST, field);
-						
-						//Place Door
+
+						// Place Door
 						if (!DOOR_PLACED) {
 							rooms[room + 1].changeField(0, field, Reference.REFERENCE_DOOR);
 							DOOR_PLACED = true;
 						}
 
-						//Wenn der Nachbar verbunden ist, ist dieser Room jetz auch verbunden
+						// Wenn der Nachbar verbunden ist, ist dieser Room jetz auch verbunden
 						if (connected.contains(room - 1)) {
 							connected.add(room);
 							change = true;
 						}
 
-						//Nachbar Raum ist jetzt für die Verbindung zum kritschen Pfad verantwortlich
+						// Nachbar Raum ist jetzt für die Verbindung zum kritschen Pfad verantwortlich
 						else {
 							tempConnected.add(room);
 							room = room - 1;
 							change = true;
-					
+
 						}
 					}
 				}
 				// rechter nachbar
-				if (!change && room % ROWCOUNT != ROWCOUNT - 1  && (room+1)/ROWCOUNT==room/ROWCOUNT) {
-	
-					
+				if (!change && room % ROWCOUNT != ROWCOUNT - 1 && (room + 1) / ROWCOUNT == room / ROWCOUNT) {
+
 					if (Math.random() < CHANCE_FOR_CONNECTION) {
-						System.out.println(room+" connected mit "+(room+1));
 						int field = (int) (Math.random() * ROOMYSIZE - 2) + 1;
 						removeWall(rooms[room + 1], Reference.REFERENCE_WEST, field);
 						removeWall(rooms[room], Reference.REFERENCE_EAST, field);
@@ -247,12 +261,11 @@ public class SpelunkyStyle {
 				// unterer nachbar
 				if (!change && room + ROWCOUNT < ROOMCOUNT) {
 					if (Math.random() < CHANCE_FOR_CONNECTION) {
-						System.out.println(room+" connected mit "+(room+4));
-						
+
 						int field = (int) (Math.random() * ROOMXSIZE - 2) + 1;
 						removeWall(rooms[room], Reference.REFERENCE_SOUTH, field);
 						removeWall(rooms[room + ROWCOUNT], Reference.REFERENCE_NORTH, field);
-						
+
 						if (!DOOR_PLACED) {
 							rooms[room + ROWCOUNT].changeField(field, 0, Reference.REFERENCE_DOOR);
 							DOOR_PLACED = true;
@@ -271,7 +284,7 @@ public class SpelunkyStyle {
 				}
 
 			}
-			
+
 			for (Integer i : tempConnected)
 				connected.add(i);
 
@@ -279,6 +292,13 @@ public class SpelunkyStyle {
 		}
 	}
 
+	/**
+	 * Entfernt eine Wand aus einem Raum
+	 * 
+	 * @param room      Raum der verändert werden soll
+	 * @param direction Himmelsrichtung der Wand
+	 * @param field     Index der Wand
+	 */
 	private void removeWall(CodedLevel room, int direction, int field) {
 		switch (direction) {
 		case Reference.REFERENCE_NORTH:
@@ -287,9 +307,9 @@ public class SpelunkyStyle {
 				room.changeField(field, 1, Reference.REFERENCE_FLOOR);
 			break;
 		case Reference.REFERENCE_SOUTH:
-			room.changeField(field, ROOMYSIZE-1, Reference.REFERENCE_FLOOR);
-			if (room.getLevel()[field][ROOMYSIZE-2] == Reference.REFERENCE_WALL)
-				room.changeField(field, ROOMYSIZE-2, Reference.REFERENCE_FLOOR);
+			room.changeField(field, ROOMYSIZE - 1, Reference.REFERENCE_FLOOR);
+			if (room.getLevel()[field][ROOMYSIZE - 2] == Reference.REFERENCE_WALL)
+				room.changeField(field, ROOMYSIZE - 2, Reference.REFERENCE_FLOOR);
 			break;
 		case Reference.REFERENCE_EAST:
 			room.changeField(ROOMXSIZE - 1, field, Reference.REFERENCE_FLOOR);
@@ -302,15 +322,6 @@ public class SpelunkyStyle {
 			if (room.getLevel()[1][field] == Reference.REFERENCE_WALL)
 				room.changeField(1, field, Reference.REFERENCE_FLOOR);
 			break;
-		}
-
-	}
-
-	public static void main(String[] args) {
-		for (int i = 0; i < 15; i++) {
-
-			CodedLevel level = new SpelunkyStyle().generateLevel();
-			new LevelParser().generateTextureMap(new LevelParser().parseLevel(level), "./results/img", "spelunky_" + i);
 		}
 
 	}

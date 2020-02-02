@@ -7,14 +7,25 @@ import constants.Parameter;
 import ga.CodedLevel;
 import ga.LevelGenerator;
 import parser.LevelParser;
-
+/**
+ * Erstellt Level aus zufällig miteinander verbundenen Räumen.
+ * @author Andre Matutat
+ *
+ */
 public class ReiseZumMittelpunkt {
 
+	/**
+	 * Erstellt ein Level
+	 * @param xSize gewünschte Breite der gesamten Raumfläche
+	 * @param ySize gewünschte Höhe der gesamten Raumfläche
+	 * @return generiertes Level 
+	 */
 	public CodedLevel generateLevelWithRooms(final int xSize, final int ySize) {
 
 		CodedLevel level = new CodedLevel(new char[ (int)(xSize * 2.5)][ (int)(ySize * 2.5)], (int)(xSize * 2.5), (int)(ySize * 2.5));
 		ArrayList<CodedRoom> rooms = new ArrayList<CodedRoom>();
 
+		
 		for (int x = 0; x < level.getXSize(); x++)
 			for (int y = 0; y < level.getYSize(); y++)
 				level.getLevel()[x][y] = Reference.REFERENCE_EMPTY;
@@ -69,7 +80,7 @@ public class ReiseZumMittelpunkt {
 			}
 			notConnected.add(rooms.get(index));
 		}
-		this.connectRoomsWithSquareFloors(level, notConnected);
+		this.connectRooms(level, notConnected);
 
 		// leere Felder mit Walls auffüllen
 		for (int x = 0; x < level.getXSize(); x++)
@@ -81,6 +92,12 @@ public class ReiseZumMittelpunkt {
 
 	}
 
+	/**
+	 * Platziert Räume zufällig im Level
+	 * @param rooms Liste der Räume
+	 * @param lvl Level in dem die Räume platziert werden sollen
+	 * @return Level mit Räumen
+	 */
 	private CodedLevel placeRooms(ArrayList<CodedRoom> rooms, CodedLevel lvl) {
 		CodedLevel level = lvl.copyLevel();
 		int counter = 0;
@@ -130,7 +147,12 @@ public class ReiseZumMittelpunkt {
 
 	}
 
-	private void connectRoomsWithSquareFloors(CodedLevel level, ArrayList<CodedRoom> rooms) {
+	/**
+	 * Verbindet Raummittelpunkte miteinander.
+	 * @param level Level mit den platzierten Räumen
+	 * @param rooms Liste der Räume
+	 */
+	private void connectRooms(CodedLevel level, ArrayList<CodedRoom> rooms) {
 
 		for (int i = 0; i < rooms.size() - 1; i++) {
 			CodedRoom r1 = rooms.get(i);
