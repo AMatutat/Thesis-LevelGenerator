@@ -1,2 +1,2 @@
 # LevelGenerator
-Bachelorarbeit 
+Enthält alle Datein der Thesis. 
