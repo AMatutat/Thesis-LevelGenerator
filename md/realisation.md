@@ -177,7 +177,7 @@ Abbildung 4.13 zeigt ein Level, welches durch die zufällige Platzierung von Rä
 
 ## Gesamtauswertung
 
-In diesen Abschnitt folgt eine genauere Analyse der erstellten Lösungen. Der Algorithmus bietet viele Einstellungsmöglichkeiten, es würde daher den Rahmen der Arbeit sprengen, alle Möglichkeiten genauer zu betrachten. Aus der Realisierungsphase haben sich drei Verfahren herauskristallisiert, welche nun genauer betrachtet werden. Um ein Gefühl der Vielfältigkeit der einzelnen Verfahren zu bekommen, stehen im Anhang A.2 weitere Beispiellevel zur Verfügung.    
+In diesen Abschnitt folgt eine genauere Analyse der erstellten Lösungen. Der Algorithmus bietet viele Einstellungsmöglichkeiten, es würde daher den Rahmen der Arbeit sprengen, alle Möglichkeiten genauer zu betrachten. Aus der Realisierungsphase haben sich drei Verfahren herauskristallisiert, welche nun genauer betrachtet werden. Um ein Gefühl der Vielfältigkeit der einzelnen Verfahren zu bekommen, stehen im Anhang B. weitere Beispiellevel zur Verfügung.    
 
 Alle Verfahren erfüllen die in Abschnitt 3.1 aufgestellten Grundanforderungen an das Projekt. Jedes Verfahren erstellt Lösbare 2D-Level. Der Parser ermöglicht es den Studenten die generierten Level in ihr PM-Dungeon zu integrieren. Monster, Items und Spezialfelder können zufällig im Level zu verteilet werden. Die vorgegebenen Interfaces helfen dabei, auch selbst konzeptionierte Objekte im Level zu verteilen, dadurch liefert der Generator die Freiheit auch abseits der Aufgabenstellung aktiv und kreativ zu werden. Da Objekte zufällig platziert werden, kann der Schwierigkeitsgrad des Levels nur bedingt kontrolliert werden, da zwar die Stärke der Monster kontrolliert werden kann aber nicht sichergestellt werden kann das starke Monster nur auf optionalen Routen platziert werden. Der Parser ist in der Lage die Leveltextur zu erstellen, damit diese von den Studenten verwendet werden kann.
 
@@ -195,11 +195,13 @@ Auch wenn dieses Verfahren sich sehr gut dazu eignet interessante Risk and Rewar
 
 Dieses Verfahren erstellt Level die zufällig entweder nur einen Pfad oder zusätzliche optionale Routen bieten. Durch die unterschiedlich großen Räume entsteht innerhalb des Levels Abwechslung. Die Zufällige Platzierung der Räume sorgt dafür, dass jedes Level deutlich anders aussieht als andere. Risk und Reward Momente können zufällig entstehen, es kann nicht sichergestellt werden das jedes Level optionale Routen hat. Die teils langen Laufwege zwischen den Räumen können den Spielspaß trüben. Die Level bestehen aus einen großen Teil aus Wandblöcken, je nachdem wie die Kameraperspektive von den Studenten implementiert wird, ist dies entweder nicht zu sehen oder wird als Immersionsbrechend war genommen. 
 
+Dadurch das die Größe der einzelnen Räume innerhalb eines Levels variiert, würde dieses Verfahren von einer dynamischen Anpassung der Parameter stark profitieren. 
+
 Das Verfahren ist nicht in der Lage Türen und Schlüssel zu platzieren, da es kein Verweis darauf gibt, ob ein Raum optional oder zum kritischen Lösungspfad gehört. 
 
 Die Struktur der Level ist stärker als bei den anderen Verfahren von Zufall abhängig. Das Verfahren ist in der Lage gute Level mit unterschiedlichen Pfaden und abwechslungsreichen Level zu erzeugen. Es eignet sich daher zur Nutzung im PM-Dungeon.
 
-### Mutation 2 mit geringere Bodenfläche
+### Mutation 2 mit geringerer Bodenfläche
 
 Dieses Verfahren verwendet nur den GA und benötigt keinen weiteren Algorithmus. Es erzeugt Level mit raumähnlichen Strukturen und optionalen Routen. In den Level sind wenige bis keine einzelne Wandfelder zu erkennen, die einzelnen Wandketten bilden optisch ansprechende Trennwände und man kann sich gut vorstellen das diese in einen Dungeon so verbaut werden. 
 

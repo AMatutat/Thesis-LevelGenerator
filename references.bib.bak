@@ -402,12 +402,4 @@
   urldate = {2020-01-29},
 }
 
-@Online{Brown2018a,
-  author = {Mark Brown},
-  title  = {How to Keep Players Engaged (Without Being Evil) | Game Maker's Toolkit},
-  year   = {2018},
-    url     = {https://www.youtube.com/watch?v=hbzGO_Qonu0},
-  urldate = {2020-02-02},
-}
-
 @Comment{jabref-meta: databaseType:bibtex;}

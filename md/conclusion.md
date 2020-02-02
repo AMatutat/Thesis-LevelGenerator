@@ -2,29 +2,35 @@
 
 ## Fazit
 
-In dieser Arbeit wurde ein Konzept für einen Levelgenerator basierend auf einen Genetischen Algorithmus vorgestellt und umgesetzt. Der Generator ist in der Lage lösbare Level zu erzeugen, welche mithilfe des Implementierten Parsers in das PM-Dungeon der Studenten integriert werden kann. Der Generator ist eigenständig dazu in der Lage, optisch ansprechende und abwechslungsreiche Level zu erzeugen. Der Schwierigkeitsgrad des Levels kann durch die zufällig platzierten Monster kontrolliert werden. Die Level enthalten neben den kritischen Pfad, optionale Wege welche zu spannenden Risk and Reward Situationen führen können. Items und Monster können nicht gezielt in optionalen Räumen platziert werden.  
+Ziel dieser Arbeit war es, einen Level Generator basierend auf Genetischen Algorithmen zu entwickeln und zu bewerten. Dafür wurden unterschiedliche Bewertungskriterien für gutes Level Design aufgestellt. Insbesondere die Faktoren Lösbarkeit, Risk and Reward, Immersion und Einzigartigkeit der generierten Level wurde untersucht. 
 
-Mithilfe des Parsers kann die Leveltextur generiert werden, obwohl das angewendete Verfahren eine Menge an RAM benötigt. Den Studenten werden Interfaces zur Verfügung gestellt um eigens programmierte Monster, Items und Spezialfelder zufällig im Level verteilen. 
+Der vorgestellte und implementierte Algorithmus ist in der Lage, auch ohne Kenntnisse der Bewertungskriterien, spaßige und abwechslungsreiche Level zu generieren. Die Bewertungskriterien der Fitnessfunktion des GA geben nur an, in welche Art und Weise Böden und Wände im Level platziert werden sollen. Dem GA wurde kein Wissen über Raum- oder Flurstrukturen vermittelt, dennoch erschafft er Level mit unterschiedlichen Räumen und alternativen Routen für interessante Risk and Reward Situationen. Die vom GA erzeugten Level unterscheiden sich deutlich im Level Layout (vgl. B.1.), und können als einzigartig eingestuft werden. Der Generator wurde so programmiert, dass er nur Lösbare Level als gültige Ergebnisse zurück liefert. Dadurch, dass der GA kein Verständnis über Raum- oder Flurstrukturen besitzt, ist die sinnvolle Platzierung von Türen und Schlüsseln nicht möglich. Als gute Einstellungen haben sich die Grundeinstellungen aus Tabelle 4.1 mit dem in Abschnitt 3.4.2 und 3.4.3 vorgestellten Mutations- und Rekombinationsverfahren mit einer Mutationswahrscheinlichkeit von 5% und Rekombinationschance von 80% herauskristallisiert. Auch wurden das Boden/Wand Verhältnis auf 40/60 angepasst. 
 
-Es wurde eine Möglichkeit präsentiert, den Levelgenerator zur Generierung von Räumen zu nutzen. Es wurden verschiedene Verfahren gezeigt um Räume so zusammenzusetzten das sie interessante und abwechslungsreiche Level erzeugen. Die Verfahren sind noch nicht ausgereift und liefern jede glich einen Ausblick auf mögliche Ergebnisse.  
+Zusätzlich wurden das Verfahren zur Generierung von Level so abgeändert, das die generierten Level als Räume für weitere Algorithmen benutzt werden konnten. Es wurden zwei Verfahren präsentiert, welche aus den so generierten Räumen Level zusammensetzten. 
 
-Nur das Spelunky-Style Verfahren ist dazu in der Lage Türen und Schlüssel im Level zu platzieren, für die andern Verfahren fehlt die Möglichkeit gezielt Raumstrukturen zu erkennen um Türen sinnvoll zu platzieren.  
+Das an das Spiel *Spelunky* (vgl. Abs. 2.3.3.2) angelehnte Spelunky-Style Verfahren, ist zwar in der Lage Level mit alternativen Routen zu erschaffen, diese ähneln sich vom Aufbau aber dermaßen stark, das kaum unterschiede zwischen dein einzelnen Leveln zu sehen sind.(vgl. Abs B.2.) Es ist aber in der Lage Türen und Schlüssel korrekt im Level zu platzieren, um alternativen Routen anfangs unpassierbar zu machen. Das Verfahren eignet sich nicht, um Level für das PM-Dungeon zu generieren. 
 
-Diese Arbeit zeigt, dass bereits eine einfacher GA mit wenigen Informationen dazu in der Lage ist, optisch ansprechenden und abwechslungsreiche Level zu erzeugen. Der entwickelte GA löst alle an das Projekt gestellte Anforderungen, mit Ausnahme der Platzierung von Türen und Schlüssel, und erfüllt zusätzlich viele der präsentierten Regeln für gutes Leveldesign.  
+Das Verfahren *Reise zum Mittelpunkt* platziert zufällig generierte Räume und verteilt diese in einen großen, leeren Level. Jeder Raummittelpunkt wird dann mit dem, ihm am nächsten liegenden, unverbundenen, Raummitellpunkt  mithilfe eines Flures verbunden. So entstehet die klassischen Raum-Flur Struktur eines Dungeons.(vgl. Abs. B.3.) Dieses Verfahren kann zufällig, alternative Routen erzeugen, dies kann aber nicht garantiert werden. Da die Räume unterschiedlich groß sind, entsteht nicht nur unter den Leveln Abwechslung, sondern auch im Level selber. Dieses Verfahren erzeugt teil sehr lange Gänge welche keine Abwechslung und kein platz für spaßiges Gameplay liefern und daher als störend empfunden werden können. Das Verfahren ist noch nicht ausgereift, kann aber durchaus für die Generierung vom PM-Dungeon Level genutzt werden. 
 
-Mithilfe des Generators können die Studenten unterschiedliche Level in ihr Spiel integrieren um damit ihr PM-Dungeon zu testen und zu spielen.
+Der Implementierte Parser, ermöglicht eine schnelle und einfache Integration der generierten Level in das, von den Studenten erschaffene, PM-Dungeon. Die Studierenden können den Parser bei bedarf umschreiben, um ihn aber spezielle Eigenheiten ihrer Implementation anzupassen. Der Parser hilft dabei, Monster und Items zufällig im Level zu platzieren, Spezial Felder wie Fallen zu platzieren und die Textur des Levels zu generieren. Die Funktion  zur Generierung der Leveltextur benötigt, je nach Level Größe, eine Menge RAM der JVM, ggf. muss dieser daher manuell erhöht werden.
+
+Der Parser bietet keine Möglichkeit Monster und Items gezielt in alternativen Bereichen des Levels zu platzieren, der Schwierigkeitsgrad des Levels kann daher nur durch die Anzahl und stärke der platzierten Monster kontrolliert werden. 
+
+Das Ziel, einen Generator zu erschaffen der Level für das PM-Dungeon generiert und welche von den Studenten verwendet werden können, kann daher als erfolgreich erreicht angesehen werden. Der Generator kann dabei helfen den Lernerfolg und die Lernmotivation der Studenten zu erhöhen. Zusätzlich hat diese Arbeit gezeigt, das ein GA, bereits mit einer einfachen und grundlegenden Fitnessfunktion dazu in der Lage ist, spaßige und abwechslungsreiche Level, die viele Prinzipien guten Level Designs berücksichtigen, zu erzeugen. 
 
 ## Ausblick
 
 ### Verbesserung des Aktuellen Ansatz
 
-Der erstellte Algorithmus bietet viele Möglichkeiten der Weiterentwicklung und Erweiterung. Im Folgenden werden einige Ansatzpunkte kurz beschrieben. 
+Der erstellte Algorithmus bietet viele Möglichkeiten der Optimierung und Erweiterung. Im Folgenden werden einige Ansatzpunkte kurz beschrieben. 
 
-Die Fitnessfunktion liefert viel Spielraum für Anpassungen. Es wäre denkbar Level nach Raum ähnlichen oder Tunnel ähnlichen Strukturen zu durchsuchen und diese positiv zu bewerten. 
+Es müssen weitere Messungen vorgenommen werden um auch für andere Einstellungen, als den in Tabelle 4.1 vorgestellten Grundeinstellungen, und unterschiedenen Levelgrößen die optimalen Parametereinstellungen zu finden. 
+
+Die Fitnessfunktion liefert viel Spielraum für Anpassungen. Es wäre denkbar Level nach Raum ähnlichen oder Tunnel ähnlichen Strukturen zu durchsuchen und diese positiv zu bewerten. Das würde es auch ermöglichen, Türen und Schlüssel im Level einzubauen. 
 
 Der generieren der Texturen sollte so angepasst werden, dass auch größere Level erzeugt werden können, ohne große Mengen an Arbeitsspeicher zu benötigen. 
 
-Das Verfahren zur Platzierung von Räumen und Fluren kann so optimiert werden, das alternative Routen erstellt werden, in denen Items platziert werden können. Alternative Routen würden die Implementierung von Türen und Schlüsseln wieder als Sinnvolle Erweiterung markieren. So könnte es zu interessanten Risk and Reward Situationen kommen.  Der Algorithmus sollte so angepasst werden, dass die gesamte Levelfläche besser genutzt wird, da durch das aktuelle Verfahren zur Platzierung, ein Großteil des Levels ungenutzt bleibt.
+Das Verfahren zur Platzierung von Räumen und Fluren kann so optimiert werden, das garantiert alternative Routen erstellt werden, in denen Items platziert werden können. Alternative Routen würden die Implementierung von Türen und Schlüsseln wieder als Sinnvolle Erweiterung hervorheben. So könnte es zu interessanten Risk and Reward Situationen kommen. Der Algorithmus sollte so angepasst werden, dass die gesamte Levelfläche besser genutzt wird, da durch das aktuelle Verfahren zur Platzierung, ein Großteil des Levels ungenutzt bleibt.
 
 ### Graphbased Ansatz
 
