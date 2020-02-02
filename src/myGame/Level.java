@@ -1,5 +1,43 @@
 package myGame;
 
-public class Level {
+import interfaces.ILevel;
+import interfaces.ISurface;
 
+public class Level implements ILevel {
+	private int xSize;
+	private int ySize;
+	private ISurface[][] level;
+	
+	public Level(int xSize, int ySize, ISurface[][] level) {
+		this.xSize = xSize;
+		this.ySize = ySize;
+		this.level = level;
+	}
+
+	@Override
+	public int getXSize() {
+
+		return this.xSize;
+	}
+
+	@Override
+	public int getYSize() {
+		return this.ySize;
+	}
+
+	public ISurface[][] getLevel(){
+		return this.level;
+	}
+
+	@Override
+	public ISurface[] getFreeFloors() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ISurface[] getFreeWalls() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

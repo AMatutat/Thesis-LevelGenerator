@@ -1,23 +1,48 @@
 package interfaces;
-import interfaces.IMonster;
-import interfaces.IItem;
-public interface ISurface {
 
+import myGame.Item;
+import myGame.Monster;
+/**
+ * Muss von allen Surfaces implementiert werden
+ * @author André Matutat
+ *
+ */
+public interface ISurface {
 /**
  * 
  * @return Pfad zur Textur des Surface
  */
 public String getTexture();
+
+
+/**
+ * 
+ * @return ob auf dem Feld etwas platziert ist (Monster,Item)
+ */
+public boolean isFree();
+
 /**
  * 
  * @param monster welches platziert werden soll
  * @return ob Platzierung erfolgreich war
  */
-public boolean setMonsterOnSurface(IMonster monster);
+public boolean setMonsterOnSurface(Monster monster);
 /**
  * 
  * @param item welches platziert werden soll
  * @return ob Platzierung erfolgreich war
  */
-public boolean setItemOnSurface(IItem item);
+public boolean setItemOnSurface(Item item);
+
+/**
+ * 
+ * @return X-Koordinate
+ */
+public int getX();
+/**
+ * 
+ * @return Y-Koordinate
+ */
+public int getY();
+
 }
