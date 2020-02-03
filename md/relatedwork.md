@@ -392,17 +392,13 @@ Da EA sich an der Evolution orientieren, haben viele Fachbegriffe der Genetik ih
 
 **Individuum / Chromosom** 
 
->"Ein Individuum im biologischen Sinne ist ein lebender Organismus, dessen
->Erbinformationen in einer Menge von Chromosomen gespeichert ist. Im Zusammenhang mit >genetischen Algorithmen werden die Begriffe Individuum und
->Chromosom jedoch meistens gleichgesetzt." [@Selzam2006]
+Individuen sind, im Sinne eines EA, mögliche Lösungen. Dabei spielt es keine Rolle, ob eine Lösung als gültig oder ungültig klassifiziert wird. Alle Informationen eines Individuums werden in einer Menge an Chromosomen gespeichert. Chromosome bestehen aus einer Menge an Genen. 
 
-**Gen**
+Oft werden die Begriffe Individuum und Chromosom, im Zusammenhang mit GA gleich gesetzt.[@Selzam2006]   
 
-Ein Gen ist genau eine Sequenz im Individuum. Je nach Kontext kann es sich hierbei um eine einzelne Stelle oder mehrere Stellen im Individuum handeln.
+**Gen / Allel**
 
-**Allel**
-
-Allel beschreibt den exakten Wert eines Gens. 
+Ein Gen ist eine bestimmte Stelle bzw. Sequenz im Chromosom. Gene repräsentieren Problemvariablen der Problemstellung. Allel beschreibt den genauen Wert eines Gens. Aus unterschiedlich zusammengesetzten Genen ergeben sich daher unterschiedliche Chromosome bzw. Individuen.
 
 **Population / Generation**
 
@@ -431,9 +427,9 @@ Im Folgenden werden die einzelnen Subroutinen genauer beschrieben, sowie gängig
 
 ### Kodierung
 
-Zu Beginn muss das betrachtete Problem kodiert werden. Das bedeutet das alle relevanten Aspekte auf ein Chromosom abgebildet werden müssen.
+Zu Beginn muss das betrachtete Problem kodiert werden. Das bedeutet das alle relevanten Aspekte auf ein Individuum abgebildet werden müssen.
 
-Bei der Binären Kodierung besteht ein Chromosom aus n vielen Genen. Jedem Gen wird ein binärer Wert zugewiesen und repräsentiert dabei eine Problemvariable. Aus den Genen wird dann ein Bitstring erzeugt.  
+Bei der Binären Kodierung besteht ein Individuum  aus n vielen Genen. Jedem Gen wird ein binärer Wert zugewiesen. Aus den Genen wird dann ein Bitstring erzeugt.  
 
 $$ g=(g_{ 0  }....g_{ m }) \in\left\{ 0,1 \right\}^{ m }  $$
 
@@ -493,7 +489,7 @@ Bei der Rank Selektion wird die Population anhand der Fitnesswerte der Lösungen
 
 Bei der zufälligen Selektion werden zufällig Individuen aus der Population ausgewählt. Dieses Verfahren wird für gewöhnlich vermieden, da es keinerlei Filtermechanismen gibt und die Suche nicht gesteuert werden kann.
 
-##### Rekombination
+### Rekombination
 
 Bei der Rekombination werden zwei Individuen aus dem mating pool neu zusammengesetzt. Die beiden ursprünglichen Individuen bezeichnet man als Eltern, die neu erzeugten Individuen als Kinder.
 

@@ -65,7 +65,7 @@ F=Boden		X=Ende
 
 #### CodedLevel
 
-Eine Instanz der Klasse *CodedLevel* ist ein Chromosom, also eine mögliche Lösung bzw. ein Level. Neben den Char Array, welches den Levelaufbau entspricht, und Informationen über die Größe des Levels, besitzen *CodedLevel* eine Fitness, welche die Güte der Lösung angibt sowie Informationen über den Standort des Start- bzw. Endpunktes.
+Eine Instanz der Klasse *CodedLevel* ist ein Individuum, also eine mögliche Lösung bzw. ein Level. Neben den Char Array, welches den Levelaufbau entspricht, und Informationen über die Größe des Levels, besitzen *CodedLevel* eine Fitness, welche die Güte der Lösung angibt sowie Informationen über den Standort des Start- bzw. Endpunktes.
 
 ![UML CodedLevel.](figs/codedLevel.PNG){width=50%}
 
