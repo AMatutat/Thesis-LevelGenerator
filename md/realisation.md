@@ -1,5 +1,4 @@
 # Realisierung
-
 In diesem Kapitel wird die Umsetzung der im vorherigen Kapitel vorgestellten Konzepte präsentiert. Dabei werden einzelne Funktionen genauer betrachtet. Nach der Beschreibung der Umsetzung eines Konzeptes werden
 die Ergebnisse ausgewertet und Probleme hervorgehoben. Ansätze zur Lösung der Probleme werden im Kapitel 3 in der jeweils nächsten Konzept Iteration beschrieben. Abschließend folgt eine Gesamtauswertung aller Resultate anhand
 der in Abschnitt 3.1 und 3.2 vorgestellten Bewertungskriterien.
@@ -11,7 +10,7 @@ enthält alle Einstellungsvariablen wie Rekombinationschance oder Populationsgr�
 
 ### Genetischer Algorithmus
 
- Der GA konnte größtenteils wie im Konzept beschrieben umgesetzt werden. Um ausreichend Raum zur Platzierung von Start und Endpunkt zu gewährleisten, wurde eine Level-Mindestgröße von 4x4 implementiert. Die Funktionsweise des Selektionsverfahrens, Rekombinationsverfahren und Mutationsverfahren wurde in Abschnitt 2.4 ausführlich beschrieben, eine Erläuterung der genauen Implementierung findet daher nicht statt.
+Der GA konnte größtenteils wie im Konzept beschrieben umgesetzt werden. Um ausreichend Raum zur Platzierung von Start und Endpunkt zu gewährleisten, wurde eine Level-Mindestgröße von 4x4 implementiert. Die Funktionsweise des Selektionsverfahrens, Rekombinationsverfahren und Mutationsverfahren wurde in Abschnitt 2.4 ausführlich beschrieben, eine Erläuterung der genauen Implementierung findet daher nicht statt.
 
 Im Folgenden werden die Methoden zur Prüfung verbundener Wände sowie erreichbarer Böden erläutert. Beide Verfahren werden von der Fitnessfunktion genutzt und haben daher großen Einfluss auf die Performance des GA.  
 
@@ -31,9 +30,7 @@ private boolean isConnected(CodedLevel lvl,int x,int y) {
    	return connected; 
 \end{lstlisting}
 
- Listing 4.1 zeigt einen Ausschnitt der Methode *isConnected*. Die Methode *isConnected* prüft, ob das übergebene Wandfeld mit der Außenwand verbunden ist. Eine Wand gilt auch als Verbunden, wenn eine Nachbarwand als Verbunden gilt. In Zeile *2* wird geprüft, ob die zu prüfende
-Wand eine Außenwand ist, ist dies der Fall, gilt sie als Verbunden. In Zeile *5* wird die Wand der Hilfsliste *checkedWalls* der Klasse *CodedLevel* hinzugefügt, um in den kommenden rekursiven Aufrufen keine Endlosschleife zu
-erzeugen. In Zeile *6* wird geprüft, ob das Feld zur linken des zu prüfenden Feldes eine Wand ist und ob dieses noch nicht in der Liste der geprüften Wände ist. Sind die Bedingungen erfüllt wird die Methode *isConnected* rekursiv für die Nachbarwand aufgerufen (Zeile *8*). Gilt diese als Verbunden, gilt auch die betrachtete Wand als Verbunden (Zeile *9* und *11*). Zeile *6* bis *9* werden für alle Nachbarfelder ausgeführt.
+Listing 4.1 zeigt einen Ausschnitt der Methode *isConnected*. Die Methode *isConnected* prüft, ob das übergebene Wandfeld mit der Außenwand verbunden ist. Eine Wand gilt auch als Verbunden, wenn eine Nachbarwand als Verbunden gilt. In Zeile *2* wird geprüft, ob die zu prüfende Wand eine Außenwand ist, ist dies der Fall, gilt sie als Verbunden. In Zeile *5* wird die Wand der Hilfsliste *checkedWalls* der Klasse *CodedLevel* hinzugefügt, um in den kommenden rekursiven Aufrufen keine Endlosschleife zu erzeugen. In Zeile *6* wird geprüft, ob das Feld zur linken des zu prüfenden Feldes eine Wand ist und ob dieses noch nicht in der Liste der geprüften Wände ist. Sind die Bedingungen erfüllt wird die Methode *isConnected* rekursiv für die Nachbarwand aufgerufen (Zeile *8*). Gilt diese als Verbunden, gilt auch die betrachtete Wand als Verbunden (Zeile *9* und *11*). Zeile *6* bis *9* werden für alle Nachbarfelder ausgeführt.
 
 Die Hilfsliste muss vor jeder Prüfung geleert werden. Gilt eine Wand als nicht verbunden, kann mithilfe der Länge der Liste nachvollzogen werden, aus wie vielen Wänden die Kette besteht und der Fitnesswert entsprechend angepasst werden.  
 
@@ -46,7 +43,7 @@ private boolean isReachable(CodedLevel lvl,int x,int y) {
 \end{lstlisting}
 
 
-Listing 4.2 zeigt einen Ausschnitt der Methode *isReachable*. Die Methode *isReachable* schaut in der Hilfsliste *reachableFloors* der Klasse *CodedLevel*, ob das zu prüfende Bodenfeld in der Liste steht (Zeile *5*). Ist die Liste Leer, wird zuerst die Methode *createReachableList* mit den Koordinaten des Startpunktes aufgerufen (Zeile *4*).
+Listing 4.2 zeigt einen Ausschnitt der Methode *isReachable*. Die Methode *isReachable* schaut in der Hilfsliste *reachableFloors* der Klasse *CodedLevel*, ob das zu prüfende Bodenfeld in der Liste steht (Zeile *5*). Ist die Liste leer, wird zuerst die Methode *createReachableList* mit den Koordinaten des Startpunktes aufgerufen (Zeile *4*).
 
 
 
@@ -93,7 +90,7 @@ for (int y = 0; y < lvl.getYSize(); y++) {
 }	
 \end{lstlisting}
 
- Listing 4.4 zeigt einen Ausschnitt der Methode *generateTExtureMap*. In Zeile *1* wird die Textur des oberen linken Feldes ausgelesen. Danach wird reihenweise über das gesamte Level iteriert (Zeile *2* und *3*). In Zeile *5* werden zwei Texturen durch die Hilfsfunktion *joinBufferedImageSide* so miteinander verbunden, dass die zweite Textur rechts an die erste Textur angefügt wird. Im nächsten Schleifendurchgang ist die erste Textur, die zusammengesetzte Textur der vorherigen Schleifendurchläufe (Zeile *6*). Nachdem über eine komplette Reihe iteriert wurde, befindet sich in der Variablen *joinedImgLine* die Textur der ganzen Reihe. In Zeile *11* wird diese Textur durch die Hilfsfunktion *joinedBufferedImageDown* unter die Textur der vorherigen Schleifendurchläufe angefügt. Am Ende aller Schleifendurchläufe befindet sich die komplette Leveltextur in der Variablen *joinedImageComplete* und wird an den vom User bestimmten Pfad abgespeichert.
+Listing 4.4 zeigt einen Ausschnitt der Methode *generateTextureMap*. In Zeile *1* wird die Textur des oberen linken Feldes ausgelesen. Danach wird reihenweise über das gesamte Level iteriert (Zeile *2* und *3*). In Zeile *5* werden zwei Texturen durch die Hilfsfunktion *joinBufferedImageSide* so miteinander verbunden, dass die zweite Textur rechts an die erste Textur angefügt wird. Im nächsten Schleifendurchgang ist die erste Textur, die zusammengesetzte Textur der vorherigen Schleifendurchläufe (Zeile *6*). Nachdem über eine komplette Reihe iteriert wurde, befindet sich in der Variablen *joinedImgLine* die Textur der ganzen Reihe. In Zeile *11* wird diese Textur durch die Hilfsfunktion *joinedBufferedImageDown* unter die Textur der vorherigen Schleifendurchläufe angefügt. Am Ende aller Schleifendurchläufe befindet sich die komplette Leveltextur in der Variablen *joinedImageComplete* und wird an den vom User bestimmten Pfad abgespeichert.
 
 Dieses Verfahren benötigt, je nach Level Größe, eine große Menge an Arbeitsspeicher. In Tests haben 200x200 große Level ausgereicht, um den RAM der JVM bei Standarteinstellungen auszureizen. Eine manuelle Erhöhung des JVM RAMs ist daher empfehlenswert.  
 
@@ -119,7 +116,7 @@ Es ist zu beachten, dass die ermittelten optimalen Einstellungen nur für 20x20 
 
 ![Beispiellevel. MV=1, MW=1%, RV=1, RC=60%](figs/level/F1M1C1.png){width=70%}
 
-Abbildung 4.1 zeigt ein generiertes Level mit den optimalen Einstellungen. Die Rekombinationschance beträgt 60% und die Mutationswahrscheinlichkeit 1%. Rot eingekreist lassen sich bereits Raum ähnliche Strukturen erkennen. In Blau sind einzelne, aus der Außenwand heraus guckende Wände zu erkennen, der GA sollte so angepasst werden, dass dieses Verhalten nicht mehr vorkommt. In der Mitte lassen sich noch einzelne Wände bzw. kurze Wandketten erkenne. Da sie sehr zufällig platziert wirken, stören sie die Optik bzw. die Immersion des Levels. Die schwarze Treppe stellt den Startpunkt dar, die weiße Leiter den Ausgang, das Level kann gelöst werden.
+Abbildung 4.1 zeigt ein generiertes Level mit den optimalen Einstellungen. Die Rekombinationschance beträgt 60% und die Mutationswahrscheinlichkeit 1%. Rot eingekreist lassen sich bereits Raum ähnliche Strukturen erkennen. In Blau sind einzelne, aus der Außenwand heraus guckende Wände zu erkennen, der GA sollte so angepasst werden, dass dieses Verhalten nicht mehr vorkommt. In der Mitte lassen sich noch einzelne Wände bzw. kurze Wandketten erkenne. Da sie sehr zufällig platziert wirken, stören sie die Optik bzw. die Immersion des Levels. Die schwarze Treppe stellt den Startpunkt dar, die weiße Leiter den Ausgang. Das Level kann gelöst werden.
 
 ![Einfluss der Mutationswahrscheinlichkeit auf die durchschnittliche Fitness der besten Lösung. RC=60%](figs/Graph/g1.png){width=70%}
 
@@ -129,15 +126,14 @@ Abbildung 4.2 zeigt den Einfluss der Mutationschane auf die Fitness. Es ist deut
 
 ## Optimierung des Algorithmus
 
- Alle Anpassungen und Neuerungen wurden nach dem angepassten Konzept implementiert. Das Programm wurde für die neue Abbruchbedingung angepasst.
+Alle Anpassungen und Neuerungen wurden nach dem angepassten Konzept implementiert. Das Programm wurde für die neue Abbruchbedingung angepasst.
 
 Abbildung 4.4 zeigt ein Level mit der ersten Mutations- (MV) und Rekombinationsversion (RV) sowie der neu angepassten Fitness. Durch die angepasste Fitnessfunktion sind im Vergleich zu Abbildung 4.1 weniger einzelne Wandstücke, welche aus der Außenwand herausgucken zu erkennen.  
 
 ![Beispiellevel. MV=1, MW=1%, RV=1; RC=60%](figs/level/F2M1C1.png){width=50%}
 
 Abbildung 4.5 zeigt den Einfluss der Mutationswahrscheinlichkeit bei der Verwendung der neuen Mutationsfunktion, der neuen Rekombinationsfunktion sowie angepasster Fitnessfunktion. Die höchste Fitness wird bei einer hohen
-Mutationswahrscheinlichkeit von 40% erreicht, ähnlich hohe Werte erzielen ähnliche Fitnesswerte. Es ist davon auszugehen, dass bei einer so hohen Mutationswahrscheinlichkeit im Laufe der Zeit alle Gene mutiert werden. Der Zusammenhang zwischen hohen
-Fitnesswerten und hoher Mutationswahrscheinlichkeit bestärkt die Annahme das die Mutationsfunktion zu *stark* ist. Allerdings liefert auch eine geringe Mutationswahrscheinlichkeit von 5% ähnlich gute Ergebnisse.
+Mutationswahrscheinlichkeit von 40% erreicht, ähnlich hohe Werte erzielen ähnliche Fitnesswerte. Es ist davon auszugehen, dass bei einer so hohen Mutationswahrscheinlichkeit im Laufe der Zeit alle Gene mutiert werden. Der Zusammenhang zwischen hohen Fitnesswerten und hoher Mutationswahrscheinlichkeit bestärkt die Annahme das die Mutationsfunktion zu *stark* ist. Allerdings liefert auch eine geringe Mutationswahrscheinlichkeit von 5% ähnlich gute Ergebnisse.
 
 ![Einfluss der Mutationswahrscheinlichkeit auf die durchschnittliche Fitness der besten Lösung. RC=60%](figs/Graph/g3.png){width=70%}
 
@@ -159,8 +155,7 @@ Abbildung 4.9 zeigt den Einfluss der Mutationswahrscheinlichkeit bei der Verwend
 
 ![Einfluss der Mutationswahrscheinlichkeit auf die durchschnittliche Fitness der besten Lösung. RC=60%](figs/Graph/g4.png){width=70%}
 
-Abbildung 4.10 zeigt ein Level mit hoher Mutationswahrscheinlichkeit von 40%. Zum Vergleich zeigt Abbildung 4.11 ein Level mit einer Mutationswahrscheinlichkeit von 3%. Beide Varianten erzeugen Level mit einer Vielzahl einzeln Platzierter Wände. Diese
-Mutationsfunktion kann als Rückschritt im Vergleich zur vorherigen Version betrachtet werden.
+Abbildung 4.10 zeigt ein Level mit hoher Mutationswahrscheinlichkeit von 40%. Zum Vergleich zeigt Abbildung 4.11 ein Level mit einer Mutationswahrscheinlichkeit von 3%. Beide Varianten erzeugen Level mit einer Vielzahl einzeln Platzierter Wände. Diese Mutationsfunktion kann als Rückschritt, im Vergleich zur vorherigen Version, betrachtet werden.
 
 ![Beispiellevel. MV=3, MW=40%, RV=2, RC=60%](figs/level/F2M3C2HIGHPMUT.png){width=50%} 
 
@@ -178,13 +173,13 @@ Abbildung 4.13 zeigt ein Level, welches durch die zufällige Platzierung von Rä
 
 In diesen Abschnitt folgt eine genauere Analyse der erstellten Lösungen. Der Algorithmus bietet viele Einstellungsmöglichkeiten, es würde daher den Rahmen der Arbeit sprengen, alle Möglichkeiten genauer zu betrachten. Aus der Realisierungsphase haben sich drei Verfahren herauskristallisiert, welche nun genauer betrachtet werden. Um ein Gefühl der Vielfältigkeit der einzelnen Verfahren zu bekommen, stehen im Anhang B. weitere Beispiellevel zur Verfügung.
 
-Alle Verfahren erfüllen die in Abschnitt 3.1 aufgestellten Grundanforderungen an das Projekt. Jedes Verfahren erstellt Lösbare 2D-Level. Der Parser ermöglicht es den Studenten die generierten Level in ihr PM-Dungeon zu integrieren. Monster, Items und Spezialfelder können zufällig im Level verteilt werden. Die vorgegebenen Interfaces helfen dabei, auch selbst konzeptionierte Objekte im Level zu verteilen, dadurch liefert der Generator die Freiheit auch abseits der Aufgabenstellung aktiv und kreativ zu werden. Da Objekte zufällig platziert werden, kann der Schwierigkeitsgrad des Levels nur bedingt kontrolliert werden, da zwar die Stärke der Monster kontrolliert werden kann aber nicht sichergestellt werden kann das starke Monster nur auf optionalen Routen platziert werden. Der Parser ist in der Lage die Leveltextur zu erstellen, damit diese von den Studenten verwendet werden kann.  
+Alle Verfahren erfüllen die in Abschnitt 3.1 aufgestellten Grundanforderungen an das Projekt. Jedes Verfahren erstellt Lösbare 2D-Level. Der Parser ermöglicht es den Studenten die generierten Level in ihr PM-Dungeon zu integrieren. Monster, Items und Spezialfelder können zufällig im Level verteilt werden. Die vorgegebenen Interfaces helfen dabei, auch selbst konzeptionierte Objekte im Level zu verteilen, dadurch liefert der Generator die Freiheit auch abseits der Aufgabenstellung aktiv und kreativ zu werden. Da Objekte zufällig platziert werden, kann der Schwierigkeitsgrad des Levels nur bedingt kontrolliert werden, da zwar die Stärke der Monster kontrolliert werden kann aber nicht sichergestellt werden kann, dass starke Monster nur auf optionalen Routen platziert werden. Der Parser ist in der Lage die Leveltextur zu erstellen, damit diese von den Studenten verwendet werden kann.  
 
 ### Spelunky-Style
 
-Das *Spelunky-Style* Verfahren erstellt Level, die neben den kritischen Pfad eine Vielzahl an optionalen Räumen bietet. Die Räume bieten Freiraum, um spannenden Risk and Reward Situationen zu erzeugen. Zwar kann nicht kontrolliert werden, welche Monster und Items in die optionalen gebiete platziert werden, das muss aber nicht unbedingt schlecht sein. Es sollte regelmäßig dazu kommen, das gute Items in optionalen Gebieten platziert werden. Die Ungewissheit, ob es sich wirklich lohnt einen optionalen Pfad zu erkunden, führt zu noch spannenderen Entscheidungen und Risk and Reward Momenten.
+Das *Spelunky-Style* Verfahren erstellt Level, die neben den kritischen Pfad eine Vielzahl an optionalen Räumen bietet. Die Räume bieten Freiraum, um spannenden Risk and Reward Situationen zu erzeugen. Zwar kann nicht kontrolliert werden, welche Monster und Items in die optionalen gebiete platziert werden, dass muss aber nicht unbedingt schlecht sein. Es sollte regelmäßig dazu kommen, dass gute Items in optionalen Gebieten platziert werden. Die Ungewissheit, ob es sich wirklich lohnt einen optionalen Pfad zu erkunden, führt zu noch spannenderen Entscheidungen und Risk and Reward Momenten.
 
-Das *Spelunky-Style* Verfahren ist als einziges Verfahren in der Lage, Türen und Schlüssel zu platzieren. Türen verschließen nur optionale Gebiete und der Schlüssel wird auf den kritischen Pfad platziert. Dadurch kann die Lösbarkeit des Levels sichergestellt werden als auch garantiert werden, dass der Schlüssel immer erreichbar ist ohne die Tür vorher öffnen zu müssen.
+Das *Spelunky-Style* Verfahren ist als einziges Verfahren in der Lage, Türen und Schlüssel zu platzieren. Türen verschließen nur optionale Gebiete und der Schlüssel wird auf den kritischen Pfad platziert. Dadurch kann die Lösbarkeit des Levels sichergestellt werden als auch garantiert werden, dass der Schlüssel immer erreichbar ist, ohne die Tür vorher öffnen zu müssen.
 
 Sowohl die Immersion als auch die Einzigartigkeit der Level sind Schwachpunkte des *Spelunky-Style* Verfahrens. Das verwendete Gittermuster ist unübersehbar und obwohl die Räume alle zufällig Generiert werden, ähneln sie sich dennoch sehr stark voneinander. Die einzelnen Level bietet kaum Alleinstellungsmerkmale, lediglich die unterschiedlichen Routen zum Ziel bieten Abwechslung.
 
@@ -192,9 +187,9 @@ Auch wenn dieses Verfahren sich sehr gut dazu eignet interessante Risk and Rewar
 
 ### Reise zum Mittelpunkt
 
-Dieses Verfahren erstellt Level die zufällig entweder nur einen Pfad oder zusätzliche optionale Routen bieten. Durch die unterschiedlich großen Räume entsteht innerhalb des Levels Abwechslung. Die zufällige Platzierung der Räume sorgt dafür, dass jedes Level deutlich anders aussieht als andere. Risk und Reward Momente können zufällig entstehen, es kann nicht sichergestellt werden das jedes Level optionale Routen hat. Die teils langen Laufwege zwischen den Räumen können den Spielspaß trüben. Die Level bestehen aus einem großen Teil aus Wandblöcken, je nachdem wie die Kameraperspektive von den Studenten implementiert wird, ist dies entweder nicht zu sehen oder wird als Immersionsbrechend war genommen.
+Dieses Verfahren erstellt Level die zufällig entweder nur einen Pfad oder zusätzliche optionale Routen bieten. Durch die unterschiedlich großen Räume entsteht innerhalb des Levels Abwechslung. Die zufällige Platzierung der Räume sorgt dafür, dass jedes Level deutlich anders aussieht als andere. Risk und Reward Momente können zufällig entstehen, es kann nicht sichergestellt werden das jedes Level optionale Routen hat. Die teils langen Laufwege zwischen den Räumen können den Spielspaß trüben. Die Level bestehen aus einem großen Teil aus Wandblöcken, je nachdem wie die Kameraperspektive von den Studenten implementiert wird, ist dies entweder nicht zu sehen oder wird als störend wahrgenommen.
 
-Dadurch das die Größe der einzelnen Räume innerhalb eines Levels variiert, würde dieses Verfahren von einer dynamischen Anpassung der Parameter stark profitieren.
+Dadurch, dass die Größe der einzelnen Räume innerhalb eines Levels variiert, würde dieses Verfahren von einer dynamischen Anpassung der Parameter stark profitieren.
 
 Das Verfahren ist nicht in der Lage Türen und Schlüssel zu platzieren, da es kein Verweis darauf gibt, ob ein Raum optional oder zum kritischen Lösungspfad gehört.
 

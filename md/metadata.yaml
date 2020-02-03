@@ -33,7 +33,12 @@ abstract-de: |
 
 abstract-en: |
 acknowledgements: |
-  Hier kommt die Danksagung hin.
+  Danke an Dr. Gips und Frau. George, welche mir nicht nur regelmäßige Kritik zu dieser Arbeit gegeben haben, sondern mich auch regelmäßig motiviert haben weiter zu machen.
+  Mein Dank geht auch an Julian und Dennis, dessen fachliche Beiträge mehr als einmal zu neuen Gedanken und Ansatzpunkten führten.
+  Ein besonderer Dank geht an Dr. Gips für die Bereitstellung seines Pandoc-Tools, welches den gesamten Schreib- und Formatierungsaufwand deutlich angenehmer gestaltet hat, als es hätte sein können.
+  Danke auch an Lena für das Kontrolle Lesen und aufnehmen einiger Ansätze die in dieser Arbeit präsentiert wurden.
+  Zu guter Letzt danke ich mir selbst, für meinen Ehrgeiz und mein Durchhaltevermögen, ohne mich wäre diese Arbeit nicht möglich gewesen.
+
 restrictionnote: |
 ## mandatory
 declaration: |
