@@ -28,7 +28,7 @@ Es müssen weitere Messungen vorgenommen werden um auch für andere Einstellunge
 
 Die Fitnessfunktion liefert viel Spielraum für Anpassungen. Es wäre denkbar Level nach Raum ähnlichen oder Tunnel ähnlichen Strukturen zu durchsuchen und diese positiv zu bewerten. Das würde es auch ermöglichen, Türen und Schlüssel im Level einzubauen.
 
-Das generieren der Texturen sollte so angepasst werden, dass auch größere Level erzeugt werden können, ohne große Mengen an Arbeitsspeicher zu benötigen.
+Das Generieren der Texturen sollte so angepasst werden, dass auch größere Level erzeugt werden können, ohne große Mengen an Arbeitsspeicher zu benötigen.
 
 Das Verfahren zur Platzierung von Räumen und Fluren kann so optimiert werden, dass garantiert alternative Routen erstellt werden, in denen Items platziert werden können. Alternative Routen würden die Implementierung von Türen und Schlüsseln wieder als sinnvolle Erweiterung hervorheben. So könnte es zu interessanten Risk and Reward Situationen kommen. Der Algorithmus sollte so angepasst werden, dass die gesamte Levelfläche besser genutzt wird, da durch das aktuelle Verfahren zur Platzierung, ein Großteil des Levels ungenutzt bleibt.  
 
@@ -46,7 +46,7 @@ Eine Route von Start und Ziel wird, ähnlich zur Spelunky Methode, als kritische
 
 Türen und Schlüsseln können einfacher platziert werden. Um Türen zu platzieren, werden Kanten im Graphen markiert, eine markierte Kante bedeutet: Diese Verbindung ist durch eine Tür verschlossen. Um zu prüfen, ob der Schlüssel erreicht werden kann ohne durch die Tür zu müssen, kann einfach der Knoten entfernt werden, der von der Tür verschlossen wird und dann wird geprüft ob der Schlüssel trotzdem erreichbar ist.
 
-Abbildung 5.1 zeigt den Aufbau der Spielwelt von *Dark Souls* als einen Graph. Jeder Knoten stellt dabei eine Region im Spiel dar, Kanten stellen Verbindungen der einzelnen Regionen untereinander dar. Jede Region könnte wiederum auch als ein Graph dargestellt werden. Mit einem GraphBased Level Generator könnten daher nicht nur einzelne Level, sondern, durch das Zusammensetzen mehrere Graphen, ganze Spielwelten, mit unterschiedlichen optischen Themen, verschiedenen Monstern und Boss Gegner in jeder Region, erzeugt werden.  
+Abbildung 5.1 zeigt den Aufbau der Spielwelt von *Dark Souls* als ein Graph. Jeder Knoten stellt dabei eine Region im Spiel dar, Kanten stellen Verbindungen der einzelnen Regionen untereinander dar. Jede Region könnte wiederum auch als ein Graph dargestellt werden. Mit einem GraphBased Level Generator könnten daher nicht nur einzelne Level, sondern, durch das Zusammensetzen mehrere Graphen, ganze Spielwelten, mit unterschiedlichen optischen Themen, verschiedenen Monstern und Boss Gegner in jeder Region, erzeugt werden.  
 
 ![Die Spielwelt von Dark Souls als Graph.[@Brown2018]](figs/worldOfDarkSouls.PNG){width=100%}
 

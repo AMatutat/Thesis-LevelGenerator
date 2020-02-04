@@ -32,7 +32,7 @@ Da das PM-Dungeon aus Räumen und Fluren bestehen soll, sollte das Aussehen der 
 
 
 
-Das Kriterium Balancing wird nicht betrachtet, da dieses von den im Level platzierten Monstern abhängig ist und die Studenten eigenständig Monster verteilen können. Dir Kriterien Environmental Storytelling, Gameplay First und Navigation werden nicht betrachtet, da sie für das von den Studenten entwickelte Spiel keine Bedeutung haben. Die Kontrolle des Pacing ist eine sehr schwierige Aufgabe, und noch schwieriger zu automatisieren und würde den Rahmen dieser Arbeit überschreitet und ist daher kein Bewertungskriterium. Durch die Verwendung von PLG kann das Kriterium Effizienz für den gesamtem Algorithmus als erfolgreich beachtet angesehen werden.
+Das Kriterium Balancing wird nicht betrachtet, da dieses von den im Level platzierten Monstern abhängig ist und die Studenten eigenständig Monster verteilen können. Dir Kriterien Environmental Storytelling, Gameplay First und Navigation werden nicht betrachtet, da sie für das von den Studenten entwickelte Spiel keine Bedeutung haben. Die Kontrolle des Pacing ist eine sehr schwierige Aufgabe, und noch schwieriger zu automatisieren und würde den Rahmen dieser Arbeit überschreitet und ist daher kein Bewertungskriterium. Durch die Verwendung von PLG kann das Kriterium Effizienz für den gesamten Algorithmus als erfolgreich beachtet angesehen werden.
 
 ## Startkonzept
 
@@ -103,11 +103,11 @@ Das dritte Kriterium soll vor allem einzeln im Level platzierte Wände vermeiden
 
 Als Selektionsverfahren wird das im Abschnitt 2.14 beschreibende Roulette Wheel Selection Verfahren genutzt. Da keine negative Fitness erreicht werden kann, als auch von einer großen Spannbreite an Bewertungen ausgegangen werden kann, bietet sich ein Rank Selection Verfahren nicht an. Alternativ wäre auch die Verwendung der Tournament Selektion denkbar.
 Sollte es zu einem Crossover, abhängig von der **CHANCE_FOR_CROSSOVER**, kommen, werden beide Eltern mithilfe des One-Point-Crossover rekombiniert. Dieses Verfahren hat eine geringe Chance, gute Level Strukturen zu zerstören, da nur ein großer und nicht viele kleine Eingriffe am Level durchgeführt werden.
-Das Uniform Crossover Verfahren würde wieder eine komplett zufällige Anordnung von Böden und Wänden zu Folge ziehen und ist daher für die Generierung von Level nicht geeignet.
+Das Uniform-Crossover Verfahren würde wieder eine komplett zufällige Anordnung von Böden und Wänden zu Folge ziehen und ist daher für die Generierung von Level nicht geeignet.
 
 ##### Mutation
 
-Zur Levelgenerierung bieten sich fast alle bekannten Mutationsverfahren an. In dieser Implementierung wird eine angepasste Version der Bit-Flip Mutation verwendet. Ignorieren wir bei der Mutation Start und Ausgangspunkt, bleiben noch Felder, die entweder Böden oder Wände sind übrig. Es wird für jedes Gen überprüft, ob es zur Mutation kommt, und wenn ja, wird der Allel des Gens geändert. Wände werden zu Böden und Böden zu Wänden.
+Zur Level Generierung bieten sich fast alle bekannten Mutationsverfahren an. In dieser Implementierung wird eine angepasste Version der Bit-Flip Mutation verwendet. Ignorieren wir bei der Mutation Start und Ausgangspunkt, bleiben noch Felder, die entweder Böden oder Wände sind übrig. Es wird für jedes Gen überprüft, ob es zur Mutation kommt, und wenn ja, wird der Allel des Gens geändert. Wände werden zu Böden und Böden zu Wänden.
 
 #### Abbruchkriterium
 
@@ -151,7 +151,7 @@ Um den Einfluss der verschiedenen Parameter nachvollziehen zu können, wird ein 
 
 -  Größe der Level
 - Populationsgröße
-- Punkte Verteilung der für die einzelnen Fitness Kriterien 
+- Punkte Verteilung der für die einzelnen Fitnesskriterien 
 - Chance für Rekombination und Mutation 
 - Durchschnittlich erreichte Fitness der Lösung
 - Durchschnittlich gebrauchte Generationen für die beste Lösung 
@@ -163,7 +163,7 @@ Generator nicht frühzeitig abbricht. Mithilfe der so erlangten Daten lassen sic
 
 ### Anpassung der Fitnessfunktion
 
-Um die einzelne Wandblöcke aus Wandketten zu entfernen, muss die Fitnessfunktion erweitert werden, da dieses Verhalten von der aktuellen Fitnessversion nicht bestraft wird. Die Fitnessfunktion wurde um ein weiteres Kriterium erweitert.
+Um die einzelnen Wandblöcke aus Wandketten zu entfernen, muss die Fitnessfunktion erweitert werden, da dieses Verhalten von der aktuellen Fitnessversion nicht bestraft wird. Die Fitnessfunktion wurde um ein weiteres Kriterium erweitert.
 
 - Für jeden nicht Wand Nachbar einer Wand, werden Punkte abgezogen.
 
@@ -226,5 +226,5 @@ Diese Methode platziert Räume zufällig im Level und verbindet diese durch eine
 
 ## Unterschied zu bekannten Verfahren
 
-In Abschnitt 2.3.3 wurden verschiedene Verfahren zur prozeduralen Levelgenerierung vorgestellt. Das hier vorgestellte Konzept grenzt sich von diesen vor allem dadurch ab, dass neben der gewünschten Levelgröße keinerlei Informationen vom User notwendig sind, um Level zu generieren. Das in Abschnitt 2.3.3.1 beschriebene Randomwalk-Verfahren erzeugt zwar jedes Mal unterschiedliche Level, diese sind aber fast vollständig Zufalls generiert. Ihre Lösbarkeit kann zwar garantiert werden, aber es kann kein Einfluss auf die Struktur der Level genommen werden. Das Forcieren von Wand und Raum Strukturen ist nicht möglich. Durch die Fitnessfunktion wird das hier präsentierte Konzept dazu gedrängt, Räume und Flure zu erzeugen.
+In Abschnitt 2.3.3 wurden verschiedene Verfahren zur prozeduralen Level Generierung vorgestellt. Das hier vorgestellte Konzept grenzt sich von diesen vor allem dadurch ab, dass neben der gewünschten Levelgröße keinerlei Informationen vom User notwendig sind, um Level zu generieren. Das in Abschnitt 2.3.3.1 beschriebene Randomwalk-Verfahren erzeugt zwar jedes Mal unterschiedliche Level, diese sind aber fast vollständig Zufalls generiert. Ihre Lösbarkeit kann zwar garantiert werden, aber es kann kein Einfluss auf die Struktur der Level genommen werden. Das Forcieren von Wand und Raum Strukturen ist nicht möglich. Durch die Fitnessfunktion wird das hier präsentierte Konzept dazu gedrängt, Räume und Flure zu erzeugen.
 Das in Abschnitt 2.3.3.3 verwendete Graphbased Verfahren benötigt neben den planaren Graphen auch vorgefertigten Räumen zur Generierung der Level. Für den in Abschnitt 2.3.3.2 beschriebenen Algorithmus aus dem Spiel *Spelunky*, werden neben Raumlayouts auch die 5x3 großen Chunks benötigt. Zusätzlich erzeugt das Spelunky-Verfahren eine wiedererkennbares Gittermuster.

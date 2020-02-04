@@ -131,7 +131,7 @@ Immersion beschreibt die Glaubwürdigkeit der Spielwelt. Dabei kommt es nicht da
 
 Im Gameplay kann Immersion durch Konsequenz erreicht werden. Einmal aufgestellte Regeln sollten immer gelten, kann zum Beispiel ein Licht im Spiel ausgeschossen werden sollten alle Lichter im Spiel ausgeschossen werden können. Gegenstände sollte immer denselben Nutzen haben, kann zum Beispiel eine Zange genutzt werden, um Nägel aus Brettern zu ziehen, sollte der Spieler dies auch mit der nächsten Zange an einem anderen Brett tun können. Außerdem sollte der Spieler immer in der Lage sein, sein Wissen über die Regeln der Spielwelt nutzen zu können, um Aufgaben so zu lösen, wie er möchte.
 
-Um im Leveldesign eine hohe Immersion zu erreichen, müssen vor allem die Platzierung von Gegenständen und die Auswahl des optischen Themas sinnvoll gewählt sein. Jedes Gebäude, jeder Gegenstand und jeder Charakter sollte einen, in der Spielwelt nachvollziehbaren, Grund haben genau dort zu sein, wo er ist. Auch sollten vom Spieler erwartete Gegenstände und Orte Vorhände sein, so braucht ein Büro Schreibtische und Computer, eine Restaurant braucht Toiletten und einen Lagerraum für Lebensmittel.
+Um im Leveldesign eine hohe Immersion zu erreichen, müssen vor allem die Platzierung von Gegenständen und die Auswahl des optischen Themas sinnvoll gewählt sein. Jedes Gebäude, jeder Gegenstand und jeder Charakter sollte einen, in der Spielwelt nachvollziehbaren, Grund haben genau dort zu sein, wo er ist. Auch sollten vom Spieler erwartete Gegenstände und Orte Vorhände sein, so braucht ein Büro Schreibtische und Computer, ein Restaurant braucht Toiletten und einen Lagerraum für Lebensmittel.
 
 Das Spielgenre *Immersive Simulation* zeichnet sich dadurch aus, dass ein besonders hoher Fokus auf die Immersion gelegt wird. [@Brown2016] Warren Spector hält immersives Gameplay für den entscheidenden Faktor, der Videospiele von allen anderen Medien unterscheidet.  
 
@@ -141,7 +141,7 @@ Das Spielgenre *Immersive Simulation* zeichnet sich dadurch aus, dass ein besond
 
 >"The trick to good level design is to present challenges that are difficult enough to merit the players’ attention and make their heart or mind race, but not so difficult as to always leave them failing and disappointed."[@Ryan1999]
 
-Das Balancing in Spielen ist entscheidend darüber, ob die Herausforderungen im Spiel als langweilig, spaßig oder frustrierend wahrgenommen werden. Da die Erfahrung mit Spielen von Spieler zu Spieler stark schwanken kann, und so eine Situation von einer Gruppe an Spieler als zu leicht und einer anderen Gruppe an Spielern als zu schwer empfunden werden kann, ist ein fester Schwierigkeitsgrad oft nicht Zielführend. Viele Spiele sind daher dazu übergegangen, den Spieler zu Beginn aus einen von mehreren Schwierigkeitsgraden auswählen zu lassen und so den Spieler selbst bestimmen zu lassen, wie schwer er seine Herausforderungen haben möchte.
+Das Balancing in Spielen ist entscheidend dafür, ob die Herausforderungen im Spiel als langweilig, spaßig oder frustrierend wahrgenommen werden. Da die Erfahrung mit Spielen von Spieler zu Spieler stark schwanken kann, und so eine Situation von einer Gruppe an Spieler als zu leicht und einer anderen Gruppe an Spielern als zu schwer empfunden werden kann, ist ein fester Schwierigkeitsgrad oft nicht Zielführend. Viele Spiele sind daher dazu übergegangen, den Spieler zu Beginn aus einen von mehreren Schwierigkeitsgraden auswählen zu lassen und so den Spieler selbst bestimmen zu lassen, wie schwer er seine Herausforderungen haben möchte.
 
 Je nach Spiel hat die Auswahl des Schwierigkeitsgrades verschiedenen Auswirkungen. Für gewöhnlich verursachen Gegner je nach Schwierigkeitsgrad mehr oder weniger Schaden und sind leichter oder schwerer zu besiegen oder es werden mehr Gegner platziert sollte auf einen hohen Schwierigkeitsgrad gespielt werden. Einige Spiele verändern auch die Aufgaben des Spielers abhängig vom Schwierigkeitsgrad. Im Spiel *Thief* (1998) müssen Spieler auf den höchsten Schwierigkeitsgrad nicht nur mit aufmerksameren Wachen klarkommen, sondern auch zusätzliche Gegenstände stehlen. Im *Spiel Shadow of the Tom Raider* kann der Spieler den Schwierigkeitsgrad für Kampf, Rätsel und Erkundung separat einstellen, das ermöglicht eine genauere Konfiguration als nur eine Einstellung. [@DevPlay2019a]
 
@@ -151,7 +151,7 @@ Mark Brown betrachtet die Auswahl eines Schwierigkeitsgrades kritisch und sagte:
 
 Viele Spieler möchten das Spiel in der vom Entwickler vorgesehenen Art und Weise spielen und wählen deshalb den mittleren Schwierigkeitsgrad aus, und passen ihn nicht an ihre Bedürfnisse an.[@DevPlay2019a] Daher haben einige Spiele damit begonnen, den Schwierigkeitsgrad dynamisch anzupassen. So werden im Spiel *Resident Evil 4*, mehr Gegner platziert, wenn der Spiele besonders gut spielt, wenn er hingegen oft stirbt oder eine schlechte Trefferrate hat, werden weniger Gegner platziert um das Spiel einfacher zu machen.[@Brown2015] Im Spiel Half Life werden mehr Medikits platziert, wenn der Spieler grade besonders wenig Lebenspunkte besitzt.[@Brown2016b]
 
-Nicht jedes Spiel eignet sich für unterschiedliche Schwierigkeitsgrade. Der Schwierigkeitsgrad von *Jump and Runs* wie *Super Mario* ist eng mit den Leveldesign und der Platzierung von Hindernissen verbunden. Level in Mario Spielen basieren oft auf eine, in diesen Level eingeführte, Mechanik wie schwebende oder rotierenden Plattformen. Zu Beginn des Levels wird den Spieler die neue Mechanik in einer sichereren Umgebung präsentiert. Hier kann der Spieler die Mechanik erforschen, ohne die Gefahr zu sterben. Im Laufe des Levels wird diese Mechanik immer weiter verändert, zum Beispiel, indem Plattformen nach einer Zeit herunterfallen oder Gegner auf diesen laufen. Dadurch bleibt die Mechanik spannend und zeitgleich erhöht sich der Schwierigkeitsgrad über den Verlauf des Levels. [@Brown2015a]
+Nicht jedes Spiel eignet sich für unterschiedliche Schwierigkeitsgrade. Der Schwierigkeitsgrad von *Jump and Runs* wie *Super Mario* ist eng mit dem Leveldesign und der Platzierung von Hindernissen verbunden. Level in Mario Spielen basieren oft auf eine, in diesen Level eingeführte, Mechanik wie schwebende oder rotierenden Plattformen. Zu Beginn des Levels wird den Spieler die neue Mechanik in einer sichereren Umgebung präsentiert. Hier kann der Spieler die Mechanik erforschen, ohne die Gefahr zu sterben. Im Laufe des Levels wird diese Mechanik immer weiter verändert, zum Beispiel, indem Plattformen nach einer Zeit herunterfallen oder Gegner auf diesen laufen. Dadurch bleibt die Mechanik spannend und zeitgleich erhöht sich der Schwierigkeitsgrad über den Verlauf des Levels. [@Brown2015a]
 
 Durch Risk and Reward Situationen lassen sich besonders schwierige Momente als optional im Level platzieren (vgl. Abschnitt Risk and Reward).
 
@@ -217,7 +217,7 @@ Oft werden auch sogenannten *Weenies* verwendet, um den Spieler in eine Richtung
 
 ![Szene aus Journey. Im Hintergrund ist ein Berg zu erkennen. [@Kleffmann2019]](figs/journey.jpg){width=100%}
 
-Auch in streng linearen Spielen kann gute Spieler Navigation hilfreich sein, da es das Pacing aufrechterhält und den Schein einer größeren Welt erzeugen kann
+Auch in streng linearen Spielen kann gute Spieler Navigation hilfreich sein, da es das Pacing aufrechterhält und den Schein einer größeren Welt erzeugen kann.
 
 >"The game provides multiple paths for the player, and they feel like they have the freedom to explore whichever they choose. As they always seem to stumble upon new content - not entirely aware that they were subconsciously persuaded to take that path or enter that door - it stands to reason that all the other exits and doors lead to new play spaces too. It makes the world feel bigger and less linear that it really is. It also helps keep up the pace of the game."[Brown2015c]
 
@@ -229,7 +229,7 @@ angreifen oder durch ein starkes Bewachtes gebiet schleichen, um bei Erfolg eine
 
 ### Einzigartigkeit
 
-Die unterschiedlichen Level im Spiel sollten zwar alle demselben Designkonzepten Folgen, sich jedoch merklich voneinander unterscheiden. Ähnelt sich die Levelstruktur der einzelnen Level zu stark oder werden dieselben Grafik-Assets immer und immer wieder verwendet, trübt dieses die Spielerfahrung.
+Die unterschiedlichen Level im Spiel sollten zwar alle demselben Designkonzepten folgen, sich jedoch merklich voneinander unterscheiden. Ähnelt sich die Levelstruktur der einzelnen Level zu stark oder werden dieselben Grafik-Assets immer und immer wieder verwendet, trübt dieses die Spielerfahrung.
 
 >"[...] people don't like playing the same level twice."[@Ryan1999]
 
@@ -241,13 +241,13 @@ Ein Level-Designer baut daher nicht jedes Level von Grund auf neu, vielmehr entw
 
 >"Modular design is your friend – a smart designer won’t design a level, he/she will design a series >of modular, mechanic-driven encounters, that can be strung together to create a level.  And >another level.  And another level."[@Taylor2013]
 
-## Prozedurale Levelgenerierung
+## Prozedurale Level Generierung
 
 Im folgenden Abschnitt wird das Prinzip der PCG, insbesondere der PLG beschrieben. Es werden die Vor- und Nachteile der PLG erörtert und bekannte Verfahren präsentiert. Zuerst folgt eine Erklärung was PCG bzw. PLG bedeutet und wo es angewendet wird. 
 
 ### Begriffserläuterung
 
-Prozedurale Levelgenerierung (PLG) ist ein Teilgebiet der Prozeduralen Content Generierung (PCG). PCG im Allgemeinen beschreibt das automatische Erstellen von Inhalten. Im Kontext Videospiele sind diese unter anderen Texturen, Items, Musik und Soundeffekte, 3D-Modelle und auch Spielwelten. Dabei werden Inhalte nicht vollständig zufällig generiert, vielmehr werden handgebaute Inhalte verändert oder neu zusammengesetzt. Dabei bestimmen zufällig erzeugte Parameterwerte die genaue Art und Weise der Veränderung. [@Beca2017]
+Prozedurale Level Generierung (PLG) ist ein Teilgebiet der Prozeduralen Content Generierung (PCG). PCG im Allgemeinen beschreibt das automatische Erstellen von Inhalten. Im Kontext Videospiele sind diese unter anderen Texturen, Items, Musik und Soundeffekte, 3D-Modelle und auch Spielwelten. Dabei werden Inhalte nicht vollständig zufällig generiert, vielmehr werden handgebaute Inhalte verändert oder neu zusammengesetzt. Dabei bestimmen zufällig erzeugte Parameterwerte die genaue Art und Weise der Veränderung. [@Beca2017]
 
 ### Vor und Nachteile
 
@@ -268,7 +268,7 @@ Mittlerweile existieren eine Vielzahl an unterschiedlichen Algorithmen und Verfa
 
 #### Random Walk
 
-Der Random Walk Algorithmus, auch als *Drunkard‘s Walk* bekannt, wird eigentlich zur Generierung von nicht deterministischen Zeitreihen genutzt, um beispielsweise Aktienkurse in der Finanzmathematik zu modellieren. Er kann aber auch zur Erstellung höhlenartiger Level genutzt werden. Beim Random Walk bewegt sich ein, im leeren Dungeon gesetzter, Akteur solange zufällig durch das Dungeon bis er die gewünschte Anzahl an unterschiedlichen Felder passiert hat. Passierte Felder werden als begehbaren Boden interpretiert, unpassierte Feld als unbegehbare Wände.[@Wikipedia2019a]
+Der Random Walk Algorithmus, auch als *Drunkard‘s Walk* bekannt, wird eigentlich zur Generierung von nicht deterministischen Zeitreihen genutzt, um beispielsweise Aktienkurse in der Finanzmathematik zu modellieren. Er kann aber auch zur Erstellung höhlenartiger Level genutzt werden. Beim Random Walk bewegt sich ein, im leeren Dungeon gesetzter, Akteur, solange zufällig durch das Dungeon bis er die gewünschte Anzahl an unterschiedlichen Felder passiert hat. Passierte Felder werden als begehbaren Boden interpretiert, unpassierte Feld als unbegehbare Wände.[@Wikipedia2019a]
 
 Listing 2.1 zeigt wie ein einfaches 2D-Level mithilfe des Random Walk Algorithmus erzeugt werden kann. [@Read2014]  
 
@@ -377,7 +377,7 @@ Modern Approach“(Kapitel 4.1.4)[@RussellundNorvig2014]  und Volker Nissens „
 
 Vereinfacht ausgedrückt: Evolutionäre Algorithmen sind ein Verfahren zur kontrollierten und gesteuerten Zufallssuche. 
 
-Es gibt vier, aus der Historie entstandenen unterscheidungsformen:
+Es gibt vier, aus der Historie entstandenen Unterscheidungsformen:
 
 - Genetische Algorithmen (GA)
 - Genetische Programmierung (GP)
@@ -402,7 +402,7 @@ Ein Gen ist eine bestimmte Stelle bzw. Sequenz im Chromosom. Gene repräsentiere
 
 **Population / Generation**
 
-Einer Menge gleichartiger Individuen wird als Population bezeichnet. Die Anzahl der Individuen gibt die Populationsgröße an. Sterben Individuen oder werden neune geboren, verändert sich die Größe der Population. Betrachtet man eine Population über mehrere Zeitpunkte, spricht man von Generationen. 
+Einer Menge gleichartiger Individuen wird als Population bezeichnet. Die Anzahl der Individuen gibt die Populationsgröße an. Sterben Individuen oder werden neue geboren, verändert sich die Größe der Population. Betrachtet man eine Population über mehrere Zeitpunkte, spricht man von Generationen. 
 
 ### Ablauf
 
@@ -450,7 +450,7 @@ Die Implementation der Fitnessfunktion ist stark mit der eigentlichen Problemste
 
 Bei der Selektion werden Individuen der Ausgangspopulation ausgewählt und in den "mating pool" kopiert, der die Grundlage für die später folgenden Mutation und Rekombination ist. Zu beachten ist, dass ausgewählte Individuen nicht aus der Ausgangspopulation entfernt werden, sie können also mehrfach ausgewählt werden. Bei den gängigsten Selektionsverfahren spielt der Fitnesswert der einzelnen Individuen eine große Rolle, da er bestimmt, wie hoch die Wahrscheinlichkeit ist in den mating pool aufgenommen zu werden. Jedoch sollte man nicht nur die besten Individuen der Population auswählen, da nicht nachvollzogen werden kann, ob sich das Individuum in der Nähe des globalen Hochpunkts befindet oder sich lediglich einen lokalen Hochpunkt nährt. Würde man nur die besten Individuen erlauben sich zu vermehren, würde sich die Population in eine Richtung festfahren. Die Selektion baut einen Fitnessdruck auf, da das Überleben eines Individuums stark von seiner Fitness abhängt. Der Fitnessdruck entspricht daher den *Survival of the fittest* Gedanken der Evolutionstheorie.
 
-Für GA gilt: $\mu$  Eltern erzeugen $\mu$ Kinder, daher: die Populationsgröße bleibt über den gesamtem GA Zeitraum konstant. 
+Für GA gilt: $\mu$  Eltern erzeugen $\mu$ Kinder, daher: die Populationsgröße bleibt über den gesamten GA Zeitraum konstant. 
 
 Es folgt eine Auflistung und Erklärung bekannter Selektionsverfahren.
 

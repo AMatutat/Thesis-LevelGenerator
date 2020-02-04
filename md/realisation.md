@@ -6,7 +6,7 @@ der in Abschnitt 3.1 und 3.2 vorgestellten Bewertungskriterien.
 ## Umsetzung des Konzeptes 
 
 Alle wichtigen Konstanten wurden der Übersicht halber in extra dafür vorgesehene Klassen ausgelagert. Die Klasse *Reference* enthält eine Reihe an Chars, welche im kodierten Level genutzt werden. Die Klasse *Parameter*
-enthält alle Einstellungsvariablen wie Rekombinationschance oder Populationsgröße.
+enthält alle Einstellungsvariablen wie Rekombinationswahrscheinlichkeit oder Populationsgröße.
 
 ### Genetischer Algorithmus
 
@@ -30,7 +30,7 @@ private boolean isConnected(CodedLevel lvl,int x,int y) {
    	return connected; 
 \end{lstlisting}
 
-Listing 4.1 zeigt einen Ausschnitt der Methode *isConnected*. Die Methode *isConnected* prüft, ob das übergebene Wandfeld mit der Außenwand verbunden ist. Eine Wand gilt auch als Verbunden, wenn eine Nachbarwand als Verbunden gilt. In Zeile *2* wird geprüft, ob die zu prüfende Wand eine Außenwand ist, ist dies der Fall, gilt sie als Verbunden. In Zeile *5* wird die Wand der Hilfsliste *checkedWalls* der Klasse *CodedLevel* hinzugefügt, um in den kommenden rekursiven Aufrufen keine Endlosschleife zu erzeugen. In Zeile *6* wird geprüft, ob das Feld zur linken des zu prüfenden Feldes eine Wand ist und ob dieses noch nicht in der Liste der geprüften Wände ist. Sind die Bedingungen erfüllt wird die Methode *isConnected* rekursiv für die Nachbarwand aufgerufen (Zeile *8*). Gilt diese als Verbunden, gilt auch die betrachtete Wand als Verbunden (Zeile *9* und *11*). Zeile *6* bis *9* werden für alle Nachbarfelder ausgeführt.
+Listing 4.1 zeigt einen Ausschnitt der Methode *isConnected*. Die Methode *isConnected* prüft, ob das übergebene Wandfeld mit der Außenwand verbunden ist. Eine Wand gilt auch als Verbunden, wenn eine Nachbarwand als Verbunden gilt. In Zeile *2* wird geprüft, ob die zu prüfende Wand eine Außenwand ist, ist dies der Fall, gilt sie als Verbunden. In Zeile *5* wird die Wand der Hilfsliste *checkedWalls* der Klasse *CodedLevel* hinzugefügt, um in den kommenden rekursiven Aufrufen keine Endlosschleife zu erzeugen. In Zeile *6* wird geprüft, ob das Feld zur linken des zu prüfenden Feldes eine Wand ist und ob dieses noch nicht in der Liste der geprüften Wände ist. Sind die Bedingungen erfüllt, wird die Methode *isConnected* rekursiv für die Nachbarwand aufgerufen (Zeile *8*). Gilt diese als Verbunden, gilt auch die betrachtete Wand als Verbunden (Zeile *9* und *11*). Zeile *6* bis *9* werden für alle Nachbarfelder ausgeführt.
 
 Die Hilfsliste muss vor jeder Prüfung geleert werden. Gilt eine Wand als nicht verbunden, kann mithilfe der Länge der Liste nachvollzogen werden, aus wie vielen Wänden die Kette besteht und der Fitnesswert entsprechend angepasst werden.  
 
@@ -60,11 +60,11 @@ private void createReachableList(CodedLevel lvl, int x, int y) {
 }
 \end{lstlisting}
 
- Listing 4.3 zeigt einen Ausschnitt der Methode *createReachableList*. Die Methode *createRachableList* füllt die Liste *reachableFloors* mit allen Felder, die von den übergebenen Koordinaten erreicht werden können. Dafür wird, wie in Zeile *4* -*8* am Beispiel des linken Nachbarn zu sehen ist, jedes Nachbarfeld des zu prüfenden Feldes betrachtet und geschaut ob dieses als begehbar eingestuft werden kann (also Boden, Start oder Ausgang) und ob das Nachbarfeld noch nicht in der Liste gespeichert ist. Sind die Bedingungen erfüllt wird die Methode *createReachableList* rekursiv für den Nachbarn aufgerufen. Am Ende stehen alle erreichbaren Felder in der Liste *reachableFloors*.
+ Listing 4.3 zeigt einen Ausschnitt der Methode *createReachableList*. Die Methode *createRachableList* füllt die Liste *reachableFloors* mit allen Felder, die von den übergebenen Koordinaten erreicht werden können. Dafür wird, wie in Zeile *4* -*8* am Beispiel des linken Nachbarn zu sehen ist, jedes Nachbarfeld des zu prüfenden Feldes betrachtet und geschaut ob dieses als begehbar eingestuft werden kann (also Boden, Start oder Ausgang) und ob das Nachbarfeld noch nicht in der Liste gespeichert ist. Sind die Bedingungen erfüllt, wird die Methode *createReachableList* rekursiv für den Nachbarn aufgerufen. Am Ende stehen alle erreichbaren Felder in der Liste *reachableFloors*.
 
 Kommt es zur Veränderung im Level, z.B. durch Rekombination oder Mutation muss die Hilfsliste geleert werden, da nicht sichergestellt werden kann, dass die Daten noch korrekt sind. Das bedeutet, in jeder Generation wird für jedes Level der Population die Liste neu erstellt.
 
-Die Abbruchbedingung konnte nicht wie geplant implementiert werden. In Tests zeigte sich, dass Ein Fitnesswert von ca. 79% bereits in der ersten Generation erreicht wurde, ein Fitnesswert von ca. 80% aber nie erreicht wurde und daher eine Endlosschleife entstanden ist.
+Die Abbruchbedingung konnte nicht wie geplant implementiert werden. In Tests zeigte sich, dass ein Fitnesswert von ca. 79% bereits in der ersten Generation erreicht wurde, ein Fitnesswert von ca. 80% aber nie erreicht wurde und daher eine Endlosschleife entstanden ist.
 
 Der GA wurde zusätzlich um die Methode *removeUnreachableFloors* erweitert, welche alle nicht erreichbaren Böden der Finalen Lösung durch Wände ersetzt. Das hat keinen Einfluss auf die Spielbarkeit des Levels, sondern dient zur optischen Aufwertung der Level.  
 
@@ -116,7 +116,7 @@ Es ist zu beachten, dass die ermittelten optimalen Einstellungen nur für 20x20 
 
 ![Beispiellevel. MV=1, MW=1%, RV=1, RC=60%](figs/level/F1M1C1.png){width=70%}
 
-Abbildung 4.1 zeigt ein generiertes Level mit den optimalen Einstellungen. Die Rekombinationschance beträgt 60% und die Mutationswahrscheinlichkeit 1%. Rot eingekreist lassen sich bereits Raum ähnliche Strukturen erkennen. In Blau sind einzelne, aus der Außenwand heraus guckende Wände zu erkennen, der GA sollte so angepasst werden, dass dieses Verhalten nicht mehr vorkommt. In der Mitte lassen sich noch einzelne Wände bzw. kurze Wandketten erkenne. Da sie sehr zufällig platziert wirken, stören sie die Optik bzw. die Immersion des Levels. Die schwarze Treppe stellt den Startpunkt dar, die weiße Leiter den Ausgang. Das Level kann gelöst werden.
+Abbildung 4.1 zeigt ein generiertes Level mit den optimalen Einstellungen. Die Rekombinationschance beträgt 60% und die Mutationswahrscheinlichkeit 1%. Rot eingekreist lassen sich bereits raumähnliche Strukturen erkennen. In Blau sind einzelne, aus der Außenwand heraus guckende Wände zu erkennen, der GA sollte so angepasst werden, dass dieses Verhalten nicht mehr vorkommt. In der Mitte lassen sich noch einzelne Wände bzw. kurze Wandketten erkenne. Da sie sehr zufällig platziert wirken, stören sie die Optik bzw. die Immersion des Levels. Die schwarze Treppe stellt den Startpunkt dar, die weiße Leiter den Ausgang. Das Level kann gelöst werden.
 
 ![Einfluss der Mutationswahrscheinlichkeit auf die durchschnittliche Fitness der besten Lösung. RC=60%](figs/Graph/g1.png){width=70%}
 
@@ -137,7 +137,7 @@ Mutationswahrscheinlichkeit von 40% erreicht, ähnlich hohe Werte erzielen ähnl
 
 ![Einfluss der Mutationswahrscheinlichkeit auf die durchschnittliche Fitness der besten Lösung. RC=60%](figs/Graph/g3.png){width=70%}
 
-Abbildung 4.6 zeigt ein Level mit einer Mutationswahrscheinlichkeit von 5%. Abbildung 4.7 zeigt ein Level mit einer Mutationswahrscheinlichkeit von 40%. Im direkten Vergleich fällt auf, dass die hohe Mutationsrate dazu geführt hat, dass alle Wände verbunden sind, die niedrigere Mutationswahrscheinlichkeit hat noch einige einzelne Wände übriggelassen. Beide Varianten bieten wenige bis gar keine Raum ähnliche Strukturen, sondern sehen eher wie ein großer Raum aus. Abbildung 4.8 zeigt ein Level mit niedriger Mutationswahrscheinlichkeit und verringerter Bodenfelder Anzahl (40/60). Hier lassen sich Raum ähnliche Strukturen verbunden mit Fluren erkennen. Der untere Bereich muss zur Absolvierung des Levels nicht betreten werden und bietet Freiraum zum Erkunden.
+Abbildung 4.6 zeigt ein Level mit einer Mutationswahrscheinlichkeit von 5%. Abbildung 4.7 zeigt ein Level mit einer Mutationswahrscheinlichkeit von 40%. Im direkten Vergleich fällt auf, dass die hohe Mutationsrate dazu geführt hat, dass alle Wände verbunden sind, die niedrigere Mutationswahrscheinlichkeit hat noch einige einzelne Wände übriggelassen. Beide Varianten bieten wenige bis gar keine raumähnliche Strukturen, sondern sehen eher wie ein großer Raum aus. Abbildung 4.8 zeigt ein Level mit niedriger Mutationswahrscheinlichkeit und verringerter Bodenfelder Anzahl (40/60). Hier lassen sich raumähnliche Strukturen verbunden mit Fluren erkennen. Der untere Bereich muss zur Absolvierung des Levels nicht betreten werden und bietet Freiraum zum Erkunden.
 
 ![Beispiellevel. MV=2, MW=5%, RV=2, RC=80%](figs/level/F2M2C2LOWPMUT.png){width=50%} 
 
@@ -149,7 +149,7 @@ Abbildung 4.6 zeigt ein Level mit einer Mutationswahrscheinlichkeit von 5%. Abbi
 
 Die neue Mutationsfunktion wurde, wie im veränderten Konzept beschrieben, implementiert. Die beiden Verfahren zur Platzierung von Räumen wurden nach dem Konzept implementiert. Das *Spelunky-Style* Verfahren wurde zusätzlich um die Platzierung von Türen in optionalen Räumen und der Platzierung von Schlüsseln auf den kritischen Pfad erweitert. 
 
-Um den *Reise zum Mittelpunkt* Algorithmus umzusetzen wurden die Klasse *CodedRoom* erzeugt welche von der Klasse *CodedLevel* erbt und zusätzlich Angaben über die Koordinaten des Mittel- und der Eckpunkte bereithält. 
+Um den *Reise zum Mittelpunkt* Algorithmus umzusetzen wurden die Klasse *CodedRoom* erzeugt, welche von der Klasse *CodedLevel* erbt und zusätzlich Angaben über die Koordinaten des Mittel- und der Eckpunkte bereithält. 
 
 Abbildung 4.9 zeigt den Einfluss der Mutationswahrscheinlichkeit bei der Verwendung der *Game of Life* Mutationsfunktion. Ähnlich zur vorherigen Mutationsfunktion liefert eine hohe Mutationswahrscheinlichkeit von 40% den höchsten Fitnesswert, eine geringere Chance von 3% liefert ähnlich gute Ergebnisse.
 
@@ -161,7 +161,7 @@ Abbildung 4.10 zeigt ein Level mit hoher Mutationswahrscheinlichkeit von 40%. Zu
 
 ![Beispiellevel. MV=3, MW=3%, RV=2, RC=60%](figs/level/F2M3C2LOWPMUT.png){width=50%}
 
-Abbildung 4.12 zeigt ein Level welches mithilfe des *Spelunky-Style* Algorithmus erzeugt wurde. Die Räume wurden dabei mit der Mutationsversion 2 und einer Mutationswahrscheinlichkeit von 5% erzeugt. Es fällt direkt negativ auf, dass sich alle Räume sehr ähnlichsehen und dass das Gittermuster sofort zu erkenne ist. Dafür liefert diese Variante neben den kritischen Lösungspfad eine Reihe an optionalen Räumen. Der obere Rechte Raum ist mithilfe einer Tür verschlossen und kann erst mit dem Schlüssel aus dem Raum in der zweiten Reihe geöffnet werden.
+Abbildung 4.12 zeigt ein Level, welches mithilfe des *Spelunky-Style* Algorithmus erzeugt wurde. Die Räume wurden dabei mit der Mutationsversion 2 und einer Mutationswahrscheinlichkeit von 5% erzeugt. Es fällt direkt negativ auf, dass sich alle Räume sehr ähnlichsehen und dass das Gittermuster sofort zu erkenne ist. Dafür liefert diese Variante neben den kritischen Lösungspfad eine Reihe an optionalen Räumen. Der obere Rechte Raum ist mithilfe einer Tür verschlossen und kann erst mit dem Schlüssel aus dem Raum in der zweiten Reihe geöffnet werden.
 
 ![Beispiellevel erzeugt mit den Spelunky-Style Algorithmus](figs/level/Spelunky.png){width=50%} 
 
@@ -197,7 +197,7 @@ Die Struktur der Level ist stärker als bei den anderen Verfahren von Zufall abh
 
 ### Mutation 2 mit geringerer Bodenfläche
 
-Dieses Verfahren verwendet nur den GA und benötigt keinen weiteren Algorithmus. Es erzeugt Level mit Raum ähnlichen Strukturen und optionalen Routen. In den Level sind wenige bis keine einzelnen Wandfelder zu erkennen, die einzelnen Wandketten bilden optisch ansprechende Trennwände und man kann sich gut vorstellen das diese in einen Dungeon so verbaut werden.
+Dieses Verfahren verwendet nur den GA und benötigt keinen weiteren Algorithmus. Es erzeugt Level mit raumähnlichen Strukturen und optionalen Routen. In den Level sind wenige bis keine einzelnen Wandfelder zu erkennen, die einzelnen Wandketten bilden optisch ansprechende Trennwände und man kann sich gut vorstellen das diese in einen Dungeon so verbaut werden.
 
 Da Raum ähnliche Strukturen zwar erzeugt, jedoch nicht erkannt werden können, ist die sinnvolle Platzierung von Türen und Schlüsseln nicht möglich.
 
