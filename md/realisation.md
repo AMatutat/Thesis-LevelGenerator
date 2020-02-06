@@ -70,7 +70,7 @@ Der GA wurde zusätzlich um die Methode *removeUnreachableFloors* erweitert, wel
 
 ### LevelParser
 
-Der *LevelParser* konnte, wie im Konzept beschrieben, umgesetzt werden. Im Folgenden wird die Methode zur Generierung der Leveltextur genauer beschrieben.
+Der *LevelParser* konnte wie im Konzept beschrieben umgesetzt werden. Im Folgenden wird die Methode zur Generierung der Leveltextur genauer beschrieben.
 
 \begin{lstlisting}[language=java, caption=Ausschnitt der Methode generateTextureMap]	
 img1 = ImageIO.read(new File(lvl.getLevel()[0][0].getTexture()));
@@ -90,13 +90,13 @@ for (int y = 0; y < lvl.getYSize(); y++) {
 }	
 \end{lstlisting}
 
-Listing 4.4 zeigt einen Ausschnitt der Methode *generateTextureMap*. In Zeile *1* wird die Textur des oberen linken Feldes ausgelesen. Danach wird reihenweise über das gesamte Level iteriert (Zeile *2* und *3*). In Zeile *5* werden zwei Texturen durch die Hilfsfunktion *joinBufferedImageSide* so miteinander verbunden, dass die zweite Textur rechts an die erste Textur angefügt wird. Im nächsten Schleifendurchgang ist die erste Textur, die zusammengesetzte Textur der vorherigen Schleifendurchläufe (Zeile *6*). Nachdem über eine komplette Reihe iteriert wurde, befindet sich in der Variablen *joinedImgLine* die Textur der ganzen Reihe. In Zeile *11* wird diese Textur durch die Hilfsfunktion *joinedBufferedImageDown* unter die Textur der vorherigen Schleifendurchläufe angefügt. Am Ende aller Schleifendurchläufe befindet sich die komplette Leveltextur in der Variablen *joinedImageComplete* und wird an den vom User bestimmten Pfad abgespeichert.
+Listing 4.4 zeigt einen Ausschnitt der Methode *generateTextureMap*. In Zeile *1* wird die Textur des oberen linken Feldes ausgelesen. Danach wird reihenweise über das gesamte Level iteriert (Zeile *2* und *3*). In Zeile *5* werden zwei Texturen durch die Hilfsfunktion *joinBufferedImageSide* so miteinander verbunden, dass die zweite Textur rechts an die erste Textur angefügt wird. Im nächsten Schleifendurchgang ist die erste Textur die zusammengesetzte Textur der vorherigen Schleifendurchläufe (Zeile *6*). Nachdem über eine komplette Reihe iteriert wurde, befindet sich in der Variablen *joinedImgLine* die Textur der ganzen Reihe. In Zeile *11* wird diese Textur durch die Hilfsfunktion *joinedBufferedImageDown* unter die Textur der vorherigen Schleifendurchläufe angefügt. Am Ende aller Schleifendurchläufe befindet sich die komplette Leveltextur in der Variablen *joinedImageComplete* und wird an den vom User bestimmten Pfad abgespeichert.
 
-Dieses Verfahren benötigt, je nach Level Größe, eine große Menge an Arbeitsspeicher. In Tests haben 200x200 große Level ausgereicht, um den RAM der JVM bei Standarteinstellungen auszureizen. Eine manuelle Erhöhung des JVM RAMs ist daher empfehlenswert.  
+Dieses Verfahren benötigt, je nach Levelgröße, eine große Menge an Arbeitsspeicher. In Tests haben 200x200 große Level ausgereicht, um den RAM der JVM bei Standarteinstellungen auszureizen. Eine manuelle Erhöhung des JVM RAMs ist daher empfehlenswert.  
 
 ### Ergebnis
 
-Um die optimalen Parameter Einstellungen zu erhalten, wurde die Fitness verschiedener Einstellung für ein 20x20 Level miteinander verglichen. Alle in dieser Arbeit erstellten Level, sofern nicht anders beschrieben, wurden mit denselben, in Tabelle 4.1 zu sehenden, Grundeinstellungen generiert und unterscheiden sich nur in den verwendeten Subroutinen, der Mutationswahrscheinlichkeit (MW) und Rekombinationschance (RC).
+Um die optimalen Parametereinstellungen zu erhalten, wurde die Fitness verschiedener Einstellungen für ein 20x20 Level miteinander verglichen. Alle in dieser Arbeit erstellten Level, sofern nicht anders beschrieben, wurden mit denselben, in Tabelle 4.1 zu sehenden, Grundeinstellungen generiert und unterscheiden sich nur in den verwendeten Subroutinen, der Mutationswahrscheinlichkeit (MW) und Rekombinationschance (RC).
 
 | Parameter        | Wert |
 | ---------------- | ---- |
@@ -110,17 +110,17 @@ Table: Übersicht der Grundeinstellung
 
 Alle gezeigten Level, sofern nicht anders beschrieben, wurden mit den, für die verwendeten Subroutinen, optimalen Mutationswahrscheinlichkeit und Rekombinationschance generiert. Die optimalen Einstellungen wurden durch den Vergleich der durchschnittlichen Fitness, der besten Lösung aus 10 Durchläufe pro Einstellung, ermittelt. Dabei wurden jeweils verschiedene Mutationswahrscheinlichkeiten mit verschiedenen Rekombinationschancen getestet. Die gezeigten Level stammen immer aus dem Ende eines Durchlaufes und repräsentieren die beste Lösung des Durchlaufes.
 
-Die präsentierten Graphen zeigen die durchschnittliche Fitness bzw. durchschnittliche Generation des besten Levels eines Durchlaufes (ermittelt aus 10 Durchläufe) abhängig von der eingestellten Mutationswahrscheinlichkeit mit zugehöriger besten Rekombinationschance. Insgesamt wurden 12 unterschiedliche Setups mit jeweils 51 unterschiedlichen Parametereinstellungen betrachtet. Im Folgenden werden die vier nennenswertesten Setups analysiert. Die genauen Messergebnisse sind im Abschnitt Messdaten einzusehen.
+Die präsentierten Graphen zeigen die durchschnittliche Fitness bzw. durchschnittliche Generation des besten Levels eines Durchlaufes (ermittelt aus 10 Durchläufen) abhängig von der eingestellten Mutationswahrscheinlichkeit mit zugehöriger besten Rekombinationschance. Insgesamt wurden 12 unterschiedliche Setups mit jeweils 51 unterschiedlichen Parametereinstellungen betrachtet. Im Folgenden werden die vier nennenswertesten Setups analysiert. Die genauen Messergebnisse sind im Abschnitt Messdaten einzusehen.
 
 Es ist zu beachten, dass die ermittelten optimalen Einstellungen nur für 20x20 Level mit den in Tabelle 4.1 angegebenen Grundeinstellungen gültig sind. Eine genauere Untersuchung, ob und inwiefern diese Werte auch auf andere Einstellungen übernommen werden können, muss erst genauer untersucht werden. Diese genauere Untersuchung findet im Rahmen dieser Arbeit, aus zeitlichen Gründen, nicht statt.  
 
 ![Beispiellevel. MV=1, MW=1%, RV=1, RC=60%](figs/level/F1M1C1.png){width=70%}
 
-Abbildung 4.1 zeigt ein generiertes Level mit den optimalen Einstellungen. Die Rekombinationschance beträgt 60% und die Mutationswahrscheinlichkeit 1%. Rot eingekreist lassen sich bereits raumähnliche Strukturen erkennen. In Blau sind einzelne, aus der Außenwand heraus guckende Wände zu erkennen, der GA sollte so angepasst werden, dass dieses Verhalten nicht mehr vorkommt. In der Mitte lassen sich noch einzelne Wände bzw. kurze Wandketten erkenne. Da sie sehr zufällig platziert wirken, stören sie die Optik bzw. die Immersion des Levels. Die schwarze Treppe stellt den Startpunkt dar, die weiße Leiter den Ausgang. Das Level kann gelöst werden.
+Abbildung 4.1 zeigt ein generiertes Level mit den optimalen Einstellungen. Die Rekombinationschance beträgt 60% und die Mutationswahrscheinlichkeit 1%. Rot eingekreist lassen sich bereits raumähnliche Strukturen erkennen. In Blau sind einzelne, aus der Außenwand heraus guckende Wände zu erkennen, der GA sollte so angepasst werden, dass dieses Verhalten nicht mehr vorkommt. In der Mitte lassen sich noch einzelne Wände bzw. kurze Wandketten erkennen. Da sie sehr zufällig platziert wirken, stören sie die Optik bzw. die Immersion des Levels. Die schwarze Treppe stellt den Startpunkt dar, die weiße Leiter den Ausgang. Das Level kann gelöst werden.
 
 ![Einfluss der Mutationswahrscheinlichkeit auf die durchschnittliche Fitness der besten Lösung. RC=60%](figs/Graph/g1.png){width=70%}
 
-Abbildung 4.2 zeigt den Einfluss der Mutationschane auf die Fitness. Es ist deutlich zu erkennen, dass eine Erhöhung der Mutationswahrscheinlichkeit zu einer schlechteren Fitness führt. Die Fitness der optimalen Einstellung von 1% liegt sehr nah an den der Fitness bei einer 0% Mutationswahrscheinlichkeit. Abbildung 4.3 zeigt den Einfluss der Mutationswahrscheinlichkeit auf die Generation der besten Lösung. Es ist zu erkenne das bereits ab einer Mutationswahrscheinlichkeit von 3% die Lösung aus einer sehr frühen Generation stammt, und daher eher zufällig gefunden wurde, anstatt sich mit der Zeit entwickelt zu haben. Daraus geht hervor das die Mutationsfunktion nicht dabei hilft, mit jeder Generation bessere Lösungen zu erzeugen, sondern den GA in eine Zufallssuche verwandelt.
+Abbildung 4.2 zeigt den Einfluss der Mutationschane auf die Fitness. Es ist deutlich zu erkennen, dass eine Erhöhung der Mutationswahrscheinlichkeit zu einer schlechteren Fitness führt. Die Fitness der optimalen Einstellung von 1% liegt sehr nah an den der Fitness bei einer 0% Mutationswahrscheinlichkeit. Abbildung 4.3 zeigt den Einfluss der Mutationswahrscheinlichkeit auf die Generation der besten Lösung. Es ist zu erkenne das bereits ab einer Mutationswahrscheinlichkeit von 3% die Lösung aus einer sehr frühen Generation stammt, und daher eher zufällig gefunden wurde, anstatt sich mit der Zeit entwickelt zu haben. Daraus geht hervor, dass die Mutationsfunktion nicht dabei hilft, mit jeder Generation bessere Lösungen zu erzeugen, sondern den GA in eine Zufallssuche verwandelt.
 
 ![Einfluss der Mutationswahrscheinlichkeit auf die durchschnittliche Generation der besten Lösung. MW=1% RC=60%](figs/Graph/g2.png){width=70%}
 
@@ -133,11 +133,11 @@ Abbildung 4.4 zeigt ein Level mit der ersten Mutations- (MV) und Rekombinationsv
 ![Beispiellevel. MV=1, MW=1%, RV=1; RC=60%](figs/level/F2M1C1.png){width=50%}
 
 Abbildung 4.5 zeigt den Einfluss der Mutationswahrscheinlichkeit bei der Verwendung der neuen Mutationsfunktion, der neuen Rekombinationsfunktion sowie angepasster Fitnessfunktion. Die höchste Fitness wird bei einer hohen
-Mutationswahrscheinlichkeit von 40% erreicht, ähnlich hohe Werte erzielen ähnliche Fitnesswerte. Es ist davon auszugehen, dass bei einer so hohen Mutationswahrscheinlichkeit im Laufe der Zeit alle Gene mutiert werden. Der Zusammenhang zwischen hohen Fitnesswerten und hoher Mutationswahrscheinlichkeit bestärkt die Annahme das die Mutationsfunktion zu *stark* ist. Allerdings liefert auch eine geringe Mutationswahrscheinlichkeit von 5% ähnlich gute Ergebnisse.
+Mutationswahrscheinlichkeit von 40% erreicht, ähnlich hohe Werte erzielen ähnliche Fitnesswerte. Es ist davon auszugehen, dass bei einer so hohen Mutationswahrscheinlichkeit im Laufe der Zeit alle Gene mutiert werden. Der Zusammenhang zwischen hohen Fitnesswerten und hoher Mutationswahrscheinlichkeit bestärkt die Annahme, dass die Mutationsfunktion zu *stark* ist. Allerdings liefert auch eine geringe Mutationswahrscheinlichkeit von 5% ähnlich gute Ergebnisse.
 
 ![Einfluss der Mutationswahrscheinlichkeit auf die durchschnittliche Fitness der besten Lösung. RC=60%](figs/Graph/g3.png){width=70%}
 
-Abbildung 4.6 zeigt ein Level mit einer Mutationswahrscheinlichkeit von 5%. Abbildung 4.7 zeigt ein Level mit einer Mutationswahrscheinlichkeit von 40%. Im direkten Vergleich fällt auf, dass die hohe Mutationsrate dazu geführt hat, dass alle Wände verbunden sind, die niedrigere Mutationswahrscheinlichkeit hat noch einige einzelne Wände übriggelassen. Beide Varianten bieten wenige bis gar keine raumähnliche Strukturen, sondern sehen eher wie ein großer Raum aus. Abbildung 4.8 zeigt ein Level mit niedriger Mutationswahrscheinlichkeit und verringerter Bodenfelder Anzahl (40/60). Hier lassen sich raumähnliche Strukturen verbunden mit Fluren erkennen. Der untere Bereich muss zur Absolvierung des Levels nicht betreten werden und bietet Freiraum zum Erkunden.
+Abbildung 4.6 zeigt ein Level mit einer Mutationswahrscheinlichkeit von 5%. Abbildung 4.7 zeigt ein Level mit einer Mutationswahrscheinlichkeit von 40%. Im direkten Vergleich fällt auf, dass die hohe Mutationsrate dazu geführt hat, dass alle Wände verbunden sind, die niedrigere Mutationswahrscheinlichkeit hat noch einige einzelne Wände übriggelassen. Beide Varianten bieten wenige bis gar keine raumähnliche Strukturen, sondern sehen eher wie ein großer Raum aus. Abbildung 4.8 zeigt ein Level mit niedriger Mutationswahrscheinlichkeit und verringerter Bodenfelderanzahl (40/60). Hier lassen sich raumähnliche Strukturen verbunden mit Fluren erkennen. Der untere Bereich muss zur Absolvierung des Levels nicht betreten werden und bietet Freiraum zum Erkunden.
 
 ![Beispiellevel. MV=2, MW=5%, RV=2, RC=80%](figs/level/F2M2C2LOWPMUT.png){width=50%} 
 
@@ -155,13 +155,13 @@ Abbildung 4.9 zeigt den Einfluss der Mutationswahrscheinlichkeit bei der Verwend
 
 ![Einfluss der Mutationswahrscheinlichkeit auf die durchschnittliche Fitness der besten Lösung. RC=60%](figs/Graph/g4.png){width=70%}
 
-Abbildung 4.10 zeigt ein Level mit hoher Mutationswahrscheinlichkeit von 40%. Zum Vergleich zeigt Abbildung 4.11 ein Level mit einer Mutationswahrscheinlichkeit von 3%. Beide Varianten erzeugen Level mit einer Vielzahl einzeln Platzierter Wände. Diese Mutationsfunktion kann als Rückschritt, im Vergleich zur vorherigen Version, betrachtet werden.
+Abbildung 4.10 zeigt ein Level mit hoher Mutationswahrscheinlichkeit von 40%. Zum Vergleich zeigt Abbildung 4.11 ein Level mit einer Mutationswahrscheinlichkeit von 3%. Beide Varianten erzeugen Level mit einer Vielzahl einzeln platzierter Wände. Diese Mutationsfunktion kann als Rückschritt, im Vergleich zur vorherigen Version, betrachtet werden.
 
 ![Beispiellevel. MV=3, MW=40%, RV=2, RC=60%](figs/level/F2M3C2HIGHPMUT.png){width=50%} 
 
 ![Beispiellevel. MV=3, MW=3%, RV=2, RC=60%](figs/level/F2M3C2LOWPMUT.png){width=50%}
 
-Abbildung 4.12 zeigt ein Level, welches mithilfe des *Spelunky-Style* Algorithmus erzeugt wurde. Die Räume wurden dabei mit der Mutationsversion 2 und einer Mutationswahrscheinlichkeit von 5% erzeugt. Es fällt direkt negativ auf, dass sich alle Räume sehr ähnlichsehen und dass das Gittermuster sofort zu erkenne ist. Dafür liefert diese Variante neben den kritischen Lösungspfad eine Reihe an optionalen Räumen. Der obere Rechte Raum ist mithilfe einer Tür verschlossen und kann erst mit dem Schlüssel aus dem Raum in der zweiten Reihe geöffnet werden.
+Abbildung 4.12 zeigt ein Level, welches mithilfe des *Spelunky-Style* Algorithmus erzeugt wurde. Die Räume wurden dabei mit der Mutationsversion 2 und einer Mutationswahrscheinlichkeit von 5% erzeugt. Es fällt direkt negativ auf, dass sich alle Räume sehr ähnlich sehen und dass das Gittermuster sofort zu erkennen ist. Dafür liefert diese Variante neben dem kritischen Lösungspfad eine Reihe an optionalen Räumen. Der obere Rechte Raum ist mithilfe einer Tür verschlossen und kann erst mit dem Schlüssel aus dem Raum in der zweiten Reihe geöffnet werden.
 
 ![Beispiellevel erzeugt mit den Spelunky-Style Algorithmus](figs/level/Spelunky.png){width=50%} 
 
@@ -173,33 +173,33 @@ Abbildung 4.13 zeigt ein Level, welches durch die zufällige Platzierung von Rä
 
 In diesen Abschnitt folgt eine genauere Analyse der erstellten Lösungen. Der Algorithmus bietet viele Einstellungsmöglichkeiten, es würde daher den Rahmen der Arbeit sprengen, alle Möglichkeiten genauer zu betrachten. Aus der Realisierungsphase haben sich drei Verfahren herauskristallisiert, welche nun genauer betrachtet werden. Um ein Gefühl der Vielfältigkeit der einzelnen Verfahren zu bekommen, stehen im Anhang B. weitere Beispiellevel zur Verfügung.
 
-Alle Verfahren erfüllen die in Abschnitt 3.1 aufgestellten Grundanforderungen an das Projekt. Jedes Verfahren erstellt Lösbare 2D-Level. Der Parser ermöglicht es den Studenten die generierten Level in ihr PM-Dungeon zu integrieren. Monster, Items und Spezialfelder können zufällig im Level verteilt werden. Die vorgegebenen Interfaces helfen dabei, auch selbst konzeptionierte Objekte im Level zu verteilen, dadurch liefert der Generator die Freiheit auch abseits der Aufgabenstellung aktiv und kreativ zu werden. Da Objekte zufällig platziert werden, kann der Schwierigkeitsgrad des Levels nur bedingt kontrolliert werden, da zwar die Stärke der Monster kontrolliert werden kann aber nicht sichergestellt werden kann, dass starke Monster nur auf optionalen Routen platziert werden. Der Parser ist in der Lage die Leveltextur zu erstellen, damit diese von den Studenten verwendet werden kann.  
+Alle Verfahren erfüllen die in Abschnitt 3.1 aufgestellten Grundanforderungen an das Projekt. Jedes Verfahren erstellt lösbare 2D-Level. Der Parser ermöglicht es den Studenten die generierten Level in ihr PM-Dungeon zu integrieren. Monster, Items und Spezialfelder können zufällig im Level verteilt werden. Die vorgegebenen Interfaces helfen dabei, auch selbst konzeptionierte Objekte im Level zu verteilen, dadurch liefert der Generator die Freiheit auch abseits der Aufgabenstellung aktiv und kreativ zu werden. Da Objekte zufällig platziert werden, kann der Schwierigkeitsgrad des Levels nur bedingt kontrolliert werden, da zwar die Stärke der Monster kontrolliert werden kann aber nicht sichergestellt werden kann, dass starke Monster nur auf optionalen Routen platziert werden. Der Parser ist in der Lage die Leveltextur zu erstellen, damit diese von den Studenten verwendet werden kann.  
 
 ### Spelunky-Style
 
-Das *Spelunky-Style* Verfahren erstellt Level, die neben den kritischen Pfad eine Vielzahl an optionalen Räumen bietet. Die Räume bieten Freiraum, um spannenden Risk and Reward Situationen zu erzeugen. Zwar kann nicht kontrolliert werden, welche Monster und Items in die optionalen gebiete platziert werden, dass muss aber nicht unbedingt schlecht sein. Es sollte regelmäßig dazu kommen, dass gute Items in optionalen Gebieten platziert werden. Die Ungewissheit, ob es sich wirklich lohnt einen optionalen Pfad zu erkunden, führt zu noch spannenderen Entscheidungen und Risk and Reward Momenten.
+Das *Spelunky-Style* Verfahren erstellt Level, die neben den kritischen Pfad eine Vielzahl an optionalen Räumen bietet. Die Räume bieten Freiraum, um spannende Risk and Reward Situationen zu erzeugen. Zwar kann nicht kontrolliert werden, welche Monster und Items in die optionalen Gebiete platziert werden, das muss aber nicht unbedingt schlecht sein. Es sollte regelmäßig dazu kommen, dass gute Items in optionalen Gebieten platziert werden. Die Ungewissheit, ob es sich wirklich lohnt einen optionalen Pfad zu erkunden, führt zu noch spannenderen Entscheidungen und Risk and Reward Momenten.
 
-Das *Spelunky-Style* Verfahren ist als einziges Verfahren in der Lage, Türen und Schlüssel zu platzieren. Türen verschließen nur optionale Gebiete und der Schlüssel wird auf den kritischen Pfad platziert. Dadurch kann die Lösbarkeit des Levels sichergestellt werden als auch garantiert werden, dass der Schlüssel immer erreichbar ist, ohne die Tür vorher öffnen zu müssen.
+Das *Spelunky-Style* Verfahren ist als einziges Verfahren in der Lage, Türen und Schlüssel zu platzieren. Türen verschließen nur optionale Gebiete und der Schlüssel wird auf dem kritischen Pfad platziert. Dadurch kann die Lösbarkeit des Levels sichergestellt werden als auch garantiert werden, dass der Schlüssel immer erreichbar ist, ohne die Tür vorher öffnen zu müssen.
 
-Sowohl die Immersion als auch die Einzigartigkeit der Level sind Schwachpunkte des *Spelunky-Style* Verfahrens. Das verwendete Gittermuster ist unübersehbar und obwohl die Räume alle zufällig Generiert werden, ähneln sie sich dennoch sehr stark voneinander. Die einzelnen Level bietet kaum Alleinstellungsmerkmale, lediglich die unterschiedlichen Routen zum Ziel bieten Abwechslung.
+Sowohl die Immersion als auch die Einzigartigkeit der Level sind Schwachpunkte des *Spelunky-Style* Verfahrens. Das verwendete Gittermuster ist unübersehbar und obwohl die Räume alle zufällig Generiert werden, ähneln sie sich dennoch sehr stark. Die einzelnen Level bietet kaum Alleinstellungsmerkmale, lediglich die unterschiedlichen Routen zum Ziel bieten Abwechslung.
 
 Auch wenn dieses Verfahren sich sehr gut dazu eignet interessante Risk and Reward Situationen zu erzeugen, verhindert die starke Ähnlichkeit der Level und das erkennbare Gittermuster das Eintauchen in der Spielwelt. Das Verfahren eignet sich in der aktuellen Form nicht, um spaßige Level für das PM-Dungeon zu erzeugen.  
 
 ### Reise zum Mittelpunkt
 
-Dieses Verfahren erstellt Level die zufällig entweder nur einen Pfad oder zusätzliche optionale Routen bieten. Durch die unterschiedlich großen Räume entsteht innerhalb des Levels Abwechslung. Die zufällige Platzierung der Räume sorgt dafür, dass jedes Level deutlich anders aussieht als andere. Risk und Reward Momente können zufällig entstehen, es kann nicht sichergestellt werden das jedes Level optionale Routen hat. Die teils langen Laufwege zwischen den Räumen können den Spielspaß trüben. Die Level bestehen aus einem großen Teil aus Wandblöcken, je nachdem wie die Kameraperspektive von den Studenten implementiert wird, ist dies entweder nicht zu sehen oder wird als störend wahrgenommen.
+Dieses Verfahren erstellt Level die zufällig entweder nur einen Pfad oder zusätzliche optionale Routen bieten. Durch die unterschiedlich großen Räume entsteht innerhalb des Levels Abwechslung. Die zufällige Platzierung der Räume sorgt dafür, dass jedes Level deutlich anders aussieht als andere. Risk und Reward Momente können zufällig entstehen, es kann nicht sichergestellt werden, dass jedes Level optionale Routen hat. Die teils langen Laufwege zwischen den Räumen können den Spielspaß trüben. Die Level bestehen aus einem großen Teil aus Wandblöcken, je nachdem wie die Kameraperspektive von den Studenten implementiert wird, ist dies entweder nicht zu sehen oder wird als störend wahrgenommen.
 
 Dadurch, dass die Größe der einzelnen Räume innerhalb eines Levels variiert, würde dieses Verfahren von einer dynamischen Anpassung der Parameter stark profitieren.
 
 Das Verfahren ist nicht in der Lage Türen und Schlüssel zu platzieren, da es kein Verweis darauf gibt, ob ein Raum optional oder zum kritischen Lösungspfad gehört.
 
-Die Struktur der Level ist stärker als bei den anderen Verfahren von Zufall abhängig. Das Verfahren ist in der Lage gute Level mit unterschiedlichen Pfaden und abwechslungsreichen Level zu erzeugen. Es eignet sich daher zur Nutzung im PM-Dungeon.  
+Die Struktur der Level ist stärker als bei den anderen Verfahren von Zufall abhängig. Das Verfahren ist in der Lage gute Level mit unterschiedlichen Pfaden und abwechslungsreichen Leveln zu erzeugen. Es eignet sich daher zur Nutzung im PM-Dungeon.  
 
 ### Mutation 2 mit geringerer Bodenfläche
 
-Dieses Verfahren verwendet nur den GA und benötigt keinen weiteren Algorithmus. Es erzeugt Level mit raumähnlichen Strukturen und optionalen Routen. In den Level sind wenige bis keine einzelnen Wandfelder zu erkennen, die einzelnen Wandketten bilden optisch ansprechende Trennwände und man kann sich gut vorstellen das diese in einen Dungeon so verbaut werden.
+Dieses Verfahren verwendet nur den GA und benötigt keinen weiteren Algorithmus. Es erzeugt Level mit raumähnlichen Strukturen und optionalen Routen. In den Leveln sind wenige bis keine einzelnen Wandfelder zu erkennen, die einzelnen Wandketten bilden optisch ansprechende Trennwände und man kann sich gut vorstellen, dass diese in einen Dungeon so verbaut werden.
 
-Da Raum ähnliche Strukturen zwar erzeugt, jedoch nicht erkannt werden können, ist die sinnvolle Platzierung von Türen und Schlüsseln nicht möglich.
+Da raumähnliche Strukturen zwar erzeugt, jedoch nicht erkannt werden können, ist die sinnvolle Platzierung von Türen und Schlüsseln nicht möglich.
 
 Dieses Verfahren erzeugt abwechslungsreiche Level mit optionalen Routen für spannende Risk and Reward Situationen. Von den hier präsentierten Verfahren erzeugt es die optisch ansprechendsten Level und ist daher am besten zur Verwendung im PM-Dungeon geeignet.  
 
