@@ -97,7 +97,7 @@ Abbildung 2.2 zeigt einen Ausschnitt eines Dungeons aus dem Spiel. Besonders gut
 ## Regeln für gutes Leveldesign
 
 >"In den meisten Computerspielen steht das Design der Level im Mittelpunkt. Ob
->Puzzle-, Adventure-, oder Rollenspiel, Level gehören zum Kernpunkt der Interaktion. Sie vereinen >die verschiedenen Elemente des Spiels zum großen Ganzen: Dem
+>Puzzle-, Adventure-, oder Rollenspiel, Level gehören zum Kernpunkt der Interaktion. Sie vereinen die verschiedenen Elemente des Spiels zum großen Ganzen: Dem
 >Spiel selbst. Rückt der Leveldesigner nicht all diese Elemente in ein gutes Licht, so
 >geht der Spielspaß verloren."[@Hagen2019]
 
