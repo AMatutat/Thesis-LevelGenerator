@@ -219,7 +219,7 @@ Oft werden auch sogenannten *Weenies* verwendet, um den Spieler in eine Richtung
 
 Auch in streng linearen Spielen kann gute Spielernavigation hilfreich sein, da es das Pacing aufrechterhält und den Schein einer größeren Welt erzeugen kann.
 
->"The game provides multiple paths for the player, and they feel like they have the freedom to explore whichever they choose. As they always seem to stumble upon new content - not entirely aware that they were subconsciously persuaded to take that path or enter that door - it stands to reason that all the other exits and doors lead to new play spaces too. It makes the world feel bigger and less linear that it really is. It also helps keep up the pace of the game."[Brown2015c]
+>"The game provides multiple paths for the player, and they feel like they have the freedom to explore whichever they choose. As they always seem to stumble upon new content - not entirely aware that they were subconsciously persuaded to take that path or enter that door - it stands to reason that all the other exits and doors lead to new play spaces too. It makes the world feel bigger and less linear than it really is. It also helps keep up the pace of the game."[@Brown2015c]
 
 
 ### Risk and Reward
