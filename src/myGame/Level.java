@@ -4,40 +4,40 @@ import interfaces.ILevel;
 import interfaces.ISurface;
 
 public class Level implements ILevel {
-	private int xSize;
-	private int ySize;
-	private ISurface[][] level;
-	
-	public Level(int xSize, int ySize, ISurface[][] level) {
-		this.xSize = xSize;
-		this.ySize = ySize;
-		this.level = level;
-	}
+    private int xSize;
+    private int ySize;
+    private ISurface[][] level;
 
-	@Override
-	public int getXSize() {
+    public Level(int xSize, int ySize, ISurface[][] level) {
+        this.xSize = xSize;
+        this.ySize = ySize;
+        this.level = level;
+    }
 
-		return this.xSize;
-	}
+    @Override
+    public int getXSize() {
 
-	@Override
-	public int getYSize() {
-		return this.ySize;
-	}
+        return this.xSize;
+    }
 
-	public ISurface[][] getLevel(){
-		return this.level;
-	}
+    @Override
+    public int getYSize() {
+        return this.ySize;
+    }
 
-	@Override
-	public ISurface[] getFreeFloors() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public ISurface[][] getLevel() {
+        return this.level;
+    }
 
-	@Override
-	public ISurface[] getFreeWalls() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public ISurface[] getFreeFloors() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public ISurface[] getFreeWalls() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }

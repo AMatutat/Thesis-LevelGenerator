@@ -1,6 +1,3 @@
 package myGame;
 
-public abstract class Monster {
-
-
-}
+public abstract class Monster {}

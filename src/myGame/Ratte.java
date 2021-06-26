@@ -1,7 +1,3 @@
 package myGame;
 
-public class Ratte extends Monster{
-
-
-
-}
+public class Ratte extends Monster {}

@@ -1,35 +1,20 @@
 package interfaces;
 /**
  * Muss von der Level Klasse implementiert werden
- * @author André Matutat
  *
+ * @author Andrï¿½ Matutat
  */
 public interface ILevel {
-/**
- * 
- * @return Breite des Levels
- */
-	public int getXSize();
-	/**
-	 * 
-	 * @return Höhe des Levels
-	 */
-	public int getYSize();
-	/**
-	 * 
-	 * @return Aufbau des Levels
-	 */
-	public ISurface[][] getLevel();
+    /** @return Breite des Levels */
+    public int getXSize();
+    /** @return Hï¿½he des Levels */
+    public int getYSize();
+    /** @return Aufbau des Levels */
+    public ISurface[][] getLevel();
 
-	/**
-	 * 
-	 * @return Liste mit allen, nicht belegten, Böden
-	 */
-	public ISurface[] getFreeFloors();
-	
-	/**
-	 * 
-	 * @return Liste mit allen, nicht belegten, Wänden
-	 */
-	public ISurface[] getFreeWalls();
+    /** @return Liste mit allen, nicht belegten, Bï¿½den */
+    public ISurface[] getFreeFloors();
+
+    /** @return Liste mit allen, nicht belegten, Wï¿½nden */
+    public ISurface[] getFreeWalls();
 }

@@ -1,5 +1,3 @@
 package myGame;
 
-public abstract class Item {
-
-}
+public abstract class Item {}
